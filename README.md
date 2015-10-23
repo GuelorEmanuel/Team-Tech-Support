@@ -1,4 +1,10 @@
-# -Team-Tech-Support
-Project for Christine Laurendeau 3004 course
+# -Team-Tech-Support : Project for Christine Laurendeau COMP3004 course
+## Dev Team
+- Derek Felson
+- Margarita Otochkina
+- Guelor Emanuel
 
-Probably the most important thing to remember when you're working with Git is never to do your work on the same branch that We will be pushing to, called 'master'. You should create your own branch, and use that instead. This ensures that you will be able to update any changes that are committed to main branch upstream without any problems.
+## Instructions for dev team
+- Please always keey the master branch clean
+- Each time, that you want to commit a feature or a bug, please create a branch for it and name it appropriately.
+- Please do not merge your branch directly to master but instead assign your merge request to someone else in the team so that they may review your changes before merging.
