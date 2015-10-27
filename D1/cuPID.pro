@@ -13,7 +13,6 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
     User.cpp \
     student.cpp \
     guest.cpp \
@@ -33,9 +32,10 @@ SOURCES += main.cpp\
     studentprofileview.cpp \
     editstuprofileview.cpp \
     editstuprofilecontrol.cpp \
-    projectlist.cpp
+    projectlist.cpp \
+    mainwindow.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     User.h \
     student.h \
     guest.h \
@@ -55,6 +55,11 @@ HEADERS  += mainwindow.h \
     studentprofileview.h \
     editstuprofileview.h \
     editstuprofilecontrol.h \
-    projectlist.h
+    projectlist.h \
+    mainwindow.h
 
-FORMS    += mainwindow.ui
+FORMS    += \
+    mainwindow.ui
+
+RESOURCES += \
+    Resources.qrc

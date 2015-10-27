@@ -1,18 +1,19 @@
 #ifndef PROFILE_H
 #define PROFILE_H
-
+#include <QString>
 #include "qualifications.h"
 
 class Profile
 {
 public:
-    Profile(string, string, string);
+    Profile(QString, QString, QString, QString);
     ~Profile();
 
 private:
-    string fname;
-    string lname;
-    string id;
+    QString fname;
+    QString lname;
+    QString id;
+    QString userName;
 };
 
 #endif // PROFILE_H

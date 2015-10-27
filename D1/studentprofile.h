@@ -6,7 +6,7 @@
 class StudentProfile : public Profile
 {
 public:
-    StudentProfile(string, string, string);
+    StudentProfile(QString, QString, QString, QString);
     ~StudentProfile();
 private:
     Qualifications *quals;

@@ -1,16 +1,16 @@
 #ifndef PROJECT_H
 #define PROJECT_H
-
+#include <QString>
 #include "qualifications.h"
 
 class Project
 {
 public:
-    Project(string, string, Qualifications*);
+    Project(QString, QString, Qualifications*);
     ~Project();
 private:
-    string projectName;
-    string descr;
+    QString projectName;
+    QString descr;
     Qualifications *quals;
 };
 

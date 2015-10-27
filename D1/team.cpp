@@ -12,11 +12,11 @@ Team::~Team() {
 
 int Team::addStudent(Student* stu)
 {
-    if(numOfStu == size)
+    if(numOfStuds == size)
         return 0;
     else {
-        students[numOfStu] = stu;
-        ++numOfStu;
+        students[numOfStuds] = stu;
+        ++numOfStuds;
         return 1;
     }
 }

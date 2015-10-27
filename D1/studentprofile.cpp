@@ -1,6 +1,6 @@
 #include "studentprofile.h"
 
-StudentProfile::StudentProfile(string fn, string ln, string num) : Profile(fn, ln, num)
+StudentProfile::StudentProfile(QString fn, QString ln, QString num,QString usrName) : Profile(fn, ln, num, usrName)
 {
 }
 

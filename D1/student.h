@@ -1,19 +1,19 @@
 #ifndef STUDENT_H
 #define STUDENT_H
-
+#include <QString>
 #include "User.h"
 #include "profile.h"
 
 class Student : public User
 {
 public:
-    Student(strings, string);
+    Student(QString, QString);
     ~Student();
-    string getID();
-    string setID(string);
+    QString getID();
+    void setID(QString);
 private:
-    string stuID;
-    Profile *profile;
+    QString stuID;
+    Profile* profile;
 };
 
 #endif // STUDENT_H
