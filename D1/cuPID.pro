@@ -3,7 +3,7 @@
 # Project created by QtCreator 2015-10-24T12:20:54
 #
 #-------------------------------------------------
-
+QT       +=sql
 QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -33,7 +33,12 @@ SOURCES += main.cpp\
     editstuprofileview.cpp \
     editstuprofilecontrol.cpp \
     projectlist.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    mainWindowControl.cpp \
+    studenthomepageview.cpp \
+    adminhomepageview.cpp \
+    signupview.cpp \
+    signupoptionview.cpp
 
 HEADERS  += \
     User.h \
@@ -56,10 +61,19 @@ HEADERS  += \
     editstuprofileview.h \
     editstuprofilecontrol.h \
     projectlist.h \
-    mainwindow.h
+    mainwindow.h \
+    mainWindowControl.h \
+    studenthomepageview.h \
+    adminhomepageview.h \
+    signupview.h \
+    signupoptionview.h
 
 FORMS    += \
-    mainwindow.ui
+    mainwindow.ui \
+    studenthomepageview.ui \
+    adminhomepageview.ui \
+    signupview.ui \
+    signupoptionview.ui
 
 RESOURCES += \
     Resources.qrc
