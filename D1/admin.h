@@ -6,7 +6,7 @@
 class Admin : public User
 {
 public:
-    Admin(string);
+    Admin(QString);
     ~Admin();
 };
 

@@ -1,14 +1,21 @@
+
 #include "User.h"
 
-User::User(string name) : username(name) {}
+
+User::User(QString name) : username(name) {}
 
 User::~User() {}
 
-string User::getName()
-{
+QString User::getUserName() {
     return username;
 }
+QString User::getFirstName() {
+    return firstName;
+}
+QString User::getLastName() {
+    return lastName;
+}
 
-void User::setNane(string name) {
+void User::setUserName(QString name) {
     username = name;
 }

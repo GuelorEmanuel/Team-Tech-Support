@@ -1,6 +1,6 @@
 #include "adminprofile.h"
 
-AdminProfile::AdminProfile(string fn, string ln, string num) : Profile(fn, ln, num)
+AdminProfile::AdminProfile(QString fn, QString ln, QString num, QString usrName) : Profile(fn, ln, num, usrName)
 {
 }
 

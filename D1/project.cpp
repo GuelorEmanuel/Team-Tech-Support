@@ -1,6 +1,6 @@
 #include "project.h"
 
-Project::Project(string name, string desc, Qualifications* q) :
+Project::Project(QString name, QString desc, Qualifications* q) :
     projectName(name), descr(desc), quals(q)
 {
 }

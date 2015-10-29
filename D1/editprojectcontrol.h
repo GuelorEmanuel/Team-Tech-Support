@@ -7,7 +7,7 @@
 class EditProjectControl
 {
 public:
-    EditProjectControl(Project);
+    EditProjectControl(Project*);
     ~EditProjectControl();
 private:
     Project *project;

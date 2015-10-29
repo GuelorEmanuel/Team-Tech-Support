@@ -1,15 +1,21 @@
 #ifndef USER_H
 #define USER_H
+#include <QString>
+#include <QObject>
 
-class User
+class User: public QObject
 {
 public:
-    User();
+    User(QString);
     ~User();
-    void setName(string);
-    string getName();
+    void setUserName(QString);
+    QString getUserName();
+    QString getFirstName();
+    QString getLastName();
  private:
-    string username;
+    QString username;
+    QString firstName;
+    QString lastName;
 };
 
 #endif // USER_H
