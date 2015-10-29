@@ -13,13 +13,13 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QListView" name="listView">
+  <widget class="QListView" name="studentsLV">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>190</y>
      <width>241</width>
-     <height>231</height>
+     <height>221</height>
     </rect>
    </property>
   </widget>
@@ -49,12 +49,12 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>150</y>
-     <width>231</width>
+     <width>247</width>
      <height>29</height>
     </rect>
    </property>
@@ -75,12 +75,12 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>90</y>
-     <width>221</width>
+     <width>241</width>
      <height>29</height>
     </rect>
    </property>
@@ -108,12 +108,12 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>142</width>
+     <width>241</width>
      <height>41</height>
     </rect>
    </property>
@@ -129,6 +129,62 @@
      <widget class="QLabel" name="label_2">
       <property name="text">
        <string>TextLabel</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QListView" name="projetcsLV">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>50</y>
+     <width>361</width>
+     <height>361</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>10</y>
+     <width>121</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Available projects</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>690</x>
+     <y>310</y>
+     <width>101</width>
+     <height>95</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QPushButton" name="runAlgo">
+      <property name="text">
+       <string>run Algo</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="editBtn">
+      <property name="text">
+       <string>edit</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="deleteBtn">
+      <property name="text">
+       <string>delete</string>
       </property>
      </widget>
     </item>

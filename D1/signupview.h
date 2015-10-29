@@ -1,29 +1,25 @@
 #ifndef SIGNUPVIEW_H
 #define SIGNUPVIEW_H
 
-#include <QWidget>
+#include <QDialog>
 
 namespace Ui {
-class signupView;
+class Signupview;
 }
 
-class signupView : public QWidget
+class Signupview : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit signupView(QWidget *parent = 0);
-    ~signupView();
+    explicit Signupview(QWidget *parent = 0);
+    ~Signupview();
 
 private slots:
-    void on_submitBtn_clicked();
-
-    void on_submitBtn_2_clicked();
-
     void on_cancelBtn_clicked();
 
 private:
-    Ui::signupView *ui;
+    Ui::Signupview *ui;
 };
 
 #endif // SIGNUPVIEW_H

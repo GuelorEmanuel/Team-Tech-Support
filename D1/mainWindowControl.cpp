@@ -28,5 +28,4 @@ void MainWindowControl::on_buttonSignIn_clicked()
 
 void MainWindowControl::on_buttonSignUp_clicked()
 {
-
 }

@@ -1,25 +1,19 @@
 #include "signupview.h"
 #include "ui_signupview.h"
 
-signupView::signupView(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::signupView)
+Signupview::Signupview(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::Signupview)
 {
     ui->setupUi(this);
 }
 
-signupView::~signupView()
+Signupview::~Signupview()
 {
     delete ui;
 }
 
-void signupView::on_submitBtn_clicked()
+void Signupview::on_cancelBtn_clicked()
 {
-
-}
-
-
-void signupView::on_cancelBtn_clicked()
-{
-
+    this->close();
 }

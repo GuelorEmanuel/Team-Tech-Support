@@ -1,29 +1,34 @@
 #include "signupoptionview.h"
 #include "ui_signupoptionview.h"
 
-signupoptionview::signupoptionview(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::signupoptionview)
+SignupOptionView::SignupOptionView(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::SignupOptionView)
 {
     ui->setupUi(this);
 }
 
-signupoptionview::~signupoptionview()
+SignupOptionView::~SignupOptionView()
 {
     delete ui;
 }
 
-void signupoptionview::on_adminOptionBtn_clicked()
+void SignupOptionView::on_adminBtn_clicked()
+{
+    this->close();
+
+    signupview.setModal(true);
+    signupview.exec();
+
+
+}
+
+void SignupOptionView::on_studentBtn_clicked()
 {
 
 }
 
-void signupoptionview::on_studentOptionBtn_clicked()
+void SignupOptionView::on_cancelBtn_clicked()
 {
-
-}
-
-void signupoptionview::on_cancelBtn_clicked()
-{
-
+ this->close();
 }
