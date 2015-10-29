@@ -20,6 +20,8 @@ private slots:
 
     void on_submitBtn_2_clicked();
 
+    void on_cancelBtn_clicked();
+
 private:
     Ui::signupView *ui;
 };

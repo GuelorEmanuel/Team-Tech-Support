@@ -26,3 +26,13 @@ void MainWindow::on_buttonSignUp_clicked()
 {
 
 }
+
+void MainWindow::on_signUpBtn_clicked()
+{
+
+}
+
+void MainWindow::on_signInBtn_clicked()
+{
+
+}

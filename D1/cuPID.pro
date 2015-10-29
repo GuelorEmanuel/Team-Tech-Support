@@ -38,7 +38,8 @@ SOURCES += main.cpp\
     studenthomepageview.cpp \
     adminhomepageview.cpp \
     signupview.cpp \
-    signupoptionview.cpp
+    signupoptionview.cpp \
+    signusetprofileview.cpp
 
 HEADERS  += \
     User.h \
@@ -66,14 +67,16 @@ HEADERS  += \
     studenthomepageview.h \
     adminhomepageview.h \
     signupview.h \
-    signupoptionview.h
+    signupoptionview.h \
+    signusetprofileview.h
 
 FORMS    += \
     mainwindow.ui \
     studenthomepageview.ui \
     adminhomepageview.ui \
     signupview.ui \
-    signupoptionview.ui
+    signupoptionview.ui \
+    signusetprofileview.ui
 
 RESOURCES += \
     Resources.qrc

@@ -12,3 +12,18 @@ signupoptionview::~signupoptionview()
 {
     delete ui;
 }
+
+void signupoptionview::on_adminOptionBtn_clicked()
+{
+
+}
+
+void signupoptionview::on_studentOptionBtn_clicked()
+{
+
+}
+
+void signupoptionview::on_cancelBtn_clicked()
+{
+
+}

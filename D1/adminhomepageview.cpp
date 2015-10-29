@@ -12,3 +12,28 @@ adminhomepageview::~adminhomepageview()
 {
     delete ui;
 }
+
+void adminhomepageview::on_studentBtn_clicked()
+{
+
+}
+
+void adminhomepageview::on_studentInProjectBtn_clicked()
+{
+
+}
+
+void adminhomepageview::on_signOutBtn_clicked()
+{
+
+}
+
+void adminhomepageview::on_addNewProjectBtn_clicked()
+{
+
+}
+
+void adminhomepageview::on_HomeBtn_clicked()
+{
+
+}

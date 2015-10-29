@@ -104,7 +104,7 @@
     <string>Submit</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="submitBtn_2">
+  <widget class="QPushButton" name="cancelBtn">
    <property name="geometry">
     <rect>
      <x>220</x>

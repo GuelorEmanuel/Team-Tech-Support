@@ -78,6 +78,11 @@
     <string>Cancel</string>
    </property>
   </widget>
+  <zorder>cancelBtn</zorder>
+  <zorder>label</zorder>
+  <zorder>label_2</zorder>
+  <zorder>adminOptionBtn</zorder>
+  <zorder>studentOptionBtn</zorder>
  </widget>
  <resources/>
  <connections/>

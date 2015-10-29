@@ -18,7 +18,8 @@ void signupView::on_submitBtn_clicked()
 
 }
 
-void signupView::on_submitBtn_2_clicked()
+
+void signupView::on_cancelBtn_clicked()
 {
 
 }

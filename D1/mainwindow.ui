@@ -89,14 +89,14 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
-      <widget class="QPushButton" name="buttonSignUp">
+      <widget class="QPushButton" name="signUpBtn">
        <property name="text">
         <string>SIGN UP</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="buttonSignIn">
+      <widget class="QPushButton" name="signInBtn">
        <property name="text">
         <string>SIGN IN</string>
        </property>
