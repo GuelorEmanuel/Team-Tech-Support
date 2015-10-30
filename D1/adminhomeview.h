@@ -4,11 +4,6 @@
 #include <QDialog>
 #include "createprojectview.h"
 #include <QDebug>
-<<<<<<< HEAD
-//#include "mainwindow.h"
-
-=======
->>>>>>> f8e1e5003a143e6fca704cc0a5b84b1bc749a24d
 
 namespace Ui {
 class AdminHomeView;
@@ -39,15 +34,9 @@ private slots:
 
     void on_runAlgoBtn_clicked();
 
-<<<<<<< HEAD
-    void on_listOfProjectLv_doubleClicked(const QModelIndex &index);
-
-    void on_listOfStudentsLv_doubleClicked(const QModelIndex &index);
-=======
     //void on_listOfProjectLv_doubleClicked(const QModelIndex &index);
 
     //void on_listOfStudentsLv_doubleClicked(const QModelIndex &index);
->>>>>>> f8e1e5003a143e6fca704cc0a5b84b1bc749a24d
 
 private:
     Ui::AdminHomeView *ui;

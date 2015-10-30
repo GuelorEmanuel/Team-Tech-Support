@@ -1,15 +1,5 @@
 #include "project.h"
 
-<<<<<<< HEAD
-Project::Project(QString name, QString desc, Qualifications* q) :
-    projectName(name), descr(desc), quals(q)
-{
-}
-
-Project::~Project()
-{
-    delete quals;
-=======
 Project::Project()
 {
 }
@@ -56,7 +46,7 @@ void Project::setDescription(QString value) {
 
 Project::~Project()
 {
->>>>>>> f8e1e5003a143e6fca704cc0a5b84b1bc749a24d
+
 }
 
 
