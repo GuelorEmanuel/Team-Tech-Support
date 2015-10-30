@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "createprojectview.h"
+#include <QDebug>
 
 namespace Ui {
 class AdminHomeView;
