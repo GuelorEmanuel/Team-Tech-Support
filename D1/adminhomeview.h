@@ -4,6 +4,8 @@
 #include <QDialog>
 #include "createprojectview.h"
 #include <QDebug>
+//#include "mainwindow.h"
+
 
 namespace Ui {
 class AdminHomeView;
