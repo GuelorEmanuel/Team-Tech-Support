@@ -1,7 +1,7 @@
 #ifndef GUEST_H
 #define GUEST_H
 
-#include "User.h"
+#include "user.h"
 
 class Guest : public User
 {

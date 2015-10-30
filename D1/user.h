@@ -6,15 +6,18 @@
 class User: public QObject
 {
 public:
-    User(QString username, QString displayName, int id);
+    User();
     ~User();
     QString getUserName();
+    void setUserName(QString value);
     QString getDisplayName();
+    void setDisplayName(QString value);
     int getId();
+    void setId(int value);
 private:
-    int id;
-    QString username;
-    QString displayName;
+    int _id;
+    QString _userName;
+    QString _displayName;
 };
 
 #endif // USER_H

@@ -1,7 +1,10 @@
 #include "guest.h"
 
-Guest::Guest() : User("Guest", "Guest", 0)
+Guest::Guest()
 {
+    setUserName("guest");
+    setDisplayName("Guest");
+    setId(0);
 }
 
 Guest::~Guest() {}

@@ -17,7 +17,3 @@ std::vector<Qualification> Profile::getQualifications() {
 }
 
 Profile::~Profile() {}
-
-
-
-

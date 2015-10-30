@@ -44,6 +44,14 @@ void Project::setDescription(QString value) {
     _description = value;
 }
 
+void Project::registerStudent(Student& student) {
+    // Connect to database and make sure the student is in the project
+}
+
+std::vector<Student> getStudents() {
+    // Connect to database and return a list of students in the project
+}
+
 Project::~Project()
 {
 }

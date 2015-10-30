@@ -1,6 +1,9 @@
 #ifndef PROJECT_H
 #define PROJECT_H
+
 #include <QString>
+#include <vector>
+#include "student.h"
 
 class Project
 {
@@ -16,6 +19,8 @@ public:
     void     setName(QString value);
     QString  getDescription();
     void     setDescription(QString value);
+    void     registerStudent(Student& student);
+    std::vector<Student> getStudents();
     ~Project();
 private:
     int _id;
@@ -23,6 +28,7 @@ private:
     QString _description;
     int _minTeamSize;
     int _maxTeamSize;
+    std::vector<Student> _students;
 };
 
 #endif // PROJECT_H

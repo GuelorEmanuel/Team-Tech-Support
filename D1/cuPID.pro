@@ -13,7 +13,6 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-    User.cpp \
     student.cpp \
     guest.cpp \
     admin.cpp \
@@ -37,10 +36,10 @@ SOURCES += main.cpp\
     adminhomeview.cpp \
     accountcreationcontrol.cpp \
     createprojectview.cpp \
-    qualification.cpp
+    qualification.cpp \
+    user.cpp
 
 HEADERS  += \
-    User.h \
     student.h \
     guest.h \
     admin.h \
@@ -64,7 +63,8 @@ HEADERS  += \
     accountcreationcontrol.h \
     createprojectview.h \
     qualification.h \
-    studentprofileview.h
+    studentprofileview.h \
+    user.h
 
 FORMS    += \
     mainwindow.ui \
