@@ -18,11 +18,8 @@ SOURCES += main.cpp\
     guest.cpp \
     admin.cpp \
     profile.cpp \
-    qualifications.cpp \
     team.cpp \
     project.cpp \
-    studentprofile.cpp \
-    adminprofile.cpp \
     projectview.cpp \
     editprojectview.cpp \
     editprojectcontrol.cpp \
@@ -39,7 +36,8 @@ SOURCES += main.cpp\
     signupoptionview.cpp \
     adminhomeview.cpp \
     accountcreationcontrol.cpp \
-    createprojectview.cpp
+    createprojectview.cpp \
+    qualification.cpp
 
 HEADERS  += \
     User.h \
@@ -47,17 +45,13 @@ HEADERS  += \
     guest.h \
     admin.h \
     profile.h \
-    qualifications.h \
     team.h \
     project.h \
-    studentprofile.h \
-    adminprofile.h \
     projectview.h \
     editprojectview.h \
     editprojectcontrol.h \
     createprojectcontrol.h \
     adminprofileview.h \
-    studentprofileview.h \
     editstuprofileview.h \
     editstuprofilecontrol.h \
     projectlist.h \
@@ -68,7 +62,9 @@ HEADERS  += \
     signupoptionview.h \
     adminhomeview.h \
     accountcreationcontrol.h \
-    createprojectview.h
+    createprojectview.h \
+    qualification.h \
+    studentprofileview.h
 
 FORMS    += \
     mainwindow.ui \

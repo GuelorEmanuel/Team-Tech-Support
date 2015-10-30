@@ -5,9 +5,6 @@
 
 class Admin : public User
 {
-public:
-    Admin(QString);
-    ~Admin();
 };
 
 #endif // ADMIN_H

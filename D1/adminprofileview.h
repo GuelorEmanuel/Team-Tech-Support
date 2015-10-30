@@ -1,16 +1,17 @@
 #ifndef ADMINPROFILEVIEW_H
 #define ADMINPROFILEVIEW_H
 
-#include "adminprofile.h"
+#include <memory>
+#include "admin.h"
 
 class AdminProfileView
 {
 public:
-    AdminProfileView(AdminProfile*);
+    AdminProfileView(Admin* admin);
     ~AdminProfileView();
 
 private:
-    AdminProfile* profile;
+    std::auto_ptr<Admin> _admin;
 };
 
 #endif // ADMINPROFILEVIEW_H

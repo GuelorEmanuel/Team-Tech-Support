@@ -1,21 +1,18 @@
-
 #include "User.h"
 
-
-User::User(QString name) : username(name) {}
+User::User(QString username, QString displayName, int id) :
+    username(username), displayName(displayName), id(id) {}
 
 User::~User() {}
 
 QString User::getUserName() {
     return username;
 }
-QString User::getFirstName() {
-    return firstName;
-}
-QString User::getLastName() {
-    return lastName;
+
+QString User::getDisplayName() {
+    return displayName;
 }
 
-void User::setUserName(QString name) {
-    username = name;
+int User::getId() {
+    return id;
 }

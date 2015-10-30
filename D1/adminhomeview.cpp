@@ -70,7 +70,7 @@ void AdminHomeView::on_runAlgoBtn_clicked()
 
 }
 
-void AdminHomeView::on_listOfProjectLv_doubleClicked(const QModelIndex &index)
+/*void AdminHomeView::on_listOfProjectLv_doubleClicked(const QModelIndex &index)
 {
 
 }
@@ -78,4 +78,4 @@ void AdminHomeView::on_listOfProjectLv_doubleClicked(const QModelIndex &index)
 void AdminHomeView::on_listOfStudentsLv_doubleClicked(const QModelIndex &index)
 {
 
-}
+}*/

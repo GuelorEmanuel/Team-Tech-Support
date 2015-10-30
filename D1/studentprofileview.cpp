@@ -1,6 +1,6 @@
 #include "studentprofileview.h"
 
-StudentProfileView::StudentProfileView(StudentProfile* prof) : profile(prof)
+StudentProfileView::StudentProfileView(Student* student) : _student(student)
 {
 }
 

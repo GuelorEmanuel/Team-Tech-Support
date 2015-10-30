@@ -34,9 +34,9 @@ private slots:
 
     void on_runAlgoBtn_clicked();
 
-    void on_listOfProjectLv_doubleClicked(const QModelIndex &index);
+    //void on_listOfProjectLv_doubleClicked(const QModelIndex &index);
 
-    void on_listOfStudentsLv_doubleClicked(const QModelIndex &index);
+    //void on_listOfStudentsLv_doubleClicked(const QModelIndex &index);
 
 private:
     Ui::AdminHomeView *ui;

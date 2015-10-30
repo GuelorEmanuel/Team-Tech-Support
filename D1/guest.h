@@ -6,7 +6,7 @@
 class Guest : public User
 {
 public:
-    Guest(QString);
+    Guest();
     ~Guest();
 };
 

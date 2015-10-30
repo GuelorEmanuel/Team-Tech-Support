@@ -1,6 +1,6 @@
 #include "editstuprofilecontrol.h"
 
-EditStuProfileControl::EditStuProfileControl(StudentProfile *prof) : profile(prof)
+EditStuProfileControl::EditStuProfileControl(Student *student) : _student(student)
 {
 }
 

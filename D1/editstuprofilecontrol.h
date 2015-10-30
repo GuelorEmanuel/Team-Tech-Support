@@ -1,16 +1,17 @@
 #ifndef EDITSTUPROFILECONTROL_H
 #define EDITSTUPROFILECONTROL_H
 
-#include "studentprofile.h"
+#include <memory>
+#include "student.h"
 
 class EditStuProfileControl
 {
 public:
-    EditStuProfileControl(StudentProfile*);
+    EditStuProfileControl(Student* student);
     ~EditStuProfileControl();
 
 private:
-    StudentProfile *profile;
+    std::auto_ptr<Student> _student;
 };
 
 #endif // EDITSTUPROFILECONTROL_H

@@ -1,16 +1,17 @@
 #ifndef STUDENTPROFILEVIEW_H
 #define STUDENTPROFILEVIEW_H
 
-#include "studentprofile.h"
+#include <memory>
+#include "student.h"
 
 class StudentProfileView
 {
 public:
-    StudentProfileView(StudentProfile*);
+    StudentProfileView(Student* student);
     ~StudentProfileView();
 
 private:
-    StudentProfile *profile;
+    std::auto_ptr<Student> _student;
 };
 
 #endif // STUDENTPROFILEVIEW_H
