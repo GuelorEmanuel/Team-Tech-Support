@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "signupoptionview.h"
 
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow) {
     //mainWindowControl = new MainWindowControl();
     QPalette palette;
@@ -9,10 +10,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     this->setPalette(palette);
     ui->setupUi(this);
+
 }
 
 MainWindow::~MainWindow() {
     delete ui;
+
     //delete mainWindowControl;
 }
 
@@ -20,8 +23,6 @@ MainWindow::~MainWindow() {
 void MainWindow::on_signUpBtn_clicked() {
     //Note to self, need to check with the controller if the database was able to connect
     //mainWindowControl->on_buttonSignUp_clicked();
-    for(int i = 0; i < 5; i++)
-        qDebug() << "C++ Style Debug Message";
 
     //if (mainWindowControl->isdbOpened()) {
       signupoptionview.setModal(true);
@@ -37,6 +38,8 @@ void MainWindow::on_signUpBtn_clicked() {
 void MainWindow::on_signInBtn_clicked() {
     // Need to check with the controller first if the model was able to connect to the database
     //mainWindowControl->on_buttonSignIn_clicked();
-
+    this->hide();
+    adminView.setModal(true);
+    adminView.exec();
 
 }

@@ -2,8 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "mainWindowControl.h"
-#include "model.h"
+#include "accountcreationcontrol.h"
+#include "adminhomeview.h"
 #include "signupoptionview.h"
 
 namespace Ui {
@@ -26,7 +26,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    //MainWindowControl *mainWindowControl;
+    AccountCreationControl *accountCreationControl;
+    AdminHomeView adminView;
     SignupOptionView signupoptionview;
 };
 

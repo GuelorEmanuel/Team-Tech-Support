@@ -2,6 +2,7 @@
 #define ADMINHOMEVIEW_H
 
 #include <QDialog>
+#include "createprojectview.h"
 
 namespace Ui {
 class AdminHomeView;
@@ -32,8 +33,15 @@ private slots:
 
     void on_runAlgoBtn_clicked();
 
+    void on_listOfProjectLv_doubleClicked(const QModelIndex &index);
+
+    void on_listOfStudentsLv_doubleClicked(const QModelIndex &index);
+
 private:
     Ui::AdminHomeView *ui;
+    CreateProjectView createProjectView;
+    QPalette* paletteBlue;
+    QPalette* paletteBlack;
 };
 
 #endif // ADMINHOMEVIEW_H
