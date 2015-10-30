@@ -43,10 +43,12 @@ void AdminHomeView::on_signoutBtn_clicked()
 
 }
 
-void AdminHomeView::on_lisStudentBtn_clicked()
-{
+void AdminHomeView::on_lisStudentBtn_clicked() {
 
-ui->lisStudentBtn->setPalette(*paletteBlue);
+    ui->signoutBtn->setPalette(*paletteBlue);
+    //ui->lisStudentBtn->setp
+    for ( int i = 0; i <10; i++)
+         qDebug() << "Change meeeeeeeee";
 
 
 }
