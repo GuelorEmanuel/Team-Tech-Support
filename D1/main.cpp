@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "mainWindowControl.h"
 #include <QApplication>
 #include <QSplashScreen>
 #include <QTimer>
@@ -11,7 +10,6 @@ int main(int argc, char *argv[])
     QSplashScreen *splashScreen = new QSplashScreen;
     splashScreen->setPixmap(QPixmap(":Images/splashScreenMain"));
     splashScreen->show();
-    //MainWindowControl
     MainWindow w;
 
     QTimer::singleShot(2500,splashScreen,SLOT(close()));

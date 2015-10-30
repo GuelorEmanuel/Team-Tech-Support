@@ -1,20 +1,15 @@
 #include "student.h"
 
-Student::Student(QString name, QString id) : User(name), stuID(id)
+Student::Student(QString username, QString displayName, int id, QString studentId) :
+    User(username, displayName, id), studentId(studentId)
 {
-    profile = new Profile(getFirstName(),getLastName(), id, name);
+    // What to do about profile initialization?
 }
 
 Student::~Student() {
-    delete profile;
 }
 
-QString Student::getID()
+QString Student::getStudentId()
 {
-    return stuID;
-}
-
-void Student::setID(QString id)
-{
-    stuID = id;
+    return studentId;
 }
