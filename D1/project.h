@@ -21,6 +21,8 @@ public:
     void     setDescription(QString value);
     void     registerStudent(Student& student);
     std::vector<Student> getStudents();
+    void create();
+    void edit();
     ~Project();
 private:
     int _id;

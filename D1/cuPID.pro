@@ -27,10 +27,8 @@ SOURCES += main.cpp\
     studentprofileview.cpp \
     editstuprofileview.cpp \
     editstuprofilecontrol.cpp \
-    projectlist.cpp \
     mainwindow.cpp \
     mainWindowControl.cpp \
-    model.cpp \
     signupview.cpp \
     signupoptionview.cpp \
     adminhomeview.cpp \
@@ -53,10 +51,8 @@ HEADERS  += \
     adminprofileview.h \
     editstuprofileview.h \
     editstuprofilecontrol.h \
-    projectlist.h \
     mainwindow.h \
     mainWindowControl.h \
-    model.h \
     signupview.h \
     signupoptionview.h \
     adminhomeview.h \

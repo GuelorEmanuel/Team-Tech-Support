@@ -33,5 +33,5 @@ std::vector<Project*> Student::getProjects() {
 }
 
 void Student::joinProject(Project& project) {
-
+    // Connect to database and add the student to the project
 }

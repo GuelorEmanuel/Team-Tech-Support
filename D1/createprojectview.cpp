@@ -28,7 +28,6 @@ void CreateProjectView::on_createBtn_clicked()
 void CreateProjectView::editProjectView(){
     ui->createBtn->setVisible(false);
     ui->updateBtn->setVisible(true);
-
 }
 
 void CreateProjectView::createProjectView(){
