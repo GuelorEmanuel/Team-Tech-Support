@@ -23,7 +23,6 @@ SOURCES += main.cpp\
     editprojectview.cpp \
     editprojectcontrol.cpp \
     createprojectcontrol.cpp \
-    studentprofileview.cpp \
     editstuprofileview.cpp \
     editstuprofilecontrol.cpp \
     mainwindow.cpp \
@@ -37,7 +36,9 @@ SOURCES += main.cpp\
     user.cpp \
     signupmaincontrol.cpp \
     adminmaincontrol.cpp \
-    studentprojectview.cpp
+    studentprojectview.cpp \
+    studenthomeview.cpp \
+    studentprofileview.cpp
 
 HEADERS  += \
     student.h \
@@ -60,11 +61,12 @@ HEADERS  += \
     accountcreationcontrol.h \
     createprojectview.h \
     qualification.h \
-    studentprofileview.h \
     user.h \
     signupmaincontrol.h \
     adminmaincontrol.h \
-    studentprojectview.h
+    studentprojectview.h \
+    studenthomeview.h \
+    studentprofileview.h
 
 FORMS    += \
     mainwindow.ui \
@@ -73,7 +75,9 @@ FORMS    += \
     adminhomeview.ui \
     createprojectview.ui \
     editprojectview.ui \
-    studentprojectview.ui
+    studentprojectview.ui \
+    studenthomeview.ui \
+    studentprofileview.ui
 
 RESOURCES += \
     Resources.qrc
