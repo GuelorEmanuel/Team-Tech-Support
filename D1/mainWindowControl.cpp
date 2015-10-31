@@ -16,11 +16,10 @@ MainWindowControl::~MainWindowControl()
 //Function: opens Database and returns status to user:
 //0 - wasn't able to open
 //1- Success
-//Huge note!!! db location - change it if it differs on you computer!!! Much Depends!1
 int MainWindowControl::openDB()
 {
     _db = QSqlDatabase::addDatabase("QSQLITE");
-    _db.setDatabaseName("/home/admin/cupid/new_branch/Team-Tech-Support/D1/mydb.sqlite");
+    _db.setDatabaseName("./mydb.sqlite");
 
     if(!_db.open()) {
         qDebug() << "Was not able to open DB.";
@@ -46,7 +45,8 @@ int MainWindowControl::signIn(QString userName)
 
     QSqlQuery qry(_db);
     qDebug() << userName;
-    qry.prepare("SELECT * FROM user WHERE username = '"+userName+"'");
+    qry.prepare("SELECT * FROM user WHERE username = :username");
+    qry.bindValue(":username", userName);
     QString id = "";
     if(!qry.exec()){
         qDebug() << qry.lastError();
@@ -60,6 +60,7 @@ int MainWindowControl::signIn(QString userName)
         if(count == 1) {
             qDebug() << "Login is valid";
             if(id == "0") {
+
                 //create admin view
                 qDebug() << "We caught admin!";
             } else {
