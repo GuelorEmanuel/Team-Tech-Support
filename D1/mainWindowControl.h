@@ -10,19 +10,14 @@
 class MainWindowControl
 {
 public:
-    MainWindowControl(QSqlDatabase*);
     MainWindowControl();
     ~MainWindowControl();
-
-    int  accountExist();
-    int  isdbOpened();
-    void on_buttonSignIn_clicked();
-    void on_buttonSignUp_clicked();
-
+    void signUp();
+    void signIn(QString userName);
 
 private:
-   QSqlDatabase mydb;
-
+   QSqlDatabase _db;
+   MainWindow _view;
 };
 
 #endif // MAINWINDOWCONTROL_H

@@ -1,19 +1,23 @@
 #ifndef EDITPROJECTCONTROL_H
 #define EDITPROJECTCONTROL_H
 
+#include <QtSql>
 #include <memory>
 #include "project.h"
+#include "editprojectview.h"
 
-//Control class for Edit options, pointer can/will be changed to project name/id
 class EditProjectControl
 {
 public:
-    EditProjectControl();
+    EditProjectControl(QSqlDatabase& db, int projectId);
     ~EditProjectControl();
     void editProject(QString name, QString description,
-                     int minTeamSize, int maxTeamSize, int id);
+                     int minTeamSize, int maxTeamSize);
 private:
     std::auto_ptr<Project> _project;
+    QSqlDatabase& _db;
+    EditProjectView _view;
+    int _projectId;
 };
 
 #endif // EDITPROJECTCONTROL_H
