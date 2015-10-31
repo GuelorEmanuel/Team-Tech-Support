@@ -1,11 +1,19 @@
 #include "profile.h"
 
-Profile::Profile(QString fn, QString ln, QString num, QString usrName) : fname(fn), lname(ln), id(num), userName(usrName)
+Profile::Profile()
 {
 }
 
+int Profile::getId() {
+    return _id;
+}
+
+void Profile::setId(int value) {
+    _id = value;
+}
+
+std::vector<Qualification> Profile::getQualifications() {
+    return _qualifications;
+}
+
 Profile::~Profile() {}
-
-
-
-

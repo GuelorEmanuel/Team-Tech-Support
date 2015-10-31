@@ -1,16 +1,18 @@
 #ifndef EDITSTUPROFILEVIEW_H
 #define EDITSTUPROFILEVIEW_H
 
-#include "studentprofile.h"
+#include <memory>
+#include "student.h"
 
 class EditStuProfileView
 {
 public:
-    EditStuProfileView(StudentProfile*);
+
+    EditStuProfileView(Student* student);
     ~EditStuProfileView();
 
 private:
-    StudentProfile *profile;
+    std::auto_ptr<Student> _student;
 
 };
 

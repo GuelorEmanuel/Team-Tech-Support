@@ -13,69 +13,75 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-    User.cpp \
     student.cpp \
     guest.cpp \
     admin.cpp \
     profile.cpp \
-    qualifications.cpp \
     team.cpp \
     project.cpp \
-    studentprofile.cpp \
-    adminprofile.cpp \
     projectview.cpp \
     editprojectview.cpp \
     editprojectcontrol.cpp \
     createprojectcontrol.cpp \
-    adminprofileview.cpp \
-    studentprofileview.cpp \
     editstuprofileview.cpp \
     editstuprofilecontrol.cpp \
-    projectlist.cpp \
     mainwindow.cpp \
     mainWindowControl.cpp \
-    model.cpp \
     signupview.cpp \
     signupoptionview.cpp \
     adminhomeview.cpp \
     accountcreationcontrol.cpp \
-    createprojectview.cpp
+    createprojectview.cpp \
+    qualification.cpp \
+    user.cpp \
+    signupmaincontrol.cpp \
+    adminmaincontrol.cpp \
+    studentprojectview.cpp \
+    studenthomeview.cpp \
+    studentprofileview.cpp \
+    studentmaincontrol.cpp \
+    studentprojectcontrol.cpp
 
 HEADERS  += \
-    User.h \
     student.h \
     guest.h \
     admin.h \
     profile.h \
-    qualifications.h \
     team.h \
     project.h \
-    studentprofile.h \
-    adminprofile.h \
     projectview.h \
     editprojectview.h \
     editprojectcontrol.h \
     createprojectcontrol.h \
-    adminprofileview.h \
-    studentprofileview.h \
     editstuprofileview.h \
     editstuprofilecontrol.h \
-    projectlist.h \
     mainwindow.h \
     mainWindowControl.h \
-    model.h \
     signupview.h \
     signupoptionview.h \
     adminhomeview.h \
     accountcreationcontrol.h \
-    createprojectview.h
+    createprojectview.h \
+    qualification.h \
+    user.h \
+    signupmaincontrol.h \
+    adminmaincontrol.h \
+    studentprojectview.h \
+    studenthomeview.h \
+    studentprofileview.h \
+    studentmaincontrol.h \
+    studentprojectcontrol.h
 
 FORMS    += \
     mainwindow.ui \
     signupview.ui \
     signupoptionview.ui \
     adminhomeview.ui \
-    createprojectview.ui
+    createprojectview.ui \
+    editprojectview.ui \
+    studentprojectview.ui \
+    studenthomeview.ui \
+    studentprofileview.ui
 
 RESOURCES += \
     Resources.qrc

@@ -1,20 +1,37 @@
 #include "student.h"
 
-Student::Student(QString name, QString id) : User(name), stuID(id)
-{
-    profile = new Profile(getFirstName(),getLastName(), id, name);
+Student::Student() {
 }
 
 Student::~Student() {
-    delete profile;
 }
 
-QString Student::getID()
+QString Student::getStudentId()
 {
-    return stuID;
+    return _studentId;
 }
 
-void Student::setID(QString id)
-{
-    stuID = id;
+void Student::setStudentId(QString value) {
+    _studentId = value;
+}
+
+Profile Student::getProfile() {
+    return *_profile; // Calls copy constructor on the profile
+}
+
+void Student::setProfile(Profile* value) {
+    _profile.reset(value);
+}
+
+std::vector<Project*> Student::getProjects() {
+    if (_projects.empty())
+    {
+        // Get list of projects this student has joined from the database
+    }
+
+    return _projects;
+}
+
+void Student::joinProject(Project& project) {
+    // Connect to database and add the student to the project
 }

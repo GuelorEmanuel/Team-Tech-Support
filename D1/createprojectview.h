@@ -2,9 +2,11 @@
 #define CREATEPROJECTVIEW_H
 
 #include <QDialog>
+#include <memory>
+class CreateProjectControl;
 
 namespace Ui {
-class CreateProjectView;
+    class CreateProjectView;
 }
 
 class CreateProjectView : public QDialog
@@ -12,18 +14,15 @@ class CreateProjectView : public QDialog
     Q_OBJECT
 
 public:
-    explicit CreateProjectView(QWidget *parent = 0);
+    explicit CreateProjectView(CreateProjectControl &control, QWidget *parent = 0);
     ~CreateProjectView();
-    void editProjectView();
-    void createProjectView();
 
 private slots:
-    void on_updateBtn_clicked();
-
     void on_createBtn_clicked();
 
 private:
-    Ui::CreateProjectView *ui;
+    std::auto_ptr<Ui::CreateProjectView> ui;
+    CreateProjectControl &_control;
 };
 
 #endif // CREATEPROJECTVIEW_H

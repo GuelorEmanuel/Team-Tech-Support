@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>StudentHomeView</class>
+ <widget class="QDialog" name="StudentHomeView">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>657</width>
+    <height>420</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>50</y>
+     <width>631</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_2">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>130</y>
+     <width>631</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="projectsBtn">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>160</y>
+     <width>99</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Projects</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="joinedProjectsBtn">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>160</y>
+     <width>141</width>
+     <height>27</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Joined Projects</string>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="projectListLw">
+   <property name="geometry">
+    <rect>
+     <x>25</x>
+     <y>190</y>
+     <width>611</width>
+     <height>211</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>20</y>
+     <width>621</width>
+     <height>19</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <item>
+     <widget class="QLabel" name="studentPicLbl">
+      <property name="text">
+       <string>Picture Goes here</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLabel" name="studentNameLbl">
+      <property name="text">
+       <string>Student Name Goes here</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>80</y>
+     <width>631</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QPushButton" name="editProfileBtn">
+      <property name="text">
+       <string>Edit Profile</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="signOutBtn">
+      <property name="text">
+       <string>Sign Out</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <zorder>studentPicLbl</zorder>
+  <zorder>studentNameLbl</zorder>
+  <zorder>line</zorder>
+  <zorder>editProfileBtn</zorder>
+  <zorder>signOutBtn</zorder>
+  <zorder>signOutBtn</zorder>
+  <zorder>editProfileBtn</zorder>
+  <zorder>signOutBtn</zorder>
+  <zorder>line_2</zorder>
+  <zorder>projectsBtn</zorder>
+  <zorder>joinedProjectsBtn</zorder>
+  <zorder>projectListLw</zorder>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

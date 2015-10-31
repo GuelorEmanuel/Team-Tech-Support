@@ -1,7 +1,10 @@
 #include "guest.h"
 
-Guest::Guest(QString name) : User(name)
+Guest::Guest()
 {
+    setUserName("guest");
+    setDisplayName("Guest");
+    setId(0);
 }
 
 Guest::~Guest() {}
