@@ -64,6 +64,7 @@ void Project::edit() {
 
 Project::~Project()
 {
+
 }
 
 

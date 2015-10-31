@@ -5,6 +5,7 @@
 
 class Admin : public User
 {
+
 };
 
 #endif // ADMIN_H

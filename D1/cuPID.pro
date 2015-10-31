@@ -11,7 +11,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = cuPID
 TEMPLATE = app
 
-
 SOURCES += main.cpp\
     student.cpp \
     guest.cpp \
@@ -23,7 +22,6 @@ SOURCES += main.cpp\
     editprojectview.cpp \
     editprojectcontrol.cpp \
     createprojectcontrol.cpp \
-    studentprofileview.cpp \
     editstuprofileview.cpp \
     editstuprofilecontrol.cpp \
     mainwindow.cpp \
@@ -36,7 +34,12 @@ SOURCES += main.cpp\
     qualification.cpp \
     user.cpp \
     signupmaincontrol.cpp \
-    adminmaincontrol.cpp
+    adminmaincontrol.cpp \
+    studentprojectview.cpp \
+    studenthomeview.cpp \
+    studentprofileview.cpp \
+    studentmaincontrol.cpp \
+    studentprojectcontrol.cpp
 
 HEADERS  += \
     student.h \
@@ -59,10 +62,14 @@ HEADERS  += \
     accountcreationcontrol.h \
     createprojectview.h \
     qualification.h \
-    studentprofileview.h \
     user.h \
     signupmaincontrol.h \
-    adminmaincontrol.h
+    adminmaincontrol.h \
+    studentprojectview.h \
+    studenthomeview.h \
+    studentprofileview.h \
+    studentmaincontrol.h \
+    studentprojectcontrol.h
 
 FORMS    += \
     mainwindow.ui \
@@ -70,7 +77,10 @@ FORMS    += \
     signupoptionview.ui \
     adminhomeview.ui \
     createprojectview.ui \
-    editprojectview.ui
+    editprojectview.ui \
+    studentprojectview.ui \
+    studenthomeview.ui \
+    studentprofileview.ui
 
 RESOURCES += \
     Resources.qrc
