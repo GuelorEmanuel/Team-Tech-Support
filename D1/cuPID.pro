@@ -38,7 +38,9 @@ SOURCES += main.cpp\
     adminmaincontrol.cpp \
     studentprojectview.cpp \
     studenthomeview.cpp \
-    studentprofileview.cpp
+    studentprofileview.cpp \
+    studentmaincontrol.cpp \
+    studentprojectcontrol.cpp
 
 HEADERS  += \
     student.h \
@@ -66,7 +68,9 @@ HEADERS  += \
     adminmaincontrol.h \
     studentprojectview.h \
     studenthomeview.h \
-    studentprofileview.h
+    studentprofileview.h \
+    studentmaincontrol.h \
+    studentprojectcontrol.h
 
 FORMS    += \
     mainwindow.ui \

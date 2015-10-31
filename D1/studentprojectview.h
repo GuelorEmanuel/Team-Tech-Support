@@ -2,6 +2,9 @@
 #define STUDENTPROJECTVIEW_H
 
 #include <QDialog>
+#include <memory>
+
+class StudentProjectControl;
 
 namespace Ui {
 class StudentProjectView;
@@ -12,7 +15,7 @@ class StudentProjectView : public QDialog
     Q_OBJECT
 
 public:
-    explicit StudentProjectView(QWidget *parent = 0);
+    explicit StudentProjectView(StudentProjectControl &control, QWidget *parent = 0);
     ~StudentProjectView();
 
 private slots:
@@ -21,7 +24,8 @@ private slots:
     void on_joinProjectBtn_clicked();
 
 private:
-    Ui::StudentProjectView *ui;
+    std::auto_ptr<Ui::StudentProjectView> ui;
+    StudentProjectControl &_control;
 };
 
 #endif // STUDENTPROJECTVIEW_H

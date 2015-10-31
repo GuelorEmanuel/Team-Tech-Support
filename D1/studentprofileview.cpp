@@ -12,3 +12,13 @@ StudentProfileView::~StudentProfileView()
 {
     delete ui;
 }
+
+void StudentProfileView::on_exitBtn_clicked()
+{
+
+}
+
+void StudentProfileView::on_saveBtn_clicked()
+{
+
+}

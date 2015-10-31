@@ -1,8 +1,9 @@
 #include "studentprojectview.h"
 #include "ui_studentprojectview.h"
 
-StudentProjectView::StudentProjectView(QWidget *parent) :
+StudentProjectView::StudentProjectView(StudentProjectControl &control, QWidget *parent ) :
     QDialog(parent),
+    _control(control),
     ui(new Ui::StudentProjectView)
 {
     ui->setupUi(this);
@@ -10,7 +11,7 @@ StudentProjectView::StudentProjectView(QWidget *parent) :
 
 StudentProjectView::~StudentProjectView()
 {
-    delete ui;
+
 }
 
 void StudentProjectView::on_leaveProjectBtn_clicked()

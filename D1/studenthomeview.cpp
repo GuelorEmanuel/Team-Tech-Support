@@ -1,8 +1,9 @@
 #include "studenthomeview.h"
 #include "ui_studenthomeview.h"
+#include "studentmaincontrol.h"
 
-StudentHomeView::StudentHomeView(QWidget *parent) :
-    QDialog(parent),
+StudentHomeView::StudentHomeView(StudentMainControl &control, QWidget *parent) :
+    QDialog(parent),_control(control),
     ui(new Ui::StudentHomeView)
 {
     ui->setupUi(this);
@@ -10,7 +11,7 @@ StudentHomeView::StudentHomeView(QWidget *parent) :
 
 StudentHomeView::~StudentHomeView()
 {
-    delete ui;
+
 }
 
 void StudentHomeView::on_editProfileBtn_clicked()
