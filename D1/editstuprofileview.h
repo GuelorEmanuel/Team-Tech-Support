@@ -7,6 +7,7 @@
 class EditStuProfileView
 {
 public:
+
     EditStuProfileView(Student* student);
     ~EditStuProfileView();
 

@@ -1,16 +1,28 @@
 #ifndef STUDENTPROFILEVIEW_H
 #define STUDENTPROFILEVIEW_H
 
-#include <memory>
+#include <QDialog>
 #include "student.h"
 
-class StudentProfileView
+namespace Ui {
+class StudentProfileView;
+}
+
+class StudentProfileView : public QDialog
 {
+    Q_OBJECT
+
 public:
-    StudentProfileView(Student* student);
+    explicit StudentProfileView(Student* student, QWidget *parent = 0);
     ~StudentProfileView();
 
+private slots:
+    void on_exitBtn_clicked();
+
+    void on_saveBtn_clicked();
+
 private:
+    Ui::StudentProfileView *ui;
     std::auto_ptr<Student> _student;
 };
 
