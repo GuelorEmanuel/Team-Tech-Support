@@ -8,7 +8,6 @@
 class Project
 {
 public:
-
     Project();
     int      getId();
     void     setId(int value);

@@ -17,6 +17,10 @@ AdminHomeView::~AdminHomeView()
 {
 }
 
+void AdminHomeView::addProject(int id, QString name) {
+    ui->selectProjectInput->addItem(name, id);
+}
+
 void AdminHomeView::on_createProjectBtn_clicked()
 {
     _control.createProject();
@@ -28,10 +32,20 @@ void AdminHomeView::on_signoutBtn_clicked()
 }
 
 void AdminHomeView::on_editProjectBtn_clicked() {
-    _control.editProject(-1); // TODO: actually pass in the selected id
+    // Do nothing if they haven't selected a project
+    if (ui->selectProjectInput->currentIndex() == 0) return;
+
+    // Pass the project ID to edit project
+    _control.editProject(ui->selectProjectInput->itemData(
+                             ui->selectProjectInput->currentIndex()).toInt());
 }
 
 void AdminHomeView::on_runAlgoBtn_clicked()
 {
-    _control.computeTeams(-1); // TODO: actually pass in the selected id
+    // Do nothing if they haven't selected a project
+    if (ui->selectProjectInput->currentIndex() == 0) return;
+
+    // Pass the project ID to compute best teams
+    _control.computeTeams(ui->selectProjectInput->itemData(
+                              ui->selectProjectInput->currentIndex()).toInt());
 }
