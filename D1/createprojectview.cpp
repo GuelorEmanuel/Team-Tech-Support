@@ -1,6 +1,6 @@
 #include "createprojectview.h"
 #include "ui_createprojectview.h"
-#include <createprojectcontrol.h>
+#include "createprojectcontrol.h"
 
 CreateProjectView::CreateProjectView(CreateProjectControl &control,
                                      QWidget *parent) :
@@ -17,11 +17,10 @@ CreateProjectView::~CreateProjectView() {
 }
 
 void CreateProjectView::on_createBtn_clicked() {
-    // _control.createProject([some fields]);
     QString name = ui->projectNameLE->text();
     QString minSize = ui->minTeamSizeLE->text();
     QString maxSize = ui->maxTeamSizeLE->text();
-    QString desc = ui->plainTextEdit->toPlainText();
+    QString desc = ui->projectDescriptionLE->toPlainText();
     int stat = 1;
 
     //Check if all of the fields have been filled

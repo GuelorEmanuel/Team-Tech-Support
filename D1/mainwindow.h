@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include <memory>
-#include "accountcreationcontrol.h"
 #include "adminhomeview.h"
 #include "signupoptionview.h"
 class MainWindowControl;

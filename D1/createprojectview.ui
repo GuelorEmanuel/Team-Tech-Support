@@ -78,7 +78,11 @@
     <string>Project Description:</string>
    </property>
   </widget>
+<<<<<<< HEAD
   <widget class="QPlainTextEdit" name="plainTextEdit">
+=======
+  <widget class="QPlainTextEdit" name="projectDescriptionLE">
+>>>>>>> de106b6ebfe08ddee0d8743a704beb33786b00b8
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -88,6 +92,7 @@
     </rect>
    </property>
   </widget>
+<<<<<<< HEAD
   <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
@@ -111,12 +116,19 @@
    </layout>
   </widget>
   <widget class="QWidget" name="">
+=======
+  <widget class="QWidget" name="layoutWidget">
+>>>>>>> de106b6ebfe08ddee0d8743a704beb33786b00b8
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>60</y>
      <width>251</width>
+<<<<<<< HEAD
      <height>29</height>
+=======
+     <height>30</height>
+>>>>>>> de106b6ebfe08ddee0d8743a704beb33786b00b8
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -132,13 +144,21 @@
     </item>
    </layout>
   </widget>
+<<<<<<< HEAD
   <widget class="QWidget" name="">
+=======
+  <widget class="QWidget" name="layoutWidget">
+>>>>>>> de106b6ebfe08ddee0d8743a704beb33786b00b8
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>120</y>
      <width>254</width>
+<<<<<<< HEAD
      <height>29</height>
+=======
+     <height>30</height>
+>>>>>>> de106b6ebfe08ddee0d8743a704beb33786b00b8
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -154,13 +174,21 @@
     </item>
    </layout>
   </widget>
+<<<<<<< HEAD
   <widget class="QWidget" name="">
+=======
+  <widget class="QWidget" name="layoutWidget">
+>>>>>>> de106b6ebfe08ddee0d8743a704beb33786b00b8
    <property name="geometry">
     <rect>
      <x>320</x>
      <y>120</y>
      <width>251</width>
+<<<<<<< HEAD
      <height>29</height>
+=======
+     <height>30</height>
+>>>>>>> de106b6ebfe08ddee0d8743a704beb33786b00b8
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -176,6 +204,7 @@
     </item>
    </layout>
   </widget>
+<<<<<<< HEAD
   <zorder>label</zorder>
   <zorder>label_2</zorder>
   <zorder>label_3</zorder>
@@ -186,11 +215,35 @@
   <zorder>projectStatusLE</zorder>
   <zorder>minTeamSizeLE</zorder>
   <zorder>label_3</zorder>
+=======
+  <widget class="QPushButton" name="cancelButton">
+   <property name="geometry">
+    <rect>
+     <x>390</x>
+     <y>360</y>
+     <width>102</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
+  <zorder>layoutWidget</zorder>
+  <zorder>layoutWidget</zorder>
+  <zorder>layoutWidget</zorder>
+  <zorder>line</zorder>
+>>>>>>> de106b6ebfe08ddee0d8743a704beb33786b00b8
   <zorder>dialogTitleLbl</zorder>
   <zorder>updateBtn</zorder>
   <zorder>createBtn</zorder>
   <zorder>label_6</zorder>
+<<<<<<< HEAD
   <zorder>plainTextEdit</zorder>
+=======
+  <zorder>projectDescriptionLE</zorder>
+  <zorder>cancelButton</zorder>
+>>>>>>> de106b6ebfe08ddee0d8743a704beb33786b00b8
  </widget>
  <resources/>
  <connections/>
