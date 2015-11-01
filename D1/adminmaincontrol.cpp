@@ -34,7 +34,6 @@ void AdminMainControl::signOut() {
 }
 
 void AdminMainControl::getProjectList() {
-    qDebug() << "Getting project list";
     QSqlQuery qry(Database::getInstance().db());
     qry.prepare("SELECT * FROM project");
     // Project fields are id, name, min_team_size, max_team_size, description

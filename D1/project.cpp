@@ -4,7 +4,7 @@ Project::Project() : _id(-1)
 {
 }
 
-int Project::getId() {
+int Project::getId() const {
     return _id;
 }
 
@@ -12,7 +12,7 @@ void Project::setId(int value) {
     _id = value;
 }
 
-int Project::getMinTeamSize() {
+int Project::getMinTeamSize() const {
     return _minTeamSize;
 }
 
@@ -20,7 +20,7 @@ void Project::setMinTeamSize(int value) {
     _minTeamSize = value;
 }
 
-int Project::getMaxTeamSize() {
+int Project::getMaxTeamSize() const {
     return _maxTeamSize;
 }
 
@@ -28,7 +28,7 @@ void Project::setMaxTeamSize(int value) {
     _maxTeamSize = value;
 }
 
-QString Project::getName() {
+QString Project::getName() const {
     return _name;
 }
 
@@ -36,7 +36,7 @@ void Project::setName(QString value) {
     _name = value;
 }
 
-QString Project::getDescription() {
+QString Project::getDescription() const {
     return _description;
 }
 

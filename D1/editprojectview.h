@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <memory>
 class EditProjectControl;
+class Project;
 
 namespace Ui {
     class EditProjectView;
@@ -16,6 +17,7 @@ class EditProjectView : public QDialog
 public:
     EditProjectView(EditProjectControl &control, QWidget *parent = 0);
     ~EditProjectView();
+    void refreshProjectSettings(const Project& project);
 
 private slots:
     void on_updateBtn_clicked();

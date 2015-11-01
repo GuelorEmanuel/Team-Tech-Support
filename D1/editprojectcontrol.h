@@ -16,7 +16,7 @@ public:
 private:
     std::auto_ptr<Project> _project;
     EditProjectView _view;
-    int _projectId;
+    void loadProjectSettings(int id);
 };
 
 #endif // EDITPROJECTCONTROL_H
