@@ -41,7 +41,7 @@ void EditProjectControl::loadProjectSettings(int id) {
         _project->setMinTeamSize(qry.value(2).toInt());
         _project->setMaxTeamSize(qry.value(3).toInt());
         _project->setDescription(qry.value(4).toString());
-         _project->setId();
+        _project->setId();
         _view.refreshProjectSettings(*_project);
     }
 }
