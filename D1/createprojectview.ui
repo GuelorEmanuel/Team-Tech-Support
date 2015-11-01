@@ -154,6 +154,19 @@
     </item>
    </layout>
   </widget>
+  <widget class="QPushButton" name="cancelButton">
+   <property name="geometry">
+    <rect>
+     <x>390</x>
+     <y>360</y>
+     <width>102</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
   <zorder>layoutWidget</zorder>
   <zorder>layoutWidget</zorder>
   <zorder>layoutWidget</zorder>
@@ -163,6 +176,7 @@
   <zorder>createBtn</zorder>
   <zorder>label_6</zorder>
   <zorder>projectDescriptionLE</zorder>
+  <zorder>cancelButton</zorder>
  </widget>
  <resources/>
  <connections/>

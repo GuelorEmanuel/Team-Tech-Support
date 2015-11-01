@@ -21,6 +21,7 @@ public:
 
 private slots:
     void on_updateBtn_clicked();
+    void on_cancelButton_clicked();
 
 private:
     EditProjectControl &_control;

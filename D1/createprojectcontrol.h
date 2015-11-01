@@ -12,6 +12,7 @@ public:
     CreateProjectControl();
     ~CreateProjectControl();
     void createProject(QString name, QString description, int minTeamSize, int maxTeamSize);
+    void cancel();
 private:
     std::auto_ptr<Project> _project;
     CreateProjectView _view;

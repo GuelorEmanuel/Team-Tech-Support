@@ -22,3 +22,9 @@ void CreateProjectView::on_createBtn_clicked() {
                            ui->minTeamSizeLE->text().toInt(),
                            ui->maxTeamSizeLE->text().toInt());
 }
+
+
+void CreateProjectView::on_cancelButton_clicked() {
+    _control.cancel();
+}
+

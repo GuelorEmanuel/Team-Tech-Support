@@ -1,6 +1,7 @@
 #include "editprojectview.h"
 #include "ui_editprojectview.h"
 #include "project.h"
+#include "editprojectcontrol.h"
 #include <QDebug>
 
 EditProjectView::EditProjectView(EditProjectControl &control, QWidget *parent)
@@ -14,7 +15,10 @@ EditProjectView::EditProjectView(EditProjectControl &control, QWidget *parent)
 EditProjectView::~EditProjectView() {}
 
 void EditProjectView::on_updateBtn_clicked() {
-    // _control.createProject([some fields]);
+    _control.editProject(ui->projectNameLE->text(),
+                         ui->projectDescription->toPlainText(),
+                         ui->minTeamSizeLE->text().toInt(),
+                         ui->maxTeamSizeLE->text().toInt());
 }
 
 void EditProjectView::refreshProjectSettings(const Project& project) {
@@ -23,4 +27,8 @@ void EditProjectView::refreshProjectSettings(const Project& project) {
     ui->projectNameLE->setText(project.getName());
     ui->projectDescription->document()->setPlainText(
                 project.getDescription());
+}
+
+void EditProjectView::on_cancelButton_clicked() {
+    _control.cancel();
 }

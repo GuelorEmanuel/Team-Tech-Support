@@ -19,7 +19,8 @@ void EditProjectControl::editProject(QString name, QString description,
     _project->setDescription(description);
     _project->setMinTeamSize(minTeamSize);
     _project->setMaxTeamSize(maxTeamSize);
-    _project->create();
+    _project->edit();
+    _view.close();
 }
 
 void EditProjectControl::loadProjectSettings(int id) {
@@ -43,4 +44,8 @@ void EditProjectControl::loadProjectSettings(int id) {
         _project->setDescription(qry.value(4).toString());
         _view.refreshProjectSettings(*_project);
     }
+}
+
+void EditProjectControl::cancel() {
+    _view.close();
 }
