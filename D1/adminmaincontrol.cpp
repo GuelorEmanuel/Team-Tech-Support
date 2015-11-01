@@ -11,7 +11,7 @@ AdminMainControl::AdminMainControl(Admin &admin) :
 
 void AdminMainControl::createProject() {
     _view.hide();
-    CreateProjectControl createProjectControl();
+    CreateProjectControl createProjectControl;
     _view.show();
 }
 
@@ -32,3 +32,4 @@ void AdminMainControl::signOut() {
 void AdminMainControl::getProjectList() {
 
 }
+

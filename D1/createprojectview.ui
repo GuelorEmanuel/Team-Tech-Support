@@ -78,7 +78,7 @@
     <string>Project Description:</string>
    </property>
   </widget>
-  <widget class="QPlainTextEdit" name="plainTextEdit">
+  <widget class="QPlainTextEdit" name="projectDescriptionLE">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -88,35 +88,13 @@
     </rect>
    </property>
   </widget>
-  <widget class="QWidget" name="">
-   <property name="geometry">
-    <rect>
-     <x>320</x>
-     <y>60</y>
-     <width>252</width>
-     <height>29</height>
-    </rect>
-   </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
-     <widget class="QLabel" name="label_2">
-      <property name="text">
-       <string>Project status:</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="projectStatusLE"/>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>60</y>
      <width>251</width>
-     <height>29</height>
+     <height>30</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -132,13 +110,13 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>120</y>
      <width>254</width>
-     <height>29</height>
+     <height>30</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -154,13 +132,13 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>320</x>
      <y>120</y>
      <width>251</width>
-     <height>29</height>
+     <height>30</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -176,21 +154,15 @@
     </item>
    </layout>
   </widget>
-  <zorder>label</zorder>
-  <zorder>label_2</zorder>
-  <zorder>label_3</zorder>
-  <zorder>label_4</zorder>
-  <zorder>projectNameLE</zorder>
+  <zorder>layoutWidget</zorder>
+  <zorder>layoutWidget</zorder>
+  <zorder>layoutWidget</zorder>
   <zorder>line</zorder>
-  <zorder>maxTeamSizeLE</zorder>
-  <zorder>projectStatusLE</zorder>
-  <zorder>minTeamSizeLE</zorder>
-  <zorder>label_3</zorder>
   <zorder>dialogTitleLbl</zorder>
   <zorder>updateBtn</zorder>
   <zorder>createBtn</zorder>
   <zorder>label_6</zorder>
-  <zorder>plainTextEdit</zorder>
+  <zorder>projectDescriptionLE</zorder>
  </widget>
  <resources/>
  <connections/>

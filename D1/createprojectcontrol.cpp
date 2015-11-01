@@ -20,4 +20,5 @@ void CreateProjectControl::createProject(QString name,
     _project->setMinTeamSize(minTeamSize);
     _project->setMaxTeamSize(maxTeamSize);
     _project->create();
+    _view.close();
 }
