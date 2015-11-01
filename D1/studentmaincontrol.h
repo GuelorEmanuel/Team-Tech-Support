@@ -9,11 +9,14 @@ class StudentMainControl
 {
 public:
     StudentMainControl(Student& student);
+    void logout();
+    void joinProject(int projectId);
+    void editProfile();
 
 private:
     StudentHomeView _view;
     Student& _student;
-    void getNotJoinedProjectList();
+    void getUnjoinedProjectList();
     void getJoinedProjectList();
 };
 

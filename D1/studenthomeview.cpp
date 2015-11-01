@@ -21,15 +21,17 @@ void StudentHomeView::on_editProfileBtn_clicked()
 
 void StudentHomeView::on_signOutBtn_clicked()
 {
+    _control.logout();
+}
+
+void StudentHomeView::on_openProjectBtn_clicked() {
 
 }
 
-void StudentHomeView::on_projectsBtn_clicked()
-{
-
+void StudentHomeView::addUnjoinedProject(int id, QString name) {
+    ui->unjoinedProjectsInput->addItem(name, id);
 }
 
-void StudentHomeView::on_joinedProjectsBtn_clicked()
-{
-
+void StudentHomeView::addJoinedProject(int id, QString name) {
+    ui->joinedProjectsList->addItem(name);
 }

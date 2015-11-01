@@ -48,6 +48,6 @@ void CreateProjectView::on_createBtn_clicked() {
         int min = minSize.toInt();
         int max = maxSize.toInt();
 
-        _control.createProject(name,desc, min, max);
+        _control.createProject(name, desc, min, max);
     }
 }
