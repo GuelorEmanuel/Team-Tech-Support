@@ -4,6 +4,8 @@
 #include <QString>
 #include <vector>
 #include "student.h"
+#include <QtSql>
+#include "database.h"
 
 class Project
 {
