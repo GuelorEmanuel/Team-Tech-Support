@@ -1,7 +1,7 @@
 #include "editprojectcontrol.h"
 
-EditProjectControl::EditProjectControl(QSqlDatabase &db, int projectId) :
-    _db(db), _view(*this), _projectId(projectId)
+EditProjectControl::EditProjectControl(int projectId) :
+    _view(*this), _projectId(projectId)
 {
     _view.setModal(true);
     _view.exec();

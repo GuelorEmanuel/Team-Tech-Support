@@ -8,13 +8,12 @@ class Admin;
 class AdminMainControl
 {
 public:
-    AdminMainControl(QSqlDatabase& db, Admin& admin);
+    AdminMainControl(Admin& admin);
     void createProject();
     void editProject(int projectId);
     void computeTeams(int projectId);
     void signOut();
 private:
-    QSqlDatabase& _db;
     AdminHomeView _view;
     Admin& _admin;
     void getProjectList();

@@ -22,5 +22,5 @@ void MainWindow::on_signUpBtn_clicked() {
 
 void MainWindow::on_signInBtn_clicked() {
    int stat = _control.signIn(ui->lineEditUserName->text());
-   qDebug() << QString("%1").arg(stat);
+   //qDebug() << QString("%1").arg(stat);
 }
