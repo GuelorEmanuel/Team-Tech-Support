@@ -12,7 +12,7 @@ class Project
 public:
     Project();
     int getId() const;
-    void setId(int value);
+    void setId();
     int getMinTeamSize() const;
     void setMinTeamSize(int value);
     int getMaxTeamSize() const;

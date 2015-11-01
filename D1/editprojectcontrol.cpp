@@ -4,7 +4,7 @@
 EditProjectControl::EditProjectControl(int projectId) :
     _view(*this), _project(new Project)
 {
-    _project->setId(projectId);
+    _project->setId();
     loadProjectSettings(projectId);
     _view.setModal(true);
     _view.exec();
@@ -37,11 +37,11 @@ void EditProjectControl::loadProjectSettings(int id) {
             qDebug() << "Project id not found";
             return; // TODO: displaying error message to user
         }
-        _project->setId(id);
         _project->setName(qry.value(1).toString());
         _project->setMinTeamSize(qry.value(2).toInt());
         _project->setMaxTeamSize(qry.value(3).toInt());
         _project->setDescription(qry.value(4).toString());
+        _project->setId();
         _view.refreshProjectSettings(*_project);
     }
 }

@@ -8,8 +8,20 @@ int Project::getId() const {
     return _id;
 }
 
-void Project::setId(int value) {
-    _id = value;
+void Project::setId() {
+    QSqlQuery qry(Database::getInstance().db());
+
+    qry.prepare("SELECT * FROM project");
+
+    if(!qry.exec()) {
+        qDebug() << qry.lastError();
+    } else {
+        while(qry.next()) {
+            if(_name == qry.value(1).toString())
+                _id = qry.value(0).toInt();
+        }
+    }
+
 }
 
 int Project::getMinTeamSize() const {
@@ -81,11 +93,20 @@ void Project::edit() {
 
     QSqlQuery qry(Database::getInstance().db());
 
-    qry.prepare("UPDATE project SET name=':n', min_team_size=:min, max_team_size=:max, description=':d' WHERE id =:id");
+    qry.prepare("UPDATE project SET name=:n, min_team_size=:min, max_team_size=:max, description=:d WHERE id =:id");
+    qry.bindValue(":n", _name);
+    qry.bindValue(":min", _minTeamSize);
+    qry.bindValue(":max", _maxTeamSize);
+    qry.bindValue(":d", _description);
+    qry.bindValue(":id", _id);
 
     if(!qry.exec()) {
-       // qDebug
+        qDebug() << qry.lastError();
+    } else {
+        qDebug() << "Project is updated";
     }
+
+    setId();
 }
 
 Project::~Project()
