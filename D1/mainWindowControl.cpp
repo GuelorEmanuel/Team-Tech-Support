@@ -2,6 +2,10 @@
 #include "mainWindowControl.h"
 #include "mainwindow.h"
 #include "signupmaincontrol.h"
+#include "studentmaincontrol.h"
+#include "adminmaincontrol.h"
+#include "admin.h"
+#include "student.h"
 
 MainWindowControl::MainWindowControl() : _view(*this) {
     // Connect to database
@@ -52,6 +56,7 @@ int MainWindowControl::signIn(QString userName)
         qDebug() << qry.lastError();
         return -1;
     } else {
+        // user fields are id, username, displayname, studentid
         int count = 0;
         while(qry.next()){
             ++count;
@@ -60,11 +65,22 @@ int MainWindowControl::signIn(QString userName)
         if(count == 1) {
             qDebug() << "Login is valid";
             if(id == "0") {
-
-                //create admin view
-                qDebug() << "We caught admin!";
+                _view.hide();
+                Admin admin;
+                admin.setId(qry.value(0).toInt());
+                admin.setUserName(qry.value(1).toString());
+                admin.setDisplayName(qry.value(2).toString());
+                AdminMainControl adminMainControl(_db, admin);
+                _view.show();
             } else {
-                //create student view
+                _view.hide();
+                Student student;
+                student.setId(qry.value(0).toInt());
+                student.setUserName(qry.value(1).toString());
+                student.setDisplayName(qry.value(2).toString());
+                student.setStudentId(qry.value(3).toString());
+                StudentMainControl studentMainControl(_db, student);
+                _view.show();
             }
             return 1;
         } else {

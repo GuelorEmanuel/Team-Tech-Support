@@ -3,11 +3,12 @@
 
 #include <QtSql>
 #include "adminhomeview.h"
+class Admin;
 
 class AdminMainControl
 {
 public:
-    AdminMainControl(QSqlDatabase& db);
+    AdminMainControl(QSqlDatabase& db, Admin& admin);
     void createProject();
     void editProject(int projectId);
     void computeTeams(int projectId);
@@ -15,6 +16,7 @@ public:
 private:
     QSqlDatabase& _db;
     AdminHomeView _view;
+    Admin& _admin;
     void getProjectList();
 };
 

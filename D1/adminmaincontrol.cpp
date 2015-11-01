@@ -2,8 +2,8 @@
 #include "createprojectcontrol.h"
 #include "editprojectcontrol.h"
 
-AdminMainControl::AdminMainControl(QSqlDatabase &db) :
-    _db(db), _view(*this)
+AdminMainControl::AdminMainControl(QSqlDatabase &db, Admin &admin) :
+    _db(db), _admin(admin), _view(*this)
 {
     _view.setModal(true);
     _view.exec();
