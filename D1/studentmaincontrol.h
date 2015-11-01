@@ -3,15 +3,17 @@
 
 #include <QtSql>
 #include "studenthomeview.h"
+class Student;
 
 class StudentMainControl
 {
 public:
-    StudentMainControl(QSqlDatabase& db);
+    StudentMainControl(QSqlDatabase& db, Student& student);
 
 private:
     StudentHomeView _view;
     QSqlDatabase& _db;
+    Student& _student;
     void getNotJoinedProjectList();
     void getJoinedProjectList();
 };
