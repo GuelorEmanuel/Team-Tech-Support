@@ -4,7 +4,7 @@ Project::Project() : _id(-1)
 {
 }
 
-int Project::getId() const {
+int Project::getId() {
     return _id;
 }
 
@@ -12,7 +12,7 @@ void Project::setId(int value) {
     _id = value;
 }
 
-int Project::getMinTeamSize() const {
+int Project::getMinTeamSize() {
     return _minTeamSize;
 }
 
@@ -20,7 +20,7 @@ void Project::setMinTeamSize(int value) {
     _minTeamSize = value;
 }
 
-int Project::getMaxTeamSize() const {
+int Project::getMaxTeamSize() {
     return _maxTeamSize;
 }
 
@@ -28,7 +28,7 @@ void Project::setMaxTeamSize(int value) {
     _maxTeamSize = value;
 }
 
-QString Project::getName() const {
+QString Project::getName() {
     return _name;
 }
 
@@ -36,7 +36,7 @@ void Project::setName(QString value) {
     _name = value;
 }
 
-QString Project::getDescription() const {
+QString Project::getDescription() {
     return _description;
 }
 
@@ -55,37 +55,11 @@ std::vector<Student> Project::getStudents() {
 void Project::create() {
     // Connect to database and insert a new project
     // Make sure to set id to the id the database autogenerates
-
-    QSqlQuery qry(Database::getInstance().db());
-
-    qry.prepare("INSERT INTO project(name, min_team_size, max_team_size, description) VALUES(:n, :min, :max, :desc)");
-
-    qry.bindValue(":n", QString("'%1'").arg(_name));
-    qry.bindValue(":min", _minTeamSize);
-    qry.bindValue(":max", _maxTeamSize);
-    qry.bindValue(":desc", QString("'%1'").arg(_description));
-
-    if(!qry.exec()) {
-        qDebug() << qry.lastError();
-    } else {
-        qDebug() << "Project is added";
-    }
-
 }
 
 void Project::edit() {
     // Connect to the database and update the project settings
     // Make sure to abort if id is -1
-
-    if(_id == -1) return;
-
-    QSqlQuery qry(Database::getInstance().db());
-
-    qry.prepare("UPDATE project SET name=':n', min_team_size=:min, max_team_size=:max, description=':d' WHERE id =:id");
-
-    if(!qry.exec()) {
-       // qDebug
-    }
 }
 
 Project::~Project()

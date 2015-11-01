@@ -1,7 +1,7 @@
 #include "createprojectcontrol.h"
 
 CreateProjectControl::CreateProjectControl() :
- _view(*this)
+    _view(*this)
 {
     _view.setModal(true);
     _view.exec();
@@ -20,4 +20,9 @@ void CreateProjectControl::createProject(QString name,
     _project->setMinTeamSize(minTeamSize);
     _project->setMaxTeamSize(maxTeamSize);
     _project->create();
+    _view.close();
+}
+
+void CreateProjectControl::cancel() {
+    _view.close();
 }

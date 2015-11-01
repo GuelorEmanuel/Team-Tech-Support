@@ -1,6 +1,6 @@
 #include "createprojectview.h"
 #include "ui_createprojectview.h"
-#include "createprojectcontrol.h"
+#include <createprojectcontrol.h>
 
 CreateProjectView::CreateProjectView(CreateProjectControl &control,
                                      QWidget *parent) :
@@ -16,15 +16,39 @@ CreateProjectView::CreateProjectView(CreateProjectControl &control,
 CreateProjectView::~CreateProjectView() {
 }
 
-void CreateProjectView::on_createBtn_clicked() {    
-    _control.createProject(ui->projectNameLE->text(),
-                           ui->projectDescriptionLE->toPlainText(),
-                           ui->minTeamSizeLE->text().toInt(),
-                           ui->maxTeamSizeLE->text().toInt());
+void CreateProjectView::on_createBtn_clicked() {
+    // _control.createProject([some fields]);
+    QString name = ui->projectNameLE->text();
+    QString minSize = ui->minTeamSizeLE->text();
+    QString maxSize = ui->maxTeamSizeLE->text();
+    QString desc = ui->plainTextEdit->toPlainText();
+    int stat = 1;
+
+    //Check if all of the fields have been filled
+    if(name.isEmpty()) {
+        qDebug() << "Empty name";
+        stat = 0;
+    }
+
+    if(minSize.isEmpty()) {
+        qDebug() << "Empty min size field";
+        stat = 0;
+    }
+
+    if(maxSize.isEmpty()) {
+        qDebug() << "Empty max size field";
+        stat = 0;
+    }
+
+    if(desc.isEmpty()) {
+        qDebug() << "Empty description";
+        stat = 0;
+    }
+
+    if(stat != 0) {
+        int min = minSize.toInt();
+        int max = maxSize.toInt();
+
+        _control.createProject(name,desc, min, max);
+    }
 }
-
-
-void CreateProjectView::on_cancelButton_clicked() {
-    _control.cancel();
-}
-

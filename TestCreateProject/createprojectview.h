@@ -3,8 +3,6 @@
 
 #include <QDialog>
 #include <memory>
-#include <QDebug>
-
 class CreateProjectControl;
 
 namespace Ui {

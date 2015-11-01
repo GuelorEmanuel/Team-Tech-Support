@@ -3,8 +3,6 @@
 
 #include <QDialog>
 #include <memory>
-#include <QDebug>
-
 class CreateProjectControl;
 
 namespace Ui {
@@ -21,6 +19,7 @@ public:
 
 private slots:
     void on_createBtn_clicked();
+    void on_cancelButton_clicked();
 
 private:
     std::auto_ptr<Ui::CreateProjectView> ui;

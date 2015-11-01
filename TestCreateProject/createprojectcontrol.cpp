@@ -1,7 +1,7 @@
 #include "createprojectcontrol.h"
 
-CreateProjectControl::CreateProjectControl() :
- _view(*this)
+CreateProjectControl::CreateProjectControl(QSqlDatabase &db) :
+    _db(db), _view(*this)
 {
     _view.setModal(true);
     _view.exec();
