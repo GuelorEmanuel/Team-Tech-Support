@@ -22,3 +22,7 @@ void CreateProjectControl::createProject(QString name,
     _project->create();
     _view.close();
 }
+
+void CreateProjectControl::cancel() {
+    _view.close();
+}

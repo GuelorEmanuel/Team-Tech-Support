@@ -13,6 +13,7 @@ public:
     ~EditProjectControl();
     void editProject(QString name, QString description,
                      int minTeamSize, int maxTeamSize);
+    void cancel();
 private:
     std::auto_ptr<Project> _project;
     EditProjectView _view;
