@@ -25,22 +25,22 @@ void CreateProjectView::on_createBtn_clicked() {
     int stat = 1;
 
     //Check if all of the fields have been filled
-    if(name.count("") == name.length()) {
+    if(name.isEmpty()) {
         qDebug() << "Empty name";
         stat = 0;
     }
 
-    if(minSize.count("") == minSize.length()) {
+    if(minSize.isEmpty()) {
         qDebug() << "Empty min size field";
         stat = 0;
     }
 
-    if(maxSize.count("") == maxSize.length()) {
+    if(maxSize.isEmpty()) {
         qDebug() << "Empty max size field";
         stat = 0;
     }
 
-    if(desc.count("") == desc.length()) {
+    if(desc.isEmpty()) {
         qDebug() << "Empty description";
         stat = 0;
     }
