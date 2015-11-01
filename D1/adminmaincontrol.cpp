@@ -1,23 +1,27 @@
+#include <QtSql>
+#include <QDebug>
+#include "database.h"
 #include "adminmaincontrol.h"
 #include "createprojectcontrol.h"
 #include "editprojectcontrol.h"
 
-AdminMainControl::AdminMainControl(QSqlDatabase &db, Admin &admin) :
-    _db(db), _admin(admin), _view(*this)
+AdminMainControl::AdminMainControl(Admin &admin) :
+    _admin(admin), _view(*this)
 {
+    getProjectList();
     _view.setModal(true);
     _view.exec();
 }
 
 void AdminMainControl::createProject() {
     _view.hide();
-    CreateProjectControl createProjectControl(_db);
+    CreateProjectControl createProjectControl;
     _view.show();
 }
 
 void AdminMainControl::editProject(int projectId) {
     _view.hide();
-    EditProjectControl editProjectControl(_db, projectId);
+    EditProjectControl editProjectControl(projectId);
     _view.show();
 }
 
@@ -30,5 +34,15 @@ void AdminMainControl::signOut() {
 }
 
 void AdminMainControl::getProjectList() {
-
+    QSqlQuery qry(Database::getInstance().db());
+    qry.prepare("SELECT * FROM project");
+    // Project fields are id, name, min_team_size, max_team_size, description
+    if (!qry.exec()) {
+        qDebug() << qry.lastError();
+    } else {
+        while (qry.next()) {
+            qDebug() << "Found project " << qry.value(1).toString();
+            _view.addProject(qry.value(0).toInt(), qry.value(1).toString());
+        }
+    }
 }

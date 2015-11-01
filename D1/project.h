@@ -8,19 +8,18 @@
 class Project
 {
 public:
-
     Project();
-    int      getId();
-    void     setId(int value);
-    int      getMinTeamSize();
-    void     setMinTeamSize(int value);
-    int      getMaxTeamSize();
-    void     setMaxTeamSize(int value);
-    QString  getName();
-    void     setName(QString value);
-    QString  getDescription();
-    void     setDescription(QString value);
-    void     registerStudent(Student& student);
+    int getId() const;
+    void setId(int value);
+    int getMinTeamSize() const;
+    void setMinTeamSize(int value);
+    int getMaxTeamSize() const;
+    void setMaxTeamSize(int value);
+    QString getName() const;
+    void setName(QString value);
+    QString getDescription() const;
+    void setDescription(QString value);
+    void registerStudent(Student& student);
     std::vector<Student> getStudents();
     void create();
     void edit();

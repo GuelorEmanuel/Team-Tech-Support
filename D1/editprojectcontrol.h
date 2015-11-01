@@ -9,15 +9,14 @@
 class EditProjectControl
 {
 public:
-    EditProjectControl(QSqlDatabase& db, int projectId);
+    EditProjectControl(int projectId);
     ~EditProjectControl();
     void editProject(QString name, QString description,
                      int minTeamSize, int maxTeamSize);
 private:
     std::auto_ptr<Project> _project;
-    QSqlDatabase& _db;
     EditProjectView _view;
-    int _projectId;
+    void loadProjectSettings(int id);
 };
 
 #endif // EDITPROJECTCONTROL_H

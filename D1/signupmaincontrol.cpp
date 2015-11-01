@@ -1,7 +1,7 @@
 #include "signupmaincontrol.h"
 
-SignUpMainControl::SignUpMainControl(QSqlDatabase &db) :
-    _db(db), _view(*this)
+SignUpMainControl::SignUpMainControl() :
+    _view(*this)
 {
     _view.setModal(true);
     _view.exec();

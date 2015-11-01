@@ -9,13 +9,12 @@
 class CreateProjectControl
 {
 public:
-    CreateProjectControl(QSqlDatabase& db);
+    CreateProjectControl();
     ~CreateProjectControl();
     void createProject(QString name, QString description, int minTeamSize, int maxTeamSize);
 private:
     std::auto_ptr<Project> _project;
     CreateProjectView _view;
-    QSqlDatabase& _db;
 };
 
 #endif // CREATEPROJECTCONTROL_H

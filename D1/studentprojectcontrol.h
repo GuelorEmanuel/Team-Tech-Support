@@ -10,10 +10,9 @@
 class StudentProjectControl
 {
 public:
-    StudentProjectControl(QSqlDatabase& db);
+    StudentProjectControl();
 private:
      StudentProjectView _view;
-    QSqlDatabase& _db;
 };
 
 #endif // STUDENTPROJECTCONTROL_H

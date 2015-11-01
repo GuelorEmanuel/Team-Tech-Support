@@ -49,35 +49,25 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QListWidget" name="listOfProjectLv">
-   <property name="geometry">
-    <rect>
-     <x>335</x>
-     <y>11</y>
-     <width>321</width>
-     <height>391</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QPushButton" name="runAlgoBtn">
    <property name="geometry">
     <rect>
-     <x>690</x>
-     <y>350</y>
-     <width>99</width>
+     <x>650</x>
+     <y>90</y>
+     <width>131</width>
      <height>27</height>
     </rect>
    </property>
    <property name="text">
-    <string>Run Algo</string>
+    <string>Compute Teams</string>
    </property>
   </widget>
   <widget class="QPushButton" name="editProjectBtn">
    <property name="geometry">
     <rect>
-     <x>690</x>
-     <y>310</y>
-     <width>99</width>
+     <x>648</x>
+     <y>60</y>
+     <width>131</width>
      <height>27</height>
     </rect>
    </property>
@@ -94,7 +84,7 @@
      <x>10</x>
      <y>60</y>
      <width>269</width>
-     <height>29</height>
+     <height>30</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -146,7 +136,7 @@
      <x>10</x>
      <y>110</y>
      <width>271</width>
-     <height>29</height>
+     <height>30</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -171,6 +161,21 @@
      </widget>
     </item>
    </layout>
+  </widget>
+  <widget class="QComboBox" name="selectProjectInput">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>60</y>
+     <width>341</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Select a project</string>
+    </property>
+   </item>
   </widget>
  </widget>
  <resources/>

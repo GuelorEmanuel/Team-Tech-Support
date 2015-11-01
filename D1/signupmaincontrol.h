@@ -7,12 +7,11 @@
 class SignUpMainControl
 {
 public:
-    SignUpMainControl(QSqlDatabase& db);
+    SignUpMainControl();
     void cancel();
     void createStudentAccount();
     void createAdminAccount();
 private:
-    QSqlDatabase& _db;
     SignupOptionView _view;
 };
 

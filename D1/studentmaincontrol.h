@@ -8,11 +8,10 @@ class Student;
 class StudentMainControl
 {
 public:
-    StudentMainControl(QSqlDatabase& db, Student& student);
+    StudentMainControl(Student& student);
 
 private:
     StudentHomeView _view;
-    QSqlDatabase& _db;
     Student& _student;
     void getNotJoinedProjectList();
     void getJoinedProjectList();

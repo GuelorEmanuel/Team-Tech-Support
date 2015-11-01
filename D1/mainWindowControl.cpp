@@ -6,32 +6,16 @@
 #include "adminmaincontrol.h"
 #include "admin.h"
 #include "student.h"
+#include "database.h"
 
-MainWindowControl::MainWindowControl() : _view(*this) {
-    // Connect to database
+MainWindowControl::MainWindowControl() : _view(*this) {    
     _view.show();
+    Database::getInstance().db(); // initialize database
 }
 
 MainWindowControl::~MainWindowControl()
 {
-    // Close database
-}
-
-//Function: opens Database and returns status to user:
-//0 - wasn't able to open
-//1- Success
-int MainWindowControl::openDB()
-{
-    _db = QSqlDatabase::addDatabase("QSQLITE");
-    _db.setDatabaseName("./mydb.sqlite");
-
-    if(!_db.open()) {
-        qDebug() << "Was not able to open DB.";
-        return 0;
-    } else {
-        qDebug() << "Success!";
-        return 1;
-    }
+    Database::getInstance().db().close();
 }
 
 int MainWindowControl::signIn(QString userName)
@@ -41,13 +25,7 @@ int MainWindowControl::signIn(QString userName)
     // If admin, create and launch admin control
     // Otherwise display user not found error
 
-    // Need to check with the controller first if the model was able to connect to the database
-    int stat = openDB();
-    if(stat == 0) return -1;
-
-    //_view.hide();
-
-    QSqlQuery qry(_db);
+    QSqlQuery qry(Database::getInstance().db());
     qDebug() << userName;
     qry.prepare("SELECT * FROM user WHERE username = :username");
     qry.bindValue(":username", userName);
@@ -70,7 +48,7 @@ int MainWindowControl::signIn(QString userName)
                 admin.setId(qry.value(0).toInt());
                 admin.setUserName(qry.value(1).toString());
                 admin.setDisplayName(qry.value(2).toString());
-                AdminMainControl adminMainControl(_db, admin);
+                AdminMainControl adminMainControl(admin);
                 _view.show();
             } else {
                 _view.hide();
@@ -79,7 +57,7 @@ int MainWindowControl::signIn(QString userName)
                 student.setUserName(qry.value(1).toString());
                 student.setDisplayName(qry.value(2).toString());
                 student.setStudentId(qry.value(3).toString());
-                StudentMainControl studentMainControl(_db, student);
+                StudentMainControl studentMainControl(student);
                 _view.show();
             }
             return 1;
@@ -98,6 +76,6 @@ void MainWindowControl::signUp()
 {
     // Create and launch account creation control
     _view.hide();
-    SignUpMainControl signupMainControl(_db);
+    SignUpMainControl signupMainControl;
     _view.show();
 }

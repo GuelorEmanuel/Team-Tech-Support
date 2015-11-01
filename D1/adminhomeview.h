@@ -15,6 +15,7 @@ class AdminHomeView : public QDialog
 
 public:
     explicit AdminHomeView(AdminMainControl &control, QWidget *parent = 0);
+    void addProject(int id, QString name);
     ~AdminHomeView();
 
 private slots:
