@@ -1,6 +1,6 @@
 #include "profile.h"
 
-Profile::Profile()
+Profile::Profile() : _stuId(-1), _id(-1)
 {
 }
 
@@ -10,6 +10,16 @@ int Profile::getId() {
 
 void Profile::setId(int value) {
     _id = value;
+}
+
+void Profile::setStuId(int value)
+{
+    _stuId = value;
+}
+
+int Profile::getStuId()
+{
+    return _stuId;
 }
 
 std::vector<Qualification> Profile::getQualifications() {
@@ -32,7 +42,17 @@ void Profile::addQualification(Qualification &qual)
     _qualifications.push_back(qual);
 }
 
-void Profile::createProfile(int stuId)
+void Profile::editQualification(int num, int ans, int amin, int amax)
+{
+    if(num < 0 || num > 28) return;
+
+    _qualifications[num].setAnswer(ans);
+    _qualifications[num].setMinAnswer(amin);
+    _qualifications[num].setMaxAnswer(amax);
+
+}
+
+void Profile::createProfile()
 {
 
     QSqlQuery qry(Database::getInstance().db());
@@ -51,7 +71,7 @@ void Profile::createProfile(int stuId)
 
 
      qry.bindValue(":id", _id);
-     qry.bindValue(":uid", stuId);
+     qry.bindValue(":uid", _stuId);
 
 
      for(int i = 0; i < 28; i++) {
@@ -66,6 +86,31 @@ void Profile::createProfile(int stuId)
      } else {
          qDebug() << "Profile is added";
      }
+}
+
+void Profile::editProfile() {
+    if(_id == -1 || _stuId == -1) return;
+
+    QSqlQuery qry(Database::getInstance().db());
+
+    for(int i = 0; i < 28; i++) {
+        //QString prep = "UPDATE profile SET q%1 = :q%2, q%3min = :q%4min, q%5max = :q%5max WHERE id=:id";
+        QString prep = "UPDATE profile SET q%1 = :q%1, q%1min = :q%1min, q%1max = :q%1max WHERE id=:id";
+        qry.prepare(prep.arg(i+1));
+
+        qry.bindValue(QString(":q%1").arg(i+1), _qualifications[i].getAnswer());
+        qry.bindValue(QString(":q%1min").arg(i+1), _qualifications[i].getMinAnswer());
+        qry.bindValue(QString(":q%1max").arg(i+1), _qualifications[i].getMaxAnswer());
+
+        qry.bindValue(":id", _id);
+
+        if(!qry.exec()){
+            qDebug() << qry.lastError();
+        } else {
+            qDebug() << "Profile is updated.";
+        }
+    }
+
 }
 
 Profile::~Profile() {}
