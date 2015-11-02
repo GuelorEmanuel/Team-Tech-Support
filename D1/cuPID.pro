@@ -21,7 +21,6 @@ SOURCES += main.cpp\
     editprojectview.cpp \
     editprojectcontrol.cpp \
     createprojectcontrol.cpp \
-    editstuprofileview.cpp \
     editstuprofilecontrol.cpp \
     mainwindow.cpp \
     mainWindowControl.cpp \
@@ -53,7 +52,6 @@ HEADERS  += \
     editprojectview.h \
     editprojectcontrol.h \
     createprojectcontrol.h \
-    editstuprofileview.h \
     editstuprofilecontrol.h \
     mainwindow.h \
     mainWindowControl.h \

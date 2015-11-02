@@ -1,6 +1,7 @@
 #include "studentmaincontrol.h"
 #include "database.h"
 #include "student.h"
+#include "editstuprofilecontrol.h"
 
 StudentMainControl::StudentMainControl(Student &student) :
     _student(student), _view(*this)
@@ -20,6 +21,9 @@ void StudentMainControl::joinProject(int projectId) {
 }
 
 void StudentMainControl::editProfile() {
+    EditStuProfileControl editProfileControl(_student.getId());
+    qDebug() << "In here I was called ";
+    _view.show();
 
 }
 

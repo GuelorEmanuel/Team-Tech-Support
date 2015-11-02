@@ -16,6 +16,8 @@ StudentHomeView::~StudentHomeView()
 
 void StudentHomeView::on_editProfileBtn_clicked()
 {
+    _control.editProfile();
+
 
 }
 

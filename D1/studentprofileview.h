@@ -2,7 +2,10 @@
 #define STUDENTPROFILEVIEW_H
 
 #include <QDialog>
-#include "student.h"
+#include <memory>
+#include "studentprofileview.h"
+
+class EditStuProfileControl;
 
 namespace Ui {
 class StudentProfileView;
@@ -13,7 +16,7 @@ class StudentProfileView : public QDialog
     Q_OBJECT
 
 public:
-    explicit StudentProfileView(Student* student, QWidget *parent = 0);
+    explicit StudentProfileView(EditStuProfileControl &control, QWidget *parent = 0);
     ~StudentProfileView();
 
 private slots:
@@ -22,8 +25,8 @@ private slots:
     void on_saveBtn_clicked();
 
 private:
-    Ui::StudentProfileView *ui;
-    std::auto_ptr<Student> _student;
+    std::auto_ptr<Ui::StudentProfileView> ui;
+    EditStuProfileControl &_control;
 };
 
 #endif // STUDENTPROFILEVIEW_H

@@ -2,16 +2,21 @@
 #define EDITSTUPROFILECONTROL_H
 
 #include <memory>
+#include <QtSql>
 #include "student.h"
+#include "studentprofileview.h"
 
 class EditStuProfileControl
 {
 public:
-    EditStuProfileControl(Student* student);
+    EditStuProfileControl(int profileID);
     ~EditStuProfileControl();
 
 private:
-    std::auto_ptr<Student> _student;
+    std::auto_ptr<Profile> _profile;
+    StudentProfileView  _view;
+    void loadProfileSettings(int id);
+
 };
 
 #endif // EDITSTUPROFILECONTROL_H

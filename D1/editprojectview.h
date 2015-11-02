@@ -3,6 +3,8 @@
 
 #include <QDialog>
 #include <memory>
+#include"studenthomeview.h"
+
 class EditProjectControl;
 class Project;
 
