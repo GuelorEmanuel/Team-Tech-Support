@@ -44,6 +44,7 @@ void StudentMainControl::getUnjoinedProjectList() {
             qDebug() << "Found unjoined project " << qry.value(1).toString();
             _view.addUnjoinedProject(qry.value(0).toInt(),
                                      qry.value(1).toString());
+            _view.addUnjoinedProject(3,"Helllo");
         }
     }
 }

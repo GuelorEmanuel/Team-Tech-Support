@@ -36,13 +36,17 @@ int MainWindowControl::signIn(QString userName)
     } else {
         // user fields are id, username, displayname, studentid
         int count = 0;
+        QVariant val;
         while(qry.next()){
             ++count;
             id = qry.value(3).toString();
+            val = qry.value(3);
+
+            qDebug() <<"this is ID: "<< id <<": "<<val.isNull();
         }
         if(count == 1) {
             qDebug() << "Login is valid";
-            if(id == "0") {
+            if(val.isNull()) {
                 _view.hide();
                 Admin admin;
                 admin.setId(qry.value(0).toInt());
