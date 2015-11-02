@@ -12,7 +12,7 @@ class Project
 public:
     Project();
     int getId() const;
-    void setId();
+    void setId(int value);
     int getMinTeamSize() const;
     void setMinTeamSize(int value);
     int getMaxTeamSize() const;
@@ -23,6 +23,7 @@ public:
     void setDescription(QString value);
     void registerStudent(Student& student);
     std::vector<Student> getStudents();
+    static int lookupId(QString name);
     void create();
     void edit();
     ~Project();
