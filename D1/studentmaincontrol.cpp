@@ -5,6 +5,8 @@
 StudentMainControl::StudentMainControl(Student &student) :
     _student(student), _view(*this)
 {
+    getUnjoinedProjectList();
+    getJoinedProjectList();
     _view.setModal(true);
     _view.exec();
 }
@@ -23,10 +25,12 @@ void StudentMainControl::editProfile() {
 
 void StudentMainControl::getUnjoinedProjectList() {
     QSqlQuery qry(Database::getInstance().db());
-    qry.prepare("SELECT project.id, project.name FROM project "
-                "WHERE project.id NOT IN "
-                "(SELECT project, project_student_registered AS psr WHERE "
+    qry.prepare("SELECT id, name FROM project "
+                "WHERE id NOT IN "
+                "(SELECT id FROM project, project_student_registered "
+                " AS psr WHERE "
                 "psr.project_id = project.id AND psr.user_id = :user_id)");
+
     qry.bindValue(":user_id", _student.getId());
 
     if (!qry.exec()) {
@@ -41,9 +45,9 @@ void StudentMainControl::getUnjoinedProjectList() {
 }
 
 void StudentMainControl::getJoinedProjectList() {
-    QSqlQuery qry(Database::getInstance().db());
-    qry.prepare("SELECT project.id, project.name FROM "
-                "project, project_student_registered AS psr WHERE "
+    QSqlQuery qry(Database::getInstance().db());    
+    qry.prepare("SELECT id, name FROM project, project_student_registered "
+                " AS psr WHERE "
                 "psr.project_id = project.id AND psr.user_id = :user_id");
     qry.bindValue(":user_id", _student.getId());
 
