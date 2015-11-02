@@ -2,6 +2,8 @@
 #define USER_H
 #include <QString>
 #include <QObject>
+#include "database.h"
+#include <QtSql>
 
 class User: public QObject
 {
@@ -14,7 +16,7 @@ public:
     void setDisplayName(QString value);
     int getId();
     void setId(int value);
-private:
+protected:
     int _id;
     QString _userName;
     QString _displayName;

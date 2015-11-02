@@ -79,10 +79,10 @@ void Project::create() {
 
     qry.prepare("INSERT INTO project(name, min_team_size, max_team_size, description) VALUES(:n, :min, :max, :desc)");
 
-    qry.bindValue(":n", QString("'%1'").arg(_name));
+    qry.bindValue(":n", _name);
     qry.bindValue(":min", _minTeamSize);
     qry.bindValue(":max", _maxTeamSize);
-    qry.bindValue(":desc", QString("'%1'").arg(_description));
+    qry.bindValue(":desc", _description);
 
     if(!qry.exec()) {
         qDebug() << qry.lastError();
