@@ -8,20 +8,27 @@ int Project::getId() const {
     return _id;
 }
 
-void Project::setId() {
+void Project::setId(int value) {
+    _id = value;
+
+}
+
+int Project::lookupId(QString name) {
+    int id = 0;
     QSqlQuery qry(Database::getInstance().db());
 
     qry.prepare("SELECT * FROM project");
 
     if(!qry.exec()) {
         qDebug() << qry.lastError();
+        id = -1;
     } else {
         while(qry.next()) {
-            if(_name == qry.value(1).toString())
-                _id = qry.value(0).toInt();
+            if(name == qry.value(1).toString())
+                id = qry.value(0).toInt();
         }
     }
-
+    return id;
 }
 
 int Project::getMinTeamSize() const {
@@ -105,8 +112,6 @@ void Project::edit() {
     } else {
         qDebug() << "Project is updated";
     }
-
-    setId();
 }
 
 Project::~Project()
