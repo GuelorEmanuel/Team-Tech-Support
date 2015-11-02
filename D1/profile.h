@@ -3,6 +3,8 @@
 #include <QString>
 #include <vector>
 #include "qualification.h"
+#include <QtSql>
+#include "database.h"
 
 class Profile
 {
@@ -11,6 +13,9 @@ public:
     int getId();
     void setId(int value);
     std::vector<Qualification> getQualifications();
+    void addQualification(int, int, int);
+    void addQualification(Qualification&);
+    void createProfile(int stuId);
     ~Profile();
 private:
     int _id;

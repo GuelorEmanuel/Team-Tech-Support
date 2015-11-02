@@ -1,6 +1,6 @@
 #include "user.h"
 
-User::User() {}
+User::User() : _id(-1){}
 
 User::~User() {}
 

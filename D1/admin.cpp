@@ -18,7 +18,7 @@ void Admin::create()
         qDebug() << User::_id;
     }
 
-    qry.prepare("INSERT INTO user(id, username, display_name, student_id) VALUES (:id, :un, :dn, null)");
+    qry.prepare("INSERT INTO user(id, username, display_name, student_id) VALUES (:id, :un, :dn, NULL)");
 
     qry.bindValue(":id", User::_id);
     qry.bindValue(":un", User::_userName);

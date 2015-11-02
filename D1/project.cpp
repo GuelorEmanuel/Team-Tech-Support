@@ -65,6 +65,21 @@ void Project::setDescription(QString value) {
 
 void Project::registerStudent(Student& student) {
     // Connect to database and make sure the student is in the project
+    if(_id == -1) return;
+
+    QSqlQuery qry(Database::getInstance().db());
+
+    qry.prepare("INSERT INTO project_student_registered(project_id, student_id) VALUES(:pid, :sid)");
+
+    qry.bindValue(":pid", _id);
+    qry.bindValue(":sid", student.getId());
+
+    if(qry.exec()) {
+        qDebug() << qry.lastError();
+    } else {
+        qDebug() << "Student just joined project.";
+    }
+
 }
 
 std::vector<Student> Project::getStudents() {

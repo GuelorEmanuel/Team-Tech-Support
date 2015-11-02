@@ -1,6 +1,9 @@
 #include "mainwindow.h"
 #include "mainWindowControl.h"
 #include "ui_mainwindow.h"
+#include "admin.h"
+#include "student.h"
+#include "profile.h"
 
 MainWindow::MainWindow(MainWindowControl& control, QWidget *parent) :
     QMainWindow(parent), _control(control), ui(new Ui::MainWindow) {
@@ -10,6 +13,7 @@ MainWindow::MainWindow(MainWindowControl& control, QWidget *parent) :
 
     this->setPalette(palette);
     ui->setupUi(this);
+
 }
 
 MainWindow::~MainWindow() {

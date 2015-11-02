@@ -19,6 +19,7 @@ public:
     void setProfile(Profile* value);
     std::vector<Project*> getProjects();
     void joinProject(Project& project);
+    void createStudentUser();
 private:
     QString _studentId;
     std::auto_ptr<Profile> _profile;
