@@ -14,13 +14,11 @@ AdminMainControl::AdminMainControl(Admin &admin) :
 }
 
 void AdminMainControl::createProject() {
-    _view.hide();
     CreateProjectControl createProjectControl;
     _view.show();
 }
 
 void AdminMainControl::editProject(int projectId) {
-    _view.hide();
     EditProjectControl editProjectControl(projectId);
     _view.show();
 }

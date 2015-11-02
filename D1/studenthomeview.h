@@ -17,15 +17,13 @@ class StudentHomeView : public QDialog
 public:
     explicit StudentHomeView(StudentMainControl &control, QWidget *parent = 0);
     ~StudentHomeView();
+    void addUnjoinedProject(int id, QString name);
+    void addJoinedProject(int id, QString name);
 
 private slots:
     void on_editProfileBtn_clicked();
-
     void on_signOutBtn_clicked();
-
-    void on_projectsBtn_clicked();
-
-    void on_joinedProjectsBtn_clicked();
+    void on_openProjectBtn_clicked();
 
 private:
     std::auto_ptr<Ui::StudentHomeView> ui;
