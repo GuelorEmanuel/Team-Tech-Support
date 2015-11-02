@@ -12,8 +12,12 @@ void CreateAdminAccountControl::cancel() {
     _view.close();
 }
 
+//Creates new admin account
 void CreateAdminAccountControl::createAdminAccount(
         QString displayName, QString userName) {
-
+    _admin.reset(new Admin);
+    _admin->setDisplayName(displayName);
+    _admin->setUserName(userName);
+    _admin->create();
     _view.close();
 }

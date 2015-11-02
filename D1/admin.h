@@ -5,6 +5,11 @@
 
 class Admin : public User
 {
+public:
+    Admin();
+    ~Admin();
+    void create();
+private:
 
 };
 
