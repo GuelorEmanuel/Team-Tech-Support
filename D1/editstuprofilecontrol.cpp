@@ -22,6 +22,7 @@ EditStuProfileControl::~EditStuProfileControl() {
 QList<QString> EditStuProfileControl::loadSection(){
     Questions questions;
     return questions.getQuestions();
+
 }
 
 void EditStuProfileControl::addAsnwers(int ans, int min, int max)

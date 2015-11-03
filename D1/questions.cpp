@@ -12,7 +12,7 @@ Questions::~Questions() {
 }
 
 void Questions::loadQuestions(){
-
+    int count = 0;
     QFile textFile(":Images/listquestions");
 
     if(!textFile.open(QFile::ReadOnly|QFile::Text)){
@@ -28,11 +28,12 @@ void Questions::loadQuestions(){
             break;
         }
         else{
-            qDebug()<<"Adddddding";
+            count++;
             questionsList.append(line);
             //temp.append("Hello");
         }
     }
+     qDebug()<<"questionList: "<< questionsList.length()<<"count: "<<count;
 }
 QList<QString> Questions::getQuestions(){
     loadQuestions();
