@@ -17,6 +17,10 @@ public:
     std::vector<Qualification> getQualifications();
     void addQualification(int, int, int);
     void addQualification(Qualification&);
+    int getAnswer(int index);
+    int getMinAnswer(int index);
+    int getMaxAnswer(int index);
+    void loadQualification();
     void editQualification(int num, int ans, int amin, int amax);
     //void editQualification(int num, Qualification&);
     void createProfile();

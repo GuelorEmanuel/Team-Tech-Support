@@ -1,7 +1,7 @@
 #include "studentprojectcontrol.h"
 
-StudentProjectControl::StudentProjectControl(int projectId):
-    _view(*this),_project(new Project)
+StudentProjectControl::StudentProjectControl(int projectId, Student& stu):
+    _view(*this),_project(new Project), _student(stu)
 {
     _project->setId(projectId);
     loadProjectSettings(projectId);
@@ -31,4 +31,15 @@ void StudentProjectControl::loadProjectSettings(int id) {
         _project->setDescription(qry.value(4).toString());
         _view.refreshProjectSettings(*_project);
     }
+}
+
+void StudentProjectControl::leaveProject()
+{
+    _view.close();
+}
+
+void StudentProjectControl::joinProject()
+{
+    int stat = _project->registerStudent(_student);
+    if(stat != 0) _view.close();
 }

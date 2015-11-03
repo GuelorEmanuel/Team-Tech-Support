@@ -10,11 +10,14 @@
 class StudentProjectControl
 {
 public:
-    StudentProjectControl(int projectId);
+    StudentProjectControl(int projectId, Student& stu);
+    void leaveProject();
+    void joinProject();
 private:
      StudentProjectView _view;
      void loadProjectSettings(int id);
      std::auto_ptr<Project> _project;
+     Student& _student;
 };
 
 #endif // STUDENTPROJECTCONTROL_H

@@ -28,7 +28,9 @@ void EditStuProfileControl::loadProfileSettings(int id) {
     qDebug() << "Getting profile settings";
     Questions questions;
     questions.getQuestions();
-    QSqlQuery qry(Database::getInstance().db());
+    _profile->loadQualification();
+    qDebug() << _profile->getAnswer(2);
+    /*QSqlQuery qry(Database::getInstance().db());
     qry.prepare("SELECT * FROM profile WHERE id = :id");
     qry.bindValue(":id", id);
 
@@ -45,7 +47,7 @@ void EditStuProfileControl::loadProfileSettings(int id) {
             qDebug() << "Found project " << qry.value(1).toString();
             //_view.addProject(qry.value(0).toInt(), qry.value(1).toString());
         }
-    }
+    }*/
 
 
 }

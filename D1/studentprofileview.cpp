@@ -9,7 +9,11 @@ StudentProfileView::StudentProfileView(EditStuProfileControl &control,QWidget *p
     ui->questionOneLbl->setWordWrap(true);
     ui->questionTwoLbl->setWordWrap(true);
     ui->questionThreeLbl->setWordWrap(true);
-    ui->questionFourLbl->setWordWrap(true);}
+    ui->questionFourLbl->setWordWrap(true);
+
+
+
+}
 
 StudentProfileView::~StudentProfileView()
 {
@@ -23,6 +27,8 @@ void StudentProfileView::on_nextBtn_clicked()
     ui->questionTwoLbl->setText(_control.loadSection().at(1));
     ui->questionThreeLbl->setText(_control.loadSection().at(2));
     ui->questionFourLbl->setText(_control.loadSection().at(3));
+
+    qDebug() << ui->questionOneCB->currentText();
 
 }
 
