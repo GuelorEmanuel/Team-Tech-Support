@@ -29,7 +29,10 @@ int MainWindowControl::signIn(QString userName)
     qDebug() << userName;
     qry.prepare("SELECT * FROM user WHERE username = :username");
     qry.bindValue(":username", userName);
-    QString id = "";
+    int id;
+    QString un = "";
+    QString displayName = "";
+    QString stuID = "";
     if(!qry.exec()){
         qDebug() << qry.lastError();
         return -1;
@@ -39,29 +42,31 @@ int MainWindowControl::signIn(QString userName)
         QVariant val;
         while(qry.next()){
             ++count;
-            id = qry.value(3).toString();
+            id = qry.value(0).toInt();
             val = qry.value(3);
-
-            qDebug() <<"this is ID: "<< id <<": "<<val.isNull();
+            un = qry.value(1).toString();
+            displayName = qry.value(2).toString();
+            stuID = qry.value(3).toString();
+            qDebug() <<"this is ID: "<< stuID <<": "<<val.isNull();
         }
         if(count == 1) {
             qDebug() << "Login is valid";
 
-            if(id.isNull()) {
+            if(stuID.isNull()) {
                 _view.hide();
                 Admin admin;
-                admin.setId(qry.value(0).toInt());
-                admin.setUserName(qry.value(1).toString());
-                admin.setDisplayName(qry.value(2).toString());
+                admin.setId(id);
+                admin.setUserName(un);
+                admin.setDisplayName(displayName);
                 AdminMainControl adminMainControl(admin);
                 _view.show();
             } else {
                 _view.hide();
                 Student student;
-                student.setId(qry.value(0).toInt());
-                student.setUserName(qry.value(1).toString());
-                student.setDisplayName(qry.value(2).toString());
-                student.setStudentId(qry.value(3).toString());
+                student.setId(id);
+                student.setUserName(un);
+                student.setDisplayName(displayName);
+                student.setStudentId(stuID);
                 StudentMainControl studentMainControl(student);
                 _view.show();
             }

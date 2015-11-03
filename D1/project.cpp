@@ -63,23 +63,24 @@ void Project::setDescription(QString value) {
     _description = value;
 }
 
-void Project::registerStudent(Student& student) {
+int Project::registerStudent(Student& student) {
     // Connect to database and make sure the student is in the project
-    if(_id == -1) return;
+    if(_id == -1) return 0;
 
     QSqlQuery qry(Database::getInstance().db());
 
-    qry.prepare("INSERT INTO project_student_registered(project_id, student_id) VALUES(:pid, :sid)");
-
+    qry.prepare("INSERT INTO project_student_registered VALUES (:pid, :sid)");
     qry.bindValue(":pid", _id);
     qry.bindValue(":sid", student.getId());
 
     if(qry.exec()) {
         qDebug() << qry.lastError();
+        return 0;
     } else {
         qDebug() << "Student just joined project.";
+        return 1;
     }
-
+    return 0;
 }
 
 std::vector<Student> Project::getStudents() {

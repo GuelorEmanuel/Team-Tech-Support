@@ -42,13 +42,54 @@ void Profile::addQualification(Qualification &qual)
     _qualifications.push_back(qual);
 }
 
+int Profile::getAnswer(int index) {
+    if(index < 1 || index > 29) return -1;
+
+    return _qualifications[index-1].getAnswer();
+}
+
+int Profile::getMinAnswer(int index) {
+    if(index < 1 || index > 29) return -1;
+
+    return _qualifications[index-1].getMinAnswer();
+}
+
+int Profile::getMaxAnswer(int index) {
+    if(index < 1 || index > 29) return -1;
+
+    return _qualifications[index-1].getMaxAnswer();
+}
+
+void Profile::loadQualification() {
+    if(_id == -1) return;
+
+    QSqlQuery qry(Database::getInstance().db());
+
+    qry.prepare("SELECT * FROM profile WHERE id = :id");
+    qry.bindValue(":id", _id);
+
+    if(!qry.exec()) {
+        qDebug() << qry.lastError();
+    } else {
+        qry.next();
+        for(int i = 2; i < 86; i+=3) {
+            Qualification qual;
+            qual.setAnswer(qry.value(i).toInt());
+            qual.setMinAnswer(qry.value(i+1).toInt());
+            qual.setMaxAnswer(qry.value(i+2).toInt());
+
+            _qualifications.push_back(qual);
+        }
+    }
+}
+
 void Profile::editQualification(int num, int ans, int amin, int amax)
 {
-    if(num < 0 || num > 28) return;
+    if(num < 1 || num > 29) return;
 
-    _qualifications[num].setAnswer(ans);
-    _qualifications[num].setMinAnswer(amin);
-    _qualifications[num].setMaxAnswer(amax);
+    _qualifications[num-1].setAnswer(ans);
+    _qualifications[num-1].setMinAnswer(amin);
+    _qualifications[num-1].setMaxAnswer(amax);
 
 }
 
@@ -101,6 +142,7 @@ void Profile::editProfile() {
         qry.bindValue(QString(":q%1").arg(i+1), _qualifications[i].getAnswer());
         qry.bindValue(QString(":q%1min").arg(i+1), _qualifications[i].getMinAnswer());
         qry.bindValue(QString(":q%1max").arg(i+1), _qualifications[i].getMaxAnswer());
+
 
         qry.bindValue(":id", _id);
 

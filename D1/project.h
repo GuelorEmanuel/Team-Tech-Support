@@ -21,7 +21,7 @@ public:
     void setName(QString value);
     QString getDescription() const;
     void setDescription(QString value);
-    void registerStudent(Student& student);
+    int registerStudent(Student& student);
     std::vector<Student> getStudents();
     static int lookupId(QString name);
     void create();

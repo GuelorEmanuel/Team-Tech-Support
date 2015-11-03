@@ -25,11 +25,62 @@ QList<QString> EditStuProfileControl::loadSection(){
 
 }
 
+void EditStuProfileControl::addAsnwers(int ans, int min, int max)
+{
+    if(count == 28) return;
+    _answers[count] = ans;
+    _minAnswers[count] = min;
+    _maxAnswers[count++] = max;
+}
+
+int* EditStuProfileControl::getEditedAnswers()
+{
+    return _answers;
+}
+
+int* EditStuProfileControl::getEditedMinAnswers() {
+    return _maxAnswers;
+}
+
+int* EditStuProfileControl::getEditedMaxAnswers() {
+    return _minAnswers;
+}
+
+int EditStuProfileControl::getAnswer(int index)
+{
+    if(index < 1 || index > 28) return -1;
+
+    return _profile->getAnswer(index);
+}
+
+int EditStuProfileControl::getMinAnswer(int index)
+{
+    if(index < 1 || index > 28) return -1;
+
+    return _profile->getMinAnswer(index);
+}
+
+int EditStuProfileControl::getMaxAnswer(int index)
+{
+    if(index < 1 || index > 28) return -1;
+
+    return _profile->getMaxAnswer(index);
+}
+
+void EditStuProfileControl::editQualification(int index, int a, int amin, int amax)
+{
+    if(index < 1 || index > 28) return;
+
+    _profile->editQualification(index, a, amin, amax);
+}
+
 void EditStuProfileControl::loadProfileSettings(int id) {
     qDebug() << "Getting profile settings";
     Questions questions;
     questions.getQuestions();
-    QSqlQuery qry(Database::getInstance().db());
+    _profile->loadQualification();
+    qDebug() << _profile->getAnswer(2);
+    /*QSqlQuery qry(Database::getInstance().db());
     qry.prepare("SELECT * FROM profile WHERE id = :id");
     qry.bindValue(":id", id);
 
@@ -46,7 +97,7 @@ void EditStuProfileControl::loadProfileSettings(int id) {
             qDebug() << "Found project " << qry.value(1).toString();
             //_view.addProject(qry.value(0).toInt(), qry.value(1).toString());
         }
-    }
+    }*/
 
 
 }

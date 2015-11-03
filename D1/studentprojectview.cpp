@@ -1,6 +1,8 @@
 #include "studentprojectview.h"
 #include "ui_studentprojectview.h"
 
+#include <studentprojectcontrol.h>
+
 StudentProjectView::StudentProjectView(StudentProjectControl &control, QWidget *parent ) :
     QDialog(parent),
     _control(control),
@@ -16,13 +18,12 @@ StudentProjectView::~StudentProjectView()
 
 void StudentProjectView::on_leaveProjectBtn_clicked()
 {
-
+    _control.leaveProject();
 }
 
 void StudentProjectView::on_joinProjectBtn_clicked()
 {
-
-
+    _control.joinProject();
 }
 
 void StudentProjectView::refreshProjectSettings(const Project& project) {

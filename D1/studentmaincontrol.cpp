@@ -53,9 +53,9 @@ void StudentMainControl::getUnjoinedProjectList() {
 }
 
 void StudentMainControl::openUnJoinedProject(int projectId) {
-    StudentProjectControl studentProjectControl(projectId);
+    qDebug() << _student.getId();
+    StudentProjectControl studentProjectControl(projectId, _student);
     _view.show();
-
 }
 
 void StudentMainControl::getJoinedProjectList() {
