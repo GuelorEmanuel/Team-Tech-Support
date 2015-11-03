@@ -13,6 +13,8 @@ public:
     StudentProjectControl(int projectId);
 private:
      StudentProjectView _view;
+     void loadProjectSettings(int id);
+     std::auto_ptr<Project> _project;
 };
 
 #endif // STUDENTPROJECTCONTROL_H

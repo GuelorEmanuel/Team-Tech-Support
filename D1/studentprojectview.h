@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <memory>
+#include "project.h"
 
 class StudentProjectControl;
 
@@ -17,6 +18,8 @@ class StudentProjectView : public QDialog
 public:
     explicit StudentProjectView(StudentProjectControl &control, QWidget *parent = 0);
     ~StudentProjectView();
+
+    void refreshProjectSettings(const Project& project);
 
 private slots:
     void on_leaveProjectBtn_clicked();
