@@ -1,6 +1,6 @@
-#include "editstuprofilecontrol.h"
+#include "studentprofileview.h"
 #include "ui_studentprofileview.h"
-
+#include "editstuprofilecontrol.h"
 
 StudentProfileView::StudentProfileView(EditStuProfileControl &control,QWidget *parent) :
    QDialog(parent), _control(control), ui(new Ui::StudentProfileView)
@@ -10,6 +10,21 @@ StudentProfileView::StudentProfileView(EditStuProfileControl &control,QWidget *p
 }
 
 StudentProfileView::~StudentProfileView()
+{
+
+}
+
+void StudentProfileView::on_nextBtn_clicked()
+{
+
+}
+
+void StudentProfileView::on_prevBtn_clicked()
+{
+
+}
+
+void StudentProfileView::on_exitBtn_clicked()
 {
 
 }

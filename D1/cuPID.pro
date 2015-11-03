@@ -71,8 +71,7 @@ HEADERS  += \
     createstudentaccountview.h \
     createadminaccountview.h \
     adminhomeview.h \
-    studentprofileview.h \
-    studentprofilecontrol.h
+    studentprofileview.h
 
 FORMS    += \
     mainwindow.ui \
@@ -83,10 +82,10 @@ FORMS    += \
     editprojectview.ui \
     studentprojectview.ui \
     studenthomeview.ui \
-    studentprofileview.ui \
     createstudentaccountview.ui \
     createadminaccountview.ui \
-    createprojectview.ui
+    createprojectview.ui \
+    studentprofileview.ui
 
 RESOURCES += \
     Resources.qrc

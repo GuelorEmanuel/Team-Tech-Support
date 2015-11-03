@@ -4,7 +4,6 @@
 #include <QDialog>
 #include <memory>
 
-
 class EditStuProfileControl;
 namespace Ui {
 class StudentProfileView;
@@ -17,9 +16,13 @@ class StudentProfileView : public QDialog
 public:
     explicit StudentProfileView(EditStuProfileControl &control,QWidget *parent = 0);
     ~StudentProfileView();
-//private slots:
 
+private slots:
+    void on_nextBtn_clicked();
 
+    void on_prevBtn_clicked();
+
+    void on_exitBtn_clicked();
 
 private:
     EditStuProfileControl &_control;
