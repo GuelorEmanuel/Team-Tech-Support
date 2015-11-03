@@ -40,7 +40,8 @@ SOURCES += main.cpp\
     createstudentaccountcontrol.cpp \
     createstudentaccountview.cpp \
     createadminaccountview.cpp \
-    studentprofileview.cpp
+    studentprofileview.cpp \
+    questions.cpp
 
 HEADERS  += \
     student.h \
@@ -71,7 +72,8 @@ HEADERS  += \
     createstudentaccountview.h \
     createadminaccountview.h \
     adminhomeview.h \
-    studentprofileview.h
+    studentprofileview.h \
+    questions.h
 
 FORMS    += \
     mainwindow.ui \

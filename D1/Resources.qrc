@@ -2,5 +2,6 @@
     <qresource prefix="/Images">
         <file alias="splashScreenMain">Resources/Images/splash_Painting.gif</file>
         <file alias="loginScreenIMG">Resources/Images/login_Painting.gif</file>
+        <file alias="listquestions">Resources/questions/questions.txt</file>
     </qresource>
 </RCC>

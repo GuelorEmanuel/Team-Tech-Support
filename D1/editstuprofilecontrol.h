@@ -12,6 +12,7 @@ class EditStuProfileControl
 public:
     EditStuProfileControl(int profileID);
     ~EditStuProfileControl();
+    QList<QString> loadSection();
 
 private:
     std::auto_ptr<Profile> _profile;

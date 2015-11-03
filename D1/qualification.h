@@ -10,9 +10,10 @@ public:
     void setMinAnswer(int minAns);
     void setMaxAnswer(int maxAns);
 
-    int  getAnswer();
-    int  getMinAnswer();
-    int  getMaxAnswer();
+    int         getAnswer();
+    int         getMinAnswer();
+    int         getMaxAnswer();
+
 private:
     int _answer;
     int _min_answer;

@@ -1,10 +1,12 @@
 #include "qualification.h"
 
+
 Qualification::Qualification()
 {
 }
 
-Qualification::~Qualification() {}
+Qualification::~Qualification() {
+}
 
 void Qualification::setAnswer(int ans)
 {
@@ -35,3 +37,4 @@ int Qualification::getMaxAnswer()
 {
     return _max_answer;
 }
+

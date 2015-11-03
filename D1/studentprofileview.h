@@ -27,6 +27,7 @@ private slots:
 private:
     EditStuProfileControl &_control;
     std::auto_ptr<Ui::StudentProfileView> ui;
+    int _pageCount;
 };
 
 #endif // STUDENTPROFILEVIEW_H
