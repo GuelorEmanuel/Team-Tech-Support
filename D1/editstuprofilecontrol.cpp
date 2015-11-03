@@ -24,6 +24,55 @@ QList<QString> EditStuProfileControl::loadSection(){
     return questions.getQuestions();
 }
 
+void EditStuProfileControl::addAsnwers(int ans, int min, int max)
+{
+    if(count == 28) return;
+    _answers[count] = ans;
+    _minAnswers[count] = min;
+    _maxAnswers[count++] = max;
+}
+
+int* EditStuProfileControl::getEditedAnswers()
+{
+    return _answers;
+}
+
+int* EditStuProfileControl::getEditedMinAnswers() {
+    return _maxAnswers;
+}
+
+int* EditStuProfileControl::getEditedMaxAnswers() {
+    return _minAnswers;
+}
+
+int EditStuProfileControl::getAnswer(int index)
+{
+    if(index < 1 || index > 28) return -1;
+
+    return _profile->getAnswer(index);
+}
+
+int EditStuProfileControl::getMinAnswer(int index)
+{
+    if(index < 1 || index > 28) return -1;
+
+    return _profile->getMinAnswer(index);
+}
+
+int EditStuProfileControl::getMaxAnswer(int index)
+{
+    if(index < 1 || index > 28) return -1;
+
+    return _profile->getMaxAnswer(index);
+}
+
+void EditStuProfileControl::editQualification(int index, int a, int amin, int amax)
+{
+    if(index < 1 || index > 28) return;
+
+    _profile->editQualification(index, a, amin, amax);
+}
+
 void EditStuProfileControl::loadProfileSettings(int id) {
     qDebug() << "Getting profile settings";
     Questions questions;
