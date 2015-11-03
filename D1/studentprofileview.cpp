@@ -13,6 +13,13 @@ StudentProfileView::StudentProfileView(EditStuProfileControl &control,QWidget *p
     ui->questionThreeLbl->setWordWrap(true);
     ui->questionFourLbl->setWordWrap(true);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    ui->questionOneLbl->setText(_control.loadSection().at(_sectionOne));
+    ui->questionTwoLbl->setText(_control.loadSection().at(_sectionTwo));
+    ui->questionThreeLbl->setText(_control.loadSection().at(_sectionThree));
+    ui->questionFourLbl->setText(_control.loadSection().at(_sectionFour));
+>>>>>>> 22d5b59cf1688a3696756c0ebb2eec4daec5e18d
 
     _answerCount = 0;
 
@@ -31,6 +38,7 @@ StudentProfileView::StudentProfileView(EditStuProfileControl &control,QWidget *p
     _maxAnswers[2] = ui->questionThreeMaxCB;
     _maxAnswers[3] = ui->questionFourMaxCB;
 
+<<<<<<< HEAD
 
 =======
     ui->questionOneLbl->setText(_control.loadSection().at(_sectionOne));
@@ -38,6 +46,8 @@ StudentProfileView::StudentProfileView(EditStuProfileControl &control,QWidget *p
     ui->questionThreeLbl->setText(_control.loadSection().at(_sectionThree));
     ui->questionFourLbl->setText(_control.loadSection().at(_sectionFour));
 >>>>>>> 2823afed703527a04377250ed0452324f22e06b9
+=======
+>>>>>>> 22d5b59cf1688a3696756c0ebb2eec4daec5e18d
 }
 
 StudentProfileView::~StudentProfileView()
