@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <memory>
+#include <QComboBox>
 
 class EditStuProfileControl;
 namespace Ui {
@@ -28,6 +29,10 @@ private:
     EditStuProfileControl &_control;
     std::auto_ptr<Ui::StudentProfileView> ui;
     int _pageCount;
+    int _answerCount;
+    QComboBox *_answers[4];
+    QComboBox *_minAnswers[4];
+    QComboBox *_maxAnswers[4];
 };
 
 #endif // STUDENTPROFILEVIEW_H
