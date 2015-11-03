@@ -6,6 +6,7 @@ StudentProfileView::StudentProfileView(EditStuProfileControl &control,QWidget *p
    QDialog(parent), _control(control), ui(new Ui::StudentProfileView)
 {
     ui->setupUi(this);
+    ui->questionOneLbl->setText("This is a tesssssssstttttttkskdnksndksndknskdnksdnsknd\nnewLine\nAnotherNewLine");
 }
 
 StudentProfileView::~StudentProfileView()

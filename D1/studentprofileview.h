@@ -17,6 +17,9 @@ class StudentProfileView : public QDialog
 public:
     explicit StudentProfileView(EditStuProfileControl &control,QWidget *parent = 0);
     ~StudentProfileView();
+//private slots:
+
+
 
 private:
     EditStuProfileControl &_control;
