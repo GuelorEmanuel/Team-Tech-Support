@@ -46,11 +46,8 @@ int MainWindowControl::signIn(QString userName)
         }
         if(count == 1) {
             qDebug() << "Login is valid";
-<<<<<<< HEAD
-            if(val.isNull()) {
-=======
+
             if(id.isNull()) {
->>>>>>> 1ca95ddb59b5ec5dd44bb54070bfa474cd0b171d
                 _view.hide();
                 Admin admin;
                 admin.setId(qry.value(0).toInt());

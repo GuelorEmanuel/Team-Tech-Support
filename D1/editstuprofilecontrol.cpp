@@ -4,12 +4,12 @@
 
 
 
-EditStuProfileControl::EditStuProfileControl(int projectId) :
+EditStuProfileControl::EditStuProfileControl(int profileID) :
   _view(*this), _profile(new Profile)
 {
     qDebug() << "In contructorrrrr";
 
-  _profile->setId(projectId);
+  _profile->setId(profileID);
   //loadProfiletSettings(projectId);
   _view.setModal(true);
   _view.exec();

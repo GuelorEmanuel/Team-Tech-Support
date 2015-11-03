@@ -1,24 +1,14 @@
-#include "studentprofileview.h"
+#include "editstuprofilecontrol.h"
 #include "ui_studentprofileview.h"
 
 
-StudentProfileView::StudentProfileView(EditStuProfileControl &control, QWidget *parent):
-QDialog(parent),_control(control), ui(new Ui::StudentProfileView)
+StudentProfileView::StudentProfileView(EditStuProfileControl &control,QWidget *parent) :
+   QDialog(parent), _control(control), ui(new Ui::StudentProfileView)
 {
-ui->setupUi(this);
+    ui->setupUi(this);
 }
 
 StudentProfileView::~StudentProfileView()
-{
-
-}
-
-void StudentProfileView::on_exitBtn_clicked()
-{
-
-}
-
-void StudentProfileView::on_saveBtn_clicked()
 {
 
 }

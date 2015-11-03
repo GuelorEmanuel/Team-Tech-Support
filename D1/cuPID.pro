@@ -33,14 +33,14 @@ SOURCES += main.cpp\
     adminmaincontrol.cpp \
     studentprojectview.cpp \
     studenthomeview.cpp \
-    studentprofileview.cpp \
     studentmaincontrol.cpp \
     studentprojectcontrol.cpp \
     database.cpp \
     createadminaccountcontrol.cpp \
     createstudentaccountcontrol.cpp \
     createstudentaccountview.cpp \
-    createadminaccountview.cpp
+    createadminaccountview.cpp \
+    studentprofileview.cpp
 
 HEADERS  += \
     student.h \
@@ -63,7 +63,6 @@ HEADERS  += \
     adminmaincontrol.h \
     studentprojectview.h \
     studenthomeview.h \
-    studentprofileview.h \
     studentmaincontrol.h \
     studentprojectcontrol.h \
     database.h \
@@ -71,7 +70,9 @@ HEADERS  += \
     createstudentaccountcontrol.h \
     createstudentaccountview.h \
     createadminaccountview.h \
-    adminhomeview.h
+    adminhomeview.h \
+    studentprofileview.h \
+    studentprofilecontrol.h
 
 FORMS    += \
     mainwindow.ui \

@@ -5,6 +5,7 @@
 #include <QtSql>
 #include "student.h"
 #include "studentprofileview.h"
+#include "profile.h"
 
 class EditStuProfileControl
 {
