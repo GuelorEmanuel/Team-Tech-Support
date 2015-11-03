@@ -10,7 +10,7 @@
 class StudentProjectControl
 {
 public:
-    StudentProjectControl();
+    StudentProjectControl(int projectId);
 private:
      StudentProjectView _view;
 };

@@ -1,6 +1,6 @@
 #include "studentprojectcontrol.h"
 
-StudentProjectControl::StudentProjectControl():
+StudentProjectControl::StudentProjectControl(int projectId):
     _view(*this)
 {
     _view.setModal(true);

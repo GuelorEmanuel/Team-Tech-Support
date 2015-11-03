@@ -27,6 +27,13 @@ void StudentHomeView::on_signOutBtn_clicked()
 }
 
 void StudentHomeView::on_openProjectBtn_clicked() {
+    // Do nothing if they haven't selected a project
+    if (ui->unjoinedProjectsInput->currentIndex() == 0) return;
+
+    // Pass the project ID to edit project
+    _control.openUnJoinedProject(ui->unjoinedProjectsInput->itemData(
+                             ui->unjoinedProjectsInput->currentIndex()).toInt());
+
 
 }
 

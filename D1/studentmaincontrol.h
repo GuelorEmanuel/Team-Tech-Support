@@ -12,6 +12,7 @@ public:
     void logout();
     void joinProject(int projectId);
     void editProfile();
+    void openUnJoinedProject(int projectId);
 
 private:
     StudentHomeView _view;

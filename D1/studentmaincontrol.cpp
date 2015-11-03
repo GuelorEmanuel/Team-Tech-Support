@@ -2,6 +2,8 @@
 #include "database.h"
 #include "student.h"
 #include "editstuprofilecontrol.h"
+#include "studentprojectcontrol.h"
+
 
 StudentMainControl::StudentMainControl(Student &student) :
     _student(student), _view(*this)
@@ -17,6 +19,7 @@ void StudentMainControl::logout() {
 }
 
 void StudentMainControl::joinProject(int projectId) {
+
 
 }
 
@@ -47,6 +50,12 @@ void StudentMainControl::getUnjoinedProjectList() {
             _view.addUnjoinedProject(3,"Helllo");
         }
     }
+}
+
+void StudentMainControl::openUnJoinedProject(int projectId) {
+    StudentProjectControl studentProjectControl(projectId);
+    _view.show();
+
 }
 
 void StudentMainControl::getJoinedProjectList() {
