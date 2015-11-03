@@ -15,6 +15,7 @@ AdminMainControl::AdminMainControl(Admin &admin) :
 
 void AdminMainControl::createProject() {
     CreateProjectControl createProjectControl;
+    getProjectList();
     _view.show();
 }
 
