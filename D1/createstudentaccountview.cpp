@@ -14,3 +14,13 @@ CreateStudentAccountView::CreateStudentAccountView(
 CreateStudentAccountView::~CreateStudentAccountView()
 {
 }
+
+void CreateStudentAccountView::on_submitBtn_clicked()
+{
+
+}
+
+void CreateStudentAccountView::on_cancelBtn_clicked()
+{
+
+}

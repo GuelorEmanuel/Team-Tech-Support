@@ -1,5 +1,6 @@
 #include "signupmaincontrol.h"
 #include "createadminaccountcontrol.h"
+#include "createstudentaccountcontrol.h"
 
 SignUpMainControl::SignUpMainControl() :
     _view(*this)
@@ -9,7 +10,7 @@ SignUpMainControl::SignUpMainControl() :
 }
 
 void SignUpMainControl::createStudentAccount() {
-
+    CreateStudentAccountControl c;
 }
 
 void SignUpMainControl::createAdminAccount() {

@@ -77,7 +77,6 @@ HEADERS  += \
 
 FORMS    += \
     mainwindow.ui \
-    signupview.ui \
     signupoptionview.ui \
     adminhomeview.ui \
     createprojectview.ui \
