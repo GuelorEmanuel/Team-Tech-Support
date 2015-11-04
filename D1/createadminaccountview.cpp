@@ -18,14 +18,26 @@ CreateAdminAccountView::~CreateAdminAccountView() {}
  *           pass it to control class
  */
 void CreateAdminAccountView::on_submitBtn_clicked() {
-    if ( !ui->userNameInput->text().isEmpty() && !ui->displayNameInput->text().isEmpty()){
+    QString firstNLastName = ui->displayNameInput->text();
+    QString userName       = ui->userNameInput->text();
+
+
+    int stat = 1;
+
+    if(firstNLastName.isEmpty()){
+        qDebug() << "First name and Last name is empty";
+        ui->statusLbl->setText("<font color='red'>Please fill in your first and last name</font>");
+        stat = 0;
+    }
+    if(userName.isEmpty()){
+        qDebug() << "user name is empty";
+        ui->statusLbl->setText("<font color='red'>Please fill in your user name</font>");
+         stat = 0;
+    }
+    if(stat == 1){
         _control.createAdminAccount(ui->displayNameInput->text(),
                                     ui->userNameInput->text());
         ui->submitBtn->setEnabled(true);
-    }else{
-        QString errorMessage = "Please Fill in the two fields";
-        ui->statusLbl->setWordWrap(true);
-        ui->statusLbl->setText("<font color='red'>" +errorMessage+"</font>");
     }
 
 }

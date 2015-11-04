@@ -3,7 +3,7 @@
 3. Are you willing to work on the project over reading week / spring break? 1 (not at all), 2 (reduced hours), 3 (flexible / no preference), 4 (prefer to work 
 4. What kind of quality standards do you hold your own work to? 1 (just get it done) - 5 (everything should be perfect)
 5. How heavy a workload do you have this semester? 1 (very light; less than 3 courses, no part time job) - 5 (very heavy; 5 or more courses and a part time job)
-6. What is your GPA? 0-12
+6. What is your GPA? 12 = A+, 11 = A, 10 = A-, 9 = B+, 8 = B, 7 = B-, 6 = C+, 5 = C, 4 = C-, 3 = D+, 2 = D, 1 = D-                                                                                                    
 7. What was your grade in COMP 2401? (Intro to systems programming) 0 = C, 1 = C+, 2 = B-, 3 = B, 4= B+, 5 = A-, 6 = A, 7 = A+
 8. What was your grade in COMP 2404? (Intro to software engineering) 0 = C, 1 = C+, 2 = B-, 3 = B, 4= B+, 5 = A-, 6 = A, 7 = A+
 9. Do you tend to work early in the mornings? 1 (never), 2 (rarely), 3 (flexible / no preference), 4 (often), 5 (always)

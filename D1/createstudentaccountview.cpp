@@ -24,14 +24,26 @@ void CreateStudentAccountView::on_submitBtn_clicked()
     QString lname = ui->lastnameLE->text();
     QString id    = ui->idLE->text();
 
-    if(fname.isEmpty())
+    int stat = 1;
+
+    if(fname.isEmpty()){
         qDebug() << "First name is empty";
-    if(lname.isEmpty())
+        ui->statusLbl->setText("<font color='red'>Please fill in your first name</font>");
+        stat = 0;
+    }
+    if(lname.isEmpty()){
         qDebug() << "Last name is empty";
-    if(id.isEmpty())
+        ui->statusLbl->setText("<font color='red'>Please fill in your last name</font>");
+         stat = 0;
+    }
+    if(id.isEmpty()){
         qDebug() << "ID is empty";
-    else
+        ui->statusLbl->setText("<font color='red'>Please fill in your ID</font>");
+         stat = 0;
+    }
+    if (stat == 1){
         _control.createAccount(fname, lname, id);
+    }
 }
 
 void CreateStudentAccountView::on_cancelBtn_clicked()
