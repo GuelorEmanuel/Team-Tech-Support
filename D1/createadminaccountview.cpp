@@ -14,8 +14,16 @@ CreateAdminAccountView::CreateAdminAccountView(
 CreateAdminAccountView::~CreateAdminAccountView() {}
 
 void CreateAdminAccountView::on_submitBtn_clicked() {
-    _control.createAdminAccount(ui->displayNameInput->text(),
-                                ui->userNameInput->text());
+    if ( !ui->userNameInput->text().isEmpty() && !ui->displayNameInput->text().isEmpty()){
+        _control.createAdminAccount(ui->displayNameInput->text(),
+                                    ui->userNameInput->text());
+        ui->submitBtn->setEnabled(true);
+    }else{
+        QString errorMessage = "Please Fill in the two fields";
+        ui->statusLbl->setWordWrap(true);
+        ui->statusLbl->setText("<font color='red'>" +errorMessage+"</font>");
+    }
+
 }
 
 void CreateAdminAccountView::on_cancelBtn_clicked() {

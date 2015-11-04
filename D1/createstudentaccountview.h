@@ -17,6 +17,11 @@ public:
                                       QWidget *parent = 0);
     ~CreateStudentAccountView();
 
+private slots:
+    void on_submitBtn_clicked();
+
+    void on_cancelBtn_clicked();
+
 private:
     Ui::CreateStudentAccountView *ui;
     CreateStudentAccountControl &_control;
