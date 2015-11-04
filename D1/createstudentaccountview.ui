@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>527</width>
+    <height>346</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>20</y>
+     <x>240</x>
+     <y>10</y>
      <width>101</width>
      <height>17</height>
     </rect>
@@ -29,8 +29,8 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>70</x>
-     <y>50</y>
+     <x>140</x>
+     <y>40</y>
      <width>271</width>
      <height>20</height>
     </rect>
@@ -42,9 +42,9 @@
   <widget class="QLabel" name="statusLbl">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>270</y>
-     <width>361</width>
+     <x>0</x>
+     <y>310</y>
+     <width>461</width>
      <height>20</height>
     </rect>
    </property>
@@ -52,34 +52,34 @@
     <string>[+]Status:</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>80</x>
-     <y>100</y>
-     <width>221</width>
-     <height>130</height>
+     <x>100</x>
+     <y>140</y>
+     <width>281</width>
+     <height>151</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QLineEdit" name="firstNameLE">
       <property name="placeholderText">
-       <string>        Your First Name</string>
+       <string>                          Your First Name</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLineEdit" name="lastnameLE">
       <property name="placeholderText">
-       <string>        Your Last Name</string>
+       <string>                         Your Last Name</string>
       </property>
      </widget>
     </item>
     <item>
      <widget class="QLineEdit" name="idLE">
       <property name="placeholderText">
-       <string>                 Your ID</string>
+       <string>                                Your ID</string>
       </property>
      </widget>
     </item>
@@ -102,6 +102,19 @@
      </layout>
     </item>
    </layout>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>80</y>
+     <width>501</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Your user name will be your first name and your last name without space</string>
+   </property>
   </widget>
  </widget>
  <resources/>

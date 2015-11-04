@@ -29,7 +29,7 @@ void StudentProjectView::on_joinProjectBtn_clicked()
 {
     if (_control.joinProject() == 0) {
         ui->statusLbl->setWordWrap(true);
-        ui->statusLbl->setText("<font color='red'>Error: Please try joining again</font>");
+        ui->statusLbl->setText("<font color='red'>Error: Please try joining project again</font>");
     }
 }
 
