@@ -25,6 +25,12 @@
    <layout class="QHBoxLayout" name="horizontalLayout_4">
     <item>
      <widget class="QLabel" name="questionTwoLbl">
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="text">
        <string/>
       </property>
@@ -53,6 +59,12 @@
    <layout class="QHBoxLayout" name="horizontalLayout_5">
     <item>
      <widget class="QLabel" name="questionThreeLbl">
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="text">
        <string/>
       </property>
@@ -81,6 +93,12 @@
    <layout class="QHBoxLayout" name="horizontalLayout_6">
     <item>
      <widget class="QLabel" name="questionFourLbl">
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="text">
        <string/>
       </property>
@@ -97,7 +115,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>460</x>
@@ -130,7 +148,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>286</x>
@@ -142,6 +160,12 @@
    <layout class="QHBoxLayout" name="horizontalLayout_2">
     <item>
      <widget class="QLabel" name="StudentNameLbl">
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="text">
        <string>StudentName</string>
       </property>
@@ -149,6 +173,12 @@
     </item>
     <item>
      <widget class="QLabel" name="profileLbl">
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="text">
        <string>Profile</string>
       </property>
@@ -156,10 +186,10 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>0</x>
      <y>110</y>
      <width>711</width>
      <height>81</height>
@@ -168,6 +198,12 @@
    <layout class="QHBoxLayout" name="horizontalLayout_3">
     <item>
      <widget class="QLabel" name="questionOneLbl">
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
       <property name="text">
        <string/>
       </property>
@@ -184,18 +220,24 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>370</x>
+     <x>400</x>
      <y>90</y>
-     <width>351</width>
+     <width>331</width>
      <height>20</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_7">
     <item>
      <widget class="QLabel" name="youLbl">
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="text">
        <string>You</string>
       </property>
@@ -203,6 +245,12 @@
     </item>
     <item>
      <widget class="QLabel" name="partnerMaxLbl">
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="text">
        <string>Partner Max Range</string>
       </property>
@@ -210,6 +258,12 @@
     </item>
     <item>
      <widget class="QLabel" name="partnerMinLbl">
+      <property name="font">
+       <font>
+        <weight>50</weight>
+        <bold>false</bold>
+       </font>
+      </property>
       <property name="text">
        <string>        Partner Min Range</string>
       </property>

@@ -85,7 +85,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Leave</string>
+    <string>exit</string>
    </property>
   </widget>
   <widget class="QPushButton" name="joinProjectBtn">
