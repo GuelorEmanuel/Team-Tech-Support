@@ -6,6 +6,10 @@ StudentHomeView::StudentHomeView(StudentMainControl &control, QWidget *parent) :
     QDialog(parent),_control(control),
     ui(new Ui::StudentHomeView)
 {
+    QPalette palette;
+    palette.setBrush(this->backgroundRole(), QBrush(QImage(":Images/student")));
+
+    this->setPalette(palette);
     ui->setupUi(this);
 }
 

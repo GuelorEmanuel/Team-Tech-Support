@@ -7,6 +7,10 @@ StudentProfileView::StudentProfileView(EditStuProfileControl &control,QWidget *p
    QDialog(parent), _control(control), ui(new Ui::StudentProfileView),
    _sectionOne(0),_sectionTwo(1),_sectionThree(2),_sectionFour(3)
 {
+    QPalette palette;
+    palette.setBrush(this->backgroundRole(), QBrush(QImage(":Images/profile")));
+
+    this->setPalette(palette);
     ui->setupUi(this);
     ui->questionOneLbl->setWordWrap(true);
     ui->questionTwoLbl->setWordWrap(true);
@@ -75,6 +79,7 @@ void StudentProfileView::on_nextBtn_clicked()
     int amax = -1;
     qDebug() <<"How many is count now: : "<<count;
     if(count< 100) {
+      ui->prevBtn->setEnabled(true);
       _sectionOne+=4;
       _sectionTwo+=4;
       _sectionThree+=4;
@@ -145,6 +150,8 @@ void StudentProfileView::on_prevBtn_clicked()
         ui->questionTwoLbl->setText(_control.loadSection().at(_sectionTwo));
         ui->questionThreeLbl->setText(_control.loadSection().at(_sectionThree));
         ui->questionFourLbl->setText(_control.loadSection().at(_sectionFour));
+    } else {
+        ui->prevBtn->setDisabled(true);
     }
 }
 

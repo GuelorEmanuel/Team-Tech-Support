@@ -9,6 +9,10 @@ CreateProjectView::CreateProjectView(CreateProjectControl &control,
     _control(control),
     ui(new Ui::CreateProjectView)
 {
+    QPalette palette;
+    palette.setBrush(this->backgroundRole(), QBrush(QImage(":Images/project")));
+
+    this->setPalette(palette);
     ui->setupUi(this);
     ui->createBtn->setVisible(true);
     ui->updateBtn->setVisible(false);

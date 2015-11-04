@@ -6,6 +6,10 @@ AdminHomeView::AdminHomeView(AdminMainControl &control, QWidget *parent) :
     QDialog(parent), _control(control),
     ui(new Ui::AdminHomeView)
 {
+    QPalette palette;
+    palette.setBrush(this->backgroundRole(), QBrush(QImage(":Images/admin")));
+
+    this->setPalette(palette);
     ui->setupUi(this);
     paletteBlue.reset(new QPalette());
     paletteBlack.reset(new QPalette());

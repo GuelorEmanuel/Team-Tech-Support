@@ -8,6 +8,10 @@ CreateStudentAccountView::CreateStudentAccountView(
     QDialog(parent),
     ui(new Ui::CreateStudentAccountView)
 {
+    QPalette palette;
+    palette.setBrush(this->backgroundRole(), QBrush(QImage(":Images/signup")));
+
+    this->setPalette(palette);
     ui->setupUi(this);
 }
 

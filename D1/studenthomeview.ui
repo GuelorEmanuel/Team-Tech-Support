@@ -84,15 +84,7 @@
      <height>20</height>
     </rect>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout_2">
-    <item>
-     <widget class="QLabel" name="studentNameLbl">
-      <property name="text">
-       <string>Student Name Goes here</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
+   <layout class="QHBoxLayout" name="horizontalLayout_2"/>
   </widget>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
@@ -161,6 +153,19 @@
     <string>Other projects</string>
    </property>
   </widget>
+  <widget class="QLabel" name="studentNameLbl">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>40</y>
+     <width>619</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Student Name Goes here</string>
+   </property>
+  </widget>
   <zorder>layoutWidget</zorder>
   <zorder>layoutWidget</zorder>
   <zorder>line</zorder>
@@ -171,6 +176,7 @@
   <zorder>unjoinedProjectsInput</zorder>
   <zorder>label</zorder>
   <zorder>label_2</zorder>
+  <zorder>studentNameLbl</zorder>
  </widget>
  <resources/>
  <connections/>
