@@ -12,16 +12,13 @@ StudentProfileView::StudentProfileView(EditStuProfileControl &control,QWidget *p
     ui->questionTwoLbl->setWordWrap(true);
     ui->questionThreeLbl->setWordWrap(true);
     ui->questionFourLbl->setWordWrap(true);
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
     ui->questionOneLbl->setText(_control.loadSection().at(_sectionOne));
     ui->questionTwoLbl->setText(_control.loadSection().at(_sectionTwo));
     ui->questionThreeLbl->setText(_control.loadSection().at(_sectionThree));
     ui->questionFourLbl->setText(_control.loadSection().at(_sectionFour));
->>>>>>> 22d5b59cf1688a3696756c0ebb2eec4daec5e18d
 
-    _answerCount = 0;
+    _answerCount = 1;
 
     _answers[0] = ui->questionOneCB;
     _answers[1] = ui->questionTwoCB;
@@ -38,16 +35,29 @@ StudentProfileView::StudentProfileView(EditStuProfileControl &control,QWidget *p
     _maxAnswers[2] = ui->questionThreeMaxCB;
     _maxAnswers[3] = ui->questionFourMaxCB;
 
-<<<<<<< HEAD
 
-=======
     ui->questionOneLbl->setText(_control.loadSection().at(_sectionOne));
     ui->questionTwoLbl->setText(_control.loadSection().at(_sectionTwo));
     ui->questionThreeLbl->setText(_control.loadSection().at(_sectionThree));
     ui->questionFourLbl->setText(_control.loadSection().at(_sectionFour));
->>>>>>> 2823afed703527a04377250ed0452324f22e06b9
-=======
->>>>>>> 22d5b59cf1688a3696756c0ebb2eec4daec5e18d
+
+    for(int i = 0; i < 4; i++) {
+        if(_answerCount == 1) {
+            for(int j = 1; j < 8; j++) {
+                _answers[i]->addItem(QString("%1").arg(j));
+                _minAnswers[i]->addItem(QString("%1").arg(j));
+                _maxAnswers[i]->addItem(QString("%1").arg(j));
+            }
+        } else {
+            for(int j = 1; j < 6; j++) {
+                _answers[i]->addItem(QString("%1").arg(j));
+                _minAnswers[i]->addItem(QString("%1").arg(j));
+                _maxAnswers[i]->addItem(QString("%1").arg(j));
+            }
+        }
+        ++_answerCount;
+    }
+
 }
 
 StudentProfileView::~StudentProfileView()
@@ -70,6 +80,31 @@ void StudentProfileView::on_nextBtn_clicked()
       ui->questionFourLbl->setText(_control.loadSection().at(_sectionFour));
     }
 
+    for(int i = 0; i < 4; i++) {
+        _answers[i]->clear();
+        _minAnswers[i]->clear();
+        _maxAnswers[i]->clear();
+        if(_answerCount == 7 || _answerCount == 8) {
+            for(int j = 1; j < 8; j++) {
+                _answers[i]->addItem(QString("%1").arg(j));
+                _minAnswers[i]->addItem(QString("%1").arg(j));
+                _maxAnswers[i]->addItem(QString("%1").arg(j));
+            }
+         } else if(_answerCount == 6) {
+                for(int j = 1; j < 13; j++) {
+                    _answers[i]->addItem(QString("%1").arg(j));
+                    _minAnswers[i]->addItem(QString("%1").arg(j));
+                    _maxAnswers[i]->addItem(QString("%1").arg(j));
+            }
+        } else {
+            for(int j = 1; j < 6; j++) {
+                _answers[i]->addItem(QString("%1").arg(j));
+                _minAnswers[i]->addItem(QString("%1").arg(j));
+                _maxAnswers[i]->addItem(QString("%1").arg(j));
+            }
+        }
+        ++_answerCount;
+    }
 
     //ui->questionOneMinCB->addItem(QString("%1").arg(_control.getMinAnswer(_answerCount+1)));
     //ui->questionOneMinCB->addItem(QString("%1").arg(_control.getMinAnswer(_answerCount+2)));
