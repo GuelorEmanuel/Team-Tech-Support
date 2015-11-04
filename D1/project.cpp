@@ -63,6 +63,10 @@ void Project::setDescription(QString value) {
     _description = value;
 }
 
+/*Function: int Project::registerStudent
+ *Purpose : register given student in a project by adding him
+ *          to project_student_registered table
+ */
 int Project::registerStudent(Student& student) {
     // Connect to database and make sure the student is in the project
     if(_id == -1) return 0;
@@ -87,6 +91,9 @@ std::vector<Student> Project::getStudents() {
     // Connect to database and return a list of students in the project
 }
 
+/*Function: void Project::create()
+ * Purpose: create new project and add it to db
+ */
 void Project::create() {
     // Connect to database and insert a new project
     // Make sure to set id to the id the database autogenerates
@@ -108,6 +115,9 @@ void Project::create() {
 
 }
 
+/*Function: void Project::edit()
+ * Purpose: edit the project and update it in db
+ */
 void Project::edit() {
     // Connect to the database and update the project settings
     // Make sure to abort if id is -1

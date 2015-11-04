@@ -13,6 +13,10 @@ CreateAdminAccountView::CreateAdminAccountView(
 
 CreateAdminAccountView::~CreateAdminAccountView() {}
 
+/* Function: void CreateAdminAccountView::on_submitBtn_clicked()
+ * Purpose : take information from user about new account and
+ *           pass it to control class
+ */
 void CreateAdminAccountView::on_submitBtn_clicked() {
     if ( !ui->userNameInput->text().isEmpty() && !ui->displayNameInput->text().isEmpty()){
         _control.createAdminAccount(ui->displayNameInput->text(),

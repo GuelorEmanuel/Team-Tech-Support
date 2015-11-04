@@ -15,6 +15,9 @@ CreateStudentAccountView::~CreateStudentAccountView()
 {
 }
 
+/*Function: void CreateStudentAccountView::on_submitBtn_clicked()
+ * Purpose: take input from user and pass it to control class
+ */
 void CreateStudentAccountView::on_submitBtn_clicked()
 {
     QString fname = ui->firstNameLE->text();

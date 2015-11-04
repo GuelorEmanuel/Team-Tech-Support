@@ -3,8 +3,10 @@
 #include <QDebug>
 #include "questions.h"
 
-
-//action = 1: edit project. action == 0: create
+/*Class: Control class for Edit Student Profile AND Create Student Profile.
+ * Edits profile when the status of action variable is 1.
+ * Creates profile when the status is 0.
+ */
 EditStuProfileControl::EditStuProfileControl(int profileID, int action) :
   _view(*this), _profile(new Profile),  _action(action)
 {
@@ -16,19 +18,29 @@ EditStuProfileControl::EditStuProfileControl(int profileID, int action) :
       loadProfileSettings(profileID);
   if(action == 0)
       _profile->setStuId(profileID);
+
   _view.setModal(true);
   _view.exec();
 }
+
 EditStuProfileControl::~EditStuProfileControl() {
 
 }
 
+/*Function: QList<QString> EditStuProfileControl::loadSection
+ * Purpose: Loads questions
+ */
 QList<QString> EditStuProfileControl::loadSection(){
     Questions questions;
     return questions.getQuestions();
 
 }
 
+/*Function: void EditStuProfileControl::addAsnwers
+ * Purpose: if editing, add given values to arrays with edited information
+ *          if creating, add new qualification to Profile object
+ * Input  : int asnwer, int min asnwer, int max answer
+ */
 void EditStuProfileControl::addAsnwers(int ans, int min, int max)
 {
     if(count == 28) return;
@@ -89,11 +101,16 @@ void EditStuProfileControl::addQualification(int ans, int min, int max)
     _profile->addQualification(ans, min, max);
 }
 
+/*Function: void EditStuProfileControl::updateProfile
+ * Purpose: if editing, update profile settings in db
+ *          if creating, add new profile to db
+ */
 void EditStuProfileControl::updateProfile()
 {
     if(_action == 1) editProfile();
     else createProfile();
 }
+
 
 void EditStuProfileControl::editProfile()
 {
@@ -110,6 +127,9 @@ void EditStuProfileControl::createProfile()
     _view.close();
 }
 
+/*Function: void EditStuProfileControl::loadProfileSettings
+ * Purpose: load all questions and qualifications for profile object
+ */
 void EditStuProfileControl::loadProfileSettings(int id) {
     qDebug() << "Getting profile settings";
     Questions questions;

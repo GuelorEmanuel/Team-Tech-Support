@@ -3,6 +3,9 @@
 #include "editstuprofilecontrol.h"
 #include <QDebug>
 
+/*Student Profile View class displays both profile edition
+ * AND profile creation to student.
+ */
 StudentProfileView::StudentProfileView(EditStuProfileControl &control,QWidget *parent) :
    QDialog(parent), _control(control), ui(new Ui::StudentProfileView),
    _sectionOne(0),_sectionTwo(1),_sectionThree(2),_sectionFour(3)
@@ -20,6 +23,8 @@ StudentProfileView::StudentProfileView(EditStuProfileControl &control,QWidget *p
 
     _answerCount = 1;
 
+
+    //Set Arrays of QComboBoxes for answers
     _answers[0] = ui->questionOneCB;
     _answers[1] = ui->questionTwoCB;
     _answers[2] = ui->questionThreeCB;

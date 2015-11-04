@@ -14,6 +14,9 @@ EditProjectView::EditProjectView(EditProjectControl &control, QWidget *parent)
 
 EditProjectView::~EditProjectView() {}
 
+/*Function: void EditProjectView::on_updateBtn_clicked()
+ * Purpose: get information from user and pass it to control class
+ */
 void EditProjectView::on_updateBtn_clicked() {
     _control.editProject(ui->projectNameLE->text(),
                          ui->projectDescription->toPlainText(),
@@ -21,6 +24,9 @@ void EditProjectView::on_updateBtn_clicked() {
                          ui->maxTeamSizeLE->text().toInt());
 }
 
+/*Function: void EditProjectView::refreshProjectSettings
+ * Purpose: set project information received from user
+ */
 void EditProjectView::refreshProjectSettings(const Project& project) {
     ui->minTeamSizeLE->setText(QString::number(project.getMinTeamSize()));
     ui->maxTeamSizeLE->setText(QString::number(project.getMaxTeamSize()));

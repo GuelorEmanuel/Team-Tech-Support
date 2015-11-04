@@ -23,6 +23,9 @@ void Student::setProfile(Profile* value) {
     _profile.reset(value);
 }
 
+/*Function: void Student::createStudentUser
+ * Purpose: add new student user to db
+ */
 void Student::createStudentUser()
 {
     if(User::_id == -1) return;

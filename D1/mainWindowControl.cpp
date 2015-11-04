@@ -18,21 +18,22 @@ MainWindowControl::~MainWindowControl()
     Database::getInstance().db().close();
 }
 
+// Select username from database
+// If student, create and launch student control
+// If admin, create and launch admin control
+// Otherwise display user not found error
 int MainWindowControl::signIn(QString userName)
 {
-    // Select username from database
-    // If student, create and launch student control
-    // If admin, create and launch admin control
-    // Otherwise display user not found error
-
-    QSqlQuery qry(Database::getInstance().db());
-    qDebug() << userName;
-    qry.prepare("SELECT * FROM user WHERE username = :username");
-    qry.bindValue(":username", userName);
     int id;
     QString un = "";
     QString displayName = "";
     QString stuID = "";
+
+    QSqlQuery qry(Database::getInstance().db());
+
+    qry.prepare("SELECT * FROM user WHERE username = :username");
+    qry.bindValue(":username", userName);
+
     if(!qry.exec()){
         qDebug() << qry.lastError();
         return -1;
@@ -78,8 +79,6 @@ int MainWindowControl::signIn(QString userName)
         }
     }
     return 0;
-    //mainWindowControl->on_buttonSignIn_clicked();
-    //_view.hide();
 }
 
 void MainWindowControl::signUp()
