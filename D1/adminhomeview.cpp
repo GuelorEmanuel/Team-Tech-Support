@@ -31,6 +31,10 @@ void AdminHomeView::on_signoutBtn_clicked()
     _control.signOut();
 }
 
+/* Function: void AdminHomeView::on_editProjectBtn_clicked()
+ * Purpose : if project is selected, call control class to open it,
+ *           if not - ignore signal.
+ */
 void AdminHomeView::on_editProjectBtn_clicked() {
     // Do nothing if they haven't selected a project
     if (ui->selectProjectInput->currentIndex() == 0) return;
@@ -40,6 +44,7 @@ void AdminHomeView::on_editProjectBtn_clicked() {
                              ui->selectProjectInput->currentIndex()).toInt());
 }
 
+//Have to be ignored for now - slot for algorithm
 void AdminHomeView::on_runAlgoBtn_clicked()
 {
     // Do nothing if they haven't selected a project

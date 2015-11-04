@@ -11,18 +11,17 @@ StudentMainControl::StudentMainControl(Student &student) :
     getUnjoinedProjectList();
     getJoinedProjectList();
 
+    _view.setName(student.getDisplayName());
+
     _view.setModal(true);
     _view.exec();
+
 }
 
 void StudentMainControl::logout() {
     _view.close();
 }
 
-void StudentMainControl::joinProject(int projectId) {
-
-
-}
 
 void StudentMainControl::editProfile() {
     EditStuProfileControl editProfileControl(_student.getId(), 1);
