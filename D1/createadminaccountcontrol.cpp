@@ -12,7 +12,10 @@ void CreateAdminAccountControl::cancel() {
     _view.close();
 }
 
-//Creates new admin account
+/* Function: void CreateAdminAccountControl::createAdminAccount
+ * Purpose : using information given, create new admin user
+ * input   : QString displayName, QString userName
+ */
 void CreateAdminAccountControl::createAdminAccount(
         QString displayName, QString userName) {
     _admin.reset(new Admin);

@@ -3,6 +3,9 @@
 #include "editstuprofilecontrol.h"
 #include <QDebug>
 
+/*Student Profile View class displays both profile edition
+ * AND profile creation to student.
+ */
 StudentProfileView::StudentProfileView(EditStuProfileControl &control,QWidget *parent) :
    QDialog(parent), _control(control), ui(new Ui::StudentProfileView),
    _sectionOne(0),_sectionTwo(1),_sectionThree(2),_sectionFour(3)
@@ -24,6 +27,8 @@ StudentProfileView::StudentProfileView(EditStuProfileControl &control,QWidget *p
 
     _answerCount = 1;
 
+
+    //Set Arrays of QComboBoxes for answers
     _answers[0] = ui->questionOneCB;
     _answers[1] = ui->questionTwoCB;
     _answers[2] = ui->questionThreeCB;
@@ -46,7 +51,7 @@ StudentProfileView::StudentProfileView(EditStuProfileControl &control,QWidget *p
     ui->questionFourLbl->setText(_control.loadSection().at(_sectionFour));
 
     for(int i = 0; i < 4; i++) {
-        if(_answerCount == 1) {
+        /*if(_answerCount == 1) {
             for(int j = 1; j < 8; j++) {
                 _answers[i]->addItem(QString("%1").arg(j));
                 _minAnswers[i]->addItem(QString("%1").arg(j));
@@ -60,7 +65,8 @@ StudentProfileView::StudentProfileView(EditStuProfileControl &control,QWidget *p
                 _maxAnswers[i]->addItem(QString("%1").arg(j));
 
             }
-        }
+        }*/
+        addValues(i, _answerCount);
         ++_answerCount;
     }
 
@@ -101,28 +107,7 @@ void StudentProfileView::on_nextBtn_clicked()
             _minAnswers[i]->clear();
             _maxAnswers[i]->clear();
 
-            if(_answerCount == 7 || _answerCount == 8) {
-                for(int j = 1; j < 8; j++) {
-                    _answers[i]->addItem(QString("%1").arg(j));
-                    _minAnswers[i]->addItem(QString("%1").arg(j));
-                    _maxAnswers[i]->addItem(QString("%1").arg(j));
-
-                }
-            } else if(_answerCount == 6) {
-                for(int j = 1; j < 13; j++) {
-                    _answers[i]->addItem(QString("%1").arg(j));
-                    _minAnswers[i]->addItem(QString("%1").arg(j));
-                    _maxAnswers[i]->addItem(QString("%1").arg(j));
-
-                }
-            } else {
-                for(int j = 1; j < 6; j++) {
-                    _answers[i]->addItem(QString("%1").arg(j));
-                    _minAnswers[i]->addItem(QString("%1").arg(j));
-                    _maxAnswers[i]->addItem(QString("%1").arg(j));
-
-                }
-            }
+            addValues(i, _answerCount);
             ++_answerCount;
         }
     } else {
@@ -134,6 +119,121 @@ void StudentProfileView::on_nextBtn_clicked()
             _control.addAsnwers(a, amin, amax);
         }
         _control.updateProfile();
+    }
+
+}
+
+//add Values
+void StudentProfileView::addValues(int index, int count)
+{
+    qDebug() << "Here";
+    if(count < 1 || count > 29) return;
+
+    if(count == 1 || count == 7 || count == 8) {
+        qDebug() << "Here";
+        for(int i = 0; i < 7; i++) {
+            _answers[index]->addItem(QString("%1(%2)").arg(i+1).arg(_grades[i]));
+            _minAnswers[index]->addItem(QString("%1(%2)").arg(i+1).arg(_grades[i]));
+            _maxAnswers[index]->addItem(QString("%1(%2)").arg(i+1).arg(_grades[i]));
+        }
+    } else if(count == 6) {
+        for(int i = 1; i < 13; i++) {
+            _answers[index]->addItem(QString("%1").arg(i));
+            _minAnswers[index]->addItem(QString("%1").arg(i));
+            _maxAnswers[index]->addItem(QString("%1").arg(i));
+        }
+    } else if(count == 2) {
+        for(int i = 1; i < 6; i++) {
+            _answers[index]->addItem(QString("%1(%2)").arg(i).arg(_early[i-1]));
+            _minAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_early[i-1]));
+            _maxAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_early[i-1]));
+        }
+    } else if(count == 3) {
+        for(int i = 1; i < 6; i++) {
+            if(i == 1) {
+                _answers[index]->addItem(QString("%1(%2)").arg(i).arg(_early[0]));
+                _minAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_early[0]));
+                _maxAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_early[0]));
+            } else if(i == 5) {
+                _answers[index]->addItem(QString("%1(%2)").arg(i).arg(_early[1]));
+                _minAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_early[1]));
+                _maxAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_early[1]));
+            } else {
+                _answers[index]->addItem(QString("%1").arg(i));
+                _minAnswers[index]->addItem(QString("%1").arg(i));
+                _maxAnswers[index]->addItem(QString("%1").arg(i));
+            }
+        }
+    } else if(count == 4) {
+        for(int i = 1; i < 6; i++) {
+            if(i == 1) {
+                _answers[index]->addItem(QString("%1(%2)").arg(i).arg(_done[0]));
+                _minAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_done[0]));
+                _maxAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_done[0]));
+            } else if(i == 5) {
+                _answers[index]->addItem(QString("%1(%2)").arg(i).arg(_done[1]));
+                _minAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_done[1]));
+                _maxAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_done[1]));
+            } else {
+                _answers[index]->addItem(QString("%1").arg(i));
+                _minAnswers[index]->addItem(QString("%1").arg(i));
+                _maxAnswers[index]->addItem(QString("%1").arg(i));
+            }
+        }
+    } else if(count == 5) {
+        for(int i = 1; i < 6; i++) {
+            if(i == 1) {
+                _answers[index]->addItem(QString("%1(%2)").arg(i).arg(_workload[0]));
+                _minAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_workload[0]));
+                _maxAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_workload[0]));
+            } else if(i == 5) {
+                _answers[index]->addItem(QString("%1(%2)").arg(i).arg(_workload[1]));
+                _minAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_workload[1]));
+                _maxAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_workload[1]));
+            } else {
+                _answers[index]->addItem(QString("%1").arg(i));
+                _minAnswers[index]->addItem(QString("%1").arg(i));
+                _maxAnswers[index]->addItem(QString("%1").arg(i));
+            }
+        }
+    } else if(count == 11) {
+        for(int i = 1; i < 6; i++) {
+            if(i == 1) {
+                _answers[index]->addItem(QString("%1(%2)").arg(i).arg(_flex[0]));
+                _minAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_flex[0]));
+                _maxAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_flex[0]));
+            } else if(i == 5) {
+                _answers[index]->addItem(QString("%1(%2)").arg(i).arg(_flex[1]));
+                _minAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_flex[1]));
+                _maxAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_flex[1]));
+            } else {
+                _answers[index]->addItem(QString("%1").arg(i));
+                _minAnswers[index]->addItem(QString("%1").arg(i));
+                _maxAnswers[index]->addItem(QString("%1").arg(i));
+            }
+        }
+    } else if(count > 23 && count < 29) {
+        for(int i = 1; i < 6; i++) {
+            if(i == 1) {
+                _answers[index]->addItem(QString("%1(%2)").arg(i).arg(_agree[0]));
+                _minAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_agree[0]));
+                _maxAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_agree[0]));
+            } else if(i == 5) {
+                _answers[index]->addItem(QString("%1(%2)").arg(i).arg(_agree[1]));
+                _minAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_agree[1]));
+                _maxAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_agree[1]));
+            } else {
+                _answers[index]->addItem(QString("%1").arg(i));
+                _minAnswers[index]->addItem(QString("%1").arg(i));
+                _maxAnswers[index]->addItem(QString("%1").arg(i));
+            }
+        }
+    } else {
+        for(int i = 1; i < 6; i++) {
+            _answers[index]->addItem(QString("%1(%2)").arg(i).arg(_status[i-1]));
+            _minAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_status[i-1]));
+            _maxAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_status[i-1]));
+        }
     }
 
 }
@@ -157,5 +257,5 @@ void StudentProfileView::on_prevBtn_clicked()
 
 void StudentProfileView::on_exitBtn_clicked()
 {
-
+    _control.exitProfile();
 }

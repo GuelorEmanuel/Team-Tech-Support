@@ -21,6 +21,10 @@ CreateProjectView::CreateProjectView(CreateProjectControl &control,
 CreateProjectView::~CreateProjectView() {
 }
 
+/*Function: void CreateProjectView::on_createBtn_clicked()
+ * Purpose: take information from user and pass it to control
+ *          class
+ */
 void CreateProjectView::on_createBtn_clicked() {
     QRegExp re("\\d*");
     QString name = ui->projectNameLE->text();

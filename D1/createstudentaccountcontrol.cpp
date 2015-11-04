@@ -11,6 +11,10 @@ void CreateStudentAccountControl::cancel() {
     _view.close();
 }
 
+/*Function: void CreateStudentAccountControl::createAccount
+ * Purpose: using giving information, create new Student account(user)
+ * Input  : QString fname, QString lname, QString id
+ */
 void CreateStudentAccountControl::createAccount(QString fname, QString lname, QString id)
 {
     int newID = -1;
@@ -25,6 +29,7 @@ void CreateStudentAccountControl::createAccount(QString fname, QString lname, QS
         qry.next();
         newID = qry.value(0).toInt()+1;
     }
+
     _student.reset(new Student);
     _student->setId(newID);
     _student->setStudentId(id);

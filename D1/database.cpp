@@ -1,5 +1,9 @@
 #include "database.h"
 
+/*Class opens database and could be called any time
+ * program needs to communicate with db by using cmd:
+ *      Database::getInstance().db()
+ */
 Database::Database() {
     _db = QSqlDatabase::addDatabase("QSQLITE");
     _db.setDatabaseName("./mydb.sqlite");

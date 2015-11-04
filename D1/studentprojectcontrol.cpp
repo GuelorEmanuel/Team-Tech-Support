@@ -9,11 +9,16 @@ StudentProjectControl::StudentProjectControl(int projectId, Student& stu):
     _view.exec();
 }
 
+/*Function: void StudentProjectControl::loadProjectSettings
+ * Purpose: load selected project's settings and pass them to view
+ */
 void StudentProjectControl::loadProjectSettings(int id) {
     qDebug() << "Getting project settings:projectID: "<<id;
     QSqlQuery qry(Database::getInstance().db());
+
     qry.prepare("SELECT * FROM project WHERE id = :id");
     qry.bindValue(":id", id);
+
     // Project fields are id, name, min_team_size, max_team_size, description
     if (!qry.exec()) {
         qDebug() << qry.lastError();
@@ -42,4 +47,6 @@ void StudentProjectControl::joinProject()
 {
     int stat = _project->registerStudent(_student);
     if(stat != 0) _view.close();
+
+
 }

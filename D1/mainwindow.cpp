@@ -25,6 +25,9 @@ void MainWindow::on_signUpBtn_clicked() {
     _control.signUp();
 }
 
+/*Function: void MainWindow::on_signInBtn_clicked()
+ * Purpose: get entered username and pass it to control class
+ */
 void MainWindow::on_signInBtn_clicked() {
    QString errorMessage ="Error: Either your account doen't exist or something went really wrong, Please create an account to login.";
    int stat = _control.signIn(ui->lineEditUserName->text());

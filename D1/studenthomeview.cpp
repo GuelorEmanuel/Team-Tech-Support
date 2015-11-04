@@ -23,6 +23,11 @@ void StudentHomeView::setName(QString name)
     ui->studentNameLbl->setText(name);
 }
 
+void StudentHomeView::updateJoinedProjects()
+{
+
+}
+
 void StudentHomeView::on_editProfileBtn_clicked()
 {
     _control.editProfile();

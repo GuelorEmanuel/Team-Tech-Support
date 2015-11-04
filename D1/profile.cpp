@@ -26,6 +26,9 @@ std::vector<Qualification> Profile::getQualifications() {
     return _qualifications;
 }
 
+/*Function: void Profile::addQualification
+ * Purpose: using giving values, create new qualification
+ */
 void Profile::addQualification(int answer, int min, int max)
 {
     Qualification qual;
@@ -60,6 +63,10 @@ int Profile::getMaxAnswer(int index) {
     return _qualifications[index-1].getMaxAnswer();
 }
 
+/*Function: void Profile::loadQualification()
+ * Purpose: for created project, load all settings for
+ *          selected project from db
+ */
 void Profile::loadQualification() {
     if(_id == -1) return;
 
@@ -96,6 +103,10 @@ void Profile::editQualification(int num, int ans, int amin, int amax)
 
 }
 
+/*Function: void Profile::createProfile()
+ * Purpose: using added values, create new project
+ *          and add it to db.
+ */
 void Profile::createProfile()
 {
 
@@ -122,7 +133,6 @@ void Profile::createProfile()
          qry.bindValue(QString(":q%1").arg(i+1), _qualifications[i].getAnswer());
          qry.bindValue(QString(":q%1min").arg(i+1), _qualifications[i].getMinAnswer());
          qry.bindValue(QString(":q%1max").arg(i+1), _qualifications[i].getMaxAnswer());
-         qDebug() <<  i;
      }
 
      if(!qry.exec()) {
@@ -132,7 +142,12 @@ void Profile::createProfile()
      }
 }
 
-void Profile::editProfile() {
+/*Function: void Profile::editProfile()
+ * Purpose: using changed qualifications, update
+ *          information of selected project in db
+ */
+void Profile::editProfile()
+{
     if(_id == -1) return;
 
     QSqlQuery qry(Database::getInstance().db());
@@ -144,8 +159,6 @@ void Profile::editProfile() {
         qry.bindValue(QString(":q%1").arg(i+1), _qualifications[i].getAnswer());
         qry.bindValue(QString(":q%1min").arg(i+1), _qualifications[i].getMinAnswer());
         qry.bindValue(QString(":q%1max").arg(i+1), _qualifications[i].getMaxAnswer());
-
-        qDebug() << _id;
 
 
         qry.bindValue(":id", _id);

@@ -10,6 +10,11 @@ CreateProjectControl::CreateProjectControl() :
 CreateProjectControl::~CreateProjectControl() {
 }
 
+/*Function: void CreateProjectControl::createProject
+ * Purpose: using giving information, create new project
+ * Input  : QString name, QString description,
+ *          int minTeamSize, int maxTeamSize
+ */
 void CreateProjectControl::createProject(QString name,
                                          QString description,
                                          int minTeamSize,

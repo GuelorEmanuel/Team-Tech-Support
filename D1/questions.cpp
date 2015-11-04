@@ -11,6 +11,9 @@ Questions::~Questions() {
     //delete stringList;
 }
 
+/*Function: void Questions::loadQuestions()
+ * Purpose: load questions for profile from text file
+ */
 void Questions::loadQuestions(){
     int count = 0;
     QFile textFile(":Images/listquestions");
@@ -35,6 +38,8 @@ void Questions::loadQuestions(){
     }
      qDebug()<<"questionList: "<< questionsList.length()<<"count: "<<count;
 }
+
+
 QList<QString> Questions::getQuestions(){
     loadQuestions();
      qDebug() <<"First question added : " <<questionsList.at(0);

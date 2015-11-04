@@ -13,6 +13,11 @@ EditProjectControl::EditProjectControl(int projectId) :
 EditProjectControl::~EditProjectControl() {
 }
 
+/*Function: void EditProjectControl::editProject
+ * Purpose: using giving information, create new Project
+ * Input: QString name, QString desscription,
+ *        int minTeamSize, int maxTeamSize
+ */
 void EditProjectControl::editProject(QString name, QString description,
                                      int minTeamSize, int maxTeamSize) {
     _project->setName(name);
@@ -23,11 +28,19 @@ void EditProjectControl::editProject(QString name, QString description,
     _view.close();
 }
 
+/*Function: void EditProjectControl::loadProjectSettings
+ * Purpose: get selected project's settings ans send it to view
+ *          class
+ * Input  : int id
+ * Output : set of settings
+ */
 void EditProjectControl::loadProjectSettings(int id) {
     qDebug() << "Getting project settings";
     QSqlQuery qry(Database::getInstance().db());
+
     qry.prepare("SELECT * FROM project WHERE id = :id");
     qry.bindValue(":id", id);
+
     // Project fields are id, name, min_team_size, max_team_size, description
     if (!qry.exec()) {
         qDebug() << qry.lastError();

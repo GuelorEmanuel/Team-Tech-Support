@@ -17,6 +17,10 @@ CreateAdminAccountView::CreateAdminAccountView(
 
 CreateAdminAccountView::~CreateAdminAccountView() {}
 
+/* Function: void CreateAdminAccountView::on_submitBtn_clicked()
+ * Purpose : take information from user about new account and
+ *           pass it to control class
+ */
 void CreateAdminAccountView::on_submitBtn_clicked() {
     QString firstNLastName = ui->displayNameInput->text();
     QString userName       = ui->userNameInput->text();
