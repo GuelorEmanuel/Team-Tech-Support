@@ -32,6 +32,9 @@ void AdminMainControl::signOut() {
     _view.close();
 }
 
+/* Function: voidAdminMainControl::getProjectList()
+ * Purpose : get list of projects and display it to user(admin)
+ */
 void AdminMainControl::getProjectList() {
     QSqlQuery qry(Database::getInstance().db());
     qry.prepare("SELECT * FROM project");

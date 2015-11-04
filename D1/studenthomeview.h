@@ -19,6 +19,7 @@ public:
     ~StudentHomeView();
     void addUnjoinedProject(int id, QString name);
     void addJoinedProject(int id, QString name);
+    void setName(QString name);
 
 private slots:
     void on_editProfileBtn_clicked();

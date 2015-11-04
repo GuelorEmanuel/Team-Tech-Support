@@ -10,7 +10,6 @@ class StudentMainControl
 public:
     StudentMainControl(Student& student);
     void logout();
-    void joinProject(int projectId);
     void editProfile();
     void openUnJoinedProject(int projectId);
     QString getName();
