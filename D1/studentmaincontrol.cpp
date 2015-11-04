@@ -75,3 +75,7 @@ void StudentMainControl::getJoinedProjectList() {
         }
     }
 }
+
+QString StudentMainControl::getStudentName(){
+    return _student.getDisplayName();
+}
