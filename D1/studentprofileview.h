@@ -25,6 +25,8 @@ private slots:
 
     void on_exitBtn_clicked();
 
+    void addValues(int index, int count);
+
 private:
     EditStuProfileControl &_control;
     std::auto_ptr<Ui::StudentProfileView> ui;
@@ -37,6 +39,23 @@ private:
     QComboBox *_maxAnswers[4];
 
     int _sectionOne,_sectionTwo,_sectionThree,_sectionFour;
+
+    QString _grades[8] = {"C", "C+", "B-", "B",
+                         "B+", "A-", "A", "A+"};
+    QString _status[5] = {"Never", "Rarely", "Sometimes",
+                         "Often", "Always"};
+    QString _agree[2] = {"Strongly Disagree", "Strongly Agree"};
+
+    QString _flex[2]  = {"Very Inflexible", "Very Flexible"};
+
+    QString _workload[2] = {"Very High", "Very Heavy"};
+
+    QString _done[2]  = {"Just Get it Done", "Everything Must be Perfect"};
+
+    QString _early[5] = {"Very Last Minute", "Last Minute",
+                        "No Tendency", "Early", "Very Early"};
+
+    QString _breaks[2] = {"Not at All", "Strongly prefer to work"};
 
 };
 
