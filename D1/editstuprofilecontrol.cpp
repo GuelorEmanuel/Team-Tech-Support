@@ -154,8 +154,11 @@ void EditStuProfileControl::loadProfileSettings(int id) {
             //_view.addProject(qry.value(0).toInt(), qry.value(1).toString());
         }
     }*/
+}
 
-
+void EditStuProfileControl::exitProfile()
+{
+    _view.close();
 }
 
 

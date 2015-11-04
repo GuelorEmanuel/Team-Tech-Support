@@ -25,7 +25,7 @@ public:
     void editProfile();
     void createProfile();
     void updateProfile();
-
+    void exitProfile();
 private:
     std::auto_ptr<Profile> _profile;
     StudentProfileView  _view;
