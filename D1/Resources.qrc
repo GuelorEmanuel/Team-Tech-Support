@@ -3,5 +3,10 @@
         <file alias="splashScreenMain">Resources/Images/splash_Painting.gif</file>
         <file alias="loginScreenIMG">Resources/Images/login_Painting.gif</file>
         <file alias="listquestions">Resources/questions/questions.txt</file>
+        <file alias="admin">Resources/Images/adminBackground.gif</file>
+        <file alias="student">Resources/Images/studentBackground.gif</file>
+        <file alias="profile">Resources/Images/profile.jpg</file>
+        <file alias="signup">Resources/Images/signup.jpg</file>
+        <file alias="project">Resources/Images/project.jpg</file>
     </qresource>
 </RCC>

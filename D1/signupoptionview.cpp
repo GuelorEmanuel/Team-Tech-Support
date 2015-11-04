@@ -9,6 +9,10 @@ SignupOptionView::SignupOptionView(SignUpMainControl &control,
     _control(control),
     ui(new Ui::SignupOptionView)
 {
+    QPalette palette;
+    palette.setBrush(this->backgroundRole(), QBrush(QImage(":Images/signup")));
+
+    this->setPalette(palette);
     ui->setupUi(this);
 }
 
