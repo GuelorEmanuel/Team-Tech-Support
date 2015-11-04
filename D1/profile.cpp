@@ -68,6 +68,7 @@ void Profile::loadQualification() {
     qry.prepare("SELECT * FROM profile WHERE id = :id");
     qry.bindValue(":id", _id);
 
+    qDebug() << _id;
     if(!qry.exec()) {
         qDebug() << qry.lastError();
     } else {
@@ -77,6 +78,7 @@ void Profile::loadQualification() {
             qual.setAnswer(qry.value(i).toInt());
             qual.setMinAnswer(qry.value(i+1).toInt());
             qual.setMaxAnswer(qry.value(i+2).toInt());
+            qDebug() << "Hey";
             qDebug() << qry.value(i).toInt();
             _qualifications.push_back(qual);
         }

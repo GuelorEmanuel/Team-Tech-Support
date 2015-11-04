@@ -4,14 +4,18 @@
 #include "questions.h"
 
 
-
-EditStuProfileControl::EditStuProfileControl(int profileID) :
-  _view(*this), _profile(new Profile)
+//action = 1: edit project. action == 0: create
+EditStuProfileControl::EditStuProfileControl(int profileID, int action) :
+  _view(*this), _profile(new Profile),  _action(action)
 {
     qDebug() << "In contructorrrrr";
 
   _profile->setId(profileID);
-   loadProfileSettings(profileID);
+
+  if(action == 1)
+      loadProfileSettings(profileID);
+  if(action == 0)
+      _profile->setStuId(profileID);
   _view.setModal(true);
   _view.exec();
 }
@@ -28,11 +32,15 @@ QList<QString> EditStuProfileControl::loadSection(){
 void EditStuProfileControl::addAsnwers(int ans, int min, int max)
 {
     if(count == 28) return;
-    _answers[count] = ans;
-    _minAnswers[count] = min;
-    _maxAnswers[count++] = max;
+    if(_action == 1) {
+        _answers[count] = ans;
+        _minAnswers[count] = min;
+        _maxAnswers[count++] = max;
+    }
+    if(_action == 0) {
+        addQualification(ans, min, max);
+    }
 
-    qDebug() << _answers[count-1];
 }
 
 int* EditStuProfileControl::getEditedAnswers()
@@ -76,12 +84,29 @@ void EditStuProfileControl::editQualification(int index, int a, int amin, int am
     _profile->editQualification(index, a, amin, amax);
 }
 
+void EditStuProfileControl::addQualification(int ans, int min, int max)
+{
+    _profile->addQualification(ans, min, max);
+}
+
 void EditStuProfileControl::updateProfile()
+{
+    if(_action == 1) editProfile();
+    else createProfile();
+}
+
+void EditStuProfileControl::editProfile()
 {
     for(int i = 0; i < 28; i++) {
         _profile->editQualification(i, _answers[i], _minAnswers[i], _maxAnswers[i]);
     }
     _profile->editProfile();
+    _view.close();
+}
+
+void EditStuProfileControl::createProfile()
+{
+    _profile->createProfile();
     _view.close();
 }
 

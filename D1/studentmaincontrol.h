@@ -13,8 +13,8 @@ public:
     void joinProject(int projectId);
     void editProfile();
     void openUnJoinedProject(int projectId);
-    QString getStudentName();
 
+    QString getName();
 private:
     StudentHomeView _view;
     Student& _student;
