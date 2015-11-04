@@ -1,11 +1,10 @@
 1.What grade are you aiming to get on the project? 0=C,1=C+,2=B-,3=B,4=B+,5=A-, 6=A, 7=A+
 2. Do you tend to finish work at the last minute or early? 1(very last minute), 2(last minute),3(no tendency),4(early),5(very early)
-3. Are you willing to work on the project over reading week / spring break? 1 (not at all), 2 (reduced hours), 3 (flexible / no preference), 4 (prefer to work 
 4. What kind of quality standards do you hold your own work to? 1 (just get it done) - 5 (everything should be perfect)
-5. How heavy a workload do you have this semester? 1 (very light; less than 3 courses, no part time job) - 5 (very heavy; 5 or more courses and a part time job)
-6. What is your GPA? 12 = A+, 11 = A, 10 = A-, 9 = B+, 8 = B, 7 = B-, 6 = C+, 5 = C, 4 = C-, 3 = D+, 2 = D, 1 = D-                                                                                                    
+6. What is your GPA? 12 = A+, 11 = A, 10 = A-, 9 = B+, 8 = B, 7 = B-, 6 = C+, 5 = C, 4 = C-, 3 = D+, 2 = D, 1 = D- 
 7. What was your grade in COMP 2401? (Intro to systems programming) 0 = C, 1 = C+, 2 = B-, 3 = B, 4= B+, 5 = A-, 6 = A, 7 = A+
 8. What was your grade in COMP 2404? (Intro to software engineering) 0 = C, 1 = C+, 2 = B-, 3 = B, 4= B+, 5 = A-, 6 = A, 7 = A+
+3. Are you willing to work on the project over reading week / spring break? 1 (not at all), 2 (reduced hours), 3 (flexible / no preference), 4 (prefer to work
 9. Do you tend to work early in the mornings? 1 (never), 2 (rarely), 3 (flexible / no preference), 4 (often), 5 (always)
 10. Do you tend to work late at night? 1 (never), 2 (rarely), 3 (flexible / no preference), 4 (often), 5 (always)
 11. How flexible are you about finding time to work on the project or coordinate with your team? 1 (very inflexible) - 5 (very flexible)
@@ -17,8 +16,7 @@
 17. Are you reliable at handling the repetitive, less challenging parts of a project? 1 (never), 2 (rarely), 3 (sometimes), 4 (often), 5 (always)
 18. Are you good at generating ideas for an assignment or project? 1 (never), 2 (rarely), 3 (sometimes), 4 (often), 5 (always)
 19. Are you good at evaluating and criticising ideas? 1 (never), 2 (rarely), 3 (sometimes), 4 (often), 5 (always)
-20. How often do you finish something only to realize that some of what you did was unnecessary, or you could have saved a lot of time by doing things a simpler way? 1 (never), 2 (rarely), 3 (sometimes), 4 (often), 5 (always)
-21. You prefer to be blunt and direct. 1 (never), 2 (rarely), 3 (sometimes), 4 (often), 5 (always)
+21. You prefer to be blunt and direct. 1 (never), 2 (rarely), 3 (sometimes), 4 (often), 5 (always) 
 22. You prefer lots of communication, as opposed to being left alone to do your part. 1 (never), 2 (rarely), 3 (sometimes), 4 (often), 5 (always)
 23. You prefer tasks with clearly defined structure, rules, and deadlines, as opposed to figuring out what you have to do on your own. 1 (never), 2 (rarely), 3 (sometimes), 4 (often), 5 (always)
 24. Rank the statement “I am a strong programmer” 1 (strongly disagree) - 5 (strongly agree)
@@ -26,3 +24,6 @@
 26. Rank the statement “I am good at presentations” 1 (strongly disagree) - 5 (strongly agree)
 27. Rank the statement “I am good at organizing” 1 (strongly disagree) - 5 (strongly agree)
 28. Rank the statement “I am good at research” 1 (strongly disagree) - 5 (strongly agree)
+5. How heavy a workload do you have this semester? 1 (very light; less than 3 courses, no part time job) - 5 (very heavy; 5 or more courses and a part time job)                                                                                                   
+
+20. How often do you finish something only to realize that some of what you did was unnecessary, or you could have saved a lot of time by doing things a simpler way? 1 (never), 2 (rarely), 3 (sometimes), 4 (often), 5 (always)

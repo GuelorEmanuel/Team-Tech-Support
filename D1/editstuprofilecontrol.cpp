@@ -14,11 +14,19 @@ EditStuProfileControl::EditStuProfileControl(int profileID, int action) :
 
   _profile->setId(profileID);
 
+
   if(action == 1)
       loadProfileSettings(profileID);
   if(action == 0)
       _profile->setStuId(profileID);
 
+  int count = 1;
+  for(int i = 0; i < 4; i++) {
+      _view.addValues(i, count);
+      if(action == 1) _view.setValues(i, count);
+      ++count;
+  }
+  _view.setAction(_action);
   _view.setModal(true);
   _view.exec();
 }

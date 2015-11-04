@@ -18,6 +18,9 @@ public:
     explicit StudentProfileView(EditStuProfileControl &control,QWidget *parent = 0);
     ~StudentProfileView();
 
+    void addValues(int index, int count);
+    void setValues(int index, int count);
+    void setAction(int action);
 private slots:
     void on_nextBtn_clicked();
 
@@ -25,13 +28,11 @@ private slots:
 
     void on_exitBtn_clicked();
 
-    void addValues(int index, int count);
-
 private:
     EditStuProfileControl &_control;
     std::auto_ptr<Ui::StudentProfileView> ui;
 
-
+    int _action;
     int _pageCount;
     int _answerCount;
     QComboBox *_answers[4];
