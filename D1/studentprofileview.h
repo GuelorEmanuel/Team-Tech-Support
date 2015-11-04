@@ -28,12 +28,16 @@ private slots:
 private:
     EditStuProfileControl &_control;
     std::auto_ptr<Ui::StudentProfileView> ui;
-    int _sectionOne,_sectionTwo,_sectionThree,_sectionFour;
+
+
     int _pageCount;
     int _answerCount;
     QComboBox *_answers[4];
     QComboBox *_minAnswers[4];
     QComboBox *_maxAnswers[4];
+
+    int _sectionOne,_sectionTwo,_sectionThree,_sectionFour;
+
 };
 
 #endif // STUDENTPROFILEVIEW_H

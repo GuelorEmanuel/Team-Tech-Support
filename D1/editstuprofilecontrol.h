@@ -21,6 +21,7 @@ public:
     int* getEditedMinAnswers();
     int* getEditedMaxAnswers();
     void editQualification(int index, int a, int amin, int amax);
+    void updateProfile();
 
 private:
     std::auto_ptr<Profile> _profile;
