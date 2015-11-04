@@ -18,14 +18,14 @@ public:
     explicit StudentProfileView(EditStuProfileControl &control,QWidget *parent = 0);
     ~StudentProfileView();
 
+    void addValues(int index, int count);
+    void setValues(int index, int count);
 private slots:
     void on_nextBtn_clicked();
 
     void on_prevBtn_clicked();
 
     void on_exitBtn_clicked();
-
-    void addValues(int index, int count);
 
 private:
     EditStuProfileControl &_control;

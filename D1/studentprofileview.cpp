@@ -25,7 +25,7 @@ StudentProfileView::StudentProfileView(EditStuProfileControl &control,QWidget *p
     ui->questionThreeLbl->setText(_control.loadSection().at(_sectionThree));
     ui->questionFourLbl->setText(_control.loadSection().at(_sectionFour));
 
-    _answerCount = 1;
+    _answerCount = 5;
 
 
     //Set Arrays of QComboBoxes for answers
@@ -49,26 +49,6 @@ StudentProfileView::StudentProfileView(EditStuProfileControl &control,QWidget *p
     ui->questionTwoLbl->setText(_control.loadSection().at(_sectionTwo));
     ui->questionThreeLbl->setText(_control.loadSection().at(_sectionThree));
     ui->questionFourLbl->setText(_control.loadSection().at(_sectionFour));
-
-    for(int i = 0; i < 4; i++) {
-        /*if(_answerCount == 1) {
-            for(int j = 1; j < 8; j++) {
-                _answers[i]->addItem(QString("%1").arg(j));
-                _minAnswers[i]->addItem(QString("%1").arg(j));
-                _maxAnswers[i]->addItem(QString("%1").arg(j));
-
-            }
-        } else {
-            for(int j = 1; j < 6; j++) {
-                _answers[i]->addItem(QString("%1").arg(j));
-                _minAnswers[i]->addItem(QString("%1").arg(j));
-                _maxAnswers[i]->addItem(QString("%1").arg(j));
-
-            }
-        }*/
-        addValues(i, _answerCount);
-        ++_answerCount;
-    }
 
 }
 
@@ -108,6 +88,7 @@ void StudentProfileView::on_nextBtn_clicked()
             _maxAnswers[i]->clear();
 
             addValues(i, _answerCount);
+            setValues(i, _answerCount);
             ++_answerCount;
         }
     } else {
@@ -238,6 +219,17 @@ void StudentProfileView::addValues(int index, int count)
 
 }
 
+//Set current values for Profile
+void StudentProfileView::setValues(int index, int count)
+{
+    if(count < 1 || count > 29) return;
+
+    _answers[index]->setCurrentIndex(_control.getAnswer(count)-1);
+    _minAnswers[index]->setCurrentIndex(_control.getMinAnswer(count)-1);
+    _maxAnswers[index]->setCurrentIndex(_control.getMaxAnswer(count)-1);
+
+}
+
 void StudentProfileView::on_prevBtn_clicked()
 {
     int count = _sectionOne+_sectionTwo+_sectionThree+_sectionFour;
@@ -250,6 +242,18 @@ void StudentProfileView::on_prevBtn_clicked()
         ui->questionTwoLbl->setText(_control.loadSection().at(_sectionTwo));
         ui->questionThreeLbl->setText(_control.loadSection().at(_sectionThree));
         ui->questionFourLbl->setText(_control.loadSection().at(_sectionFour));
+
+        _answerCount -= 8;
+        for(int i = 0; i < 4; i++) {
+
+            _answers[i]->clear();
+            _minAnswers[i]->clear();
+            _maxAnswers[i]->clear();
+
+            addValues(i, _answerCount);
+            setValues(i, _answerCount);
+            ++_answerCount;
+        }
     } else {
         ui->prevBtn->setDisabled(true);
     }
