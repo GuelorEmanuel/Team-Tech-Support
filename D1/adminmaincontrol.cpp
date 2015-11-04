@@ -4,11 +4,13 @@
 #include "adminmaincontrol.h"
 #include "createprojectcontrol.h"
 #include "editprojectcontrol.h"
+#include "admin.h"
 
 AdminMainControl::AdminMainControl(Admin &admin) :
     _admin(admin), _view(*this)
 {
     getProjectList();
+    _view.setName(admin.getDisplayName());
     _view.setModal(true);
     _view.exec();
 }
@@ -47,4 +49,9 @@ void AdminMainControl::getProjectList() {
             _view.addProject(qry.value(0).toInt(), qry.value(1).toString());
         }
     }
+}
+QString AdminMainControl::getName()
+{
+    return "test";
+            //_admin.getDisplayName();
 }

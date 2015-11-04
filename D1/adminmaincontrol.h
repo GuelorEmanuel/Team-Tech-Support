@@ -13,6 +13,7 @@ public:
     void editProject(int projectId);
     void computeTeams(int projectId);
     void signOut();
+    QString getName();
 private:
     AdminHomeView _view;
     Admin& _admin;

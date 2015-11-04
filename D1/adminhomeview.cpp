@@ -63,3 +63,7 @@ void AdminHomeView::on_runAlgoBtn_clicked()
     _control.computeTeams(ui->selectProjectInput->itemData(
                               ui->selectProjectInput->currentIndex()).toInt());
 }
+void AdminHomeView::setName(QString name)
+{
+    ui->profNameLbl->setText(name);
+}
