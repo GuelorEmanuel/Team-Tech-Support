@@ -36,6 +36,7 @@ private:
     int _minAnswers[28];
     int _maxAnswers[28];
     int count = 0;
+    int action = 1;
 };
 
 #endif // EDITSTUPROFILECONTROL_H

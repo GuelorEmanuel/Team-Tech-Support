@@ -20,6 +20,7 @@ public:
 
     void addValues(int index, int count);
     void setValues(int index, int count);
+    void setAction(int action);
 private slots:
     void on_nextBtn_clicked();
 
@@ -31,7 +32,7 @@ private:
     EditStuProfileControl &_control;
     std::auto_ptr<Ui::StudentProfileView> ui;
 
-
+    int _action;
     int _pageCount;
     int _answerCount;
     QComboBox *_answers[4];

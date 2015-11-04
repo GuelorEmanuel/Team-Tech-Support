@@ -23,9 +23,10 @@ EditStuProfileControl::EditStuProfileControl(int profileID, int action) :
   int count = 1;
   for(int i = 0; i < 4; i++) {
       _view.addValues(i, count);
-      _view.setValues(i, count);
+      if(action == 1) _view.setValues(i, count);
       ++count;
   }
+  _view.setAction(_action);
   _view.setModal(true);
   _view.exec();
 }
