@@ -47,12 +47,14 @@ StudentProfileView::StudentProfileView(EditStuProfileControl &control,QWidget *p
                 _answers[i]->addItem(QString("%1").arg(j));
                 _minAnswers[i]->addItem(QString("%1").arg(j));
                 _maxAnswers[i]->addItem(QString("%1").arg(j));
+
             }
         } else {
             for(int j = 1; j < 6; j++) {
                 _answers[i]->addItem(QString("%1").arg(j));
                 _minAnswers[i]->addItem(QString("%1").arg(j));
                 _maxAnswers[i]->addItem(QString("%1").arg(j));
+
             }
         }
         ++_answerCount;
@@ -68,6 +70,9 @@ StudentProfileView::~StudentProfileView()
 void StudentProfileView::on_nextBtn_clicked()
 {
     int count = _sectionOne+_sectionTwo+_sectionThree+_sectionFour;
+    int a = -1;
+    int amin = -1;
+    int amax = -1;
     qDebug() <<"How many is count now: : "<<count;
     if(count< 100) {
       _sectionOne+=4;
@@ -78,38 +83,53 @@ void StudentProfileView::on_nextBtn_clicked()
       ui->questionTwoLbl->setText(_control.loadSection().at(_sectionTwo));
       ui->questionThreeLbl->setText(_control.loadSection().at(_sectionThree));
       ui->questionFourLbl->setText(_control.loadSection().at(_sectionFour));
-    }
 
-    for(int i = 0; i < 4; i++) {
-        _answers[i]->clear();
-        _minAnswers[i]->clear();
-        _maxAnswers[i]->clear();
-        if(_answerCount == 7 || _answerCount == 8) {
-            for(int j = 1; j < 8; j++) {
-                _answers[i]->addItem(QString("%1").arg(j));
-                _minAnswers[i]->addItem(QString("%1").arg(j));
-                _maxAnswers[i]->addItem(QString("%1").arg(j));
-            }
-         } else if(_answerCount == 6) {
+
+        for(int i = 0; i < 4; i++) {
+            a = _answers[i]->currentIndex() + 1;
+            amin = _answers[i]->currentIndex() + 1;
+            amax = _answers[i]->currentIndex() + 1;
+
+            _control.addAsnwers(a, amin, amax);
+
+            _answers[i]->clear();
+            _minAnswers[i]->clear();
+            _maxAnswers[i]->clear();
+
+            if(_answerCount == 7 || _answerCount == 8) {
+                for(int j = 1; j < 8; j++) {
+                    _answers[i]->addItem(QString("%1").arg(j));
+                    _minAnswers[i]->addItem(QString("%1").arg(j));
+                    _maxAnswers[i]->addItem(QString("%1").arg(j));
+
+                }
+            } else if(_answerCount == 6) {
                 for(int j = 1; j < 13; j++) {
                     _answers[i]->addItem(QString("%1").arg(j));
                     _minAnswers[i]->addItem(QString("%1").arg(j));
                     _maxAnswers[i]->addItem(QString("%1").arg(j));
-            }
-        } else {
-            for(int j = 1; j < 6; j++) {
-                _answers[i]->addItem(QString("%1").arg(j));
-                _minAnswers[i]->addItem(QString("%1").arg(j));
-                _maxAnswers[i]->addItem(QString("%1").arg(j));
-            }
-        }
-        ++_answerCount;
-    }
 
-    //ui->questionOneMinCB->addItem(QString("%1").arg(_control.getMinAnswer(_answerCount+1)));
-    //ui->questionOneMinCB->addItem(QString("%1").arg(_control.getMinAnswer(_answerCount+2)));
-    //ui->questionOneMinCB->setCurrentIndex(_control.getMinAnswer(_answerCount+1));
-    //_answers[0]->addItem(QString("%1").arg(_control.getMinAnswer(_answerCount+1)));
+                }
+            } else {
+                for(int j = 1; j < 6; j++) {
+                    _answers[i]->addItem(QString("%1").arg(j));
+                    _minAnswers[i]->addItem(QString("%1").arg(j));
+                    _maxAnswers[i]->addItem(QString("%1").arg(j));
+
+                }
+            }
+            ++_answerCount;
+        }
+    } else {
+        for(int i = 0; i < 4; i++) {
+            a = _answers[i]->currentIndex() + 1;
+            amin = _answers[i]->currentIndex() + 1;
+            amax = _answers[i]->currentIndex() + 1;
+
+            _control.addAsnwers(a, amin, amax);
+        }
+        _control.updateProfile();
+    }
 
 }
 

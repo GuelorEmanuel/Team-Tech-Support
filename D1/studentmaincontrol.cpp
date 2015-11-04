@@ -10,6 +10,7 @@ StudentMainControl::StudentMainControl(Student &student) :
 {
     getUnjoinedProjectList();
     getJoinedProjectList();
+
     _view.setModal(true);
     _view.exec();
 }
@@ -24,10 +25,15 @@ void StudentMainControl::joinProject(int projectId) {
 }
 
 void StudentMainControl::editProfile() {
-    EditStuProfileControl editProfileControl(_student.getId());
+    EditStuProfileControl editProfileControl(_student.getId(), 1);
     qDebug() << "In here I was called ";
     _view.show();
 
+}
+
+QString StudentMainControl::getName()
+{
+    return _student.getDisplayName();
 }
 
 void StudentMainControl::getUnjoinedProjectList() {

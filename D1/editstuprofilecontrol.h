@@ -10,7 +10,7 @@
 class EditStuProfileControl
 {
 public:
-    EditStuProfileControl(int profileID);
+    EditStuProfileControl(int profileID, int action);
     ~EditStuProfileControl();
     QList<QString> loadSection();
     void addAsnwers(int ans, int min, int max);
@@ -21,11 +21,16 @@ public:
     int* getEditedMinAnswers();
     int* getEditedMaxAnswers();
     void editQualification(int index, int a, int amin, int amax);
+    void addQualification(int ans, int min, int max);
+    void editProfile();
+    void createProfile();
     void updateProfile();
 
 private:
     std::auto_ptr<Profile> _profile;
     StudentProfileView  _view;
+    int _studentID;
+    int _action;
     void loadProfileSettings(int id);
     int _answers[28];
     int _minAnswers[28];
