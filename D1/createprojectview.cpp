@@ -2,6 +2,7 @@
 #include "ui_createprojectview.h"
 #include "createprojectcontrol.h"
 
+
 CreateProjectView::CreateProjectView(CreateProjectControl &control,
                                      QWidget *parent) :
     QDialog(parent),
@@ -17,11 +18,17 @@ CreateProjectView::~CreateProjectView() {
 }
 
 void CreateProjectView::on_createBtn_clicked() {
+    QRegExp re("\\d*");
     QString name = ui->projectNameLE->text();
     QString minSize = ui->minTeamSizeLE->text();
     QString maxSize = ui->maxTeamSizeLE->text();
     QString desc = ui->projectDescriptionLE->toPlainText();
     int stat = 1;
+    bool min,max;
+    int maxVal, minVal;
+    maxVal = maxSize.toInt(&max,10);
+    minVal = minSize.toInt(&min,10);
+    qDebug()<<"min: "<<min<<"max "<<min;
 
     //Check if all of the fields have been filled
     if(name.isEmpty()) {
@@ -29,12 +36,12 @@ void CreateProjectView::on_createBtn_clicked() {
         stat = 0;
     }
 
-    if(minSize.isEmpty()) {
+    if(!min) {
         qDebug() << "Empty min size field";
         stat = 0;
     }
 
-    if(maxSize.isEmpty()) {
+    if(!max) {
         qDebug() << "Empty max size field";
         stat = 0;
     }
@@ -44,7 +51,7 @@ void CreateProjectView::on_createBtn_clicked() {
         stat = 0;
     }
 
-    if(stat != 0) {
+    if(stat == 1) {
         int min = minSize.toInt();
         int max = maxSize.toInt();
 

@@ -20,15 +20,27 @@ void CreateStudentAccountView::on_submitBtn_clicked()
     QString fname = ui->firstNameLE->text();
     QString lname = ui->lastnameLE->text();
     QString id    = ui->idLE->text();
-    bool flag = true;
 
-    if (!fname.isEmpty() && !lname.isEmpty()&& !id.isEmpty()){
-         _control.createAccount(fname, lname, id);
-    }
-    else {
-        ui->statusLbl->setText("<font color='red'>Error: Please fill in all the info above </font>");
-    }
+    int stat = 1;
 
+    if(fname.isEmpty()){
+        qDebug() << "First name is empty";
+        ui->statusLbl->setText("<font color='red'>Please fill in your first name</font>");
+        stat = 0;
+    }
+    if(lname.isEmpty()){
+        qDebug() << "Last name is empty";
+        ui->statusLbl->setText("<font color='red'>Please fill in your last name</font>");
+         stat = 0;
+    }
+    if(id.isEmpty()){
+        qDebug() << "ID is empty";
+        ui->statusLbl->setText("<font color='red'>Please fill in your ID</font>");
+         stat = 0;
+    }
+    if (stat == 1){
+        _control.createAccount(fname, lname, id);
+    }
 }
 
 void CreateStudentAccountView::on_cancelBtn_clicked()
