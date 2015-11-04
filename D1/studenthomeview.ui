@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>657</width>
+    <width>726</width>
     <height>420</height>
    </rect>
   </property>
@@ -31,7 +31,7 @@
     <rect>
      <x>20</x>
      <y>130</y>
-     <width>631</width>
+     <width>691</width>
      <height>16</height>
     </rect>
    </property>
@@ -39,38 +39,12 @@
     <enum>Qt::Horizontal</enum>
    </property>
   </widget>
-  <widget class="QPushButton" name="projectsBtn">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>190</y>
-     <width>99</width>
-     <height>27</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Projects</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="openProjectBtn">
-   <property name="geometry">
-    <rect>
-     <x>490</x>
-     <y>160</y>
-     <width>141</width>
-     <height>27</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Open Project</string>
-   </property>
-  </widget>
   <widget class="QListWidget" name="joinedProjectsList">
    <property name="geometry">
     <rect>
-     <x>25</x>
+     <x>5</x>
      <y>190</y>
-     <width>321</width>
+     <width>271</width>
      <height>221</height>
     </rect>
    </property>
@@ -112,21 +86,6 @@
     </item>
    </layout>
   </widget>
-  <widget class="QComboBox" name="unjoinedProjectsInput">
-   <property name="geometry">
-    <rect>
-     <x>350</x>
-     <y>190</y>
-     <width>281</width>
-     <height>28</height>
-    </rect>
-   </property>
-   <item>
-    <property name="text">
-     <string>Select a project to join</string>
-    </property>
-   </item>
-  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
@@ -137,7 +96,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Joined projects</string>
+    <string>        Joined projects</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
@@ -145,12 +104,12 @@
     <rect>
      <x>350</x>
      <y>160</y>
-     <width>131</width>
+     <width>381</width>
      <height>18</height>
     </rect>
    </property>
    <property name="text">
-    <string>Other projects</string>
+    <string>                                unJoined projects</string>
    </property>
   </widget>
   <widget class="QLabel" name="studentNameLbl">
@@ -166,17 +125,72 @@
     <string>Student Name Goes here</string>
    </property>
   </widget>
+  <widget class="Line" name="line_3">
+   <property name="geometry">
+    <rect>
+     <x>283</x>
+     <y>150</y>
+     <width>20</width>
+     <height>251</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="statusLbl">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>390</y>
+     <width>401</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>[+]Status:</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>190</y>
+     <width>391</width>
+     <height>29</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <item>
+     <widget class="QComboBox" name="unjoinedProjectsInput">
+      <item>
+       <property name="text">
+        <string>Select a project to join</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="openProjectBtn">
+      <property name="text">
+       <string>Open Project</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
   <zorder>layoutWidget</zorder>
   <zorder>layoutWidget</zorder>
   <zorder>line</zorder>
   <zorder>line_2</zorder>
-  <zorder>projectsBtn</zorder>
   <zorder>openProjectBtn</zorder>
   <zorder>joinedProjectsList</zorder>
   <zorder>unjoinedProjectsInput</zorder>
   <zorder>label</zorder>
   <zorder>label_2</zorder>
   <zorder>studentNameLbl</zorder>
+  <zorder>line_3</zorder>
+  <zorder>statusLbl</zorder>
  </widget>
  <resources/>
  <connections/>

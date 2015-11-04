@@ -197,6 +197,19 @@
     <string>Cancel</string>
    </property>
   </widget>
+  <widget class="QLabel" name="statusLbl">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>360</y>
+     <width>361</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>[+]Status:</string>
+   </property>
+  </widget>
   <zorder>layoutWidget</zorder>
   <zorder>layoutWidget</zorder>
   <zorder>layoutWidget</zorder>
@@ -207,6 +220,7 @@
   <zorder>label_6</zorder>
   <zorder>projectDescriptionLE</zorder>
   <zorder>cancelButton</zorder>
+  <zorder>statusLbl</zorder>
  </widget>
  <resources/>
  <connections/>

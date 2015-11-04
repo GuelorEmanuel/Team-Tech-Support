@@ -26,7 +26,8 @@ CreateProjectView::~CreateProjectView() {
  *          class
  */
 void CreateProjectView::on_createBtn_clicked() {
-    QRegExp re("\\d*");
+    ui->statusLbl->setWordWrap(true);
+    //QRegExp re("\\d*");
     QString name = ui->projectNameLE->text();
     QString minSize = ui->minTeamSizeLE->text();
     QString maxSize = ui->maxTeamSizeLE->text();
@@ -41,21 +42,26 @@ void CreateProjectView::on_createBtn_clicked() {
     //Check if all of the fields have been filled
     if(name.isEmpty()) {
         qDebug() << "Empty name";
+        ui->statusLbl->setText("<font color='red'>Please fill in project name</font>");
         stat = 0;
+
     }
 
     if(!min) {
         qDebug() << "Empty min size field";
+        ui->statusLbl->setText("<font color='red'>Please fill in Min team size field must be an integer value</font>");
         stat = 0;
     }
 
     if(!max) {
         qDebug() << "Empty max size field";
+        ui->statusLbl->setText("<font color='red'>Please fill in Max team size field must be an integer value</font>");
         stat = 0;
     }
 
     if(desc.isEmpty()) {
         qDebug() << "Empty description";
+        ui->statusLbl->setText("<font color='red'>Please fill in description field</font>");
         stat = 0;
     }
 

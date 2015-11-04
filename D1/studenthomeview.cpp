@@ -42,7 +42,11 @@ void StudentHomeView::on_signOutBtn_clicked()
 
 void StudentHomeView::on_openProjectBtn_clicked() {
     // Do nothing if they haven't selected a project
-    if (ui->unjoinedProjectsInput->currentIndex() == 0) return;
+    if (ui->unjoinedProjectsInput->currentIndex() == 0){
+        ui->statusLbl->setWordWrap(true);
+        ui->statusLbl->setText("<font color='red'>Please select a project first!</font>");
+        return;
+    }
 
     // Pass the project ID to edit project
     _control.openUnJoinedProject(ui->unjoinedProjectsInput->itemData(
