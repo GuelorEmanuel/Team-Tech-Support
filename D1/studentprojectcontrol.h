@@ -12,7 +12,7 @@ class StudentProjectControl
 public:
     StudentProjectControl(int projectId, Student& stu);
     void leaveProject();
-    void joinProject();
+    int joinProject();
 private:
      StudentProjectView _view;
      void loadProjectSettings(int id);

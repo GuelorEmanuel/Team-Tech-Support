@@ -101,6 +101,19 @@
     <string>Join</string>
    </property>
   </widget>
+  <widget class="QLabel" name="statusLbl">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>320</y>
+     <width>391</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>[+]Status:</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

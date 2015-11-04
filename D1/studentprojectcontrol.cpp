@@ -43,10 +43,15 @@ void StudentProjectControl::leaveProject()
     _view.close();
 }
 
-void StudentProjectControl::joinProject()
+int StudentProjectControl::joinProject()
 {
     int stat = _project->registerStudent(_student);
-    if(stat != 0) _view.close();
+    if(stat != 0){
+
+        _view.close();
+    }else {
+        return stat;
+    }
 
 
 }

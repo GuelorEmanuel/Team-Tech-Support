@@ -27,7 +27,10 @@ void StudentProjectView::on_leaveProjectBtn_clicked()
 
 void StudentProjectView::on_joinProjectBtn_clicked()
 {
-    _control.joinProject();
+    if (_control.joinProject() == 0) {
+        ui->statusLbl->setWordWrap(true);
+        ui->statusLbl->setText("<font color='red'>Error: Please try joining again</font>");
+    }
 }
 
 void StudentProjectView::refreshProjectSettings(const Project& project) {
