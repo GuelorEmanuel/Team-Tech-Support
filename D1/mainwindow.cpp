@@ -3,6 +3,7 @@
 #include "ui_mainwindow.h"
 #include "admin.h"
 #include "student.h"
+#include <QDebug>
 #include "profile.h"
 
 MainWindow::MainWindow(MainWindowControl& control, QWidget *parent) :
@@ -25,6 +26,10 @@ void MainWindow::on_signUpBtn_clicked() {
 }
 
 void MainWindow::on_signInBtn_clicked() {
+   QString errorMessage ="Error: Either your account doen't exist or something went really wrong, Please create an account to login.";
    int stat = _control.signIn(ui->lineEditUserName->text());
-   //qDebug() << QString("%1").arg(stat);
+   ui->statusLbl->setWordWrap(true);
+   if( stat == 0){
+      ui->statusLbl->setText("<font color='red'>" +errorMessage+"</font>");
+   }
 }
