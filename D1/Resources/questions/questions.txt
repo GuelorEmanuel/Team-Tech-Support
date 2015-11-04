@@ -1,28 +1,28 @@
-1.What grade are you aiming to get on the project? 0=C,1=C+,2=B-,3=B,4=B+,5=A-, 6=A, 7=A+
-2. Do you tend to finish work at the last minute or early? 1(very last minute), 2(last minute),3(no tendency),4(early),5(very early)
-3. What kind of quality standards do you hold your own work to? 1 (just get it done) - 5 (everything should be perfect)
-4. What is your GPA? 12 = A+, 11 = A, 10 = A-, 9 = B+, 8 = B, 7 = B-, 6 = C+, 5 = C, 4 = C-, 3 = D+, 2 = D, 1 = D- 
-5. What was your grade in COMP 2401? (Intro to systems programming) 0 = C, 1 = C+, 2 = B-, 3 = B, 4= B+, 5 = A-, 6 = A, 7 = A+
-6. What was your grade in COMP 2404? (Intro to software engineering) 0 = C, 1 = C+, 2 = B-, 3 = B, 4= B+, 5 = A-, 6 = A, 7 = A+
-7. Are you willing to work on the project over reading week / spring break? 1 (not at all), 2 (reduced hours), 3 (flexible / no preference), 4 (prefer to work
-8. Do you tend to work early in the mornings? 1 (never), 2 (rarely), 3 (flexible / no preference), 4 (often), 5 (always)
-9. Do you tend to work late at night? 1 (never), 2 (rarely), 3 (flexible / no preference), 4 (often), 5 (always)
-10. How flexible are you about finding time to work on the project or coordinate with your team? 1 (very inflexible) - 5 (very flexible)
-11. Do you like to take charge in a group? 1 (never), 2 (rarely), 3 (sometimes), 4 (often), 5 (always)
-12. Do you like to follow other people’s lead in a group? 1 (never), 2 (rarely), 3 (sometimes), 4 (often), 5 (always)
-13. Do you like to focus on getting the little details just right? 1 (never), 2 (rarely), 3 (sometimes), 4 (often), 5 (always)
-14.Are you good at focusing on things that affect the bottom line (grades) the most? 1 (never), 2 (rarely), 3 (sometimes), 4 (often), 5 (always)
-15. Would you be excited to tackle the most challenging parts of the project? 1 (never), 2 (rarely), 3 (sometimes), 4 (often), 5 (always)
-16. Are you reliable at handling the repetitive, less challenging parts of a project? 1 (never), 2 (rarely), 3 (sometimes), 4 (often), 5 (always)
-17. Are you good at generating ideas for an assignment or project? 1 (never), 2 (rarely), 3 (sometimes), 4 (often), 5 (always)
-18. Are you good at evaluating and criticising ideas? 1 (never), 2 (rarely), 3 (sometimes), 4 (often), 5 (always)
-19. You prefer to be blunt and direct. 1 (never), 2 (rarely), 3 (sometimes), 4 (often), 5 (always) 
-20. You prefer lots of communication, as opposed to being left alone to do your part. 1 (never), 2 (rarely), 3 (sometimes), 4 (often), 5 (always)
-21. You prefer tasks with clearly defined structure, rules, and deadlines, as opposed to figuring out what you have to do on your own. 1 (never), 2 (rarely), 3 (sometimes), 4 (often), 5 (always)
-22. Rank the statement “I am a strong programmer” 1 (strongly disagree) - 5 (strongly agree)
-23. Rank the statement “I am good at writing or documentation” 1 (strongly disagree) - 5 (strongly agree)
-24. Rank the statement “I am good at presentations” 1 (strongly disagree) - 5 (strongly agree)
-25. Rank the statement “I am good at organizing” 1 (strongly disagree) - 5 (strongly agree)
-26. Rank the statement “I am good at research” 1 (strongly disagree) - 5 (strongly agree)
-27. How heavy a workload do you have this semester? 1 (very light; less than 3 courses, no part time job) - 5 (very heavy; 5 or more courses and a part time job)                                                                                                   
-28. How often do you finish something only to realize that some of what you did was unnecessary, or you could have saved a lot of time by doing things a simpler way? 1 (never), 2 (rarely), 3 (sometimes), 4 (often), 5 (always)
+1.What grade are you aiming to get on the project?                                        0-7
+2. Do you tend to finish work at the last minute or early?                                1-5
+3. What kind of quality standards do you hold your own work to?                           1-5
+4. What is your GPA?                                                                      1-12
+5. What was your grade in COMP 2401? (Intro to systems programming)                        0-7
+6. What was your grade in COMP 2404? (Intro to software engineering)                       0-7
+7. Are you willing to work on the project over reading week / spring break?                1-4
+8. Do you tend to work early in the mornings?                                              1-5
+9. Do you tend to work late at night?                                                      1-5
+10. How flexible are you about finding time to work on the project or coordinate with your team? 1-5
+11. Do you like to take charge in a group?                                                 1-5
+12. Do you like to follow other people’s lead in a group?                                  1-5
+13. Do you like to focus on getting the little details just right?                         1-5
+14.Are you good at focusing on things that affect the bottom line (grades) the most?       1-5
+15. Would you be excited to tackle the most challenging parts of the project?              1-5
+16. Are you reliable at handling the repetitive, less challenging parts of a project?      1-5
+17. Are you good at generating ideas for an assignment or project?                         1-5
+18. Are you good at evaluating and criticising ideas?                                      1-5
+19. You prefer to be blunt and direct.                                                     1-5
+20. You prefer lots of communication, as opposed to being left alone to do your part.      1-5
+21. You prefer tasks with clearly defined structure, rules, and deadlines, as opposed to figuring out what you have to do on your own. 1-5
+22. Rank the statement “I am a strong programmer”                                          1-5
+23. Rank the statement “I am good at writing or documentation”                             1-5
+24. Rank the statement “I am good at presentations”                                        1-5
+25. Rank the statement “I am good at organizing”                                           1-5
+26. Rank the statement “I am good at research”                                             1-5
+27. How heavy a workload do you have this semester?                                        1-5                                                                              
+28. How often do you finish something only to realize that some of what you did was unnecessary, or you could have saved a lot of time by doing things a simpler way? 1-5
