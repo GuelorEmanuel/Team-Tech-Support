@@ -31,6 +31,8 @@ void EditStuProfileControl::addAsnwers(int ans, int min, int max)
     _answers[count] = ans;
     _minAnswers[count] = min;
     _maxAnswers[count++] = max;
+
+    qDebug() << _answers[count-1];
 }
 
 int* EditStuProfileControl::getEditedAnswers()
@@ -74,12 +76,21 @@ void EditStuProfileControl::editQualification(int index, int a, int amin, int am
     _profile->editQualification(index, a, amin, amax);
 }
 
+void EditStuProfileControl::updateProfile()
+{
+    for(int i = 0; i < 28; i++) {
+        _profile->editQualification(i, _answers[i], _minAnswers[i], _maxAnswers[i]);
+    }
+    _profile->editProfile();
+    _view.close();
+}
+
 void EditStuProfileControl::loadProfileSettings(int id) {
     qDebug() << "Getting profile settings";
     Questions questions;
     questions.getQuestions();
     _profile->loadQualification();
-    qDebug() << _profile->getAnswer(2);
+
     /*QSqlQuery qry(Database::getInstance().db());
     qry.prepare("SELECT * FROM profile WHERE id = :id");
     qry.bindValue(":id", id);
