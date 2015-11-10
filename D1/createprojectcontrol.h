@@ -11,7 +11,8 @@ class CreateProjectControl
 public:
     CreateProjectControl();
     ~CreateProjectControl();
-    void createProject(QString name, QString description, int minTeamSize, int maxTeamSize);
+    void createProject(QString name, QString description, QString minTeamSize, QString maxTeamSize);
+    void cancel();
 private:
     std::auto_ptr<Project> _project;
     CreateProjectView _view;

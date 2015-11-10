@@ -8,10 +8,6 @@ StudentProjectView::StudentProjectView(StudentProjectControl &control, QWidget *
     _control(control),
     ui(new Ui::StudentProjectView)
 {
-    QPalette palette;
-    palette.setBrush(this->backgroundRole(), QBrush(QImage(":Images/project")));
-
-    this->setPalette(palette);
     ui->setupUi(this);
 }
 

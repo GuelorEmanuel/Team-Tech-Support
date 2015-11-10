@@ -22,8 +22,8 @@ public:
 private slots:
 
     void on_signUpBtn_clicked();
-
     void on_signInBtn_clicked();
+    void on_lineEditUserName_returnPressed();
 
 private:
     MainWindowControl& _control;

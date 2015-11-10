@@ -6,33 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>328</width>
+    <height>241</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Create Account</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
-     <x>170</x>
-     <y>10</y>
-     <width>67</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>SIGN UP</string>
-   </property>
-  </widget>
-  <widget class="QWidget" name="">
-   <property name="geometry">
-    <rect>
-     <x>120</x>
-     <y>40</y>
-     <width>157</width>
-     <height>141</height>
+     <x>80</x>
+     <y>30</y>
+     <width>171</width>
+     <height>101</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -57,14 +44,20 @@
       </property>
      </widget>
     </item>
-    <item>
-     <widget class="QPushButton" name="cancelBtn">
-      <property name="text">
-       <string>Cancel</string>
-      </property>
-     </widget>
-    </item>
    </layout>
+  </widget>
+  <widget class="QPushButton" name="cancelBtn">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>180</y>
+     <width>169</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
   </widget>
  </widget>
  <resources/>

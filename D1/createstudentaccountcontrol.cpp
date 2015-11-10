@@ -1,5 +1,5 @@
 #include "createstudentaccountcontrol.h"
-#include "editstuprofilecontrol.h"
+#include "editstudentprofilecontrol.h"
 
 CreateStudentAccountControl::CreateStudentAccountControl() : _view(*this)
 {
@@ -37,7 +37,7 @@ void CreateStudentAccountControl::createAccount(QString fname, QString lname, QS
     _student->setUserName(QString("%1%2").arg(fname).arg(lname).toLower());
     _student->createStudentUser();
 
-    EditStuProfileControl createProfile(newID, 0);
+    EditStudentProfileControl createProfile(newID, 0);
     _view.close();
 }
 

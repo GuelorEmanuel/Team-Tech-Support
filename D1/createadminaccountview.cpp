@@ -8,10 +8,6 @@ CreateAdminAccountView::CreateAdminAccountView(
     QDialog(parent),
     ui(new Ui::CreateAdminAccountView)
 {
-    QPalette palette;
-    palette.setBrush(this->backgroundRole(), QBrush(QImage(":Images/signup")));
-
-    this->setPalette(palette);
     ui->setupUi(this);
 }
 

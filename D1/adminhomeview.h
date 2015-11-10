@@ -28,8 +28,6 @@ private slots:
 
 private:
     std::auto_ptr<Ui::AdminHomeView> ui;
-    std::auto_ptr<QPalette> paletteBlue;
-    std::auto_ptr<QPalette> paletteBlack;
     AdminMainControl& _control;
 };
 

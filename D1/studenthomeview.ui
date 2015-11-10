@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Student Home</string>
   </property>
   <widget class="Line" name="line">
    <property name="geometry">
@@ -109,7 +109,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>                                unJoined projects</string>
+    <string>Unjoined projects</string>
    </property>
   </widget>
   <widget class="QLabel" name="studentNameLbl">
@@ -151,13 +151,13 @@
     <string>[+]Status:</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>320</x>
      <y>190</y>
      <width>391</width>
-     <height>29</height>
+     <height>30</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -181,11 +181,10 @@
   </widget>
   <zorder>layoutWidget</zorder>
   <zorder>layoutWidget</zorder>
+  <zorder>layoutWidget</zorder>
   <zorder>line</zorder>
   <zorder>line_2</zorder>
-  <zorder>openProjectBtn</zorder>
   <zorder>joinedProjectsList</zorder>
-  <zorder>unjoinedProjectsInput</zorder>
   <zorder>label</zorder>
   <zorder>label_2</zorder>
   <zorder>studentNameLbl</zorder>

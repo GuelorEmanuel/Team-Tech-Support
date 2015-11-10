@@ -36,3 +36,8 @@ void MainWindow::on_signInBtn_clicked() {
       ui->statusLbl->setText("<font color='red'>" +errorMessage+"</font>");
    }
 }
+
+void MainWindow::on_lineEditUserName_returnPressed() {
+    _control.signIn(ui->lineEditUserName->text());
+    // TODO: move all the error handling stuff into the controller so we don't have to duplicate it
+}

@@ -7,62 +7,17 @@
     <x>0</x>
     <y>0</y>
     <width>602</width>
-    <height>391</height>
+    <height>359</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Create Project</string>
   </property>
-  <widget class="Line" name="line">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>30</y>
-     <width>581</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-  </widget>
-  <widget class="QLabel" name="dialogTitleLbl">
-   <property name="geometry">
-    <rect>
-     <x>230</x>
-     <y>10</y>
-     <width>101</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Create Project</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="updateBtn">
-   <property name="geometry">
-    <rect>
-     <x>500</x>
-     <y>360</y>
-     <width>99</width>
-     <height>27</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Update</string>
-   </property>
-  </widget>
   <widget class="QPushButton" name="createBtn">
    <property name="geometry">
     <rect>
-     <x>500</x>
-     <y>360</y>
+     <x>490</x>
+     <y>320</y>
      <width>99</width>
      <height>27</height>
     </rect>
@@ -75,7 +30,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>170</y>
+     <y>130</y>
      <width>171</width>
      <height>20</height>
     </rect>
@@ -87,14 +42,14 @@
     </font>
    </property>
    <property name="text">
-    <string>Project Description:</string>
+    <string>Project description:</string>
    </property>
   </widget>
   <widget class="QPlainTextEdit" name="projectDescriptionLE">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>190</y>
+     <y>150</y>
      <width>581</width>
      <height>161</height>
     </rect>
@@ -104,7 +59,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>60</y>
+     <y>20</y>
      <width>251</width>
      <height>30</height>
     </rect>
@@ -119,7 +74,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Project Name:</string>
+       <string>Project name:</string>
       </property>
      </widget>
     </item>
@@ -132,7 +87,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>120</y>
+     <y>80</y>
      <width>254</width>
      <height>30</height>
     </rect>
@@ -160,7 +115,7 @@
    <property name="geometry">
     <rect>
      <x>320</x>
-     <y>120</y>
+     <y>80</y>
      <width>251</width>
      <height>30</height>
     </rect>
@@ -187,8 +142,8 @@
   <widget class="QPushButton" name="cancelButton">
    <property name="geometry">
     <rect>
-     <x>390</x>
-     <y>360</y>
+     <x>370</x>
+     <y>320</y>
      <width>102</width>
      <height>28</height>
     </rect>
@@ -201,21 +156,21 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>360</y>
+     <y>330</y>
      <width>361</width>
      <height>17</height>
     </rect>
    </property>
    <property name="text">
-    <string>[+]Status:</string>
+    <string/>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
    </property>
   </widget>
   <zorder>layoutWidget</zorder>
   <zorder>layoutWidget</zorder>
   <zorder>layoutWidget</zorder>
-  <zorder>line</zorder>
-  <zorder>dialogTitleLbl</zorder>
-  <zorder>updateBtn</zorder>
   <zorder>createBtn</zorder>
   <zorder>label_6</zorder>
   <zorder>projectDescriptionLE</zorder>

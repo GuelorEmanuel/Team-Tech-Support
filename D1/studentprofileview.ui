@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Profile</string>
   </property>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
@@ -184,7 +184,7 @@
      <x>790</x>
      <y>530</y>
      <width>269</width>
-     <height>29</height>
+     <height>30</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -216,8 +216,8 @@
     <rect>
      <x>440</x>
      <y>20</y>
-     <width>170</width>
-     <height>19</height>
+     <width>173</width>
+     <height>20</height>
     </rect>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -304,7 +304,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>360</x>
@@ -363,16 +363,12 @@
    </layout>
   </widget>
   <zorder>layoutWidget</zorder>
+  <zorder>layoutWidget</zorder>
   <zorder>layoutWidget_2</zorder>
   <zorder>layoutWidget_3</zorder>
   <zorder>layoutWidget</zorder>
   <zorder>layoutWidget</zorder>
   <zorder>layoutWidget</zorder>
-  <zorder>partnerMaxLbl</zorder>
-  <zorder>partnerMinLbl</zorder>
-  <zorder>partnerMinLbl</zorder>
-  <zorder>partnerMaxLbl</zorder>
-  <zorder>youLbl</zorder>
  </widget>
  <resources/>
  <connections/>

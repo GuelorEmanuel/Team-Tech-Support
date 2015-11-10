@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>cuPID</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QLabel" name="statusLbl">
@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>[+]Status:</string>
+     <string/>
     </property>
    </widget>
    <widget class="QWidget" name="layoutWidget">
@@ -33,14 +33,14 @@
       <x>220</x>
       <y>130</y>
       <width>237</width>
-      <height>29</height>
+      <height>30</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="lblUserName">
        <property name="text">
-        <string>USERNAME:</string>
+        <string>Username:</string>
        </property>
       </widget>
      </item>
@@ -52,35 +52,24 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>220</x>
-      <y>180</y>
-      <width>238</width>
-      <height>29</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout_2"/>
-   </widget>
-   <widget class="QWidget" name="layoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>270</x>
-      <y>250</y>
+      <x>250</x>
+      <y>200</y>
       <width>178</width>
-      <height>29</height>
+      <height>30</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
       <widget class="QPushButton" name="signUpBtn">
        <property name="text">
-        <string>SIGN UP</string>
+        <string>Sign Up</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="signInBtn">
        <property name="text">
-        <string>SIGN IN</string>
+        <string>Sign In</string>
        </property>
       </widget>
      </item>
@@ -93,7 +82,7 @@
      <x>0</x>
      <y>0</y>
      <width>771</width>
-     <height>25</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

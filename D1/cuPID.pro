@@ -13,15 +13,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
     student.cpp \
-    guest.cpp \
     admin.cpp \
     profile.cpp \
-    team.cpp \
     project.cpp \
     editprojectview.cpp \
     editprojectcontrol.cpp \
     createprojectcontrol.cpp \
-    editstuprofilecontrol.cpp \
     mainwindow.cpp \
     mainWindowControl.cpp \
     signupoptionview.cpp \
@@ -41,19 +38,17 @@ SOURCES += main.cpp\
     createstudentaccountview.cpp \
     createadminaccountview.cpp \
     studentprofileview.cpp \
-    questions.cpp
+    questions.cpp \
+    editstudentprofilecontrol.cpp
 
 HEADERS  += \
     student.h \
-    guest.h \
     admin.h \
     profile.h \
-    team.h \
     project.h \
     editprojectview.h \
     editprojectcontrol.h \
     createprojectcontrol.h \
-    editstuprofilecontrol.h \
     mainwindow.h \
     mainWindowControl.h \
     signupoptionview.h \
@@ -73,7 +68,8 @@ HEADERS  += \
     createadminaccountview.h \
     adminhomeview.h \
     studentprofileview.h \
-    questions.h
+    questions.h \
+    editstudentprofilecontrol.h
 
 FORMS    += \
     mainwindow.ui \

@@ -15,26 +15,26 @@ void Qualification::setAnswer(int ans)
 
 void Qualification::setMinAnswer(int minAns)
 {
-    _min_answer = minAns;
+    _minAnswer = minAns;
 }
 
 void Qualification::setMaxAnswer(int maxAns)
 {
-    _max_answer = maxAns;
+    _maxAnswer = maxAns;
 }
 
-int Qualification::getAnswer()
+int Qualification::getAnswer() const
 {
     return _answer;
 }
 
-int Qualification::getMinAnswer()
+int Qualification::getMinAnswer() const
 {
-    return _min_answer;
+    return _minAnswer;
 }
 
-int Qualification::getMaxAnswer()
+int Qualification::getMaxAnswer() const
 {
-    return _max_answer;
+    return _maxAnswer;
 }
 

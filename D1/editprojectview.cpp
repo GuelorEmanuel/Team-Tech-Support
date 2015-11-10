@@ -7,13 +7,7 @@
 EditProjectView::EditProjectView(EditProjectControl &control, QWidget *parent)
     : QDialog(parent), _control(control), ui(new Ui::EditProjectView)
 {
-    QPalette palette;
-    palette.setBrush(this->backgroundRole(), QBrush(QImage(":Images/project")));
-
-    this->setPalette(palette);
     ui->setupUi(this);
-    ui->createBtn->setVisible(false);
-    ui->updateBtn->setVisible(true);
 }
 
 EditProjectView::~EditProjectView() {}

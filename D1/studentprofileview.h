@@ -5,7 +5,7 @@
 #include <memory>
 #include <QComboBox>
 
-class EditStuProfileControl;
+class EditStudentProfileControl;
 namespace Ui {
 class StudentProfileView;
 }
@@ -15,7 +15,7 @@ class StudentProfileView : public QDialog
     Q_OBJECT
 
 public:
-    explicit StudentProfileView(EditStuProfileControl &control,QWidget *parent = 0);
+    explicit StudentProfileView(EditStudentProfileControl &control,QWidget *parent = 0);
     ~StudentProfileView();
 
     void addValues(int index, int count);
@@ -29,7 +29,7 @@ private slots:
     void on_exitBtn_clicked();
 
 private:
-    EditStuProfileControl &_control;
+    EditStudentProfileControl &_control;
     std::auto_ptr<Ui::StudentProfileView> ui;
 
     int _action;

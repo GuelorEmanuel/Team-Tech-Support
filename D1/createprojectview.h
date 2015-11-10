@@ -18,9 +18,11 @@ class CreateProjectView : public QDialog
 public:
     explicit CreateProjectView(CreateProjectControl &control, QWidget *parent = 0);
     ~CreateProjectView();
+    void displayError(QString msg);
 
 private slots:
     void on_createBtn_clicked();
+    void on_cancelButton_clicked();
 
 private:
     std::auto_ptr<Ui::CreateProjectView> ui;

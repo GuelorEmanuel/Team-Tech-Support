@@ -1,19 +1,15 @@
 #include "studentprofileview.h"
 #include "ui_studentprofileview.h"
-#include "editstuprofilecontrol.h"
+#include "editstudentprofilecontrol.h"
 #include <QDebug>
 
 /*Student Profile View class displays both profile edition
  * AND profile creation to student.
  */
-StudentProfileView::StudentProfileView(EditStuProfileControl &control,QWidget *parent) :
+StudentProfileView::StudentProfileView(EditStudentProfileControl &control,QWidget *parent) :
    QDialog(parent), _control(control), ui(new Ui::StudentProfileView),
    _sectionOne(0),_sectionTwo(1),_sectionThree(2),_sectionFour(3), _action(1)
 {
-    QPalette palette;
-    palette.setBrush(this->backgroundRole(), QBrush(QImage(":Images/profile")));
-
-    this->setPalette(palette);
     ui->setupUi(this);
     ui->questionOneLbl->setWordWrap(true);
     ui->questionTwoLbl->setWordWrap(true);

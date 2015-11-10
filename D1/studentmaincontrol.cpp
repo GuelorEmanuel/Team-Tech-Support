@@ -1,7 +1,7 @@
 #include "studentmaincontrol.h"
 #include "database.h"
 #include "student.h"
-#include "editstuprofilecontrol.h"
+#include "editstudentprofilecontrol.h"
 #include "studentprojectcontrol.h"
 
 
@@ -26,7 +26,7 @@ void StudentMainControl::logout() {
  * Purpose: open control class for profile edition
  */
 void StudentMainControl::editProfile() {
-    EditStuProfileControl editProfileControl(_student.getId(), 1);
+    EditStudentProfileControl editProfileControl(_student.getId(), 1);
     _view.show();
 
 }

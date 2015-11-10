@@ -10,14 +10,14 @@ public:
     void setMinAnswer(int minAns);
     void setMaxAnswer(int maxAns);
 
-    int         getAnswer();
-    int         getMinAnswer();
-    int         getMaxAnswer();
+    int getAnswer() const;
+    int getMinAnswer() const;
+    int getMaxAnswer() const;
 
 private:
     int _answer;
-    int _min_answer;
-    int _max_answer;
+    int _minAnswer;
+    int _maxAnswer;
 };
 
 #endif // QUALIFICATION_H
