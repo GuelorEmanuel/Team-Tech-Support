@@ -77,11 +77,18 @@ int Project::registerStudent(Student& student) {
     qry.bindValue(":pid", _id);
     qry.bindValue(":sid", student.getId());
 
-    if(qry.exec()) {
+#ifndef NDEBUG
+    qDebug() << "The pid value is: " << _id;
+    qDebug() << "The sid value is: " << student.getId();
+    qDebug() << "Executing the query...";
+#endif
+    if(!qry.exec()) {
         qDebug() << qry.lastError();
         return 0;
     } else {
+#ifndef NDEBUG
         qDebug() << "Student just joined project.";
+#endif
         return 1;
     }
     return 0;
@@ -110,9 +117,10 @@ void Project::create() {
     if(!qry.exec()) {
         qDebug() << qry.lastError();
     } else {
+#ifndef NDEBUG
         qDebug() << "Project is added";
+#endif
     }
-
 }
 
 /*Function: void Project::edit()
@@ -136,7 +144,9 @@ void Project::edit() {
     if(!qry.exec()) {
         qDebug() << qry.lastError();
     } else {
+#ifndef NDEBUG
         qDebug() << "Project is updated";
+#endif
     }
 }
 
