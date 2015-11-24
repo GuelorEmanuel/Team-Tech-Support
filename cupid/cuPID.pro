@@ -38,7 +38,6 @@ SOURCES += \
     StudentFeatures/studenthomewindow.cpp \
     StudentFeatures/joinprojectcontrol.cpp \
     StudentFeatures/joinprojectwindow.cpp \
-    AdminFeatures/adminmanager.cpp \
     Database/sqlitedatabase.cpp \
     Database/sqlitejoinedprojectrepository.cpp \
     Database/sqliteprofilerepository.cpp \
@@ -50,8 +49,17 @@ SOURCES += \
     Storage/realprofile.cpp \
     Storage/realproject.cpp \
     Storage/realstudent.cpp \
-    StudentFeatures/studentmanager.cpp \
-    UserManagement/usermanager.cpp
+    AlgorithmFeatures/algorithm.cpp \
+    AlgorithmFeatures/computeteamscontrol.cpp \
+    AlgorithmFeatures/team.cpp \
+    Storage/storagemanager.cpp \
+    StudentFeatures/createstudentaccountview.cpp \
+    AdminFeatures/adminfeaturescommunication.cpp \
+    AlgorithmFeatures/algorithmfeaturescommunication.cpp \
+    AlgorithmFeatures/computeteamswindow.cpp \
+    StudentFeatures/studentfeaturescommunication.cpp \
+    UserManagement/userfeaturescommunication.cpp \
+    AlgorithmFeatures/algorithmresults.cpp
 
 HEADERS  += \
     AdminFeatures/adminhomecontrol.h \
@@ -81,7 +89,6 @@ HEADERS  += \
     StudentFeatures/studenthomewindow.h \
     StudentFeatures/joinprojectcontrol.h \
     StudentFeatures/joinprojectwindow.h \
-    AdminFeatures/adminmanager.h \
     Database/sqlitedatabase.h \
     Database/sqlitejoinedprojectrepository.h \
     Database/sqliteprofilerepository.h \
@@ -93,8 +100,16 @@ HEADERS  += \
     Storage/realprofile.h \
     Storage/realproject.h \
     Storage/realstudent.h \
-    StudentFeatures/studentmanager.h \
-    UserManagement/usermanager.h
+    StudentFeatures/studentfeaturescommunication.h \
+    AdminFeatures/adminfeaturescommunication.h \
+    UserManagement/usermanagementcommunication.h \
+    AlgorithmFeatures/algorithm.h \
+    AlgorithmFeatures/computeteamscontrol.h \
+    AlgorithmFeatures/team.h \
+    StudentFeatures/createstudentaccountview.h \
+    AlgorithmFeatures/algorithmfeaturescommunication.h \
+    AlgorithmFeatures/computeteamswindow.h \
+    AlgorithmFeatures/algorithmresults.h
 
 FORMS    += \
     UserManagement/accounttypeoption.ui \
@@ -105,7 +120,8 @@ FORMS    += \
     AdminFeatures/manageprojectwindow.ui \
     StudentFeatures/manageprofilewindow.ui \
     StudentFeatures/studenthomewindow.ui \
-    StudentFeatures/joinprojectwindow.ui
+    StudentFeatures/joinprojectwindow.ui \
+    AlgorithmFeatures/computeteamswindow.ui
 
 RESOURCES += \
     Resources.qrc

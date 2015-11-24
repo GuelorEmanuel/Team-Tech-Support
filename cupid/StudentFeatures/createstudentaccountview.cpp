@@ -1,6 +1,6 @@
 #include "createstudentaccountview.h"
 #include "ui_createstudentaccountview.h"
-#include "createstudentaccountcontrol.h"
+#include "UserManagement/createstudentaccountcontrol.h"
 
 CreateStudentAccountView::CreateStudentAccountView(
         CreateStudentAccountControl &control, QWidget *parent) :
@@ -27,17 +27,14 @@ void CreateStudentAccountView::on_submitBtn_clicked()
     int stat = 1;
 
     if(fname.isEmpty()){
-        qDebug() << "First name is empty";
         ui->statusLbl->setText("<font color='red'>Please fill in your first name</font>");
         stat = 0;
     }
     if(lname.isEmpty()){
-        qDebug() << "Last name is empty";
         ui->statusLbl->setText("<font color='red'>Please fill in your last name</font>");
          stat = 0;
     }
     if(id.isEmpty()){
-        qDebug() << "ID is empty";
         ui->statusLbl->setText("<font color='red'>Please fill in your ID</font>");
          stat = 0;
     }
