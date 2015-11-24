@@ -37,7 +37,21 @@ SOURCES += \
     StudentFeatures/manageprofilewindow.cpp \
     StudentFeatures/studenthomewindow.cpp \
     StudentFeatures/joinprojectcontrol.cpp \
-    StudentFeatures/joinprojectwindow.cpp
+    StudentFeatures/joinprojectwindow.cpp \
+    AdminFeatures/adminmanager.cpp \
+    Database/sqlitedatabase.cpp \
+    Database/sqlitejoinedprojectrepository.cpp \
+    Database/sqliteprofilerepository.cpp \
+    Database/sqliteprojectrepository.cpp \
+    Database/sqliteuserrepository.cpp \
+    Storage/proxyprofile.cpp \
+    Storage/proxyproject.cpp \
+    Storage/proxystudent.cpp \
+    Storage/realprofile.cpp \
+    Storage/realproject.cpp \
+    Storage/realstudent.cpp \
+    StudentFeatures/studentmanager.cpp \
+    UserManagement/usermanager.cpp
 
 HEADERS  += \
     AdminFeatures/adminhomecontrol.h \
@@ -66,7 +80,21 @@ HEADERS  += \
     StudentFeatures/manageprofilewindow.h \
     StudentFeatures/studenthomewindow.h \
     StudentFeatures/joinprojectcontrol.h \
-    StudentFeatures/joinprojectwindow.h
+    StudentFeatures/joinprojectwindow.h \
+    AdminFeatures/adminmanager.h \
+    Database/sqlitedatabase.h \
+    Database/sqlitejoinedprojectrepository.h \
+    Database/sqliteprofilerepository.h \
+    Database/sqliteprojectrepository.h \
+    Database/sqliteuserrepository.h \
+    Storage/proxyprofile.h \
+    Storage/proxyproject.h \
+    Storage/proxystudent.h \
+    Storage/realprofile.h \
+    Storage/realproject.h \
+    Storage/realstudent.h \
+    StudentFeatures/studentmanager.h \
+    UserManagement/usermanager.h
 
 FORMS    += \
     UserManagement/accounttypeoption.ui \
