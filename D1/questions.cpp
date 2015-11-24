@@ -19,7 +19,6 @@ void Questions::loadQuestions(){
     QFile textFile(":Images/listquestions");
 
     if(!textFile.open(QFile::ReadOnly|QFile::Text)){
-        qDebug()<<"Could not open the File for read";
         return;
     }
     QTextStream textStream(&textFile);
@@ -27,7 +26,6 @@ void Questions::loadQuestions(){
     {
         QString line = textStream.readLine();
         if (line.isNull()) {
-            qDebug()<<"Line is Null";
             break;
         }
         else{
@@ -36,14 +34,10 @@ void Questions::loadQuestions(){
             //temp.append("Hello");
         }
     }
-     qDebug()<<"questionList: "<< questionsList.length()<<"count: "<<count;
 }
 
 
 QList<QString> Questions::getQuestions(){
     loadQuestions();
-     qDebug() <<"First question added : " <<questionsList.at(0);
-     qDebug() <<"Second question added: " <<questionsList.at(1);
-
     return questionsList;
 }

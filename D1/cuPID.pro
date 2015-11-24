@@ -11,78 +11,73 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = cuPID
 TEMPLATE = app
 
-SOURCES += main.cpp\
-    student.cpp \
-    admin.cpp \
-    profile.cpp \
-    project.cpp \
-    editprojectview.cpp \
-    editprojectcontrol.cpp \
-    createprojectcontrol.cpp \
-    mainwindow.cpp \
-    mainWindowControl.cpp \
-    signupoptionview.cpp \
-    adminhomeview.cpp \
-    createprojectview.cpp \
-    qualification.cpp \
-    user.cpp \
-    signupmaincontrol.cpp \
-    adminmaincontrol.cpp \
-    studentprojectview.cpp \
-    studenthomeview.cpp \
-    studentmaincontrol.cpp \
-    studentprojectcontrol.cpp \
-    database.cpp \
-    createadminaccountcontrol.cpp \
-    createstudentaccountcontrol.cpp \
-    createstudentaccountview.cpp \
-    createadminaccountview.cpp \
-    studentprofileview.cpp \
+SOURCES += \
+    AdminFeatures/adminhomecontrol.cpp \
+    AdminFeatures/manageprojectcontrol.cpp \
+    Database/database.cpp \
+    Storage/admin.cpp \
+    Storage/profile.cpp \
+    Storage/project.cpp \
+    Storage/qualification.cpp \
+    Storage/student.cpp \
+    Storage/user.cpp \
+    StudentFeatures/studenthomecontrol.cpp \
+    UserManagement/createadminaccountcontrol.cpp \
+    UserManagement/createstudentaccountcontrol.cpp \
     questions.cpp \
-    editstudentprofilecontrol.cpp
+    UserManagement/loginwindow.cpp \
+    UserManagement/logincontrol.cpp \
+    cupidprogram.cpp \
+    UserManagement/accounttypeoption.cpp \
+    UserManagement/createadminaccountwindow.cpp \
+    UserManagement/createstudentaccountwindow.cpp \
+    AdminFeatures/adminhomewindow.cpp \
+    AdminFeatures/manageprojectwindow.cpp \
+    StudentFeatures/manageprofilecontrol.cpp \
+    StudentFeatures/manageprofilewindow.cpp \
+    StudentFeatures/studenthomewindow.cpp \
+    StudentFeatures/joinprojectcontrol.cpp \
+    StudentFeatures/joinprojectwindow.cpp
 
 HEADERS  += \
-    student.h \
-    admin.h \
-    profile.h \
-    project.h \
-    editprojectview.h \
-    editprojectcontrol.h \
-    createprojectcontrol.h \
-    mainwindow.h \
-    mainWindowControl.h \
-    signupoptionview.h \
-    createprojectview.h \
-    qualification.h \
-    user.h \
-    signupmaincontrol.h \
-    adminmaincontrol.h \
-    studentprojectview.h \
-    studenthomeview.h \
-    studentmaincontrol.h \
-    studentprojectcontrol.h \
-    database.h \
-    createadminaccountcontrol.h \
-    createstudentaccountcontrol.h \
-    createstudentaccountview.h \
-    createadminaccountview.h \
-    adminhomeview.h \
-    studentprofileview.h \
+    AdminFeatures/adminhomecontrol.h \
+    AdminFeatures/manageprojectcontrol.h \
+    Database/database.h \    
+    Storage/admin.h \
+    Storage/profile.h \
+    Storage/project.h \
+    Storage/qualification.h \
+    Storage/storagemanager.h \
+    Storage/student.h \
+    Storage/user.h \
+    StudentFeatures/studenthomecontrol.h \
+    UserManagement/adminsignupview.h \
+    UserManagement/createadminaccountcontrol.h \
+    UserManagement/createstudentaccountcontrol.h \
     questions.h \
-    editstudentprofilecontrol.h
+    UserManagement/accounttypeoption.h \
+    UserManagement/loginwindow.h \
+    UserManagement/logincontrol.h \
+    UserManagement/createstudentaccountwindow.h \
+    UserManagement/createadminaccountwindow.h \
+    AdminFeatures/adminhomewindow.h \
+    AdminFeatures/manageprojectwindow.h \
+    StudentFeatures/manageprofilecontrol.h \
+    StudentFeatures/manageprofilewindow.h \
+    StudentFeatures/studenthomewindow.h \
+    StudentFeatures/joinprojectcontrol.h \
+    StudentFeatures/joinprojectwindow.h
 
 FORMS    += \
-    mainwindow.ui \
-    signupoptionview.ui \
-    adminhomeview.ui \
-    createprojectview.ui \
-    editprojectview.ui \
-    studentprojectview.ui \
-    studenthomeview.ui \
-    createstudentaccountview.ui \
-    createadminaccountview.ui \
-    createprojectview.ui \
-    studentprofileview.ui
+    UserManagement/accounttypeoption.ui \
+    UserManagement/loginwindow.ui \
+    UserManagement/createadminaccountwindow.ui \
+    UserManagement/createstudentaccountwindow.ui \
+    AdminFeatures/adminhomewindow.ui \
+    AdminFeatures/manageprojectwindow.ui \
+    StudentFeatures/manageprofilewindow.ui \
+    StudentFeatures/studenthomewindow.ui \
+    StudentFeatures/joinprojectwindow.ui
 
 RESOURCES += \
     Resources.qrc
