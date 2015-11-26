@@ -11,16 +11,18 @@ class Project;
 class Student : public User
 {
 public:
+
+    virtual ~Student() = 0;
+    virtual QString getStudentId() = 0;
+    virtual void setStudentId(QString value) = 0;
+    virtual Profile getProfile() = 0;
+    virtual void setProfile(Profile* value) = 0;
+    virtual std::vector<Project*> getProjects() = 0;
+    virtual void joinProject(Project& project) = 0;
+    virtual void createStudentUser() = 0;
+
+protected:
     Student();
-    ~Student();
-    QString getStudentId();
-    void setStudentId(QString value);
-    Profile getProfile();
-    void setProfile(Profile* value);
-    std::vector<Project*> getProjects();
-    void joinProject(Project& project);
-    void createStudentUser();
-private:
     QString _studentId;
     std::auto_ptr<Profile> _profile;
     std::vector<Project*> _projects;

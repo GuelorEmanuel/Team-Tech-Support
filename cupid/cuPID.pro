@@ -53,7 +53,6 @@ SOURCES += \
     AlgorithmFeatures/computeteamscontrol.cpp \
     AlgorithmFeatures/team.cpp \
     Storage/storagemanager.cpp \
-    StudentFeatures/createstudentaccountview.cpp \
     AdminFeatures/adminfeaturescommunication.cpp \
     AlgorithmFeatures/algorithmfeaturescommunication.cpp \
     AlgorithmFeatures/computeteamswindow.cpp \
@@ -106,7 +105,6 @@ HEADERS  += \
     AlgorithmFeatures/algorithm.h \
     AlgorithmFeatures/computeteamscontrol.h \
     AlgorithmFeatures/team.h \
-    StudentFeatures/createstudentaccountview.h \
     AlgorithmFeatures/algorithmfeaturescommunication.h \
     AlgorithmFeatures/computeteamswindow.h \
     AlgorithmFeatures/algorithmresults.h

@@ -31,7 +31,7 @@ private:
     QString _description;
     int _minTeamSize;
     int _maxTeamSize;
-    std::vector<Student> _students;
+    //std::vector<Student> _students;
 };
 
 #endif // PROJECT_H

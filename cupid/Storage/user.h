@@ -5,15 +5,15 @@
 class User
 {
 public:
-    User();
     ~User();
-    QString getUserName();
+    virtual QString getUserName();
     void setUserName(QString value);
     QString getDisplayName();
     void setDisplayName(QString value);
     int getId();
     void setId(int value);
 protected:
+    User();
     int _id;
     QString _userName;
     QString _displayName;

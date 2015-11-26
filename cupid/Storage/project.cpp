@@ -99,9 +99,9 @@ int Project::registerStudent(Student& student) {
     return 0;
 }
 
-std::vector<Student> Project::getStudents() {
+//std::vector<Student> Project::getStudents() {
     // Connect to database and return a list of students in the project
-}
+//}
 
 /*Function: void Project::create()
  * Purpose: create new project and add it to db
