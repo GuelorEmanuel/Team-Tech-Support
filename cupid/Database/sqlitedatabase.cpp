@@ -77,7 +77,7 @@ int SqliteDatabase::editProject(Project& project)
 int SqliteDatabase::getProject(Project& project)
 {
     int stat = 0;
-    stat = _projectRepo.editProject(project);
+    stat = _projectRepo.getProject(project);
     return stat;
 }
 

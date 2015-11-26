@@ -57,7 +57,7 @@ int SqliteProjectRepository::editProject(Project& project)
         qDebug() << qry.lastError();
         stat = 1;
     } else {
-        qDebug() << "Project is update. Project's ID is " + project.getId();
+        qDebug() << QString("Project is update. Project's ID is %1").arg(project.getId());
     }
     return 0;
 }
@@ -82,7 +82,7 @@ int SqliteProjectRepository::getProject(Project& project)
         proj.setMinTeamSize(qry.value(2).toInt());
         proj.setMaxTeamSize(qry.value(3).toInt());
         proj.setDescription(qry.value(4).toString());
-        qDebug() << "Project retrieved. Project's name is "+proj.getName();
+        qDebug() << QString("Project retrieved. Project's name is %1").arg(proj.getName());
     }
     return stat;
 }
