@@ -1,6 +1,6 @@
 #ifndef COMPUTETEAMSCONTROL_H
 #define COMPUTETEAMSCONTROL_H
-
+#include <QString>
 class ComputeTeamsControl
 {
 public:

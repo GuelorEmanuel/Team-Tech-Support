@@ -18,7 +18,7 @@ LoginWindow::LoginWindow(LoginControl& control, QWidget *parent) :
     this->setPalette(palette);
     ui->setupUi(this);
 
-    Admin admin, admin1;
+   /* Admin admin, admin1;
     Student student, student1;
     Project project, project1;
     Profile profile, profile1;
@@ -88,9 +88,9 @@ LoginWindow::LoginWindow(LoginControl& control, QWidget *parent) :
 
     std::vector<Project*>::iterator citer;
 
-    for(citer = projects.begin(); citer < projects.end(); citer++) {
-        qDebug() << QString("Project %1 %2").arg(citer->getId()).arg(citer->getName());
-    }
+    //for(citer = projects.begin(); citer < projects.end(); citer++) {
+      //  qDebug() << QString("Project %1 %2").arg(citer->getId()).arg(citer->getName());
+    }*/
     //qDebug() << QString("Project %1 %2").arg(projects1[0]->getId()).arg(projects1[0]->getName());
     //database.getStudentsInProject(project1, students);
 
