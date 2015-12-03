@@ -7,8 +7,6 @@ SqliteUserRepository::SqliteUserRepository()
 int SqliteUserRepository::createStudent(Student& student)
 {
     int stat = 0;
-
-    Student& stu = student;
     QSqlQuery qry(Database::getInstance().db());
 
     QString qstudent = "INSERT INTO user VALUES(:id, :u, :dn, :sid)";
@@ -19,20 +17,21 @@ int SqliteUserRepository::createStudent(Student& student)
         return stat = 1;
     } else {
         qry.next();
-        stu.setId(qry.value(0).toInt()+1);
+        student.setId(qry.value(0).toInt()+1);
     }
 
     qry.prepare(qstudent);
-    qry.bindValue(":id", stu.getId());
-    qry.bindValue(":u", stu.getUserName());
-    qry.bindValue(":dn", stu.getDisplayName());
-    qry.bindValue(":sid", stu.getId());
+    qry.bindValue(":id", student.getId());
+    qry.bindValue(":u", student.getUserName());
+    qry.bindValue(":dn", student.getDisplayName());
+    qry.bindValue(":sid", student.getStudentId());
+
 
     if(!qry.exec()) {
         qDebug() << qry.lastError();
         return stat = 1;
     } else {
-        qDebug() << "Student added. Student's ID is " + stu.getId();
+        qDebug() << QString("Student added. Student's ID is %1").arg(student.getId());
     }
     return stat;
 }
@@ -40,7 +39,6 @@ int SqliteUserRepository::createStudent(Student& student)
 int SqliteUserRepository::createAdmin(Admin& admin)
 {
     int stat = 0;
-    //int id = 0;
     Admin& adm = admin;
     QSqlQuery qry(Database::getInstance().db());
 
@@ -65,7 +63,7 @@ int SqliteUserRepository::createAdmin(Admin& admin)
         qDebug() << qry.lastError();
         return stat = 1;
     } else {
-        qDebug() << "Admin added. Admin's ID is " + adm.getId();
+        qDebug() << QString("Admin added. Admin's ID is %1").arg(adm.getId());
     }
     return stat;
 }
@@ -89,7 +87,7 @@ int SqliteUserRepository::getStudent(Student& student)
         stu.setUserName(qry.value(1).toString());
         stu.setDisplayName(qry.value(2).toString());
         stu.setStudentId(qry.value(3).toString());
-        qDebug() << "Student retrieved. Student's name is" + stu.getDisplayName();
+        qDebug() << QString("Student retrieved. Student's name is %1").arg(stu.getStudentId());
     }
 
     return stat;
@@ -113,8 +111,27 @@ int SqliteUserRepository::getAdmin(Admin& admin)
         qry.next();
         adm.setUserName(qry.value(1).toString());
         adm.setDisplayName(qry.value(2).toString());
-        qDebug() << "Admin retrieved. Student's name is" + adm.getDisplayName();
+        qDebug() << QString("Admin retrieved. Admint's name is %1").arg(adm.getDisplayName());
     }
 
     return stat;
+}
+
+int SqliteUserRepository::getUser(QString username, int& id)
+{
+    QSqlQuery qry(Database::getInstance().db());
+    QString quser = "SELECT id FROM user WHERE username = :u";
+    id = -1;
+    qry.prepare(quser);
+    qry.bindValue(":u", username);
+
+    if(!qry.exec()) {
+        qDebug() << qry.lastError();
+        return 1;
+    } else {
+        while(qry.next())
+            id = qry.value(0).toInt();
+    }
+
+    return 0;
 }

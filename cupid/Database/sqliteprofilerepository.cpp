@@ -46,7 +46,7 @@ int SqliteProfileRepository::createProfile(Profile& profile)
        qDebug() << qry.lastError();
        return stat = 1;
    } else {
-       qDebug()  << QString("Profile is added. Profile's ID is").arg(prof.getId());
+       qDebug()  << QString("Profile is added. Profile's ID is %1").arg(prof.getId());
    }
     return stat;
 }
@@ -83,11 +83,22 @@ int SqliteProfileRepository::getProfile(Profile& profile)
     int stat = 0;
     Profile& prof = profile;
     QSqlQuery qry(Database::getInstance().db());
-
+    int track = 1;
     QString qprof = "SELECT * FROM profile WHERE id = :id";
 
     qry.prepare(qprof);
     qry.bindValue(":id", prof.getId());
 
+    if(!qry.exec()) {
+        qDebug() << qry.lastError();
+    } else {
+        while(qry.next()){
+            profile.setStuId(qry.value(1).toInt());
+            for(int i = 0; i < 28; i++) {
+                profile.addQualification(qry.value(++track).toInt(), qry.value(++track).toInt(), qry.value(++track).toInt());
+
+            }
+        }
+    }
     return stat;
 }

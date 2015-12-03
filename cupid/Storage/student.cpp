@@ -8,11 +8,11 @@ Student::~Student() {
 
 QString Student::getStudentId()
 {
-    //return _studentId;
+    return _studentId;
 }
 
 void Student::setStudentId(QString value) {
-    //_studentId = value;
+    _studentId = value;
 }
 
 Profile Student::getProfile() {

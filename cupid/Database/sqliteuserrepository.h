@@ -13,6 +13,7 @@ public:
     int createAdmin(Admin& admin);
     int getStudent(Student& student);
     int getAdmin(Admin& admin);
+    int getUser(QString username, int& id);
 };
 
 #endif // SQLITEUSERREPOSITORY_H
