@@ -81,6 +81,25 @@ int SqliteDatabase::getProject(Project& project)
     return stat;
 }
 
+int SqliteDatabase::getProjectList(std::vector<Project> projects)
+{
+   return _projectRepo.listProjects(projects);
+}
+
+int SqliteDatabase::getProjectIDsList(std::vector<int> projects)
+{
+   return _projectRepo.listProjectsIDs(projects);
+}
+
+int SqliteDatabase::getProjectNamesList(std::vector<QString> projects)
+{
+   return _projectRepo.listProjectsNames(projects);
+}
+
+int SqliteDatabase::getFullProject(std::vector<Project> projects)
+{
+   return _projectRepo.listFullProjects(projects);
+}
 /*Students in a project part*/
 int SqliteDatabase::addStudentToProject(int student_id, int project_id)
 {
