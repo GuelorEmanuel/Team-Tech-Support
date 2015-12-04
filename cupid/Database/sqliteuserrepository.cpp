@@ -1,38 +1,36 @@
 #include "sqliteuserrepository.h"
+#include "Storage/admin.h"
+#include "Storage/student.h"
+#include <QSqlDatabase>
+#include <QSqlQuery>
+#include <QDebug>
+#include <memory>
 
-SqliteUserRepository::SqliteUserRepository()
+SqliteUserRepository::SqliteUserRepository(QSqlDatabase& db)
+    : _db(db)
 {
 }
 
-int SqliteUserRepository::createStudent(Student& student)
+int SqliteUserRepository::createStudent(Student* student)
 {
     int stat = 0;
-    QSqlQuery qry(Database::getInstance().db());
-
+    QSqlQuery qry(_db);
     QString qstudent = "INSERT INTO user VALUES(:id, :u, :dn, :sid)";
-    QString qid = "SELECT MAX(id) FROM user";
-
-    if(!qry.exec(qid)) {
-        qDebug() << qry.lastError();
-        return stat = 1;
-    } else {
-        qry.next();
-        student.setId(qry.value(0).toInt()+1);
-    }
 
     qry.prepare(qstudent);
-    qry.bindValue(":id", student.getId());
-    qry.bindValue(":u", student.getUserName());
-    qry.bindValue(":dn", student.getDisplayName());
-    qry.bindValue(":sid", student.getStudentId());
-
+    qry.bindValue(":id", student->getId());
+    qry.bindValue(":u", student->getUserName());
+    qry.bindValue(":dn", student->getDisplayName());
+    qry.bindValue(":sid", student->getStudentId());
 
     if(!qry.exec()) {
         qDebug() << qry.lastError();
         return stat = 1;
     } else {
-        qDebug() << QString("Student added. Student's ID is %1").arg(student.getId());
+        qDebug() << QString("Student added. Student's ID is %1").arg(
+                        student->getId());
     }
+
     return stat;
 }
 

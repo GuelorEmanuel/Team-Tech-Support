@@ -2,11 +2,21 @@
 
 SqliteDatabase::SqliteDatabase()
 {
+    _db = QSqlDatabase::addDatabase("QSQLITE");
+    _db.setDatabaseName("./mydb.sqlite");
+    _db.open(); // ignore return code
 }
 
+SqliteDatabase* SqliteDatabase::instance() {
+    if (_instance == NULL) {
+        _instance = new SqliteDatabase();
+    }
+
+    return _instance;
+}
 
 /* User Part */
-int SqliteDatabase::createStudent(Student& student)
+int SqliteDatabase::createStudent(Student* student)
 {
     int stat = 0;
     stat = _userRepo.createStudent(student);

@@ -9,14 +9,15 @@
 class JoinProjectControl
 {
 public:
-    JoinProjectControl(int projectId, Student& stu);
+    JoinProjectControl(std::shared_ptr<Project> project,
+                       std::shared_ptr<Student> student);
     void leaveProject();
     int joinProject();
-private:
-     JoinProjectWindow _view;
+private:          
+    JoinProjectWindow _view;
+     std::shared_ptr<Project> _project;
+     std::shared_ptr<Student> _student;     
      void loadProjectSettings(int id);
-     std::auto_ptr<Project> _project;
-     Student& _student;
 };
 
 #endif // STUDENTPROJECTCONTROL_H
