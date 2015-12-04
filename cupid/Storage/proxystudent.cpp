@@ -6,7 +6,6 @@ ProxyStudent::~ProxyStudent(){
 
 }
 
-<<<<<<< HEAD
 QString ProxyStudent::getUserName() {
     return _userName;
 }
@@ -23,13 +22,6 @@ void ProxyStudent::setDisplayName(QString value) {
     _displayName = value;
 }
 
-int ProxyStudent::getId() {
-    return _id;
-}
-
-void ProxyStudent::setId(int value) {
-    _id = value;
-}
 
 
 std::auto_ptr<RealStudent> ProxyStudent::getStudent() {
@@ -39,8 +31,6 @@ std::auto_ptr<RealStudent> ProxyStudent::getStudent() {
     return _realStudent;
 }
 
-=======
->>>>>>> 21ce1c8168b8f17cbc00dd6ebeadd66b45618762
 QString ProxyStudent::getStudentId() {
     return _studentId;
 }
@@ -60,7 +50,7 @@ void ProxyStudent::setProfile(Profile* value) {
 /*Function: void Student::createStudentUser
  * Purpose: add new student user to db
  */
-void ProxyStudent::createStudentUser() {
+int ProxyStudent::createStudentUser() {
 
 }
 
@@ -72,7 +62,7 @@ std::vector<Project*> ProxyStudent::getProjects() {
 
 }
 
-void ProxyStudent::joinProject(Project& project) {
+int ProxyStudent::joinProject(Project& project) {
     // Connect to database and add the student to the project
 }
 

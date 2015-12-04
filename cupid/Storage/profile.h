@@ -27,26 +27,11 @@ public:
 
 protected:
     Profile();
-<<<<<<< HEAD
-=======
-    int getId();
-    void setId(int value);
-    void setStuId(int value);
-    int getStuId();
-    std::vector<Qualification> getQualifications();
-    void addQualification(int, int, int);
-    void addQualification(Qualification&);
-    int getAnswer(int index);
-    int getMinAnswer(int index);
-    int getMaxAnswer(int index);
-    void loadQualification();
-    void editQualification(int num, int ans, int amin, int amax);
-    //void editQualification(int num, Qualification&);
-    void createProfile();
-    void editProfile();
-    ~Profile();
+    int _id;
+    int _stuId;
+    std::vector<Qualification> _qualifications;
 
-    enum
+    /*enum
     {
         Q_DESIRED_GRADE = 0,
         Q_PROCRASTINATION,
@@ -76,12 +61,8 @@ protected:
         Q_SKILL_RESEARCH,
         Q_EFFICIENCY,
         Q_WORKLOAD
-    };
-private:
->>>>>>> 21ce1c8168b8f17cbc00dd6ebeadd66b45618762
-    int _id;
-    int _stuId;
-    std::vector<Qualification> _qualifications;
+    };*/
+
 };
 
 #endif // PROFILE_H
