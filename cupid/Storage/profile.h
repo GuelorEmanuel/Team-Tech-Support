@@ -27,7 +27,9 @@ public:
 
 protected:
     Profile();
-
+    int _id;
+    int _stuId;
+    std::vector<Qualification> _qualifications;
 };
 
 #endif // PROFILE_H
