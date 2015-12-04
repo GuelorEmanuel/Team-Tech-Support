@@ -1,8 +1,9 @@
 #include "realproject.h"
+using namespace storage;
 
 RealProject::RealProject(int id, QString name, QString description,
              int minTeamSize, int maxTeamSize,
-             std::vector<Student&>& students)
+             StudentList students)
     : _id(id), _name(name), _description(description),
       _minTeamSize(minTeamSize), _maxTeamSize(maxTeamSize),
       _students(students) {
@@ -51,15 +52,15 @@ void RealProject::setDescription(QString value) {
     _description = value;
 }
 
-std::vector<Student&> RealProject::getStudents() {
+StudentList RealProject::getStudents() {
     return _students;
 }
 
-void RealProject::setStudents(std::vector<Student&>& students) {
+void RealProject::setStudents(StudentList students) {
     _students = students;
 }
 
-void RealProject::registerStudent(Student& student) {
-    student.joinProject(*this);
-    _students.push_back(student);
+void RealProject::registerStudent(StudentPtr student) {
+    //student.joinProject(*this);
+    //_students.push_back(student);
 }

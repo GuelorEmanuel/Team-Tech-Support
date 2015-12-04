@@ -2,6 +2,8 @@
 
 Admin::Admin() : User() {}
 
+Admin::Admin(int id) : User(id) {}
+
 Admin::~Admin() {}
 
 /* Function: void Admin::create()

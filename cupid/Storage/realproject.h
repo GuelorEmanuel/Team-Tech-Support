@@ -1,6 +1,7 @@
 #ifndef REALPROJECT_H
 #define REALPROJECT_H
 
+#include "storage.h"
 #include "project.h"
 #include "student.h"
 #include <vector>
@@ -12,7 +13,7 @@ class RealProject : public Project
 public:
     explicit RealProject(int id, QString name, QString description,
                  int minTeamSize, int maxTeamSize,
-                 std::vector<Student&>& students);
+                 storage::StudentList students);
     virtual ~RealProject();
     virtual int getId() const;
     virtual void setId(int value);
@@ -24,9 +25,9 @@ public:
     virtual void setName(QString value);
     virtual QString getDescription() const;
     virtual void setDescription(QString value);
-    virtual std::vector<Student&>& getStudents();
-    virtual void setStudents(std::vector<Student&>& students);
-   // virtual int registerStudent(Student& student);
+    virtual storage::StudentList getStudents();
+    virtual void setStudents(storage::StudentList students);
+    virtual void registerStudent(storage::StudentPtr student);
 
 private:
     int _id;
@@ -34,7 +35,7 @@ private:
     QString _description;
     int _minTeamSize;
     int _maxTeamSize;
-    std::shared_ptr<std::vector<Student&> > _students;
+    storage::StudentList _students;
 };
 
 #endif // REALPROJECT_H

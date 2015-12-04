@@ -2,6 +2,7 @@
 #include "sqlitedatabase.h"
 
 Database* Database::instance() {
+    static Database* _instance = NULL;
     if (_instance == NULL) {
         // If you want to switch to a different database
         // implementation, this is the only line
@@ -13,3 +14,5 @@ Database* Database::instance() {
 }
 
 Database::~Database() {}
+
+Database::Database() {}

@@ -5,29 +5,24 @@
 #include <memory>
 #include <vector>
 #include "user.h"
-#include "profile.h"
+#include "storagemanager.h"
+class Profile;
 class Project;
 
 class Student : public User
 {
 public:
     Student();
+    Student(int id);
     virtual ~Student();
-    virtual QString getStudentId();
-    virtual void setStudentId(QString value);
-    virtual Profile getProfile();
-    virtual void setProfile(Profile* value) ;
-    virtual std::vector<Project*> getProjects();
-    virtual void joinProject(Project& project);
-    virtual void createStudentUser();
+    virtual QString getStudentId() = 0;
+    virtual void setStudentId(QString value) = 0;
+    virtual storage::ProfilePtr getProfile() = 0;
+    virtual void setProfile(storage::ProfilePtr value) = 0;
+    virtual storage::ProjectList getProjects() = 0;
+    virtual void joinProject(storage::ProjectPtr project) = 0;
     virtual bool operator<(const Student& rhs) const = 0;
     virtual bool operator==(const Student& rhs) const = 0;
-
-protected:
-
-    QString _studentId;
-    std::auto_ptr<Profile> _profile;
-    std::vector<Project*> _projects;
 };
 
 #endif // STUDENT_H

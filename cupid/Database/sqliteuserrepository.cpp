@@ -1,3 +1,4 @@
+#include "Storage/storage.h"
 #include "sqliteuserrepository.h"
 #include "Storage/admin.h"
 #include "Storage/student.h"
@@ -5,13 +6,14 @@
 #include <QSqlQuery>
 #include <QDebug>
 #include <memory>
+using namespace storage;
 
 SqliteUserRepository::SqliteUserRepository(QSqlDatabase& db)
     : _db(db)
 {
 }
 
-int SqliteUserRepository::createStudent(Student* student)
+int SqliteUserRepository::createStudent(StudentPtr student)
 {
     int stat = 0;
     QSqlQuery qry(_db);
@@ -34,7 +36,7 @@ int SqliteUserRepository::createStudent(Student* student)
     return stat;
 }
 
-int SqliteUserRepository::createAdmin(Admin* admin)
+int SqliteUserRepository::createAdmin(AdminPtr admin)
 {
     int stat = 0;
     QSqlQuery qry(_db);
@@ -65,7 +67,7 @@ int SqliteUserRepository::createAdmin(Admin* admin)
     return stat;
 }
 
-int SqliteUserRepository::getStudent(Student* student)
+int SqliteUserRepository::getStudent(StudentPtr student)
 {
     int stat = 0;
     QSqlQuery qry(_db);
@@ -89,7 +91,7 @@ int SqliteUserRepository::getStudent(Student* student)
     return stat;
 }
 
-int SqliteUserRepository::getAdmin(Admin* admin)
+int SqliteUserRepository::getAdmin(AdminPtr admin)
 {
     int stat = 0;
     QSqlQuery qry(_db);

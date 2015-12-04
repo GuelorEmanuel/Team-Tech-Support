@@ -1,10 +1,12 @@
 #include "sqliteprofilerepository.h"
+#include "Storage/storage.h"
+using namespace storage;
 
 SqliteProfileRepository::SqliteProfileRepository(QSqlDatabase& db)  : _db(db)
 {
 }
 
-int SqliteProfileRepository::createProfile(Profile* profile)
+int SqliteProfileRepository::createProfile(ProfilePtr profile)
 {
     int stat = 0;
     QSqlQuery  qry(_db);
@@ -50,7 +52,7 @@ int SqliteProfileRepository::createProfile(Profile* profile)
     return stat;
 }
 
-int SqliteProfileRepository::editProfile(Profile* profile)
+int SqliteProfileRepository::editProfile(ProfilePtr profile)
 {
     int stat = 0;
     QSqlQuery qry(_db);
@@ -76,7 +78,7 @@ int SqliteProfileRepository::editProfile(Profile* profile)
     return stat;
 }
 
-int SqliteProfileRepository::getProfile(Profile* profile)
+int SqliteProfileRepository::getProfile(ProfilePtr profile)
 {
     int stat = 0;
     QSqlQuery qry(_db);

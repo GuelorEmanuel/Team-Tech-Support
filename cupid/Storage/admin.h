@@ -7,10 +7,10 @@ class Admin : public User
 {
 public:
     Admin();
+    Admin(int id);
     ~Admin();
     void create();
 private:
-
 };
 
 #endif // ADMIN_H

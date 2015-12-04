@@ -1,10 +1,12 @@
 #include "user.h"
 
-User::User() : _id(-1){}
+User::User() : User(-1) {}
+
+User::User(int id) : _id(id) {}
 
 User::~User() {}
 
-QString User::getUserName() {
+QString User::getUserName() const {
     return _userName;
 }
 
@@ -12,7 +14,7 @@ void User::setUserName(QString value) {
     _userName = value;
 }
 
-QString User::getDisplayName() {
+QString User::getDisplayName() const {
     return _displayName;
 }
 
@@ -20,7 +22,7 @@ void User::setDisplayName(QString value) {
     _displayName = value;
 }
 
-int User::getId() {
+int User::getId() const {
     return _id;
 }
 

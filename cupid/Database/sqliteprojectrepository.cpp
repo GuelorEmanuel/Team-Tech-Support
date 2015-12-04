@@ -1,11 +1,13 @@
 #include "sqliteprojectrepository.h"
+#include "Storage/storage.h"
+using namespace storage;
 
 SqliteProjectRepository::SqliteProjectRepository(QSqlDatabase& db)
     : _db(db)
 {
 }
 
-int SqliteProjectRepository::createProject(Project* project)
+int SqliteProjectRepository::createProject(ProjectPtr project)
 {
     int stat = 0;
     QSqlQuery qry(_db);
@@ -38,7 +40,7 @@ int SqliteProjectRepository::createProject(Project* project)
     return stat;
 }
 
-int SqliteProjectRepository::editProject(Project* project)
+int SqliteProjectRepository::editProject(ProjectPtr project)
 {
     int stat = 0;
     QSqlQuery qry(_db);
@@ -61,7 +63,7 @@ int SqliteProjectRepository::editProject(Project* project)
     return 0;
 }
 
-int SqliteProjectRepository::listProjects(std::vector<std::shared_ptr<Project>> &projects)
+int SqliteProjectRepository::listProjects(ProjectList projects)
 {
     /*QSqlQuery qry(_db);
 
@@ -125,7 +127,7 @@ int SqliteProjectRepository::listProjectsNames(std::vector<QString> &projects)
     return 0;
 }
 
-int SqliteProjectRepository::listFullProjects(std::vector<std::shared_ptr<Project>> &projects)
+int SqliteProjectRepository::listFullProjects(ProjectList projects)
 {
     /*QSqlQuery qry(_db);
 
@@ -150,7 +152,7 @@ int SqliteProjectRepository::listFullProjects(std::vector<std::shared_ptr<Projec
     return 0;
 }
 
-int SqliteProjectRepository::getProject(Project* project)
+int SqliteProjectRepository::getProject(ProjectPtr project)
 {
     int stat = 0;
     QSqlQuery qry(_db);

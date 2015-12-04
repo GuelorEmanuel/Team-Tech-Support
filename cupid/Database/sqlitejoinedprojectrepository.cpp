@@ -1,10 +1,12 @@
 #include "sqlitejoinedprojectrepository.h"
+#include "Storage/storage.h"
+using namespace storage;
 
 SqliteJoinedProjectRepository::SqliteJoinedProjectRepository(QSqlDatabase& db) : _db(db)
 {
 }
 
-int SqliteJoinedProjectRepository::getJoinedProjects(Student* student, std::vector<int> &ids)
+int SqliteJoinedProjectRepository::getJoinedProjects(StudentPtr student, std::vector<int> &ids)
 {
     QSqlQuery qry(_db);
 
@@ -25,7 +27,7 @@ int SqliteJoinedProjectRepository::getJoinedProjects(Student* student, std::vect
 }
 
 
-int SqliteJoinedProjectRepository::getStudentsInProject(Project* project, std::vector<int> &ids)
+int SqliteJoinedProjectRepository::getStudentsInProject(ProjectPtr project, std::vector<int> &ids)
 {
     QSqlQuery qry(_db);
 

@@ -1,6 +1,7 @@
 #ifndef SQLITEUSERREPOSITORY_H
 #define SQLITEUSERREPOSITORY_H
 
+#include "Storage/storage.h"
 #include <QString>
 #include "database.h"
 class Student;
@@ -11,10 +12,10 @@ class SqliteUserRepository
 {
 public:
     SqliteUserRepository(QSqlDatabase& db);
-    int createStudent(Student* student);
-    int createAdmin(Admin* admin);
-    int getStudent(Student* student);
-    int getAdmin(Admin* admin);
+    int createStudent(storage::StudentPtr student);
+    int createAdmin(storage::AdminPtr admin);
+    int getStudent(storage::StudentPtr student);
+    int getAdmin(storage::AdminPtr admin);
     int getUser(QString username, int& id);
 private:
     QSqlDatabase& _db;

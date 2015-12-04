@@ -1,8 +1,11 @@
 #include "realstudent.h"
+#include "storage.h"
+using namespace storage;
 
 RealStudent::RealStudent() {
 
 }
+
 RealStudent::~RealStudent(){
 
 }
@@ -15,26 +18,28 @@ void RealStudent::setStudentId(QString value) {
     _studentId = value;
 }
 
-Profile RealStudent::getProfile() {
-    return *_profile; // Calls copy constructor on the profile
+ProfilePtr RealStudent::getProfile() {
+    return _profile; // Calls copy constructor on the profile
 }
 
-void RealStudent::setProfile(Profile* value) {
-    _profile.reset(value);
+void RealStudent::setProfile(ProfilePtr value) {
+    _profile.swap(value);
 }
 
-/*Function: void Student::createStudentUser
- * Purpose: add new student user to db
- */
-void RealStudent::createStudentUser() {
-
+ProjectList RealStudent::getProjects() {
+    return _projects;
 }
 
-
-std::vector<Project*> RealStudent::getProjects() {
-
-}
-
-void RealStudent::joinProject(Project& project) {
+void RealStudent::joinProject(ProjectPtr project) {
     // Connect to database and add the student to the project
+}
+
+bool RealStudent::operator<(const Student& rhs) const
+{
+    return getId() < rhs.getId();
+}
+
+bool RealStudent::operator==(const Student& rhs) const
+{
+    return getId() == rhs.getId();
 }

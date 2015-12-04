@@ -1,7 +1,12 @@
 #include "proxystudent.h"
+#include "realstudent.h"
+using namespace storage;
 
-ProxyStudent::ProxyStudent() {
-  realStudent = NULL;
+ProxyStudent::ProxyStudent() : ProxyStudent(-1) {
+}
+
+ProxyStudent::ProxyStudent(int id) {
+    _id = id;
 }
 
 ProxyStudent::~ProxyStudent() {
@@ -16,27 +21,28 @@ void ProxyStudent::setStudentId(QString value) {
     _studentId = value;
 }
 
-Profile ProxyStudent::getProfile() {
-    return *_profile; // Calls copy constructor on the profile
+ProfilePtr ProxyStudent::getProfile() {
+    return _realStudent->getProfile();
 }
 
-void ProxyStudent::setProfile(Profile* value) {
-    _profile.reset(value);
+void ProxyStudent::setProfile(ProfilePtr value) {
+    _realStudent->setProfile(value);
 }
 
-/*Function: void Student::createStudentUser
- * Purpose: add new student user to db
- */
-void ProxyStudent::createStudentUser() {
-
+ProjectList ProxyStudent::getProjects() {
+    return _realStudent->getProjects();
 }
 
-
-std::vector<Project*> ProxyStudent::getProjects() {
-
-}
-
-void ProxyStudent::joinProject(Project& project) {
+void ProxyStudent::joinProject(ProjectPtr project) {
     // Connect to database and add the student to the project
 }
 
+bool ProxyStudent::operator<(const Student& rhs) const
+{
+    return getId() < rhs.getId();
+}
+
+bool ProxyStudent::operator==(const Student& rhs) const
+{
+    return getId() == rhs.getId();
+}

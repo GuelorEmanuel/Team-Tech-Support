@@ -1,6 +1,7 @@
 #ifndef PROJECT_H
 #define PROJECT_H
 
+#include "storage.h"
 #include <QString>
 #include <vector>
 class Student;
@@ -19,9 +20,9 @@ public:
     virtual void setName(QString value) = 0;
     virtual QString getDescription() const = 0;
     virtual void setDescription(QString value) = 0;
-    virtual std::vector<Student&>& getStudents() = 0;
-    virtual void setStudents(std::vector<Student&>& students) = 0;
-    virtual void registerStudent(Student& student) = 0;
+    virtual storage::StudentList getStudents() = 0;
+    virtual void setStudents(storage::StudentList students) = 0;
+    virtual void registerStudent(storage::StudentPtr student) = 0;
 };
 
 #endif // PROJECT_H

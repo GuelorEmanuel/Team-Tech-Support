@@ -1,7 +1,12 @@
 #include "proxyproject.h"
+#include "realproject.h"
 #include "storagemanager.h"
+using namespace storage;
 
-ProxyProject::ProxyProject() : _id(-1) {
+ProxyProject::ProxyProject() : ProxyProject(-1) {
+}
+
+ProxyProject::ProxyProject(int id) : _id(id) {
 }
 
 ProxyProject::ProxyProject(QString name, QString description,
@@ -12,22 +17,16 @@ ProxyProject::ProxyProject(QString name, QString description,
 ProxyProject::ProxyProject(int id, QString name, QString description,
              int minTeamSize, int maxTeamSize)
     : _id(id), _name(name), _description(description),
-      _minTeamSize(minTeamSize), _maxTeamSize(maxTeamSize),
-      _project(NULL) {
+      _minTeamSize(minTeamSize), _maxTeamSize(maxTeamSize) {
 }
 
 ProxyProject::ProxyProject(int id, QString name, QString description,
              int minTeamSize, int maxTeamSize,
-             std::vector<Student&>& students)
+             StudentList students)
     : _project(new RealProject(id, name, description,
                                minTeamSize, maxTeamSize,
-                               students)) {
-}
-
-RealProject::RealProject(int id, QString name, QString description,
-             int minTeamSize, int maxTeamSize,
-             std::vector<Student&>& students)
-    :  {
+                               students))
+{
 }
 
 ProxyProject::~ProxyProject() {
@@ -43,7 +42,7 @@ int ProxyProject::getId() const {
 
 void ProxyProject::setId(int value) {
     if (_project.get() == NULL) {
-        return _id = value;
+        _id = value;
     } else {
         _project->setId(value);
     }
@@ -58,7 +57,11 @@ int ProxyProject::getMinTeamSize() const {
 }
 
 void ProxyProject::setMinTeamSize(int value) {
-    _minTeamSize = value;
+    if (_project.get() == NULL) {
+        _minTeamSize = value;
+    } else {
+        _project->setMinTeamSize(value);
+    }
 }
 
 int ProxyProject::getMaxTeamSize() const {
@@ -97,7 +100,7 @@ void ProxyProject::setDescription(QString value) {
     _description = value;
 }
 
-std::vector<Student&>& ProxyProject::getStudents() {
+StudentList ProxyProject::getStudents() {
     if (_project.get() == NULL) {
         initRealProject();
     }
@@ -105,7 +108,7 @@ std::vector<Student&>& ProxyProject::getStudents() {
     return _project->getStudents();
 }
 
-void ProxyProject::setStudents(std::vector<Student&>& students) {
+void ProxyProject::setStudents(StudentList students) {
     if (_project.get() == NULL) {
         initRealProject();
     }
@@ -113,15 +116,14 @@ void ProxyProject::setStudents(std::vector<Student&>& students) {
     _project->setStudents(students);
 }
 
-void ProxyProject::registerStudent(Student& student) {
-    student.joinProject(*this);
-    _students.push_back(student);
+void ProxyProject::registerStudent(StudentPtr student) {
+    //student.joinProject(*this);
+    //_students.push_back(student);
 }
 
-void ProxyProject::initRealProject() {
-    std::vector<Student&>& students
-            = StorageManager::instance()->getStudentsInProject(*this);
-    _project = new RealProject(_id, _name, _description,
+void ProxyProject::initRealProject() {   
+    _project.reset(new RealProject(_id, _name, _description,
                                _minTeamSize, _maxTeamSize,
-                               students);
+                               StorageManager::instance()
+                               ->getStudentsInProject(_id)));
 }

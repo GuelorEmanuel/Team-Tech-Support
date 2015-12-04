@@ -1,6 +1,7 @@
 #ifndef STORAGEMANAGER_H
 #define STORAGEMANAGER_H
 
+#include "Storage/storage.h"
 #include "Storage/student.h"
 #include "Storage/admin.h"
 #include "Storage/project.h"
@@ -14,27 +15,24 @@
 class StorageManager
 {
 public:
-    typedef std::vector<std::shared_ptr<Student> > StudentList;
-    typedef std::vector<std::shared_ptr<Profile> > ProfileList;
-    typedef std::vector<std::shared_ptr<Project> > ProjectList;
-    void createStudent (Student& student);    
-    void createAdmin (Admin& admin);    
-    bool userExists (QString name);
-    void editProfile (Profile& profile);
-    void createProject (Project& project);
-    void editProject (Project& project);
-    std::vector<Project> listProjects();
-    std::vector<Project> listStudentProjects (Student& student) ;
-    std::shared_ptr<StudentList> getStudentsInProject(std::shared_ptr<Project>);
-    std::vector<Student&>& listProjectStudents(Project& project);
-    std::vector<Project> listProjectsNotOfStudent (Student& student);
-    void joinProject (Project& project, Student& student);
+    void createStudent(storage::StudentPtr student);
+    void createAdmin(storage::AdminPtr admin);
+    bool userExists(QString name);
+    void editProfile(storage::ProfilePtr profile);
+    void createProject(storage::ProjectPtr project);
+    void editProject(storage::ProjectPtr project);
+    storage::ProjectList listProjects();
+    storage::ProjectList listStudentProjects(storage::StudentPtr student);
+    storage::StudentList getStudentsInProject(int id);
+    storage::StudentList listProjectStudents(storage::ProjectPtr project);
+    storage::ProjectList listProjectsNotOfStudent(storage::StudentPtr student);
+    void joinProject(storage::ProjectPtr project, storage::StudentPtr student);
     // Cache features
-    std::shared_ptr<Project> getProject(int id);
-    std::shared_ptr<Student> getStudent(int id);
-    std::shared_ptr<Profile> getProfile(int id);
-    std::shared_ptr<Admin> getAdmin(int id);
-    std::shared_ptr<User> getUser(int id);
+    storage::ProjectPtr getProject(int id);
+    storage::StudentPtr getStudent(int id);
+    storage::ProfilePtr getProfile(int id);
+    storage::AdminPtr getAdmin(int id);
+    storage::UserPtr getUser(int id);
     // Singleton features
     static StorageManager* instance();
 protected:
@@ -42,17 +40,12 @@ protected:
     StorageManager(StorageManager const&); // no implementation
     void operator=(StorageManager const&); // no implementation
 private:
-    // Cache features
-    typedef std::unordered_map<int, std::shared_ptr<Student> > StudentMap;
-    typedef std::unordered_map<int, std::shared_ptr<Profile> > ProfileMap;
-    typedef std::unordered_map<int, std::shared_ptr<Project> > ProjectMap;
-    typedef std::unordered_map<int, std::shared_ptr<Admin> > AdminMap;
-    typedef std::unordered_map<int, std::shared_ptr<User> > UserMap;
-    StudentMap _students;
-    ProfileMap _profiles;
-    ProjectMap _projects;
-    AdminMap _admins;
-    UserMap _users;
+    // Cache features    
+    storage::StudentMap _students;
+    storage::ProfileMap _profiles;
+    storage::ProjectMap _projects;
+    storage::AdminMap _admins;
+    storage::UserMap _users;
     // Singleton features
     static StorageManager* _instance;
 };

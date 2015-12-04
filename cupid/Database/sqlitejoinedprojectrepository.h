@@ -1,6 +1,7 @@
 #ifndef SQLITEJOINEDPROJECTREPOSITORY_H
 #define SQLITEJOINEDPROJECTREPOSITORY_H
 
+#include "Storage/storage.h"
 #include "Storage/project.h"
 #include "Storage/student.h"
 #include "database.h"
@@ -11,8 +12,8 @@ class SqliteJoinedProjectRepository
 {
 public:
     SqliteJoinedProjectRepository(QSqlDatabase& db);
-    int getJoinedProjects(Student* student, std::vector<int> &ids);
-    int getStudentsInProject(Project* project, std::vector<int> &ids);
+    int getJoinedProjects(storage::StudentPtr student, std::vector<int> &ids);
+    int getStudentsInProject(storage::ProjectPtr project, std::vector<int> &ids);
     int addStudentToProject(int student_id ,int project_id);
 private:
     QSqlDatabase& _db;
