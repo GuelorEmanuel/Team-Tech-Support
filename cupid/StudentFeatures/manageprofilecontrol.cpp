@@ -6,7 +6,7 @@
  * Creates profile when the status is 0.
  */
 ManageProfileControl::ManageProfileControl(int profileID, int action) :
-  _view(*this), _profile(new Profile),  _action(action), count(0)
+  _view(*this),/* _profile(new Profile),*/  _action(action), count(0)
 {
   _profile->setId(profileID);
 

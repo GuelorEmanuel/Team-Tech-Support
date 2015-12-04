@@ -1,74 +1,74 @@
 #include "profile.h"
 
-Profile::Profile() : _stuId(-1), _id(-1)
+Profile::Profile()
 {
 }
 
 int Profile::getId() {
-    return _id;
+    //return _id;
 }
 
 void Profile::setId(int value) {
-    _id = value;
+    //_id = value;
 }
 
 void Profile::setStuId(int value)
 {
-    _stuId = value;
+    //_stuId = value;
 }
 
 int Profile::getStuId()
 {
-    return _stuId;
+    //return _stuId;
 }
 
 std::vector<Qualification> Profile::getQualifications() {
-    return _qualifications;
+    //return _qualifications;
 }
 
 /*Function: void Profile::addQualification
  * Purpose: using giving values, create new qualification
  */
-void Profile::addQualification(int answer, int min, int max)
+int Profile::addQualification(int answer, int min, int max)
 {
-    Qualification qual;
+    /*Qualification qual;
 
     qual.setAnswer(answer);
     qual.setMinAnswer(min);
     qual.setMaxAnswer(max);
 
-    _qualifications.push_back(qual);
+    _qualifications.push_back(qual);*/
 }
 
-void Profile::addQualification(Qualification &qual)
+int Profile::addQualification(Qualification &qual)
 {
-    _qualifications.push_back(qual);
+    //_qualifications.push_back(qual);
 }
 
 int Profile::getAnswer(int index) {
-    if(index < 1 || index > 29) return -1;
+    /*if(index < 1 || index > 29) return -1;
 
-    return _qualifications[index-1].getAnswer();
+    return _qualifications[index-1].getAnswer();*/
 }
 
 int Profile::getMinAnswer(int index) {
-    if(index < 1 || index > 29) return -1;
+    /*if(index < 1 || index > 29) return -1;
 
-    return _qualifications[index-1].getMinAnswer();
+    return _qualifications[index-1].getMinAnswer();*/
 }
 
 int Profile::getMaxAnswer(int index) {
-    if(index < 1 || index > 29) return -1;
+    /*if(index < 1 || index > 29) return -1;
 
-    return _qualifications[index-1].getMaxAnswer();
+    return _qualifications[index-1].getMaxAnswer();*/
 }
 
 /*Function: void Profile::loadQualification()
  * Purpose: for created project, load all settings for
  *          selected project from db
  */
-void Profile::loadQualification() {
-    if(_id == -1) return;
+int Profile::loadQualification() {
+    //if(_id == -1) return;
 /*
     QSqlQuery qry(Database::getInstance().db());
 
@@ -93,14 +93,14 @@ void Profile::loadQualification() {
     */
 }
 
-void Profile::editQualification(int num, int ans, int amin, int amax)
+int Profile::editQualification(int num, int ans, int amin, int amax)
 {
-    if(num < 0 || num > 28) return;
+    /*if(num < 0 || num > 28) return;
 
 
     _qualifications[num].setAnswer(ans);
     _qualifications[num].setMinAnswer(amin);
-    _qualifications[num].setMaxAnswer(amax);
+    _qualifications[num].setMaxAnswer(amax);*/
 
 }
 
@@ -108,7 +108,7 @@ void Profile::editQualification(int num, int ans, int amin, int amax)
  * Purpose: using added values, create new project
  *          and add it to db.
  */
-void Profile::createProfile()
+int Profile::createProfile()
 {
 /*
     QSqlQuery qry(Database::getInstance().db());
@@ -148,7 +148,7 @@ void Profile::createProfile()
  * Purpose: using changed qualifications, update
  *          information of selected project in db
  */
-void Profile::editProfile()
+int Profile::editProfile()
 {
     /*
     if(_id == -1) return;

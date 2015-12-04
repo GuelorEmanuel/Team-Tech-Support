@@ -7,24 +7,26 @@
 class Profile
 {
 public:
+
+    virtual int getId() = 0;
+    virtual void setId(int value) = 0;
+    virtual void setStuId(int value) = 0;
+    virtual int getStuId() = 0;
+    virtual std::vector<Qualification> getQualifications() = 0;
+    virtual int addQualification(int, int, int) = 0;
+    virtual int addQualification(Qualification&) = 0;
+    virtual int getAnswer(int index) = 0;
+    virtual int getMinAnswer(int index) = 0;
+    virtual int getMaxAnswer(int index) = 0;
+    virtual int loadQualification() = 0;
+    virtual int editQualification(int num, int ans, int amin, int amax) = 0;
+    virtual int editQualification(int num, Qualification&) = 0;
+    virtual int createProfile() = 0;
+    virtual int editProfile() = 0;
+    virtual ~Profile() = 0;
+
+protected:
     Profile();
-    int getId();
-    void setId(int value);
-    void setStuId(int value);
-    int getStuId();
-    std::vector<Qualification> getQualifications();
-    void addQualification(int, int, int);
-    void addQualification(Qualification&);
-    int getAnswer(int index);
-    int getMinAnswer(int index);
-    int getMaxAnswer(int index);
-    void loadQualification();
-    void editQualification(int num, int ans, int amin, int amax);
-    //void editQualification(int num, Qualification&);
-    void createProfile();
-    void editProfile();
-    ~Profile();
-private:
     int _id;
     int _stuId;
     std::vector<Qualification> _qualifications;

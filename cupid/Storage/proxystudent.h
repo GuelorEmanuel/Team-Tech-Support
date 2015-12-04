@@ -3,7 +3,7 @@
 
 #include "student.h"
 #include "realstudent.h"
-#include <QPointer>
+//#include <QPointer>
 
 class ProxyStudent: public Student {
 
@@ -12,19 +12,27 @@ class ProxyStudent: public Student {
     virtual ~ProxyStudent();
     virtual QString getStudentId();
     virtual void setStudentId(QString value);
-    virtual Profile getProfile();
+    virtual Profile& getProfile();
     virtual void setProfile(Profile* value);
     virtual std::vector<Project*> getProjects();
     virtual void joinProject(Project& project);
     virtual void createStudentUser();
 
+    virtual QString getUserName();
+    virtual void setUserName(QString value);
+    virtual QString getDisplayName();
+    virtual void setDisplayName(QString value);
+    virtual int getId();
+    virtual void setId(int value);
+
   protected:
     //QPointer<RealStudent> getStudent(); will use later
-    RealStudent *getStudent();
+    std::auto_ptr<RealStudent> getStudent();
 
   private:
     //QPointer<RealStudent> realStudent; will use later
-    RealStudent *realStudent;
+    std::auto_ptr<RealStudent> _realStudent;
+    //RealStudent *;
 
 
 
