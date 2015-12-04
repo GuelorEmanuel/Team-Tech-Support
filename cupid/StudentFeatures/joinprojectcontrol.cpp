@@ -46,13 +46,13 @@ void JoinProjectControl::leaveProject()
 
 int JoinProjectControl::joinProject()
 {
-    int stat = _project->registerStudent(_student);
+    /*int stat = _project->registerStudent(_student);
     if(stat != 0){
 
         _view.close();
     }else {
         return stat;
-    }
+    }*/
 
 
 }

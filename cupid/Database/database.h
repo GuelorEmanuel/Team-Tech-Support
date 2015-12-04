@@ -7,6 +7,7 @@ class Admin;
 class Profile;
 #include <vector>
 #include <QString>
+#include <QtSql>
 
 class Database
 {

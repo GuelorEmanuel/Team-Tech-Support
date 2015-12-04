@@ -7,28 +7,7 @@
 class Profile
 {
 public:
-
-    virtual int getId() = 0;
-    virtual void setId(int value) = 0;
-    virtual void setStuId(int value) = 0;
-    virtual int getStuId() = 0;
-    virtual std::vector<Qualification> getQualifications() = 0;
-    virtual int addQualification(int, int, int) = 0;
-    virtual int addQualification(Qualification&) = 0;
-    virtual int getAnswer(int index) = 0;
-    virtual int getMinAnswer(int index) = 0;
-    virtual int getMaxAnswer(int index) = 0;
-    virtual int loadQualification() = 0;
-    virtual int editQualification(int num, int ans, int amin, int amax) = 0;
-    virtual int editQualification(int num, Qualification&) = 0;
-    virtual int createProfile() = 0;
-    virtual int editProfile() = 0;
-    virtual ~Profile() = 0;
-
-protected:
     Profile();
-<<<<<<< HEAD
-=======
     int getId();
     void setId(int value);
     void setStuId(int value);
@@ -78,7 +57,6 @@ protected:
         Q_WORKLOAD
     };
 private:
->>>>>>> 21ce1c8168b8f17cbc00dd6ebeadd66b45618762
     int _id;
     int _stuId;
     std::vector<Qualification> _qualifications;

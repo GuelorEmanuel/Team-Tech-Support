@@ -6,31 +6,6 @@ Student::Student() : User(){
 Student::~Student() {
 }
 
-
-QString Student::getUserName() {
-    //return _userName;
-}
-
-void Student::setUserName(QString value) {
-    //_userName = value;
-}
-
-QString Student::getDisplayName() {
-    //return _displayName;
-}
-
-void Student::setDisplayName(QString value) {
-    //_displayName = value;
-}
-
-int Student::getId() {
-    //return _id;
-}
-
-void Student::setId(int value) {
-    _id = value;
-}
-
 QString Student::getStudentId()
 {
     return _studentId;
@@ -40,7 +15,7 @@ void Student::setStudentId(QString value) {
     _studentId = value;
 }
 
-Profile& Student::getProfile() {
+Profile Student::getProfile() {
     //return *_profile; // Calls copy constructor on the profile
 }
 

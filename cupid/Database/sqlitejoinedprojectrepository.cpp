@@ -1,17 +1,17 @@
 #include "sqlitejoinedprojectrepository.h"
 
-SqliteJoinedProjectRepository::SqliteJoinedProjectRepository()
+SqliteJoinedProjectRepository::SqliteJoinedProjectRepository(QSqlDatabase& db) : _db(db)
 {
 }
 
-int SqliteJoinedProjectRepository::getJoinedProjects(Student& student, std::vector<int> ids)
+int SqliteJoinedProjectRepository::getJoinedProjects(Student* student, std::vector<int> &ids)
 {
-    QSqlQuery qry(Database::getInstance().db());
+    QSqlQuery qry(_db);
 
     QString qlist = "SELECT project_id FROM project_student_registered WHERE user_id = :sid";
 
     qry.prepare(qlist);
-    qry.bindValue(":sid", student.getId());
+    qry.bindValue(":sid", student->getId());
 
     if(!qry.exec()) {
         qDebug() << qry.lastError();
@@ -25,14 +25,14 @@ int SqliteJoinedProjectRepository::getJoinedProjects(Student& student, std::vect
 }
 
 
-int SqliteJoinedProjectRepository::getStudentsInProject(Project& project, std::vector<int> ids)
+int SqliteJoinedProjectRepository::getStudentsInProject(Project* project, std::vector<int> &ids)
 {
-    QSqlQuery qry(Database::getInstance().db());
+    QSqlQuery qry(_db);
 
     QString qlist = "SELECT user_id FROM project_student_registered WHERE project_id = :pid";
 
     qry.prepare(qlist);
-    qry.bindValue(":pid", project.getId());
+    qry.bindValue(":pid", project->getId());
 
     if(!qry.exec()) {
         qDebug() << qry.lastError();
@@ -47,7 +47,7 @@ int SqliteJoinedProjectRepository::getStudentsInProject(Project& project, std::v
 
 int SqliteJoinedProjectRepository::addStudentToProject(int student_id ,int project_id)
 {
-    QSqlQuery qry(Database::getInstance().db());
+    QSqlQuery qry(_db);
 
     QString qlist = "INSERT INTO project_student_registered VALUES(:pid, :sid)";
 

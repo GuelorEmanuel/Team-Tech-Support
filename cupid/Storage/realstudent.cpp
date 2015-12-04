@@ -7,32 +7,6 @@ RealStudent::~RealStudent(){
 
 }
 
-
-QString RealStudent::getUserName() {
-    return _userName;
-}
-
-void RealStudent::setUserName(QString value) {
-    _userName = value;
-}
-
-QString RealStudent::getDisplayName() {
-    return _displayName;
-}
-
-void RealStudent::setDisplayName(QString value) {
-    _displayName = value;
-}
-
-int RealStudent::getId() {
-    return _id;
-}
-
-void RealStudent::setId(int value) {
-    _id = value;
-}
-
-
 QString RealStudent::getStudentId() {
     return _studentId;
 }
@@ -41,7 +15,7 @@ void RealStudent::setStudentId(QString value) {
     _studentId = value;
 }
 
-Profile &RealStudent::getProfile() {
+Profile RealStudent::getProfile() {
     return *_profile; // Calls copy constructor on the profile
 }
 

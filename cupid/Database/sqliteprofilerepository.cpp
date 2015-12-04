@@ -1,16 +1,15 @@
 #include "sqliteprofilerepository.h"
 
-SqliteProfileRepository::SqliteProfileRepository()
+SqliteProfileRepository::SqliteProfileRepository(QSqlDatabase& db)  : _db(db)
 {
 }
 
-int SqliteProfileRepository::createProfile(Profile& profile)
+int SqliteProfileRepository::createProfile(Profile* profile)
 {
     int stat = 0;
-    Profile& prof = profile;
-    QSqlQuery  qry(Database::getInstance().db());
+    QSqlQuery  qry(_db);
 
-    std::vector<Qualification> quals = prof.getQualifications();
+    std::vector<Qualification> quals = profile->getQualifications();
 
     QString qprofile = "INSERT INTO profile VALUES(:id, :uid, :q1, :q1min, :q1max, "
                        ":q2, :q2min, :q2max,:q3, :q3min, :q3max,:q4, :q4min, :q4max,"
@@ -29,12 +28,12 @@ int SqliteProfileRepository::createProfile(Profile& profile)
       return stat = 1;
    } else {
        qry.next();
-       prof.setId(qry.value(0).toInt()+1);
+       profile->setId(qry.value(0).toInt()+1);
    }
 
    qry.prepare(qprofile);
-   qry.bindValue(":id", prof.getId());
-   qry.bindValue(":uid", prof.getStuId());
+   qry.bindValue(":id", profile->getId());
+   qry.bindValue(":uid", profile->getStuId());
 
    for(int i = 1; i < 29; i++) {
        qry.bindValue(QString(":q%1").arg(i), quals[i-1].getAnswer());
@@ -46,17 +45,16 @@ int SqliteProfileRepository::createProfile(Profile& profile)
        qDebug() << qry.lastError();
        return stat = 1;
    } else {
-       qDebug()  << QString("Profile is added. Profile's ID is %1").arg(prof.getId());
+       qDebug()  << QString("Profile is added. Profile's ID is %1").arg(profile->getId());
    }
     return stat;
 }
 
-int SqliteProfileRepository::editProfile(Profile& profile)
+int SqliteProfileRepository::editProfile(Profile* profile)
 {
     int stat = 0;
-    QSqlQuery qry(Database::getInstance().db());
-    Profile& prof = profile;
-    std::vector<Qualification> quals = prof.getQualifications();
+    QSqlQuery qry(_db);
+    std::vector<Qualification> quals = profile->getQualifications();
 
     for(int i = 0; i < 28; i++) {
         QString prep = "UPDATE profile SET q%1 = :q%1, q%1min = :q%1min, q%1max = :q%1max WHERE id=:id";
@@ -67,7 +65,7 @@ int SqliteProfileRepository::editProfile(Profile& profile)
         qry.bindValue(QString(":q%1max").arg(i+1), quals[i].getMaxAnswer());
 
 
-        qry.bindValue(":id", prof.getId());
+        qry.bindValue(":id", profile->getId());
 
         if(!qry.exec()){
             qDebug() << qry.lastError();
@@ -78,24 +76,23 @@ int SqliteProfileRepository::editProfile(Profile& profile)
     return stat;
 }
 
-int SqliteProfileRepository::getProfile(Profile& profile)
+int SqliteProfileRepository::getProfile(Profile* profile)
 {
     int stat = 0;
-    Profile& prof = profile;
-    QSqlQuery qry(Database::getInstance().db());
+    QSqlQuery qry(_db);
     int track = 1;
     QString qprof = "SELECT * FROM profile WHERE id = :id";
 
     qry.prepare(qprof);
-    qry.bindValue(":id", prof.getId());
+    qry.bindValue(":id", profile->getId());
 
     if(!qry.exec()) {
         qDebug() << qry.lastError();
     } else {
         while(qry.next()){
-            profile.setStuId(qry.value(1).toInt());
+            profile->setStuId(qry.value(1).toInt());
             for(int i = 0; i < 28; i++) {
-                profile.addQualification(qry.value(++track).toInt(), qry.value(++track).toInt(), qry.value(++track).toInt());
+                profile->addQualification(qry.value(++track).toInt(), qry.value(++track).toInt(), qry.value(++track).toInt());
 
             }
         }

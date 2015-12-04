@@ -1,15 +1,14 @@
 #include "sqliteprojectrepository.h"
 
-SqliteProjectRepository::SqliteProjectRepository()
+SqliteProjectRepository::SqliteProjectRepository(QSqlDatabase& db)
+    : _db(db)
 {
 }
 
-int SqliteProjectRepository::createProject(Project& project)
+int SqliteProjectRepository::createProject(Project* project)
 {
     int stat = 0;
-
-    Project& proj = project;
-    QSqlQuery qry(Database::getInstance().db());
+    QSqlQuery qry(_db);
 
     QString qproject = "INSERT INTO project VALUES(:id, :name, :min, :max, :desc)";
     QString qid = "SELECT MAX(id) FROM project";
@@ -19,52 +18,52 @@ int SqliteProjectRepository::createProject(Project& project)
         return stat=1;
     } else {
         qry.next();
-        proj.setId(qry.value(0).toInt()+1);
+        project->setId(qry.value(0).toInt()+1);
     }
 
     qry.prepare(qproject);
-    qry.bindValue(":id", proj.getId());
-    qry.bindValue(":name", proj.getName());
-    qry.bindValue(":min", proj.getMinTeamSize());
-    qry.bindValue(":max", proj.getMaxTeamSize());
-    qry.bindValue(":desc", proj.getDescription());
+    qry.bindValue(":id", project->getId());
+    qry.bindValue(":name", project->getName());
+    qry.bindValue(":min", project->getMinTeamSize());
+    qry.bindValue(":max", project->getMaxTeamSize());
+    qry.bindValue(":desc", project->getDescription());
 
     if(!qry.exec()) {
         qDebug() << qry.lastError();
         return stat=1;
     } else {
-        qDebug() << "Project was successfully added. Project id is:" + proj.getId();
+        qDebug() << QString("Project was successfully added. Project id is: %1").arg(project->getId());
     }
 
     return stat;
 }
 
-int SqliteProjectRepository::editProject(Project& project)
+int SqliteProjectRepository::editProject(Project* project)
 {
     int stat = 0;
-    QSqlQuery qry(Database::getInstance().db());
+    QSqlQuery qry(_db);
 
     QString qproject = "UPDATE project SET name = :name, min_team_size = :min, "
             "max_team_size = :max, description = :desc WHERE id = :id";
     qry.prepare(qproject);
-    qry.bindValue(":name", project.getName());
-    qry.bindValue(":min", project.getMinTeamSize());
-    qry.bindValue(":max", project.getMaxTeamSize());
-    qry.bindValue(":desc", project.getDescription());
-    qry.bindValue(":id", project.getId());
+    qry.bindValue(":name", project->getName());
+    qry.bindValue(":min", project->getMinTeamSize());
+    qry.bindValue(":max", project->getMaxTeamSize());
+    qry.bindValue(":desc", project->getDescription());
+    qry.bindValue(":id", project->getId());
 
     if(!qry.exec()) {
         qDebug() << qry.lastError();
         stat = 1;
     } else {
-        qDebug() << QString("Project is update. Project's ID is %1").arg(project.getId());
+        qDebug() << QString("Project is update. Project's ID is %1").arg(project->getId());
     }
     return 0;
 }
 
-int SqliteProjectRepository::listProjects(std::vector<Project> projects)
+int SqliteProjectRepository::listProjects(std::vector<std::shared_ptr<Project>> &projects)
 {
-    QSqlQuery qry(Database::getInstance().db());
+    /*QSqlQuery qry(_db);
 
     QString qprojects = "SELECT id, name FROM project";
     qry.prepare(qprojects);
@@ -74,21 +73,21 @@ int SqliteProjectRepository::listProjects(std::vector<Project> projects)
         return 1;
     } else {
         while(qry.next()) {
-            Project proj;
-            proj.setId(qry.value(0).toInt());
-            proj.setName(qry.value(1).toString());
-            projects.push_back(proj);
-            qDebug() << QString("Project %1 is added").arg(proj.getName());
+            std::shared_ptr<Project> project(new ProxyProject());
+            project->setId(qry.value(0).toInt());
+            project->setName(qry.value(1).toString());
+            projects.push_back(project);
+            qDebug() << QString("Project %1 is added").arg(project->getName());
         }
-    }
+    }*/
 
     return 0;
 
 }
 
-int SqliteProjectRepository::listProjectsIDs(std::vector<int> projects)
+int SqliteProjectRepository::listProjectsIDs(std::vector<int> &projects)
 {
-    QSqlQuery qry(Database::getInstance().db());
+   /* QSqlQuery qry(_db);
     int id = 0;
     QString qprojects = "SELECT id FROM project";
     qry.prepare(qprojects);
@@ -102,13 +101,13 @@ int SqliteProjectRepository::listProjectsIDs(std::vector<int> projects)
             projects.push_back(id);
             qDebug() << QString("Project %1 is added").arg(id);
         }
-    }
+    }*/
     return 0;
 }
 
-int SqliteProjectRepository::listProjectsNames(std::vector<QString> projects)
+int SqliteProjectRepository::listProjectsNames(std::vector<QString> &projects)
 {
-    QSqlQuery qry(Database::getInstance().db());
+   /* QSqlQuery qry(_db);
     QString name = "";
     QString qprojects = "SELECT name FROM project";
     qry.prepare(qprojects);
@@ -122,13 +121,13 @@ int SqliteProjectRepository::listProjectsNames(std::vector<QString> projects)
             projects.push_back(name);
             qDebug() << QString("Project %1 is added").arg(name);
         }
-    }
+    }*/
     return 0;
 }
 
-int SqliteProjectRepository::listFullProjects(std::vector<Project> projects)
+int SqliteProjectRepository::listFullProjects(std::vector<std::shared_ptr<Project>> &projects)
 {
-    QSqlQuery qry(Database::getInstance().db());
+    /*QSqlQuery qry(_db);
 
     QString qprojects = "SELECT * FROM project";
     qry.prepare(qprojects);
@@ -138,39 +137,38 @@ int SqliteProjectRepository::listFullProjects(std::vector<Project> projects)
         return 1;
     } else {
         while(qry.next()) {
-            Project proj;
-            proj.setId(qry.value(0).toInt());
-            proj.setName(qry.value(1).toString());
-            proj.setMinTeamSize(qry.value(2).toInt());
-            proj.setMaxTeamSize(qry.value(3).toInt());
-            proj.setDescription(qry.value(4).toString());
-            projects.push_back(proj);
-            qDebug() << QString("Project %1 is added").arg(proj.getName());
+            std::shared_ptr<Project> project (new ProxyProject());
+            project->setId(qry.value(0).toInt());
+            project->setName(qry.value(1).toString());
+            project->setMinTeamSize(qry.value(2).toInt());
+            project->setMaxTeamSize(qry.value(3).toInt());
+            project->setDescription(qry.value(4).toString());
+            projects.push_back(project);
+            qDebug() << QString("Project %1 is added").arg(project->getName());
         }
-    }
+    }*/
     return 0;
 }
 
-int SqliteProjectRepository::getProject(Project& project)
+int SqliteProjectRepository::getProject(Project* project)
 {
     int stat = 0;
-    Project& proj = project;
-    QSqlQuery qry(Database::getInstance().db());
+    QSqlQuery qry(_db);
 
     QString qproject = "SELECT * FROM project WHERE id = :id";
 
     qry.prepare(qproject);
-    qry.bindValue(":id", proj.getId());
+    qry.bindValue(":id", project->getId());
 
     if(!qry.exec()) {
         qDebug() << qry.lastError();
     } else {
         qry.next();
-        proj.setName(qry.value(1).toString());
-        proj.setMinTeamSize(qry.value(2).toInt());
-        proj.setMaxTeamSize(qry.value(3).toInt());
-        proj.setDescription(qry.value(4).toString());
-        qDebug() << QString("Project retrieved. Project's name is %1").arg(proj.getName());
+        project->setName(qry.value(1).toString());
+        project->setMinTeamSize(qry.value(2).toInt());
+        project->setMaxTeamSize(qry.value(3).toInt());
+        project->setDescription(qry.value(4).toString());
+        qDebug() << QString("Project retrieved. Project's name is %1").arg(project->getName());
     }
     return stat;
 }

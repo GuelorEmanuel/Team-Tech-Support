@@ -11,8 +11,8 @@ class SqliteJoinedProjectRepository
 {
 public:
     SqliteJoinedProjectRepository(QSqlDatabase& db);
-    int getJoinedProjects(Student& student, std::vector<int> ids);
-    int getStudentsInProject(Project& project, std::vector<int> ids);
+    int getJoinedProjects(Student* student, std::vector<int> &ids);
+    int getStudentsInProject(Project* project, std::vector<int> &ids);
     int addStudentToProject(int student_id ,int project_id);
 private:
     QSqlDatabase& _db;
