@@ -51,7 +51,7 @@ void ProxyStudent::setProfile(Profile* value) {
  * Purpose: add new student user to db
  */
 int ProxyStudent::createStudentUser() {
-
+ return 0;
 }
 
 
@@ -64,5 +64,6 @@ std::vector<Project*> ProxyStudent::getProjects() {
 
 int ProxyStudent::joinProject(Project& project) {
     // Connect to database and add the student to the project
+  return 0;
 }
 

@@ -51,7 +51,7 @@ void Student::setProfile(Profile* value) {
 /*Function: void Student::createStudentUser
  * Purpose: add new student user to db
  */
-void Student::createStudentUser()
+int Student::createStudentUser()
 {
     /*
     if(User::_id == -1) return;
@@ -90,7 +90,7 @@ std::vector<Project*> Student::getProjects() {
     //return _projects;
 }
 
-void Student::joinProject(Project& project) {
+int Student::joinProject(Project& project) {
     // Connect to database and add the student to the project
 }
 

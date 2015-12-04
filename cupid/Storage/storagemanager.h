@@ -12,6 +12,7 @@ class StorageManager
 {
 public:
     StorageManager();
+    ~StorageManager();
      int createStudent (Student& student);
      void getStudent (Student& student);
      int createAdmin (Admin& admin);
@@ -23,8 +24,8 @@ public:
      int createProject (Project& project) ;
      int editProject (Project& project) ;
      std::vector<Project> &listProjects() ;
-     std::vector<Project> &listStudentProjects (Student& student) ;
-     std::vector<Student> &listJoinedProjects (Project& project) ;
+     //std::vector<Project> &listStudentProjects (Student& student) ;
+     std::vector<Project> &listJoinedProjects (Student& project) ;
      std::vector<Project> &listUnjoinedProjects (Student& student) ;
      int joinProject (Project& project, Student& student) ;
 };

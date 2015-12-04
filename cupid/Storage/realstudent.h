@@ -13,8 +13,8 @@ public:
     virtual Profile& getProfile();
     virtual void setProfile(Profile* value);
     virtual std::vector<Project*> getProjects();
-    virtual void joinProject(Project& project);
-    virtual void createStudentUser();
+    virtual int joinProject(Project& project);
+    virtual int createStudentUser();
 
     virtual QString getUserName();
     virtual void setUserName(QString value);

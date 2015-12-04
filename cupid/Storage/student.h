@@ -18,8 +18,8 @@ public:
     virtual Profile& getProfile() = 0;
     virtual void setProfile(Profile* value) = 0;
     virtual std::vector<Project*> getProjects() = 0;
-    virtual void joinProject(Project& project) = 0;
-    virtual void createStudentUser() = 0;
+    virtual int joinProject(Project& project) = 0;
+    virtual int createStudentUser() = 0;
     //virtual bool operator<(const Student& rhs) const = 0;
     //virtual bool operator==(const Student& rhs) const = 0;
 
