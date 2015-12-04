@@ -7,13 +7,6 @@ ProxyStudent::~ProxyStudent(){
 
 }
 
-RealStudent *ProxyStudent::getStudent() {
-    if (realStudent == NULL) {
-        realStudent = new RealStudent();
-    }
-    return realStudent;
-}
-
 QString ProxyStudent::getStudentId() {
     return _studentId;
 }

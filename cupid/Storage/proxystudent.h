@@ -3,7 +3,7 @@
 
 #include "student.h"
 #include "realstudent.h"
-#include <QPointer>
+#include <memory>
 
 class ProxyStudent: public Student {
 
@@ -18,13 +18,8 @@ class ProxyStudent: public Student {
     virtual void joinProject(Project& project);
     virtual void createStudentUser();
 
-  protected:
-    //QPointer<RealStudent> getStudent(); will use later
-    RealStudent *getStudent();
-
   private:
-    //QPointer<RealStudent> realStudent; will use later
-    RealStudent *realStudent;
+    std::auto_ptr<RealStudent> realStudent;
 
 
 

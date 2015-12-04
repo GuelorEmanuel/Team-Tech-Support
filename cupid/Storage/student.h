@@ -20,7 +20,8 @@ public:
     virtual std::vector<Project*> getProjects() = 0;
     virtual void joinProject(Project& project) = 0;
     virtual void createStudentUser() = 0;
-
+    virtual bool operator<(const Student& rhs) const = 0;
+    virtual bool operator==(const Student& rhs) const = 0;
 protected:
     Student();
     QString _studentId;
