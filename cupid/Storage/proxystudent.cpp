@@ -6,6 +6,7 @@ ProxyStudent::~ProxyStudent(){
 
 }
 
+<<<<<<< HEAD
 QString ProxyStudent::getUserName() {
     return _userName;
 }
@@ -38,6 +39,8 @@ std::auto_ptr<RealStudent> ProxyStudent::getStudent() {
     return _realStudent;
 }
 
+=======
+>>>>>>> 21ce1c8168b8f17cbc00dd6ebeadd66b45618762
 QString ProxyStudent::getStudentId() {
     return _studentId;
 }
