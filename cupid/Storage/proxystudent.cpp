@@ -3,7 +3,8 @@
 ProxyStudent::ProxyStudent() {
   realStudent = NULL;
 }
-ProxyStudent::~ProxyStudent(){
+
+ProxyStudent::~ProxyStudent() {
 
 }
 

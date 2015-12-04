@@ -14,7 +14,6 @@ StudentHomeControl::StudentHomeControl(Student &student) :
 
     _view.setModal(true);
     _view.exec();
-
 }
 
 void StudentHomeControl::logout() {

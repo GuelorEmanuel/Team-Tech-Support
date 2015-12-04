@@ -1,19 +1,22 @@
 #ifndef SQLITEUSERREPOSITORY_H
 #define SQLITEUSERREPOSITORY_H
 
-#include "Storage/admin.h"
-#include "Storage/student.h"
-#include "database.h"
+#include <QString>
+class Student;
+class Admin;
+class QSqlDatabase;
 
 class SqliteUserRepository
 {
 public:
-    SqliteUserRepository();
+    SqliteUserRepository(QSqlDatabase& db);
     int createStudent(Student& student);
     int createAdmin(Admin& admin);
     int getStudent(Student& student);
     int getAdmin(Admin& admin);
     int getUser(QString username, int& id);
+private:
+    QSqlDatabase& _db;
 };
 
 #endif // SQLITEUSERREPOSITORY_H

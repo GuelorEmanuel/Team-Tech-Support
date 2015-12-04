@@ -3,35 +3,25 @@
 
 #include <QString>
 #include <vector>
-#include "student.h"
+class Student;
 
 class Project
 {
 public:
-    Project();
-    int getId() const;
-    void setId(int value);
-    int getMinTeamSize() const;
-    void setMinTeamSize(int value);
-    int getMaxTeamSize() const;
-    void setMaxTeamSize(int value);
-    QString getName() const;
-    void setName(QString value);
-    QString getDescription() const;
-    void setDescription(QString value);
-    int registerStudent(Student& student);
-    std::vector<Student> getStudents();
-    static int lookupId(QString name);
-    void create();
-    void edit();
-    ~Project();
-private:
-    int _id;
-    QString _name;
-    QString _description;
-    int _minTeamSize;
-    int _maxTeamSize;
-    //std::vector<Student> _students;
+    virtual ~Project();
+    virtual int getId() const = 0;
+    virtual void setId(int value) = 0;
+    virtual int getMinTeamSize() const = 0;
+    virtual void setMinTeamSize(int value) = 0;
+    virtual int getMaxTeamSize() const = 0;
+    virtual void setMaxTeamSize(int value) = 0;
+    virtual QString getName() const = 0;
+    virtual void setName(QString value) = 0;
+    virtual QString getDescription() const = 0;
+    virtual void setDescription(QString value) = 0;
+    virtual std::vector<Student&>& getStudents() = 0;
+    virtual void setStudents(std::vector<Student&>& students) = 0;
+    virtual void registerStudent(Student& student) = 0;
 };
 
 #endif // PROJECT_H

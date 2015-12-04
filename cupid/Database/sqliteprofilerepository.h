@@ -9,10 +9,12 @@
 class SqliteProfileRepository
 {
 public:
-    SqliteProfileRepository();
+    SqliteProfileRepository(QSqlDatabase& db);
     int createProfile(Profile& profile);
     int editProfile(Profile& profile);
     int getProfile(Profile& profile);
+private:
+    QSqlDatabase& _db;
 };
 
 #endif // SQLITEPROFILEREPOSITORY_H

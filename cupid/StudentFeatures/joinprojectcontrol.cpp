@@ -1,10 +1,9 @@
 #include "joinprojectcontrol.h"
 
-JoinProjectControl::JoinProjectControl(int projectId, Student& stu):
-    _view(*this),_project(new Project), _student(stu)
-{
-    _project->setId(projectId);
-    loadProjectSettings(projectId);
+JoinProjectControl::JoinProjectControl(std::shared_ptr<Project> project,
+                                       std::shared_ptr<Student> student)
+    : _view(*this), _project(project), _student(student)
+{    
     _view.setModal(true);
     _view.exec();
 }

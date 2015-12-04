@@ -7,7 +7,7 @@
 class SqliteProjectRepository
 {
 public:
-    SqliteProjectRepository();
+    SqliteProjectRepository(QSqlDatabase& db);
     int createProject(Project& project);
     int editProject(Project& project);//int id
     int listProjects(std::vector<Project> projects);
@@ -15,7 +15,8 @@ public:
     int listProjectsNames(std::vector<QString> projects);
     int listFullProjects(std::vector<Project> projects);
     int getProject(Project& project);
-
+private:
+    QSqlDatabase& _db;
 };
 
 #endif // SQLITEPROJECTREPOSITORY_H

@@ -17,13 +17,8 @@ class ProxyStudent: public Student {
     virtual std::vector<Project*> getProjects();
     virtual void joinProject(Project& project);
     virtual void createStudentUser();
-
   private:
     std::auto_ptr<RealStudent> realStudent;
-
-
-
-
 };
 
 #endif // PROXYSTUDENT_H
