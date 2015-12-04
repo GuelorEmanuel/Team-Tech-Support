@@ -3,7 +3,6 @@
 
 #include "student.h"
 #include "realstudent.h"
-//#include <QPointer>
 
 class ProxyStudent: public Student {
 
@@ -26,7 +25,6 @@ class ProxyStudent: public Student {
     virtual void setId(int value);
 
   protected:
-    //QPointer<RealStudent> getStudent(); will use later
     std::auto_ptr<RealStudent> getStudent();
 
   private:

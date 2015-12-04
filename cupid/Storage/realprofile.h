@@ -24,6 +24,11 @@ public:
     virtual int editQualification(int num, Qualification&);
     virtual int createProfile();
     virtual int editProfile();
+
+private:
+    int _id;
+    int _stuId;
+    std::vector<Qualification> _qualifications;
 };
 
 #endif // REALPROFILE_H

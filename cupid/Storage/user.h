@@ -14,9 +14,6 @@ public:
     virtual void setId(int value) = 0;
 protected:
     User();
-    int _id;
-    QString _userName;
-    QString _displayName;
 };
 
 #endif // USER_H

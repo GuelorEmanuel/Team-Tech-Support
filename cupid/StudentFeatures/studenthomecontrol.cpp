@@ -67,7 +67,7 @@ void StudentHomeControl::getUnjoinedProjectList() {
  * Purpose: open unjoined project to student
  */
 void StudentHomeControl::openUnJoinedProject(int projectId) {
-    JoinProjectControl studentProjectControl(projectId, _student);
+    //JoinProjectControl studentProjectControl(projectId, _student);
     _view.show();
 }
 

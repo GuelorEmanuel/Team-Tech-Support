@@ -1,10 +1,10 @@
 #include "joinprojectcontrol.h"
 
-JoinProjectControl::JoinProjectControl(int projectId, Student& stu):
-    _view(*this),_project(new Project), _student(stu)
+JoinProjectControl::JoinProjectControl(/*int projectId, Student& stu*/):
+    _view(*this)/*,_project(new Project), _student(stu)*/
 {
-    _project->setId(projectId);
-    loadProjectSettings(projectId);
+    /*_project->setId(projectId);
+    loadProjectSettings(projectId);*/
     _view.setModal(true);
     _view.exec();
 }
@@ -47,13 +47,13 @@ void JoinProjectControl::leaveProject()
 
 int JoinProjectControl::joinProject()
 {
-    int stat = _project->registerStudent(_student);
+    /*int stat = _project->registerStudent(_student);
     if(stat != 0){
 
         _view.close();
     }else {
         return stat;
-    }
+    }*/
 
 
 }

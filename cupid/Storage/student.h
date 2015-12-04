@@ -31,9 +31,7 @@ public:
 
 protected:
     Student();
-    QString _studentId;
-    std::auto_ptr<Profile> _profile;
-    std::vector<Project*> _projects;
+
 };
 
 #endif // STUDENT_H

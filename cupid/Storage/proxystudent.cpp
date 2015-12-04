@@ -7,27 +7,27 @@ ProxyStudent::~ProxyStudent(){
 }
 
 QString ProxyStudent::getUserName() {
-    return _userName;
+    //return _userName;
 }
 
 void ProxyStudent::setUserName(QString value) {
-    _userName = value;
+    //_userName = value;
 }
 
 QString ProxyStudent::getDisplayName() {
-    return _displayName;
+    //return _displayName;
 }
 
 void ProxyStudent::setDisplayName(QString value) {
-    _displayName = value;
+    //_displayName = value;
 }
 
 int ProxyStudent::getId() {
-    return _id;
+    //return _id;
 }
 
 void ProxyStudent::setId(int value) {
-    _id = value;
+    //_id = value;
 }
 
 
@@ -39,19 +39,19 @@ std::auto_ptr<RealStudent> ProxyStudent::getStudent() {
 }
 
 QString ProxyStudent::getStudentId() {
-    return _studentId;
+    //return _studentId;
 }
 
 void ProxyStudent::setStudentId(QString value) {
-    _studentId = value;
+    //_studentId = value;
 }
 
 Profile& ProxyStudent::getProfile() {
-    return *_profile; // Calls copy constructor on the profile
+    //return *_profile; // Calls copy constructor on the profile
 }
 
 void ProxyStudent::setProfile(Profile* value) {
-    _profile.reset(value);
+    //_profile.reset(value);
 }
 
 /*Function: void Student::createStudentUser
@@ -63,9 +63,9 @@ void ProxyStudent::createStudentUser() {
 
 
 std::vector<Project*> ProxyStudent::getProjects() {
-    if (_projects.empty()) {
+    /*if (_projects.empty()) {
         //Do something here
-    }
+    }*/
 
 }
 

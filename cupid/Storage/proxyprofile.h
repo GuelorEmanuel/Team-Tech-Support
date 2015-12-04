@@ -3,6 +3,7 @@
 #include "qualification.h"
 #include "realprofile.h"
 #include "profile.h"
+#include <memory>
 
 class ProxyProfile: public Profile
 {
@@ -26,11 +27,10 @@ public:
     virtual int createProfile();
     virtual int editProfile();
 
-
-
 protected:
-  //QPointer<RealStudent> getStudent(); will use later
-  //std::auto_ptr<RealProfile> getProfile();
+  std::auto_ptr<RealProfile> getProfile();
+private:
+  std::auto_ptr<RealProfile> _realProfile;
 
 };
 

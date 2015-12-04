@@ -52,13 +52,13 @@ void ManageProjectControl::createProject(QString name,
     // TODO: See what happens if you try to create a project and the
     //       project name is already taken
 
-    _project.reset(new Project);
+    /*_project.reset(new Project);
     _project->setName(name);
     _project->setDescription(description);
     _project->setMinTeamSize(min);
     _project->setMaxTeamSize(max);
     _project->create();
-    _view.close();
+    _view.close();*/
 }
 
 void ManageProjectControl::cancel() {

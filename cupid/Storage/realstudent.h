@@ -23,6 +23,14 @@ public:
     virtual int getId();
     virtual void setId(int value);
 
+private:
+    int _id;
+    QString _userName;
+    QString _displayName;
+    QString _studentId;
+    std::auto_ptr<Profile> _profile;
+    std::vector<Project*> _projects;
+
 
 };
 

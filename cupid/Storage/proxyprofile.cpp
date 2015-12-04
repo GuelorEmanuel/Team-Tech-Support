@@ -5,23 +5,23 @@ ProxyProfile::ProxyProfile() /*: _stuId(-1), _id(-1)*/{
 ProxyProfile::~ProxyProfile() {}
 
 int ProxyProfile::getId() {
-    return _id;
+    //return _id;
 }
 
 void ProxyProfile::setId(int value) {
-    _id = value;
+    //_id = value;
 }
 
 void ProxyProfile::setStuId(int value){
-    _stuId = value;
+    //_stuId = value;
 }
 
 int ProxyProfile::getStuId(){
-    return _stuId;
+    //return _stuId;
 }
 
 std::vector<Qualification> ProxyProfile::getQualifications() {
-    return _qualifications;
+    //return _qualifications;
 }
 
 /*Function: void Profile::addQualification
@@ -34,37 +34,37 @@ int ProxyProfile::addQualification(int answer, int min, int max){
     qual.setMinAnswer(min);
     qual.setMaxAnswer(max);
 
-    _qualifications.push_back(qual);
+    //_qualifications.push_back(qual);
 }
 
 int ProxyProfile::addQualification(Qualification &qual){
-    _qualifications.push_back(qual);
+    //_qualifications.push_back(qual);
 }
 
 int ProxyProfile::getAnswer(int index) {
-    if(index < 1 || index > 29) return -1;
+    /*if(index < 1 || index > 29) return -1;
 
     return _qualifications[index-1].getAnswer();
-}
+*/}
 
 int ProxyProfile::getMinAnswer(int index) {
-    if(index < 1 || index > 29) return -1;
+  /*  if(index < 1 || index > 29) return -1;
 
     return _qualifications[index-1].getMinAnswer();
-}
+*/}
 
 int ProxyProfile::getMaxAnswer(int index) {
-    if(index < 1 || index > 29) return -1;
+   /* if(index < 1 || index > 29) return -1;
 
     return _qualifications[index-1].getMaxAnswer();
-}
+*/}
 
 /*Function: void Profile::loadQualification()
  * Purpose: for created project, load all settings for
  *          selected project from db
  */
 int ProxyProfile::loadQualification() {
-    if(_id == -1) return -1;
+  //  if(_id == -1) return -1;
 /*
     QSqlQuery qry(Database::getInstance().db());
 
@@ -90,13 +90,13 @@ int ProxyProfile::loadQualification() {
 }
 
 int ProxyProfile::editQualification(int num, int ans, int amin, int amax){
-    if(num < 0 || num > 28) return 0;
+    /*if(num < 0 || num > 28) return 0;
 
 
     _qualifications[num].setAnswer(ans);
     _qualifications[num].setMinAnswer(amin);
     _qualifications[num].setMaxAnswer(amax);
-
+*/
 }
 int ProxyProfile::editQualification(int num, Qualification &qualification){
 
