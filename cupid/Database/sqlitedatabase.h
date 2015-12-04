@@ -16,6 +16,7 @@ class SqliteDatabase : public Database
 {
 public:
     static SqliteDatabase* instance();
+    ~SqliteDatabase();
     virtual int createProject(Project* project);
     virtual int createStudent(Student* student);
     virtual int createAdmin(Admin* admin);
@@ -28,14 +29,14 @@ public:
     virtual int getAdmin(Admin* admin);
     virtual int getProfile(Profile* profile);
     virtual int getProject(Project* project);
-    virtual int getProjectList(std::vector<Project*> &projects);
+    virtual int getProjectList(std::vector<std::shared_ptr<Project>> &projects);
     virtual int getProjectIDsList(std::vector<int> &projects);
     virtual int getProjectNamesList(std::vector<QString> &projects);
-    virtual int getFullProject(std::vector<Project*> &projects);
+    virtual int getFullProject(std::vector<std::shared_ptr<Project>> &projects);
     virtual int getJoinedProjectList(Student* stu,
-                                     std::vector<Project*> &list);
+                                     std::vector<std::shared_ptr<Project>> &list);
     virtual int getUnjoinedProjectList(Student* stu,
-                                       std::vector<Project*> &list);
+                                       std::vector<std::shared_ptr<Project>> &list);
     virtual int getStudentsInProject(Project* project,
                                      std::vector<Student*> &list);
 

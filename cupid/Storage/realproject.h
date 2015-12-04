@@ -26,7 +26,7 @@ public:
     virtual void setDescription(QString value);
     virtual std::vector<Student&>& getStudents();
     virtual void setStudents(std::vector<Student&>& students);
-   // virtual int registerStudent(Student& student);
+    //virtual int registerStudent(Student& student);
 
 private:
     int _id;

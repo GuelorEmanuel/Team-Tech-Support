@@ -20,6 +20,14 @@ SqliteDatabase* SqliteDatabase::instance() {
     return _instance;
 }
 
+SqliteDatabase::~SqliteDatabase()
+{
+    delete _joinedProjectRepo;
+    delete _profileRepo;
+    delete _projectRepo;
+    delete _userRepo;
+}
+
 /* User Part */
 int SqliteDatabase::createStudent(Student* student)
 {
@@ -38,21 +46,21 @@ int SqliteDatabase::createAdmin(Admin* admin)
 int SqliteDatabase::getStudent(Student* student)
 {
     int stat = 0;
-    //stat = _userRepo.getStudent(student);
+    stat = _userRepo->getStudent(student);
     return stat;
 }
 
 int SqliteDatabase::getAdmin(Admin* admin)
 {
     int stat = 0;
-    //stat = _userRepo.getAdmin(admin);
+    stat = _userRepo->getAdmin(admin);
     return stat;
 }
 
 int SqliteDatabase::getUser(QString username, int& id)
 {
     int stat = 0;
-    //_userRepo.getUser(username, id);
+    _userRepo->getUser(username, id);
     return stat;
 }
 
@@ -60,21 +68,21 @@ int SqliteDatabase::getUser(QString username, int& id)
 int SqliteDatabase::createProfile(Profile* profile)
 {
     int stat = 0;
-    //stat = _profileRepo.createProfile(profile);
+    stat = _profileRepo->createProfile(profile);
     return stat;
 }
 
 int SqliteDatabase::editProfile(Profile* profile)
 {
     int stat = 0;
-    //stat = _profileRepo.editProfile(profile);
+    stat = _profileRepo->editProfile(profile);
     return stat;
 }
 
 int SqliteDatabase::getProfile(Profile* profile)
 {
     int stat = 0;
-    //stat = _profileRepo.getProfile(profile);
+    stat = _profileRepo->getProfile(profile);
     return stat;
 }
 
@@ -82,25 +90,25 @@ int SqliteDatabase::getProfile(Profile* profile)
 int SqliteDatabase::createProject(Project* project)
 {
     int stat = 0;
-    //stat = _projectRepo.createProject(project);
+   stat = _projectRepo->createProject(project);
     return stat;
 }
 
 int SqliteDatabase::editProject(Project* project)
 {
     int stat = 0;
-    //stat = _projectRepo.editProject(project);
+    stat = _projectRepo->editProject(project);
     return stat;
 }
 
 int SqliteDatabase::getProject(Project* project)
 {
     int stat = 0;
-    //stat = _projectRepo.getProject(project);
+    stat = _projectRepo->getProject(project);
     return stat;
 }
 
-int SqliteDatabase::getProjectList(std::vector<Project*> &projects)
+int SqliteDatabase::getProjectList(std::vector<std::shared_ptr<Project>> &projects)
 {
    //return _projectRepo->listProjects(projects);
 }
@@ -115,7 +123,7 @@ int SqliteDatabase::getProjectNamesList(std::vector<QString> &projects)
    //return _projectRepo->listProjectsNames(projects);
 }
 
-int SqliteDatabase::getFullProject(std::vector<Project*> &projects)
+int SqliteDatabase::getFullProject(std::vector<std::shared_ptr<Project>> &projects)
 {
    //return _projectRepo->listFullProjects(projects);
 }
@@ -127,7 +135,7 @@ int SqliteDatabase::addStudentToProject(int student_id, int project_id)
     return stat;
 }
 
-int SqliteDatabase::getJoinedProjectList(Student* stu, std::vector<Project*> &list)
+int SqliteDatabase::getJoinedProjectList(Student* stu, std::vector<std::shared_ptr<Project>> &list)
 {
     int stat = 0;
     std::vector<int> ids;
@@ -142,7 +150,7 @@ int SqliteDatabase::getJoinedProjectList(Student* stu, std::vector<Project*> &li
     return stat;
 }
 
-int SqliteDatabase::getUnjoinedProjectList(Student* stu, std::vector<Project*> &list)
+int SqliteDatabase::getUnjoinedProjectList(Student* stu, std::vector<std::shared_ptr<Project>> &list)
 {
     int stat = 0;
     /*std::vector<int> ids;

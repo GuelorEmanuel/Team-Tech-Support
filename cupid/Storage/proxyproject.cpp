@@ -41,7 +41,7 @@ int ProxyProject::getId() const {
     }
 }
 
-void ProxyProject::setId(int value) {
+int ProxyProject::setId(int value) {
     if (_project.get() == NULL) {
         return _id = value;
     } else {

@@ -20,7 +20,7 @@ public:
                  std::vector<Student&>& students);
     virtual ~ProxyProject();
     virtual int getId() const;
-    virtual void setId(int value);
+    virtual int setId(int value);
     virtual int getMinTeamSize() const;
     virtual void setMinTeamSize(int value);
     virtual int getMaxTeamSize() const;
@@ -31,7 +31,7 @@ public:
     virtual void setDescription(QString value);
     virtual std::vector<Student&>& getStudents();
     virtual void setStudents(std::vector<Student&>& students);
-    virtual int registerStudent(Student& student);
+    virtual void registerStudent(Student& student);
 private:
     std::auto_ptr<RealProject> _project;
     int _id;
