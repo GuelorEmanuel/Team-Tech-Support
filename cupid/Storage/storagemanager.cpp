@@ -12,9 +12,7 @@ StorageManager::~StorageManager()
  Student &StorageManager::getStudent() {
 
  }
- void StorageManager::createAdmin(const Admin &admin) {
 
- }
  Admin& StorageManager::getAdmin(int id){
 
  }

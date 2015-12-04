@@ -11,7 +11,7 @@ public:
     ~StorageManager();
     bool createStudent(const Student & student);
     Student &getStudent();
-    void createAdmin(const Admin&);
+    bool createAdmin(const Admin&);
     Admin& getAdmin(int id);
     User& getUser(int id);
     bool userExists(QString name);
