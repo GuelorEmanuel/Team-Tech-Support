@@ -11,19 +11,20 @@ class Project;
 class Student : public User
 {
 public:
-
-    virtual ~Student() = 0;
-    virtual QString getStudentId() = 0;
-    virtual void setStudentId(QString value) = 0;
-    virtual Profile getProfile() = 0;
-    virtual void setProfile(Profile* value) = 0;
-    virtual std::vector<Project*> getProjects() = 0;
-    virtual void joinProject(Project& project) = 0;
-    virtual void createStudentUser() = 0;
+    Student();
+    virtual ~Student();
+    virtual QString getStudentId();
+    virtual void setStudentId(QString value);
+    virtual Profile getProfile();
+    virtual void setProfile(Profile* value) ;
+    virtual std::vector<Project*> getProjects();
+    virtual void joinProject(Project& project);
+    virtual void createStudentUser();
     virtual bool operator<(const Student& rhs) const = 0;
     virtual bool operator==(const Student& rhs) const = 0;
+
 protected:
-    Student();
+
     QString _studentId;
     std::auto_ptr<Profile> _profile;
     std::vector<Project*> _projects;

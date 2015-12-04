@@ -9,6 +9,7 @@
 #include "Storage/admin.h"
 #include "Storage/student.h"
 #include "Storage/project.h"
+#include <vector>
 
 class SqliteDatabase
 {
@@ -22,11 +23,17 @@ public:
     int editProfile(Profile& profile);
     int addStudentToProject(int student_id, int project_id);
     int getStudent(Student& student); //Student&
+    int getUser(QString username, int& id);
     int getAdmin(Admin& admin);
     int getProfile(Profile& profile);
     int getProject(Project& project);
-    int getProjectList();
-    int getJoinedProjectList(int id);//Student&
+    int getProjectList(std::vector<Project> projects);
+    int getProjectIDsList(std::vector<int> projects);
+    int getProjectNamesList(std::vector<QString> projects);
+    int getFullProject(std::vector<Project> projects);
+    int getJoinedProjectList(Student& stu, std::vector<Project*> list);
+    int getUnjoinedProjectList(Student& stu, std::vector<Project*> list);
+    int getStudentsInProject(Project& project, std::vector<Student*> list);
 
 private:
     SqliteJoinedProjectRepository _joinedProjectRepo;
