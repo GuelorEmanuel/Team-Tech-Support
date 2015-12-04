@@ -6,7 +6,7 @@ StorageManager::StorageManager()
 StorageManager::~StorageManager()
 {
 }
- bool StorageManager::createAdmin(const Admin &){
+ int StorageManager::createAdmin(const Admin &){
 
  }
  Student &StorageManager::getStudent() {

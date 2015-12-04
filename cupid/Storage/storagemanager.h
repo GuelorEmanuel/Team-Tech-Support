@@ -7,11 +7,12 @@
 class StorageManager
 {
 public:
+
     StorageManager();
     ~StorageManager();
-    bool createStudent(const Student & student);
+    int createStudent(const Student & student);
     Student &getStudent();
-    bool createAdmin(const Admin&);
+    int createAdmin(const Admin&);
     Admin& getAdmin(int id);
     User& getUser(int id);
     bool userExists(QString name);
