@@ -44,21 +44,21 @@ int SqliteDatabase::createAdmin(AdminPtr admin)
 int SqliteDatabase::getStudent(StudentPtr student)
 {
     int stat = 0;
-    //stat = _userRepo.getStudent(student);
+    stat = _userRepo->getStudent(student);
     return stat;
 }
 
 int SqliteDatabase::getAdmin(AdminPtr admin)
 {
     int stat = 0;
-    //stat = _userRepo.getAdmin(admin);
+    stat = _userRepo->getAdmin(admin);
     return stat;
 }
 
 int SqliteDatabase::getUser(QString username, int& id)
 {
     int stat = 0;
-    //_userRepo.getUser(username, id);
+    _userRepo->getUser(username, id);
     return stat;
 }
 
@@ -66,21 +66,21 @@ int SqliteDatabase::getUser(QString username, int& id)
 int SqliteDatabase::createProfile(ProfilePtr profile)
 {
     int stat = 0;
-    //stat = _profileRepo.createProfile(profile);
+    stat = _profileRepo->createProfile(profile);
     return stat;
 }
 
 int SqliteDatabase::editProfile(ProfilePtr profile)
 {
     int stat = 0;
-    //stat = _profileRepo.editProfile(profile);
+    stat = _profileRepo->editProfile(profile);
     return stat;
 }
 
 int SqliteDatabase::getProfile(ProfilePtr profile)
 {
     int stat = 0;
-    //stat = _profileRepo.getProfile(profile);
+    stat = _profileRepo->getProfile(profile);
     return stat;
 }
 
@@ -88,21 +88,21 @@ int SqliteDatabase::getProfile(ProfilePtr profile)
 int SqliteDatabase::createProject(ProjectPtr project)
 {
     int stat = 0;
-    //stat = _projectRepo.createProject(project);
+   stat = _projectRepo->createProject(project);
     return stat;
 }
 
 int SqliteDatabase::editProject(ProjectPtr project)
 {
     int stat = 0;
-    //stat = _projectRepo.editProject(project);
+    stat = _projectRepo->editProject(project);
     return stat;
 }
 
 int SqliteDatabase::getProject(ProjectPtr project)
 {
     int stat = 0;
-    //stat = _projectRepo.getProject(project);
+    stat = _projectRepo->getProject(project);
     return stat;
 }
 
