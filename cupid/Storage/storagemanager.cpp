@@ -29,12 +29,7 @@ bool StorageManager::findProject(int id)
         return true;
     } else {
         ProjectPtr proj(std::make_shared<ProxyProject>(id));
-        int stat = Database::instance()->getProject(proj);
-        if(stat == 1) {
-            return false;
-        } else {
-            return true;
-        }
+        return !Database::instance()->getProject(proj);
     }
 }
 
@@ -46,12 +41,7 @@ bool StorageManager::findProfile(int id)
         return true;
     } else {
         ProfilePtr prof(std::make_shared<ProxyProfile>(id));
-        int stat = Database::instance()->getProfile(prof);
-        if(stat == 1) {
-            return false;
-        } else {
-            return true;
-        }
+        return !Database::instance()->getProfile(prof);
     }
 }
 
@@ -62,12 +52,7 @@ bool StorageManager::findStudent(int id)
         return true;
     } else {
         StudentPtr stud(std::make_shared<ProxyStudent>(id));
-        int stat = Database::instance()->getStudent(stud);
-        if(stat == 1) {
-            return false;
-        } else {
-            return true;
-        }
+        return !Database::instance()->getStudent(stud);
     }
 }
 
@@ -78,12 +63,7 @@ bool StorageManager::findAdmin(int id)
         return true;
     } else {
         AdminPtr admin(std::make_shared<Admin>(id));
-        int stat = Database::instance()->getAdmin(admin);
-        if(stat == 1) {
-            return false;
-        } else {
-            return true;
-        }
+        return !Database::instance()->getAdmin(admin);
     }
 }
 
@@ -92,36 +72,21 @@ bool StorageManager::findStudent(QString name)
 
     StudentPtr stud(std::make_shared<ProxyStudent>());
     stud->setUserName(name);
-    int stat = Database::instance()->getStudent(stud);
-    if(stat == 1) {
-        return false;
-    } else {
-        return true;
-    }
+    return !Database::instance()->getStudent(stud);
 }
 
 bool StorageManager::findAdmin(QString name)
 {
     AdminPtr admin(std::make_shared<Admin>());
     admin->setUserName(name);
-    int stat = Database::instance()->getAdmin(admin);
-    if(stat == 1) {
-        return false;
-    } else {
-        return true;
-    }
+    return !Database::instance()->getAdmin(admin);
 }
 
 bool StorageManager::findProject(QString name)
 {
     ProjectPtr proj(std::make_shared<ProxyProject>());
     proj->setName(name);
-    int stat = Database::instance()->getProject(proj);
-    if(stat == 1) {
-        return false;
-    } else {
-        return true;
-    }
+    return !Database::instance()->getProject(proj);
 }
 
 
@@ -163,6 +128,8 @@ void StorageManager::editProfile(storage::ProfilePtr profile)
             auto prof = _profiles.find(profile->getId());
             if (prof == _profiles.end()) {
                 _profiles.insert({{profile->getId(), profile}});
+            } else {
+                prof->second = profile;
             }
     }
 }
@@ -174,6 +141,8 @@ void StorageManager::editProject(storage::ProjectPtr project)
             auto proj = _projects.find(project->getId());
             if (proj == _projects.end()) {
                 _projects.insert({{project->getId(), project}});
+            } else {
+                proj->second = project;
             }
     }
 }
