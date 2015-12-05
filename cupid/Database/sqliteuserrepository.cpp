@@ -2,13 +2,10 @@
 #include "sqliteuserrepository.h"
 #include "Storage/admin.h"
 #include "Storage/student.h"
-<<<<<<< HEAD
 #include "Storage/proxystudent.h"
 #include <QSqlDatabase>
 #include <QSqlQuery>
-=======
 #include <QtSql>
->>>>>>> b66fef958785e66e76a2978217097c89894e206c
 #include <QDebug>
 using namespace storage;
 

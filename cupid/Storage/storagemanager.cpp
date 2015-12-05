@@ -34,10 +34,6 @@ StudentList StorageManager::listProjectStudents(ProjectPtr project) {
 }
 
 StudentList StorageManager::getStudentsInProject(int id) {
-<<<<<<< HEAD
-    // Some calls to the database?
-=======
->>>>>>> b66fef958785e66e76a2978217097c89894e206c
     ProjectPtr proj = getProject(id);
     Database::instance()->getStudentsInProject(proj, proj->getStudents());
     return proj->getStudents();
