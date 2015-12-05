@@ -3,6 +3,7 @@
 
 #include "Storage/storage.h"
 #include "manageprofilewindow.h"
+#include "Storage/storagemanager.h"
 
 class ManageProfileControl
 {

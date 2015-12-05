@@ -180,7 +180,7 @@ void StorageManager::editProject(storage::ProjectPtr project)
 
 StudentList StorageManager::listProjectStudents(ProjectPtr project) {
     if(findProject(project->getId())) {
-        return Database::instance()->getStudentsInProject(project);
+        //return Database::instance()->getStudentsInProject(project);
     }
 }
 
@@ -201,6 +201,14 @@ storage::ProjectList StorageManager::listStudentProjects(storage::StudentPtr stu
 StudentList StorageManager::getStudentsInProject(int id) {
     ProjectPtr proj = getProject(id);
     return Database::instance()->getStudentsInProject(proj);
+}
+
+void StorageManager::joinProject(storage::ProjectPtr project, storage::StudentPtr student)
+{
+    if(findStudent(student->getId())
+            && findProject(project->getId())) {
+        Database::instance()->addStudentToProject(student->getId(), project->getId());
+    }
 }
 
 ProjectPtr StorageManager::getProject(int id)
