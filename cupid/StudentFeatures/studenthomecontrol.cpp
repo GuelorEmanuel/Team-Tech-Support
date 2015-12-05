@@ -1,8 +1,10 @@
 #include "studenthomecontrol.h"
 #include "Storage/student.h"
+#include "Storage/storagemanager.h"
 #include "manageprofilecontrol.h"
 #include "joinprojectcontrol.h"
 using namespace storage;
+
 
 StudentHomeControl::StudentHomeControl(StudentPtr student) :
     _student(student), _view(*this)
@@ -40,6 +42,11 @@ QString StudentHomeControl::getName()
  *          to view class
  */
 void StudentHomeControl::getUnjoinedProjectList() {
+    ProjectList projects;
+    projects = StorageManager::instance()->listProjectsNotOfStudent(_student);
+    for(int i = 0; i < projects->size(); i++) {
+        _view.addUnjoinedProject((projects->at(i)->getId()), (projects->at(i))->getName());
+    }
     /*
     QSqlQuery qry(Database::getInstance().db());
     qry.prepare("SELECT id, name FROM project "
@@ -66,7 +73,8 @@ void StudentHomeControl::getUnjoinedProjectList() {
  * Purpose: open unjoined project to student
  */
 void StudentHomeControl::openUnJoinedProject(int projectId) {
-    //JoinProjectControl studentProjectControl(projectId, _student);
+    ProjectPtr project = StorageManager::instance()->getProject(projectId);
+    JoinProjectControl studentProjectControl(project, _student);
     _view.show();
 }
 
@@ -76,6 +84,11 @@ void StudentHomeControl::openUnJoinedProject(int projectId) {
  *          to view class
  */
 void StudentHomeControl::getJoinedProjectList() {
+    ProjectList projects;
+    projects = StorageManager::instance()->listStudentProjects(_student);
+    for(int i = 0; i < projects->size(); i++) {
+        _view.addJoinedProject((projects->at(i)->getId()), (projects->at(i))->getName());
+    }
     /*
     QSqlQuery qry(Database::getInstance().db());    
     qry.prepare("SELECT id, name FROM project, project_student_registered "
