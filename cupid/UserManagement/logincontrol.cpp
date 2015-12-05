@@ -1,11 +1,8 @@
 #include "UserManagement/logincontrol.h"
 #include "UserManagement/loginwindow.h"
 #include "UserManagement/usermanagementcommunication.h"
-#include "StudentFeatures/studenthomecontrol.h"
-#include "AdminFeatures/adminhomecontrol.h"
-#include "Storage/admin.h"
-#include "Storage/student.h"
 #include "Storage/storage.h"
+#include "Storage/user.h"
 using namespace storage;
 
 LoginControl::LoginControl()
@@ -29,15 +26,11 @@ void LoginControl::signIn(QString userName)
     {
         if (user->isAdmin())
         {
-            AdminPtr admin = UserManagementCommunication::getAdmin(
-                        user->getId());
-            AdminHomeControl ahc(admin);
+            UserManagementCommunication::showAdminHome(user);
         }
         else
         {
-            StudentPtr student = UserManagementCommunication::getStudent(
-                        user->getId());
-            StudentHomeControl shc(student);
+            UserManagementCommunication::showStudentHome(user);
         }
     }
 }

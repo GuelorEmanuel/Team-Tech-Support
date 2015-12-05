@@ -10,6 +10,8 @@ public:
     static storage::UserPtr getUser(QString name);
     static storage::AdminPtr getAdmin(int id);
     static storage::StudentPtr getStudent(int id);
+    static void showAdminHome(storage::UserPtr user);
+    static void showStudentHome(storage::UserPtr user);
 private:
     UserManagementCommunication();
     void operator=(
