@@ -160,12 +160,13 @@ StudentList StorageManager::getStudentsInProject(int id) {
     return Database::instance()->getStudentsInProject(proj);
 }
 
-void StorageManager::joinProject(storage::ProjectPtr project, storage::StudentPtr student)
+int StorageManager::joinProject(storage::ProjectPtr project, storage::StudentPtr student)
 {
     if(findStudent(student->getId())
             && findProject(project->getId())) {
-        Database::instance()->addStudentToProject(student->getId(), project->getId());
+        return Database::instance()->addStudentToProject(student->getId(), project->getId());
     }
+    return 1;
 }
 
 ProjectPtr StorageManager::getProject(int id)

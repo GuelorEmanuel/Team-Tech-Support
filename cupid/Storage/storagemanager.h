@@ -35,7 +35,7 @@ public:
     storage::StudentList getStudentsInProject(int id);
     storage::StudentList listProjectStudents(storage::ProjectPtr project);
     storage::ProjectList listProjectsNotOfStudent(storage::StudentPtr student);
-    void joinProject(storage::ProjectPtr project, storage::StudentPtr student);
+    int joinProject(storage::ProjectPtr project, storage::StudentPtr student);
     // Cache features
     storage::ProjectPtr getProject(int id);
     storage::StudentPtr getStudent(int id);
