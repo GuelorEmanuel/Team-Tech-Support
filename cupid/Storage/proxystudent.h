@@ -20,6 +20,11 @@ class ProxyStudent: public Student {
     virtual void joinProject(storage::ProjectPtr project);
     virtual bool operator<(const Student& rhs) const;
     virtual bool operator==(const Student& rhs) const;
+
+
+  protected:
+    void initRealStudent();
+
   private:
     QString _studentId;
     int _profileId;

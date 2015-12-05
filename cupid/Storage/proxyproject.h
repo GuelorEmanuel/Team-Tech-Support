@@ -35,6 +35,9 @@ public:
     virtual storage::StudentList getStudents();
     virtual void setStudents(storage::StudentList students);
     virtual void registerStudent(storage::StudentPtr student);
+
+protected:
+     void initRealProject();
 private:
     std::unique_ptr<RealProject> _project;
     int _id;
@@ -42,7 +45,6 @@ private:
     QString _description;
     int _minTeamSize;
     int _maxTeamSize;
-    void initRealProject();
 };
 
 #endif // PROXYPROJECT_H

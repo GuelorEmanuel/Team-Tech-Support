@@ -7,22 +7,21 @@
 class Profile
 {
 public:
-    Profile();
-    int getId();
-    void setId(int value);
-    void setStuId(int value);
-    int getStuId();
-    std::vector<Qualification> getQualifications();
-    void addQualification(int, int, int);
-    void addQualification(Qualification&);
-    int getAnswer(int index);
-    int getMinAnswer(int index);
-    int getMaxAnswer(int index);
-    void loadQualification();
-    void editQualification(int num, int ans, int amin, int amax);
+    virtual int getId()=0;
+    virtual void setId(int value)=0;
+    virtual void setStuId(int value)=0;
+    virtual int getStuId() = 0;
+    virtual std::vector<Qualification> getQualifications()=0;
+    virtual void addQualification(int ans, int minAns, int maxAns)=0;
+    virtual void addQualification(Qualification &qualification)=0;
+    virtual int getAnswer(int index)=0;
+    virtual int getMinAnswer(int index)=0;
+    virtual int getMaxAnswer(int index)=0;
+    virtual void loadQualification()=0;
+    virtual void editQualification(int num, int ans, int amin, int amax)=0;
     //void editQualification(int num, Qualification&);
-    void createProfile();
-    void editProfile();
+    virtual void createProfile()=0;
+    virtual void editProfile()=0;
     ~Profile();
 
     enum
@@ -56,6 +55,9 @@ public:
         Q_EFFICIENCY,
         Q_WORKLOAD
     };
+protected:
+    Profile();
+
 private:
     int _id;
     int _stuId;
