@@ -143,9 +143,7 @@ StudentList StorageManager::listProjectStudents(ProjectPtr project) {
 
 ProjectList StorageManager::listProjectsNotOfStudent(storage::StudentPtr student)
 {
-    qDebug() << student->getId();
     if(findStudent(student->getId())) {
-        qDebug() << "Hey";
         return Database::instance()->getUnjoinedProjectList(student);
     }
 }
@@ -153,15 +151,13 @@ ProjectList StorageManager::listProjectsNotOfStudent(storage::StudentPtr student
 ProjectList StorageManager::listStudentProjects(storage::StudentPtr student)
 {
     if(findStudent(student->getId())) {
-       //return Database::instance()->getJoinedProjectList(student);
+       return Database::instance()->getJoinedProjectList(student);
     }
 }
 
 StudentList StorageManager::getStudentsInProject(int id) {
     ProjectPtr proj = getProject(id);
-    StudentList vec = Database::instance()->getStudentsInProject(proj);
-    std::make_shared<StudentList> (vec);
-    return vec;
+    return Database::instance()->getStudentsInProject(proj);
 }
 
 void StorageManager::joinProject(storage::ProjectPtr project, storage::StudentPtr student)

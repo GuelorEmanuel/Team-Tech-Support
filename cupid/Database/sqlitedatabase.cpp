@@ -146,7 +146,7 @@ ProjectList SqliteDatabase::getJoinedProjectList(StudentPtr stu)
     stat = _joinedProjectRepo->getJoinedProjects(stu, ids);
 
     for(int i = 0; i < ids.size(); i++) {
-        ProjectPtr proj;
+        ProjectPtr proj(std::make_shared<ProxyProject>());
         proj->setId(ids[i]);
         _projectRepo->getProject(proj);
         list->push_back(proj);

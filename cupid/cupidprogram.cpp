@@ -20,11 +20,11 @@ int main(int argc, char *argv[])
     StudentList list = StorageManager::instance()->listProjectStudents(project);
     qDebug() << QString("%1").arg((list->at(0))->getId());
 
-    //ProjectList list1 = StorageManager::instance()->listStudentProjects(student);
-    //qDebug() << QString("%1").arg((list1->at(0))->getId());
+    ProjectList list1 = StorageManager::instance()->listStudentProjects(student);
+    qDebug() << QString("%1").arg((list1->at(0))->getId());
 
-    //ProjectList list2(StorageManager::instance()->listProjectsNotOfStudent(student));
-    //qDebug() << QString("%1").arg((list2->at(0))->getId());
+    ProjectList list2(StorageManager::instance()->listProjectsNotOfStudent(student));
+    qDebug() << QString("%1").arg((list2->at(0))->getId());
     return 0;
 
 }
