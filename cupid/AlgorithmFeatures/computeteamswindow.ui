@@ -6,60 +6,67 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>486</width>
-    <height>243</height>
+    <width>775</width>
+    <height>525</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Compute Best Teams</string>
   </property>
-  <widget class="QComboBox" name="comboBox">
+  <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>130</x>
-     <y>80</y>
-     <width>221</width>
-     <height>27</height>
+     <x>20</x>
+     <y>70</y>
+     <width>175</width>
+     <height>95</height>
     </rect>
    </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QPushButton" name="backButton">
+      <property name="text">
+       <string>Back</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="summaryButton">
+      <property name="text">
+       <string>View Summary Results</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="detailsButton">
+      <property name="text">
+       <string>View Detailed Results</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="projectNameLabel">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>40</y>
-     <width>141</width>
-     <height>20</height>
+     <x>40</x>
+     <y>20</y>
+     <width>711</width>
+     <height>17</height>
     </rect>
    </property>
    <property name="text">
-    <string>List of Projects</string>
+    <string>Computed teams for [project name]</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="submitButton">
+  <widget class="QTextEdit" name="resultsTextEdit">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>130</y>
-     <width>99</width>
-     <height>27</height>
+     <x>210</x>
+     <y>70</y>
+     <width>541</width>
+     <height>431</height>
     </rect>
-   </property>
-   <property name="text">
-    <string>Submit</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="cancelButton">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>160</y>
-     <width>99</width>
-     <height>27</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Cancel</string>
    </property>
   </widget>
  </widget>

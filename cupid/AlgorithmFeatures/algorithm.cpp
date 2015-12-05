@@ -4,8 +4,8 @@
 using namespace storage;
 using namespace algorithm;
 
-Algorithm::Algorithm(ProjectPtr project, StudentList students)
-    : _project(project), _students(students)
+Algorithm::Algorithm(ProjectPtr project)
+    : _project(project)
 {
 
 }
