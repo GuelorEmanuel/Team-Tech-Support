@@ -2,12 +2,15 @@
 #define PROXYPROFILE_H
 
 #include "profile.h"
+#include "realprofile.h"
+#include <memory>
 
 class ProxyProfile : public Profile
 {
 public:
     ProxyProfile();
     ProxyProfile(int id);
+    ~ProxyProfile();
     virtual int getId();
     virtual void setId(int value);
     virtual void setStuId(int value);
@@ -20,10 +23,15 @@ public:
     virtual int getMaxAnswer(int index);
     virtual void loadQualification();
     virtual void editQualification(int num, int ans, int amin, int amax);
-    virtual void createProfile();
+    //virtual void createProfile();
     virtual void editProfile();
+protected:
+    void initRealProfile();
 private:
+    std::unique_ptr<RealProfile> _profile;
     int _id;
+    int _stuId;
+    std::vector<Qualification> _qualifications;
 };
 
 #endif // PROXYPROFILE_H

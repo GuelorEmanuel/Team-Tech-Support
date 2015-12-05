@@ -20,9 +20,9 @@ public:
     virtual void loadQualification()=0;
     virtual void editQualification(int num, int ans, int amin, int amax)=0;
     //void editQualification(int num, Qualification&);
-    virtual void createProfile()=0;
+    //virtual void createProfile()=0;
     virtual void editProfile()=0;
-    ~Profile();
+    virtual ~Profile()=0;
 
     enum
     {
@@ -58,10 +58,6 @@ public:
 protected:
     Profile();
 
-private:
-    int _id;
-    int _stuId;
-    std::vector<Qualification> _qualifications;
 };
 
 #endif // PROFILE_H
