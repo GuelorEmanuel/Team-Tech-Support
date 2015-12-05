@@ -41,7 +41,7 @@ int ProxyProject::getId() const {
 }
 
 void ProxyProject::setId(int value) {
-    if (_project.get() == NULL) {
+    if (!_project) {
         _id = value;
     } else {
         _project->setId(value);
@@ -73,11 +73,15 @@ int ProxyProject::getMaxTeamSize() const {
 }
 
 void ProxyProject::setMaxTeamSize(int value) {
-    _maxTeamSize = value;
+    if (!_project) {
+        _maxTeamSize = value;
+    } else {
+        _project->setMaxTeamSize(value);
+    }
 }
 
 QString ProxyProject::getName() const {
-    if (_project.get() == NULL) {
+    if (!_project) {
         return _name;
     } else {
         return _project->getName();
@@ -85,7 +89,11 @@ QString ProxyProject::getName() const {
 }
 
 void ProxyProject::setName(QString value) {
-    _name = value;
+    if (!_project) {
+        _name = value;
+    } else {
+        _project->setName(value);
+    }
 }
 
 QString ProxyProject::getDescription() const {

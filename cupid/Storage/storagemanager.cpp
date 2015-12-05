@@ -3,6 +3,7 @@
 #include "proxyproject.h"
 #include "proxystudent.h"
 #include "proxyprofile.h"
+#include "Database/database.h"
 
 using namespace storage;
 
@@ -21,6 +22,11 @@ StorageManager* StorageManager::instance() {
     return _instance;
 }
 
+void StorageManager::createProject(storage::ProjectPtr project) {
+    Database::instance()->createProject(project);
+    _projects.insert({{project->getId(), project}});
+}
+
 StudentList StorageManager::listProjectStudents(ProjectPtr project) {
     return StudentList();
     //std::shared_ptr<std::vector<Student*>
@@ -28,10 +34,9 @@ StudentList StorageManager::listProjectStudents(ProjectPtr project) {
 }
 
 StudentList StorageManager::getStudentsInProject(int id) {
-    // Some calls to the database?
-
-    // For now just return empty list
-    return StudentList();
+    ProjectPtr proj = getProject(id);
+    Database::instance()->getStudentsInProject(proj, proj->getStudents());
+    return proj->getStudents();
 }
 
 ProjectPtr StorageManager::getProject(int id)

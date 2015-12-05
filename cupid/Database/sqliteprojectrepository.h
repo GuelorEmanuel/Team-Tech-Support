@@ -2,10 +2,8 @@
 #define SQLITEPROJECTREPOSITORY_H
 
 #include "Storage/storage.h"
-#include "Storage/project.h"
-#include "database.h"
-#include "memory.h"
-#include "Storage/proxyproject.h"
+#include <QString>
+class QSqlDatabase;
 
 class SqliteProjectRepository
 {

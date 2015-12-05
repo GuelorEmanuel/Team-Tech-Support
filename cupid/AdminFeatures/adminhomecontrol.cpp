@@ -1,15 +1,19 @@
 #include "adminhomecontrol.h"
+#include "adminfeaturescommunication.h"
 #include "manageprojectcontrol.h"
 #include "Storage/admin.h"
+#include "Storage/storage.h"
+using namespace storage;
 
-AdminHomeControl::AdminHomeControl(Admin &admin) :
+AdminHomeControl::AdminHomeControl(AdminPtr admin) :
     _admin(admin), _view(*this)
 {
     getProjectList();
-    _view.setName(admin.getDisplayName());
+    _view.setName(admin->getDisplayName());
     _view.setModal(true);
     _view.exec();
 }
+
 
 void AdminHomeControl::createProject() {
     ManageProjectControl manageProjectControl;
@@ -17,8 +21,9 @@ void AdminHomeControl::createProject() {
     _view.show();
 }
 
-void AdminHomeControl::editProject(int projectId) {
-    ManageProjectControl manageProjectControl;
+void AdminHomeControl::editProject(int id) {
+    ManageProjectControl manageProjectControl(
+                AdminFeaturesCommunication::getProject(id));
     _view.show();
 }
 

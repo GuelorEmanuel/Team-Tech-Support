@@ -27,8 +27,8 @@ private slots:
     void on_runAlgoBtn_clicked();
 
 private:
-    std::auto_ptr<Ui::AdminHomeWindow> ui;
     AdminHomeControl& _control;
+    std::unique_ptr<Ui::AdminHomeWindow> ui;
 };
 
 #endif // ADMINHOMEWINDOW_H

@@ -2,17 +2,12 @@
 #define SQLITEDATABASE_H
 
 #include "Storage/storage.h"
-#include "sqlitejoinedprojectrepository.h"
-#include "sqliteprofilerepository.h"
-#include "sqliteprojectrepository.h"
-#include "sqliteuserrepository.h"
-#include "Storage/profile.h"
-#include "Storage/admin.h"
-#include "Storage/student.h"
-#include "Storage/project.h"
-#include <QtSql>
-#include <vector>
-#include <memory>
+#include "Database/database.h"
+#include <QSqlDatabase>
+class SqliteJoinedProjectRepository;
+class SqliteProfileRepository;
+class SqliteProjectRepository;
+class SqliteUserRepository;
 
 class SqliteDatabase : public Database
 {

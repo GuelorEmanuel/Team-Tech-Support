@@ -2,10 +2,8 @@
 #include "sqliteuserrepository.h"
 #include "Storage/admin.h"
 #include "Storage/student.h"
-#include <QSqlDatabase>
-#include <QSqlQuery>
+#include <QtSql>
 #include <QDebug>
-#include <memory>
 using namespace storage;
 
 SqliteUserRepository::SqliteUserRepository(QSqlDatabase& db)

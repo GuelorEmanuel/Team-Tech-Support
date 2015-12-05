@@ -1,14 +1,8 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
-class Project;
-class Student;
-class Admin;
-class Profile;
 #include "Storage/storage.h"
-#include <vector>
 #include <QString>
-#include <QtSql>
 
 class Database
 {

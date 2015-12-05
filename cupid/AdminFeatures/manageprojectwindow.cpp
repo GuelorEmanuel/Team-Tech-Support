@@ -6,8 +6,8 @@
 ManageProjectWindow::ManageProjectWindow(ManageProjectControl &control,
                                      QWidget *parent) :
     QDialog(parent),
-    _control(control),
-    ui(new Ui::ManageProjectWindow)
+    ui(new Ui::ManageProjectWindow),
+    _control(control)
 {
     ui->setupUi(this);
 }
