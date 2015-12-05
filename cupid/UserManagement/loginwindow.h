@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include <memory>
-
 class LoginControl;
 
 namespace Ui {
@@ -16,6 +15,7 @@ class LoginWindow : public QMainWindow
 
 public:
     explicit LoginWindow(LoginControl& control, QWidget *parent = 0);
+    void displayUserNotFoundError();
     ~LoginWindow();
 
 private slots:

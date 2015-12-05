@@ -1,8 +1,9 @@
 #ifndef LOGINCONTROL_H
 #define LOGINCONTROL_H
 
-#include "logincontrol.h"
-#include "loginwindow.h"
+#include <memory>
+#include <QString>
+class LoginWindow;
 
 class LoginControl
 {
@@ -10,10 +11,10 @@ public:
     LoginControl();
     ~LoginControl();
     void signUp();
-    int signIn(QString userName);
+    void signIn(QString userName);
 
 private:
-   LoginWindow _view;
+   std::unique_ptr<LoginWindow> _view;
 };
 
 #endif // LOGINCONTROL_H
