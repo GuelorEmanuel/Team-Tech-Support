@@ -1,4 +1,5 @@
 #include "createadminaccountcontrol.h"
+#include "Storage/admin.h"
 
 CreateAdminAccountControl::CreateAdminAccountControl() : _view(*this)
 {

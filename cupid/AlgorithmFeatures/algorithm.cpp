@@ -1,27 +1,31 @@
-#include "algorithm.h"
+#include "AlgorithmFeatures/algorithm.h"
+#include "AlgorithmFeatures/question.h"
+#include "Storage/qualification.h"
+using namespace storage;
+using namespace algorithm;
 
-Algorithm::Algorithm(Project& project, std::vector<Student&> students)
+Algorithm::Algorithm(ProjectPtr project, StudentList students)
     : _project(project), _students(students)
 {
 
 }
 
-double Algorithm::CalculateScore(const Student& a, const Student& b)
+double Algorithm::CalculateScore(StudentPtr a, StudentPtr b)
 {
 
 }
 
-double Algorithm::CalculateScore(const Team& team)
+double Algorithm::CalculateScore(TeamPtr team)
 {
 
 }
 
-double Algorithm::CalculateScore(const Student& student, const Team& team)
+double Algorithm::CalculateScore(StudentPtr student, TeamPtr team)
 {
 
 }
 
-double Algorithm::CalculateScore(const std::vector<Team&>& teams)
+double Algorithm::CalculateScore(TeamList teams)
 {
 
 }
@@ -29,17 +33,19 @@ double Algorithm::CalculateScore(const std::vector<Team&>& teams)
 // Gives you the score for how well b is a match for a.
 // Not necessarily the same as the score for how well
 // a matches b.
-double Algorithm::BasicSimilarityRule(Question q, Qualification a,
-                                      Qualification b)
+double Algorithm::basicSimilarityRule(const Question& q,
+                                      const Qualification& a,
+                                      const Qualification& b)
 {
     double range = q.max - q.min + 1;
-    double aInflexibility = range - (a.max - a.min);
-    int distance = a.value < b.value ? b.value - a.value : a.value - b.value;
-    if (b.value < a.min) {
-        int pdistance = a.min - b.value;
+    double aInflexibility = range - (a.getMaxAnswer() - a.getMinAnswer());
+    int distance = a.getAnswer() < b.getAnswer()
+            ? b.getAnswer() - a.getAnswer() : a.getAnswer() - b.getAnswer();
+    if (b.getAnswer() < a.getMinAnswer()) {
+        int pdistance = a.getMinAnswer() - b.getAnswer();
         return (1 + aInflexibility/range)*-(distance + pdistance)/range;
-    } else if (b.value > a.max) {
-        int pdistance = b.value - a.max;
+    } else if (b.getAnswer() > a.getMaxAnswer()) {
+        int pdistance = b.getAnswer() - a.getMaxAnswer();
         return (1 + aInflexibility/range)*-(distance + pdistance)/range;
     } else {
         return (1 + aInflexibility/range)*(range - distance)/range;
@@ -48,13 +54,14 @@ double Algorithm::BasicSimilarityRule(Question q, Qualification a,
 
 // Have to repeat with left and right swapped, since this
 // is definitely not a symmetric function.
-double Algorithm::BasicComplementRule(Question q, Qualification aLeftAnswer,
-                      Qualification aRightAnswer,
-                      std::vector<Qualification> teamRightAnswers) {
+double Algorithm::basicComplementRule(const Question& q,
+                                      const Qualification& aLeftAnswer,
+                                      const Qualification& aRightAnswer,
+                                      TeamPtr team) {
     int dissimilaritySum = 0;
 
     // Calculate team average and max answers for right
-    double averageRight = 0;
+/*    double averageRight = 0;
     int maxLead = 0;
     for (int i = 0; i < teamRightAnswers.size(); i++) {
         dissimilaritySum += min(aLeftAnswer.value, teamRightAnswers[i].value);
@@ -90,5 +97,6 @@ double Algorithm::BasicComplementRule(Question q, Qualification aLeftAnswer,
     // Rule output depends on how dissimilar they are
     // minus some adjustment based on whether the team falls
     // within the person’s preferred range.
-    return dissimilaritySum - preferencePenalty;
+    return dissimilaritySum - preferencePenalty;*/
+    return 0;
 }

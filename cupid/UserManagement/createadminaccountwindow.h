@@ -23,8 +23,8 @@ private slots:
     void on_cancelBtn_clicked();
 
 private:
-    std::auto_ptr<Ui::CreateAdminAccountWindow> ui;
     CreateAdminAccountControl &_control;
+    std::unique_ptr<Ui::CreateAdminAccountWindow> ui;
 };
 
 #endif // CREATEADMINACCOUNTWINDOW_H

@@ -2,8 +2,7 @@
 #define CREATESTUDENTACCOUNTCONTROL_H
 
 #include "createstudentaccountwindow.h"
-#include <memory>
-#include "Storage/student.h"
+#include "Storage/storage.h"
 
 class CreateStudentAccountControl
 {
@@ -14,7 +13,7 @@ public:
     void createAccount(QString fname, QString lname, QString id);
 private:
     CreateStudentAccountWindow _view;
-    std::auto_ptr<Student> _student;
+    storage::StudentPtr _student;
 };
 
 #endif // CREATESTUDENTACCOUNTCONTROL_H

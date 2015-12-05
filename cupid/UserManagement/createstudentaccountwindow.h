@@ -2,6 +2,7 @@
 #define CREATESTUDENTACCOUNTWINDOW_H
 
 #include <QDialog>
+#include <memory>
 
 class CreateStudentAccountControl;
 namespace Ui {
@@ -23,7 +24,7 @@ private slots:
     void on_cancelBtn_clicked();
 
 private:
-    Ui::CreateStudentAccountWindow *ui;
+    std::unique_ptr<Ui::CreateStudentAccountWindow> _ui;
     CreateStudentAccountControl &_control;
 };
 

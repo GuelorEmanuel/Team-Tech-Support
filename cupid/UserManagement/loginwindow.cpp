@@ -10,13 +10,13 @@
 #include "Database/sqlitedatabase.h"
 
 LoginWindow::LoginWindow(LoginControl& control, QWidget *parent) :
-    QMainWindow(parent), _control(control), ui(new Ui::LoginWindow) {
+    QMainWindow(parent), _control(control), _ui(new Ui::LoginWindow) {
     //mainWindowControl = new MainWindowControl();
     QPalette palette;
     palette.setBrush(this->backgroundRole(), QBrush(QImage(":Images/loginScreenIMG")));
 
     this->setPalette(palette);
-    ui->setupUi(this);
+    _ui->setupUi(this);
 
    /* Admin admin, admin1;
     Student student, student1;
@@ -111,14 +111,14 @@ void LoginWindow::on_signUpBtn_clicked() {
  */
 void LoginWindow::on_signInBtn_clicked() {
    QString errorMessage ="Error: Either your account doen't exist or something went really wrong, Please create an account to login.";
-   int stat = _control.signIn(ui->lineEditUserName->text());
-   ui->statusLbl->setWordWrap(true);
+   int stat = _control.signIn(_ui->lineEditUserName->text());
+   _ui->statusLbl->setWordWrap(true);
    if( stat == 0){
-      ui->statusLbl->setText("<font color='red'>" +errorMessage+"</font>");
+      _ui->statusLbl->setText("<font color='red'>" +errorMessage+"</font>");
    }
 }
 
 void LoginWindow::on_lineEditUserName_returnPressed() {
-    _control.signIn(ui->lineEditUserName->text());
+    _control.signIn(_ui->lineEditUserName->text());
     // TODO: move all the error handling stuff into the controller so we don't have to duplicate it
 }

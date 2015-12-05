@@ -6,9 +6,9 @@ AccountTypeOption::AccountTypeOption(LoginControl &control,
 
     QDialog(parent),
     _control(control),
-    ui(new Ui::AccountTypeOption)
+    _ui(new Ui::AccountTypeOption)
 {
-    ui->setupUi(this);
+    _ui->setupUi(this);
 }
 
 AccountTypeOption::~AccountTypeOption()

@@ -3,8 +3,6 @@
 
 #include <QMainWindow>
 #include <memory>
-#include "AdminFeatures/adminhomewindow.h"
-#include "accounttypeoption.h"
 
 class LoginControl;
 
@@ -28,7 +26,7 @@ private slots:
 
 private:
     LoginControl& _control;
-    std::auto_ptr<Ui::LoginWindow> ui;
+    std::unique_ptr<Ui::LoginWindow> _ui;
 };
 
 #endif // LOGINWINDOW_H
