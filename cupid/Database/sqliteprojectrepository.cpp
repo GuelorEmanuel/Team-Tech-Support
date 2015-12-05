@@ -160,20 +160,28 @@ int SqliteProjectRepository::getProject(ProjectPtr project)
     int stat = 0;
     QSqlQuery qry(_db);
 
-    QString qproject = "SELECT * FROM project WHERE id = :id";
-
-    qry.prepare(qproject);
-    qry.bindValue(":id", project->getId());
+    if(project->getId() == -1) {
+        QString qproject = "SELECT * FROM project WHERE name = :n";
+        qry.prepare(qproject);
+        qry.bindValue(":n", project->getName());
+    } else {
+        QString qproject = "SELECT * FROM project WHERE id = :id";
+        qry.prepare(qproject);
+        qry.bindValue(":id", project->getId());
+    }
 
     if(!qry.exec()) {
         qDebug() << qry.lastError();
+        stat = 1;
     } else {
-        qry.next();
-        project->setName(qry.value(1).toString());
-        project->setMinTeamSize(qry.value(2).toInt());
-        project->setMaxTeamSize(qry.value(3).toInt());
-        project->setDescription(qry.value(4).toString());
-        qDebug() << QString("Project retrieved. Project's name is %1").arg(project->getName());
+        if(qry.next()) {
+            project->setName(qry.value(1).toString());
+            project->setMinTeamSize(qry.value(2).toInt());
+            project->setMaxTeamSize(qry.value(3).toInt());
+            project->setDescription(qry.value(4).toString());
+            qDebug() << QString("Project retrieved. Project's name is %1").arg(project->getName());
+        } else
+            stat = 1;
     }
     return stat;
 }

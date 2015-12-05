@@ -18,10 +18,18 @@ class StorageManager
 public:
     void createStudent(storage::StudentPtr student);
     void createAdmin(storage::AdminPtr admin);
+    void createProfile(storage::ProfilePtr profile);
     bool userExists(QString name);
     void editProfile(storage::ProfilePtr profile);
     void createProject(storage::ProjectPtr project);
     void editProject(storage::ProjectPtr project);
+    bool findProject(int id);
+    bool findProfile(int id);
+    bool findStudent(int id);
+    bool findAdmin(int id);
+    bool findProject(QString name);
+    bool findStudent(QString name);
+    bool findAdmin(QString name);
     storage::ProjectList listProjects();
     storage::ProjectList listStudentProjects(storage::StudentPtr student);
     storage::StudentList getStudentsInProject(int id);

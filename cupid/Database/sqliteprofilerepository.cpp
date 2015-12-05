@@ -29,16 +29,16 @@ int SqliteProfileRepository::createProfile(ProfilePtr profile)
                        ":q26, :q26min, :q26max,:q27, :q27min, :q27max,:q28, :q28min, :q28max)";
 
    QString qid = "SELECT MAX(id) FROM profile";
-   if(!qry.exec(qid)) {
+   /*if(!qry.exec(qid)) {
       qDebug() << qry.lastError();
       return stat = 1;
    } else {
        qry.next();
        profile->setId(qry.value(0).toInt()+1);
-   }
+   }*/
 
    qry.prepare(qprofile);
-   qry.bindValue(":id", profile->getId());
+   //qry.bindValue(":id", profile->getId());
    qry.bindValue(":uid", profile->getStuId());
 
    for(int i = 1; i < 29; i++) {
@@ -84,7 +84,7 @@ int SqliteProfileRepository::editProfile(ProfilePtr profile)
 
 int SqliteProfileRepository::getProfile(ProfilePtr profile)
 {
-    int stat = 0;
+    int stat = 1;
     QSqlQuery qry(_db);
     int track = 1;
     QString qprof = "SELECT * FROM profile WHERE id = :id";
@@ -101,6 +101,7 @@ int SqliteProfileRepository::getProfile(ProfilePtr profile)
                 profile->addQualification(qry.value(++track).toInt(), qry.value(++track).toInt(), qry.value(++track).toInt());
 
             }
+            stat = 0;
         }
     }
     return stat;

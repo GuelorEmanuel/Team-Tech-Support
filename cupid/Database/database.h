@@ -25,12 +25,9 @@ public:
     virtual int getProjectIDsList(std::vector<int> &projects) = 0;
     virtual int getProjectNamesList(std::vector<QString> &projects) = 0;
     virtual int getFullProject(storage::ProjectList projects) = 0;
-    virtual int getJoinedProjectList(storage::StudentPtr,
-                                     storage::ProjectList list) = 0;
-    virtual int getUnjoinedProjectList(storage::StudentPtr,
-                                       storage::ProjectList list) = 0;
-    virtual int getStudentsInProject(storage::ProjectPtr,
-                                     storage::StudentList list) = 0;
+    virtual storage::ProjectList getJoinedProjectList(storage::StudentPtr) = 0;
+    virtual storage::ProjectList getUnjoinedProjectList(storage::StudentPtr) = 0;
+    virtual storage::StudentList getStudentsInProject(storage::ProjectPtr) = 0;
 protected:
     Database();
     Database(Database const&) = delete; // no implementation
