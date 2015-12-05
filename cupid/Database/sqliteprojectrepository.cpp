@@ -65,7 +65,7 @@ int SqliteProjectRepository::editProject(ProjectPtr project)
 
 int SqliteProjectRepository::listProjects(ProjectList projects)
 {
-    /*QSqlQuery qry(_db);
+    QSqlQuery qry(_db);
 
     QString qprojects = "SELECT id, name FROM project";
     qry.prepare(qprojects);
@@ -75,13 +75,13 @@ int SqliteProjectRepository::listProjects(ProjectList projects)
         return 1;
     } else {
         while(qry.next()) {
-            std::shared_ptr<Project> project(new ProxyProject());
+            ProjectPtr project;
             project->setId(qry.value(0).toInt());
             project->setName(qry.value(1).toString());
-            projects.push_back(project);
+            projects->push_back(project);
             qDebug() << QString("Project %1 is added").arg(project->getName());
         }
-    }*/
+    }
 
     return 0;
 
@@ -89,7 +89,7 @@ int SqliteProjectRepository::listProjects(ProjectList projects)
 
 int SqliteProjectRepository::listProjectsIDs(std::vector<int> &projects)
 {
-   /* QSqlQuery qry(_db);
+    QSqlQuery qry(_db);
     int id = 0;
     QString qprojects = "SELECT id FROM project";
     qry.prepare(qprojects);
@@ -103,13 +103,13 @@ int SqliteProjectRepository::listProjectsIDs(std::vector<int> &projects)
             projects.push_back(id);
             qDebug() << QString("Project %1 is added").arg(id);
         }
-    }*/
+    }
     return 0;
 }
 
 int SqliteProjectRepository::listProjectsNames(std::vector<QString> &projects)
 {
-   /* QSqlQuery qry(_db);
+    QSqlQuery qry(_db);
     QString name = "";
     QString qprojects = "SELECT name FROM project";
     qry.prepare(qprojects);
@@ -123,13 +123,13 @@ int SqliteProjectRepository::listProjectsNames(std::vector<QString> &projects)
             projects.push_back(name);
             qDebug() << QString("Project %1 is added").arg(name);
         }
-    }*/
+    }
     return 0;
 }
 
 int SqliteProjectRepository::listFullProjects(ProjectList projects)
 {
-    /*QSqlQuery qry(_db);
+    QSqlQuery qry(_db);
 
     QString qprojects = "SELECT * FROM project";
     qry.prepare(qprojects);
@@ -139,16 +139,16 @@ int SqliteProjectRepository::listFullProjects(ProjectList projects)
         return 1;
     } else {
         while(qry.next()) {
-            std::shared_ptr<Project> project (new ProxyProject());
+            ProjectPtr project ;
             project->setId(qry.value(0).toInt());
             project->setName(qry.value(1).toString());
             project->setMinTeamSize(qry.value(2).toInt());
             project->setMaxTeamSize(qry.value(3).toInt());
             project->setDescription(qry.value(4).toString());
-            projects.push_back(project);
+            projects->push_back(project);
             qDebug() << QString("Project %1 is added").arg(project->getName());
         }
-    }*/
+    }
     return 0;
 }
 
