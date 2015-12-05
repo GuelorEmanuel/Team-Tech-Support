@@ -2,6 +2,7 @@
 #include "sqliteuserrepository.h"
 #include "Storage/admin.h"
 #include "Storage/student.h"
+#include "Storage/proxystudent.h"
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QDebug>
@@ -114,20 +115,24 @@ int SqliteUserRepository::getAdmin(AdminPtr admin)
     return stat;
 }
 
-int SqliteUserRepository::getUser(QString username, int& id)
+storage::UserPtr SqliteUserRepository::getUser(UserPtr user)
 {
     QSqlQuery qry(_db);
-    QString quser = "SELECT id FROM user WHERE username = :u";
-    id = -1;
+    QString quser = "SELECT id, student_id FROM user WHERE username = :u";
     qry.prepare(quser);
-    qry.bindValue(":u", username);
+    qry.bindValue(":u", user->getUserName());
 
     if(!qry.exec()) {
         qDebug() << qry.lastError();
-        return 1;
+        return NULL;
     } else {
-        while(qry.next())
-            id = qry.value(0).toInt();
+        while(qry.next()){
+            if(qry.value(1).isNull()) {
+                return AdminPtr(std::make_shared<Admin>(qry.value(0).toInt()));
+            } else {
+                return StudentPtr(std::make_shared<ProxyStudent>(qry.value(0).toInt()));
+            }
+        }
     }
 
     return 0;

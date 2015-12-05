@@ -58,11 +58,9 @@ int SqliteDatabase::getAdmin(AdminPtr admin)
     return stat;
 }
 
-int SqliteDatabase::getUser(QString username, int& id)
+UserPtr SqliteDatabase::getUser(UserPtr user)
 {
-    int stat = 0;
-    _userRepo->getUser(username, id);
-    return stat;
+    return _userRepo->getUser(user);
 }
 
 /*Profile Part*/

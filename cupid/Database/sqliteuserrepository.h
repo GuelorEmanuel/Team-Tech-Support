@@ -16,7 +16,7 @@ public:
     int createAdmin(storage::AdminPtr admin);
     int getStudent(storage::StudentPtr student);
     int getAdmin(storage::AdminPtr admin);
-    int getUser(QString username, int& id);
+    storage::UserPtr getUser(storage::UserPtr user);
 private:
     QSqlDatabase& _db;
 };

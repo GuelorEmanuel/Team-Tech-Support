@@ -14,6 +14,7 @@ public:
     void setDisplayName(QString value);
     int getId() const;
     void setId(int value);
+    virtual bool isAdmin();
 protected:    
     int _id;
     QString _userName;

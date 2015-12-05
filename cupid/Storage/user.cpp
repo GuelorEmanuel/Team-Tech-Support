@@ -29,3 +29,8 @@ int User::getId() const {
 void User::setId(int value) {
     _id = value;
 }
+
+bool User::isAdmin()
+{
+    return false;
+}

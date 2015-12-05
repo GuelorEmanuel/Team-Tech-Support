@@ -6,6 +6,7 @@
 #include "Storage/admin.h"
 #include "Storage/project.h"
 #include "Storage/profile.h"
+#include "Database/database.h"
 #include <QString>
 #include <vector>
 #include <unordered_map>
@@ -32,7 +33,7 @@ public:
     storage::StudentPtr getStudent(int id);
     storage::ProfilePtr getProfile(int id);
     storage::AdminPtr getAdmin(int id);
-    storage::UserPtr getUser(int id);
+    storage::UserPtr getUser(QString username);
     // Singleton features
     static StorageManager* instance();
 protected:

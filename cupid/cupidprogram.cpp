@@ -12,7 +12,6 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     //LoginControl c;
 
-    StudentPtr newStudent(std::make_shared<ProxyStudent>());
 
     //return a.exec();
     return 0;

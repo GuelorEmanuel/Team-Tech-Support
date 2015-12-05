@@ -10,6 +10,7 @@ public:
     Admin(int id);
     ~Admin();
     void create();
+    bool isAdmin();
 private:
 };
 

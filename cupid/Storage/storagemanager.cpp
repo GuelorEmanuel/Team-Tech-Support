@@ -29,9 +29,9 @@ StudentList StorageManager::listProjectStudents(ProjectPtr project) {
 
 StudentList StorageManager::getStudentsInProject(int id) {
     // Some calls to the database?
-
-    // For now just return empty list
-    return StudentList();
+    ProjectPtr proj = getProject(id);
+    Database::instance()->getStudentsInProject(proj, proj->getStudents());
+    return proj->getStudents();
 }
 
 ProjectPtr StorageManager::getProject(int id)
@@ -41,6 +41,7 @@ ProjectPtr StorageManager::getProject(int id)
         return project->second;
     } else {
         ProjectPtr newProject(std::make_shared<ProxyProject>(id));
+        Database::instance()->getProject(newProject);
         _projects.insert({id, newProject});
         return newProject;
     }
@@ -53,6 +54,7 @@ StudentPtr StorageManager::getStudent(int id)
         return student->second;
     } else {
         StudentPtr newStudent(std::make_shared<ProxyStudent>(id));
+        Database::instance()->getStudent(newStudent);
         _students.insert({id, newStudent});
         return newStudent;
     }
@@ -65,6 +67,7 @@ ProfilePtr StorageManager::getProfile(int id)
         return profile->second;
     } else {
         ProfilePtr newProfile(std::make_shared<ProxyProfile>(id));
+        Database::instance()->getProfile(newProfile);
         _profiles.insert({id, newProfile});
         return newProfile;
     }
@@ -77,19 +80,22 @@ AdminPtr StorageManager::getAdmin(int id)
         return admin->second;
     } else {
         AdminPtr newAdmin(std::make_shared<Admin>(id));
+        Database::instance()->getAdmin(newAdmin);
         _admins.insert({id, newAdmin});
         return newAdmin;
     }
 }
 
-UserPtr StorageManager::getUser(int id)
+UserPtr StorageManager::getUser(QString username)
 {
-    auto user = _users.find(id);
+    /*auto user = _users.find(id);
     if (user != _users.end()) {
         return user->second;
-    } else {
-        UserPtr newUser(std::make_shared<User>(id));
-        _users.insert({id, newUser});
-        return newUser;
-    }
+    } else {*/
+    UserPtr newUser(std::make_shared<User>());
+    newUser->setUserName(username);
+    newUser = Database::instance()->getUser(newUser);
+   // _users.insert({id, newUser});
+    return newUser;
+
 }

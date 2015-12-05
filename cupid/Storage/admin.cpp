@@ -37,3 +37,8 @@ void Admin::create()
     }
 */
 }
+
+bool Admin::isAdmin()
+{
+    return true;
+}

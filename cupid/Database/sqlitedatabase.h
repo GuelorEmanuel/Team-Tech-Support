@@ -27,7 +27,7 @@ public:
     virtual int editProfile(storage::ProfilePtr profile);
     virtual int addStudentToProject(int student_id, int project_id);
     virtual int getStudent(storage::StudentPtr student);
-    virtual int getUser(QString username, int& id);
+    virtual storage::UserPtr getUser(storage::UserPtr user);
     virtual int getAdmin(storage::AdminPtr admin);
     virtual int getProfile(storage::ProfilePtr profile);
     virtual int getProject(storage::ProjectPtr project);
