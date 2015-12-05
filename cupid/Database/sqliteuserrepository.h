@@ -3,7 +3,6 @@
 
 #include "Storage/storage.h"
 #include <QString>
-#include "database.h"
 class Student;
 class Admin;
 class QSqlDatabase;

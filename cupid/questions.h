@@ -7,9 +7,9 @@ class Questions
 public:
     Questions();
     ~Questions();
-
     void loadQuestions();
     QList<QString> getQuestions();
+
  private:
     QList<QString> questionsList;
 };

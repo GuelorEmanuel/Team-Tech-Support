@@ -43,28 +43,27 @@ SOURCES += \
     AdminFeatures/manageprojectcontrol.cpp \
     AdminFeatures/adminhomewindow.cpp \
     AdminFeatures/manageprojectwindow.cpp \
-    AdminFeatures/adminfeaturescommunication.cpp
-
-#    StudentFeatures/studenthomecontrol.cpp \
+    AdminFeatures/adminfeaturescommunication.cpp \
+    StudentFeatures/studenthomecontrol.cpp \
+    StudentFeatures/studentfeaturescommunication.cpp \
+    StudentFeatures/manageprofilecontrol.cpp \
+    StudentFeatures/manageprofilewindow.cpp \
+    StudentFeatures/studenthomewindow.cpp \
+    StudentFeatures/joinprojectcontrol.cpp \
+    StudentFeatures/joinprojectwindow.cpp \
+    questions.cpp
 #    UserManagement/createadminaccountcontrol.cpp \
 #    UserManagement/createstudentaccountcontrol.cpp \
-#    questions.cpp \
 #    UserManagement/loginwindow.cpp \
 #    UserManagement/logincontrol.cpp \
 #    UserManagement/accounttypeoption.cpp \
 #    UserManagement/createadminaccountwindow.cpp \
 #    UserManagement/createstudentaccountwindow.cpp \    
-#    StudentFeatures/manageprofilecontrol.cpp \
-#    StudentFeatures/manageprofilewindow.cpp \
-#    StudentFeatures/studenthomewindow.cpp \
-#    StudentFeatures/joinprojectcontrol.cpp \
-#    StudentFeatures/joinprojectwindow.cpp \
 #    AlgorithmFeatures/algorithm.cpp \
 #    AlgorithmFeatures/computeteamscontrol.cpp \
 #    AlgorithmFeatures/team.cpp \
 #    AlgorithmFeatures/algorithmfeaturescommunication.cpp \
 #    AlgorithmFeatures/computeteamswindow.cpp \
-#    StudentFeatures/studentfeaturescommunication.cpp \
 #    UserManagement/userfeaturescommunication.cpp \
 #    AlgorithmFeatures/algorithmresults.cpp \
 
@@ -93,24 +92,23 @@ HEADERS  += \
     AdminFeatures/manageprojectcontrol.h \
     AdminFeatures/adminhomewindow.h \
     AdminFeatures/manageprojectwindow.h \
-    AdminFeatures/adminfeaturescommunication.h
-
-#    StudentFeatures/studenthomecontrol.h \
+    AdminFeatures/adminfeaturescommunication.h \
+    StudentFeatures/studenthomecontrol.h \
+    StudentFeatures/manageprofilecontrol.h \
+    StudentFeatures/manageprofilewindow.h \
+    StudentFeatures/studenthomewindow.h \
+    StudentFeatures/joinprojectcontrol.h \
+    StudentFeatures/joinprojectwindow.h \
+    StudentFeatures/studentfeaturescommunication.h \
+    questions.h
 #    UserManagement/adminsignupview.h \
 #    UserManagement/createadminaccountcontrol.h \
 #    UserManagement/createstudentaccountcontrol.h \
-#    questions.h \
 #    UserManagement/accounttypeoption.h \
 #    UserManagement/loginwindow.h \
 #    UserManagement/logincontrol.h \
 #    UserManagement/createstudentaccountwindow.h \
 #    UserManagement/createadminaccountwindow.h \
-#    StudentFeatures/manageprofilecontrol.h \
-#    StudentFeatures/manageprofilewindow.h \
-#    StudentFeatures/studenthomewindow.h \
-#    StudentFeatures/joinprojectcontrol.h \
-#    StudentFeatures/joinprojectwindow.h \
-#    StudentFeatures/studentfeaturescommunication.h \
 #    UserManagement/usermanagementcommunication.h \
 #    AlgorithmFeatures/algorithm.h \
 #    AlgorithmFeatures/computeteamscontrol.h \
@@ -121,14 +119,14 @@ HEADERS  += \
 
 FORMS    += \
     AdminFeatures/adminhomewindow.ui \
-    AdminFeatures/manageprojectwindow.ui
+    AdminFeatures/manageprojectwindow.ui \
+    StudentFeatures/manageprofilewindow.ui \
+    StudentFeatures/studenthomewindow.ui \
+    StudentFeatures/joinprojectwindow.ui
 #    UserManagement/accounttypeoption.ui \
 #    UserManagement/loginwindow.ui \
 #    UserManagement/createadminaccountwindow.ui \
 #    UserManagement/createstudentaccountwindow.ui \
-#    StudentFeatures/manageprofilewindow.ui \
-#    StudentFeatures/studenthomewindow.ui \
-#    StudentFeatures/joinprojectwindow.ui \
 #    AlgorithmFeatures/computeteamswindow.ui
 
 RESOURCES += \

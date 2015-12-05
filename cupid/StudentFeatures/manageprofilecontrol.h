@@ -1,10 +1,8 @@
 #ifndef MANAGEPROFILECONTROL_H
 #define MANAGEPROFILECONTROL_H
 
-#include <memory>
-#include "Storage/student.h"
+#include "Storage/storage.h"
 #include "manageprofilewindow.h"
-#include "Storage/profile.h"
 
 class ManageProfileControl
 {
@@ -25,8 +23,8 @@ public:
     void updateProfile();
     void exitProfile();
 private:
-    std::auto_ptr<Profile> _profile;
-    ManageProfileWindow  _view;
+    storage::ProfilePtr _profile;
+    ManageProfileWindow _view;
     int _studentID;
     int _action;
     void loadProfileSettings(int id);

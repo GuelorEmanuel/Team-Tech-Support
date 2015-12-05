@@ -24,8 +24,9 @@ QString _breaks[2] = {"Not at All", "Strongly prefer to work"};
 /*Student Profile View class displays both profile edition
  * AND profile creation to student.
  */
-ManageProfileWindow::ManageProfileWindow(ManageProfileControl &control,QWidget *parent) :
-   QDialog(parent), _control(control), ui(new Ui::ManageProfileWindow),
+ManageProfileWindow::ManageProfileWindow(ManageProfileControl &control,
+                                         QWidget *parent)
+    : QDialog(parent), _control(control), ui(new Ui::ManageProfileWindow),
    _sectionOne(0),_sectionTwo(1),_sectionThree(2),_sectionFour(3), _action(1)
 {
     ui->setupUi(this);

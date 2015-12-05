@@ -1,8 +1,9 @@
 #ifndef MANAGEPROFILEWINDOW_H
 #define MANAGEPROFILEWINDOW_H
 
+#include "Storage/storage.h"
+#include "ui_manageprofilewindow.h"
 #include <QDialog>
-#include <memory>
 #include <QComboBox>
 
 class ManageProfileControl;
@@ -15,21 +16,20 @@ class ManageProfileWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit ManageProfileWindow(ManageProfileControl &control,QWidget *parent = 0);
-
+    explicit ManageProfileWindow(ManageProfileControl &control,
+                                 QWidget *parent = 0);
     void addValues(int index, int count);
     void setValues(int index, int count);
     void setAction(int action);
+
 private slots:
     void on_nextBtn_clicked();
-
     void on_prevBtn_clicked();
-
     void on_exitBtn_clicked();
 
 private:
     ManageProfileControl &_control;
-    std::auto_ptr<Ui::ManageProfileWindow> ui;
+    std::unique_ptr<Ui::ManageProfileWindow> ui;
 
     int _action;
     int _pageCount;

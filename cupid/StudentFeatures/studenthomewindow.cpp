@@ -2,9 +2,8 @@
 #include "ui_studenthomewindow.h"
 #include "studenthomecontrol.h"
 
-StudentHomeWindow::StudentHomeWindow(StudentHomeControl &control, QWidget *parent) :
-    QDialog(parent),_control(control),
-    ui(new Ui::StudentHomeWindow)
+StudentHomeWindow::StudentHomeWindow(StudentHomeControl &control, QWidget *parent)
+    : QDialog(parent),_control(control), ui(new Ui::StudentHomeWindow)
 {
     ui->setupUi(this);
 }
@@ -27,8 +26,6 @@ void StudentHomeWindow::updateJoinedProjects()
 void StudentHomeWindow::on_editProfileBtn_clicked()
 {
     _control.editProfile();
-
-
 }
 
 void StudentHomeWindow::on_signOutBtn_clicked()
@@ -47,8 +44,6 @@ void StudentHomeWindow::on_openProjectBtn_clicked() {
     // Pass the project ID to edit project
     _control.openUnJoinedProject(ui->unjoinedProjectsInput->itemData(
                              ui->unjoinedProjectsInput->currentIndex()).toInt());
-
-
 }
 
 void StudentHomeWindow::addUnjoinedProject(int id, QString name) {

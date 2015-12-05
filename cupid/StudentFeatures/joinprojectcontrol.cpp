@@ -1,7 +1,8 @@
 #include "joinprojectcontrol.h"
+using namespace storage;
 
-JoinProjectControl::JoinProjectControl(std::shared_ptr<Project> project,
-                                       std::shared_ptr<Student> student)
+JoinProjectControl::JoinProjectControl(ProjectPtr project,
+                                       StudentPtr student)
     : _view(*this), _project(project), _student(student)
 {    
     _view.setModal(true);

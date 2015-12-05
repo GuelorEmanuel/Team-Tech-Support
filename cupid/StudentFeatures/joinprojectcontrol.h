@@ -1,22 +1,21 @@
 #ifndef STUDENTPROJECTCONTROL_H
 #define STUDENTPROJECTCONTROL_H
 
-#include <memory>
-#include "Storage/project.h"
-#include "Storage/student.h"
+#include "Storage/storage.h"
 #include "joinprojectwindow.h"
 
 class JoinProjectControl
 {
 public:
-    JoinProjectControl(std::shared_ptr<Project> project,
-                       std::shared_ptr<Student> student);
+    JoinProjectControl(storage::ProjectPtr project,
+                       storage::StudentPtr student);
     void leaveProject();
     int joinProject();
+
 private:          
     JoinProjectWindow _view;
-     std::shared_ptr<Project> _project;
-     std::shared_ptr<Student> _student;     
+     storage::ProjectPtr _project;
+     storage::StudentPtr _student;
      void loadProjectSettings(int id);
 };
 

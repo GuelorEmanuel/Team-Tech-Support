@@ -1,11 +1,12 @@
 #include "joinprojectwindow.h"
 #include "ui_joinprojectwindow.h"
 #include "joinprojectcontrol.h"
+#include "Storage/project.h"
+using namespace storage;
 
-JoinProjectWindow::JoinProjectWindow(JoinProjectControl &control, QWidget *parent ) :
-    QDialog(parent),
-    _control(control),
-    ui(new Ui::JoinProjectWindow)
+JoinProjectWindow::JoinProjectWindow(JoinProjectControl &control,
+                                     QWidget *parent)
+    : QDialog(parent), _control(control), ui(new Ui::JoinProjectWindow)
 {
     ui->setupUi(this);
 }
@@ -28,8 +29,7 @@ void JoinProjectWindow::on_joinProjectBtn_clicked()
     }
 }
 
-void JoinProjectWindow::refreshProjectSettings(const Project& project) {
-
-    ui->projectNameLbl->setText(project.getName());
-    ui->projectDescriptTb->setText(project.getDescription());
+void JoinProjectWindow::refreshProjectSettings(ProjectPtr project) {
+    ui->projectNameLbl->setText(project->getName());
+    ui->projectDescriptTb->setText(project->getDescription());
 }

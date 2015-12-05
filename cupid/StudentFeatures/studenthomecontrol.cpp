@@ -2,15 +2,15 @@
 #include "Storage/student.h"
 #include "manageprofilecontrol.h"
 #include "joinprojectcontrol.h"
+using namespace storage;
 
-
-StudentHomeControl::StudentHomeControl(Student &student) :
+StudentHomeControl::StudentHomeControl(StudentPtr student) :
     _student(student), _view(*this)
 {
     getUnjoinedProjectList();
     getJoinedProjectList();
 
-    _view.setName(student.getDisplayName());
+    _view.setName(student->getDisplayName());
 
     _view.setModal(true);
     _view.exec();
@@ -24,14 +24,14 @@ void StudentHomeControl::logout() {
  * Purpose: open control class for profile edition
  */
 void StudentHomeControl::editProfile() {
-    ManageProfileControl manageProfileControl(_student.getId(), 1);
+    ManageProfileControl manageProfileControl(_student->getId(), 1);
     _view.show();
 
 }
 
 QString StudentHomeControl::getName()
 {
-    return _student.getDisplayName();
+    return _student->getDisplayName();
 }
 
 /*Function: void StudentMainControl::getUnjoinedProjectList()

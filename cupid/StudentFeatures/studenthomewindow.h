@@ -1,14 +1,15 @@
 #ifndef STUDENTHOMEWINDOW_H
 #define STUDENTHOMEWINDOW_H
 
+#include "Storage/storage.h"
 #include <QDialog>
 #include <QString>
-#include <memory>
+#include "ui_studenthomewindow.h"
 
 class StudentHomeControl;
 
 namespace Ui {
-class StudentHomeWindow;
+    class StudentHomeWindow;
 }
 
 class StudentHomeWindow : public QDialog
@@ -16,7 +17,8 @@ class StudentHomeWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit StudentHomeWindow(StudentHomeControl &control, QWidget *parent = 0);
+    explicit StudentHomeWindow(StudentHomeControl &control,
+                               QWidget *parent = 0);
     ~StudentHomeWindow();
     void addUnjoinedProject(int id, QString name);
     void addJoinedProject(int id, QString name);
@@ -29,7 +31,7 @@ private slots:
     void on_openProjectBtn_clicked();
 
 private:
-    std::auto_ptr<Ui::StudentHomeWindow> ui;
+    std::unique_ptr<Ui::StudentHomeWindow> ui;
     StudentHomeControl& _control;
 };
 

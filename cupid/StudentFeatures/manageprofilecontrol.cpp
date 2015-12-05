@@ -1,24 +1,30 @@
 #include "manageprofilecontrol.h"
 #include "questions.h"
+#include "Storage/profile.h"
 
 /*Class: Control class for Edit Student Profile AND Create Student Profile.
  * Edits profile when the status of action variable is 1.
  * Creates profile when the status is 0.
  */
-ManageProfileControl::ManageProfileControl(int profileID, int action) :
-  _view(*this), _profile(new Profile),  _action(action), count(0)
+ManageProfileControl::ManageProfileControl(int profileID, int action)
+    : _view(*this), _action(action), count(0)
 {
   _profile->setId(profileID);
 
-
   if(action == 1)
+  {
       loadProfileSettings(profileID);
+  }
   if(action == 0)
+  {
       _profile->setStuId(profileID);
+  }
 
   for(int i = 0; i < 4; i++) {
       _view.addValues(i, count);
-      if(action == 1) _view.setValues(i, count);
+      if(action == 1) {
+          _view.setValues(i, count);
+      }
       ++count;
   }
   _view.setAction(_action);
@@ -122,7 +128,7 @@ void ManageProfileControl::editProfile()
 
 void ManageProfileControl::createProfile()
 {
-    _profile->createProfile();
+    //_profile->createProfile();
     _view.close();
 }
 
