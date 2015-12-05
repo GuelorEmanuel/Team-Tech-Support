@@ -9,7 +9,7 @@ class Student;
 class Project
 {
 public:
-    virtual ~Project();
+    virtual ~Project()=0;
     virtual int getId() const = 0;
     virtual void setId(int value) = 0;
     virtual int getMinTeamSize() const = 0;
