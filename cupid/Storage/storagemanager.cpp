@@ -124,22 +124,14 @@ void StorageManager::createProject(storage::ProjectPtr project) {
 void StorageManager::editProfile(storage::ProfilePtr profile)
 {
     if(findProfile(profile->getId())) {
-            Database::instance()->editProfile(profile);
-            auto prof = _profiles.find(profile->getId());
-            if (prof == _profiles.end()) {
-                _profiles.insert({{profile->getId(), profile}});
-            }
+        Database::instance()->editProfile(profile);
     }
 }
 
 void StorageManager::editProject(storage::ProjectPtr project)
 {
     if(findProject(project->getId())) {
-            Database::instance()->editProject(project);
-            auto proj = _projects.find(project->getId());
-            if (proj == _projects.end()) {
-                _projects.insert({{project->getId(), project}});
-            }
+        Database::instance()->editProject(project);
     }
 }
 
