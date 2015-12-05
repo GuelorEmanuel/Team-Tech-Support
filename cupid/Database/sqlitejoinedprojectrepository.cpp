@@ -1,5 +1,10 @@
-#include "sqlitejoinedprojectrepository.h"
 #include "Storage/storage.h"
+#include "Storage/student.h"
+#include "sqlitejoinedprojectrepository.h"
+#include <QString>
+#include <QDebug>
+#include <QtSql>
+
 using namespace storage;
 
 SqliteJoinedProjectRepository::SqliteJoinedProjectRepository(QSqlDatabase& db) : _db(db)

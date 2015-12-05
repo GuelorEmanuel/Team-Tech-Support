@@ -1,5 +1,9 @@
 #include "sqliteprofilerepository.h"
 #include "Storage/storage.h"
+#include "Storage/qualification.h"
+#include "Storage/profile.h"
+#include <QtSql>
+#include <QDebug>
 using namespace storage;
 
 SqliteProfileRepository::SqliteProfileRepository(QSqlDatabase& db)  : _db(db)

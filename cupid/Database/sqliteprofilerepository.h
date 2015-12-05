@@ -2,10 +2,7 @@
 #define SQLITEPROFILEREPOSITORY_H
 
 #include "Storage/storage.h"
-#include "Storage/profile.h"
-#include "Storage/qualification.h"
-#include "database.h"
-#include <vector>
+class QSqlDatabase;
 
 class SqliteProfileRepository
 {

@@ -38,9 +38,13 @@ SOURCES += \
     Storage/realproject.cpp \
     Storage/realstudent.cpp \
     Storage/storagemanager.cpp \
-    cupidprogram.cpp
-#    AdminFeatures/adminhomecontrol.cpp \
-#    AdminFeatures/manageprojectcontrol.cpp \
+    cupidprogram.cpp \
+    AdminFeatures/adminhomecontrol.cpp \
+    AdminFeatures/manageprojectcontrol.cpp \
+    AdminFeatures/adminhomewindow.cpp \
+    AdminFeatures/manageprojectwindow.cpp \
+    AdminFeatures/adminfeaturescommunication.cpp
+
 #    StudentFeatures/studenthomecontrol.cpp \
 #    UserManagement/createadminaccountcontrol.cpp \
 #    UserManagement/createstudentaccountcontrol.cpp \
@@ -49,9 +53,7 @@ SOURCES += \
 #    UserManagement/logincontrol.cpp \
 #    UserManagement/accounttypeoption.cpp \
 #    UserManagement/createadminaccountwindow.cpp \
-#    UserManagement/createstudentaccountwindow.cpp \
-#    AdminFeatures/adminhomewindow.cpp \
-#    AdminFeatures/manageprojectwindow.cpp \
+#    UserManagement/createstudentaccountwindow.cpp \    
 #    StudentFeatures/manageprofilecontrol.cpp \
 #    StudentFeatures/manageprofilewindow.cpp \
 #    StudentFeatures/studenthomewindow.cpp \
@@ -60,7 +62,6 @@ SOURCES += \
 #    AlgorithmFeatures/algorithm.cpp \
 #    AlgorithmFeatures/computeteamscontrol.cpp \
 #    AlgorithmFeatures/team.cpp \
-#    AdminFeatures/adminfeaturescommunication.cpp \
 #    AlgorithmFeatures/algorithmfeaturescommunication.cpp \
 #    AlgorithmFeatures/computeteamswindow.cpp \
 #    StudentFeatures/studentfeaturescommunication.cpp \
@@ -87,9 +88,13 @@ HEADERS  += \
     Storage/realprofile.h \
     Storage/realproject.h \
     Storage/realstudent.h \
-    Storage/storage.h
-#    AdminFeatures/adminhomecontrol.h \
-#    AdminFeatures/manageprojectcontrol.h \
+    Storage/storage.h \
+    AdminFeatures/adminhomecontrol.h \
+    AdminFeatures/manageprojectcontrol.h \
+    AdminFeatures/adminhomewindow.h \
+    AdminFeatures/manageprojectwindow.h \
+    AdminFeatures/adminfeaturescommunication.h
+
 #    StudentFeatures/studenthomecontrol.h \
 #    UserManagement/adminsignupview.h \
 #    UserManagement/createadminaccountcontrol.h \
@@ -100,15 +105,12 @@ HEADERS  += \
 #    UserManagement/logincontrol.h \
 #    UserManagement/createstudentaccountwindow.h \
 #    UserManagement/createadminaccountwindow.h \
-#    AdminFeatures/adminhomewindow.h \
-#    AdminFeatures/manageprojectwindow.h \
 #    StudentFeatures/manageprofilecontrol.h \
 #    StudentFeatures/manageprofilewindow.h \
 #    StudentFeatures/studenthomewindow.h \
 #    StudentFeatures/joinprojectcontrol.h \
 #    StudentFeatures/joinprojectwindow.h \
 #    StudentFeatures/studentfeaturescommunication.h \
-#    AdminFeatures/adminfeaturescommunication.h \
 #    UserManagement/usermanagementcommunication.h \
 #    AlgorithmFeatures/algorithm.h \
 #    AlgorithmFeatures/computeteamscontrol.h \
@@ -117,13 +119,13 @@ HEADERS  += \
 #    AlgorithmFeatures/computeteamswindow.h \
 #    AlgorithmFeatures/algorithmresults.h \
 
-#FORMS    += \
+FORMS    += \
+    AdminFeatures/adminhomewindow.ui \
+    AdminFeatures/manageprojectwindow.ui
 #    UserManagement/accounttypeoption.ui \
 #    UserManagement/loginwindow.ui \
 #    UserManagement/createadminaccountwindow.ui \
 #    UserManagement/createstudentaccountwindow.ui \
-#    AdminFeatures/adminhomewindow.ui \
-#    AdminFeatures/manageprojectwindow.ui \
 #    StudentFeatures/manageprofilewindow.ui \
 #    StudentFeatures/studenthomewindow.ui \
 #    StudentFeatures/joinprojectwindow.ui \

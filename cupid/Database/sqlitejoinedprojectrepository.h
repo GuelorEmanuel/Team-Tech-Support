@@ -2,10 +2,6 @@
 #define SQLITEJOINEDPROJECTREPOSITORY_H
 
 #include "Storage/storage.h"
-#include "Storage/project.h"
-#include "Storage/student.h"
-#include "database.h"
-#include <vector>
 class QSqlDatabase;
 
 class SqliteJoinedProjectRepository

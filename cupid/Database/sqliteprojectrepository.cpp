@@ -1,5 +1,8 @@
 #include "sqliteprojectrepository.h"
 #include "Storage/storage.h"
+#include <QString>
+#include <QtSql>
+#include "Storage/project.h"
 using namespace storage;
 
 SqliteProjectRepository::SqliteProjectRepository(QSqlDatabase& db)

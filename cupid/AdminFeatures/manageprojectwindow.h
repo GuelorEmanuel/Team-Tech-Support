@@ -3,7 +3,6 @@
 
 #include <QDialog>
 #include <memory>
-
 class ManageProjectControl;
 
 namespace Ui {
@@ -24,7 +23,7 @@ private slots:
     void on_cancelButton_clicked();
 
 private:
-    std::auto_ptr<Ui::ManageProjectWindow> ui;
+    std::unique_ptr<Ui::ManageProjectWindow> ui;
     ManageProjectControl &_control;
 };
 

@@ -1,7 +1,18 @@
-#include "manageprojectcontrol.h"
+#include "AdminFeatures/adminfeaturescommunication.h"
+#include "AdminFeatures/manageprojectcontrol.h"
+#include "Storage/storage.h"
+#include "Storage/proxyproject.h"
+using namespace storage;
 
 ManageProjectControl::ManageProjectControl() :
- _view(*this)
+    _view(*this)
+{
+    _view.setModal(true);
+    _view.exec();
+}
+
+ManageProjectControl::ManageProjectControl(ProjectPtr project)
+    : _project(project), _view(*this)
 {
     _view.setModal(true);
     _view.exec();
@@ -52,12 +63,13 @@ void ManageProjectControl::createProject(QString name,
     // TODO: See what happens if you try to create a project and the
     //       project name is already taken
 
-/*    _project.reset(new Project);
-    _project->setName(name);
-    _project->setDescription(description);
-    _project->setMinTeamSize(min);
-    _project->setMaxTeamSize(max);
-    _project->create();*/
+    ProjectPtr project(std::make_shared<ProxyProject>());
+    project->setName(name);
+    project->setDescription(description);
+    project->setMinTeamSize(min);
+    project->setMaxTeamSize(max);
+    AdminFeaturesCommunication::createProject(project);
+
     _view.close();
 }
 
