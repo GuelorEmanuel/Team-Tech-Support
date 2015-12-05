@@ -17,6 +17,7 @@ public:
     explicit CreateAdminAccountWindow(CreateAdminAccountControl &control,
                                     QWidget *parent = 0);
     ~CreateAdminAccountWindow();
+    void displayUserNameUnavailableError();
 
 private slots:
     void on_submitBtn_clicked();

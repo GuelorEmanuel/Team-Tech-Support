@@ -12,6 +12,8 @@ public:
     static storage::StudentPtr getStudent(int id);
     static void showAdminHome(storage::UserPtr user);
     static void showStudentHome(storage::UserPtr user);
+    static bool userNameAvailable(QString name);
+    static void createAdmin(storage::AdminPtr admin);
 private:
     UserManagementCommunication();
     void operator=(

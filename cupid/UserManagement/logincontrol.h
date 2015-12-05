@@ -11,6 +11,8 @@ public:
     LoginControl();
     ~LoginControl();
     void signUp();
+    void createAdminAccount();
+    void createStudentAccount();
     void signIn(QString userName);
 
 private:

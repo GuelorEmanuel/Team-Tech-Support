@@ -1,6 +1,9 @@
 #include "UserManagement/logincontrol.h"
 #include "UserManagement/loginwindow.h"
 #include "UserManagement/usermanagementcommunication.h"
+#include "UserManagement/accounttypeoption.h"
+#include "UserManagement/createadminaccountcontrol.h"
+#include "UserManagement/createstudentaccountcontrol.h"
 #include "Storage/storage.h"
 #include "Storage/user.h"
 using namespace storage;
@@ -37,8 +40,17 @@ void LoginControl::signIn(QString userName)
 
 void LoginControl::signUp()
 {
-    // Create and launch account creation control
-    _view->hide();
-    //SignUpMainControl signupMainControl;
-    _view->show();
+    AccountTypeOption act(*this);
+    act.setModal(true);
+    act.exec();
+}
+
+void LoginControl::createAdminAccount()
+{
+    CreateAdminAccountControl caac;
+}
+
+void LoginControl::createStudentAccount()
+{
+    CreateStudentAccountControl csac;
 }

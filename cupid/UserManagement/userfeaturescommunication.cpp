@@ -29,3 +29,13 @@ void UserManagementCommunication::showStudentHome(storage::UserPtr user)
     StudentFeaturesCommunication::showStudentHome(
                 StorageManager::instance()->getStudent(user->getId()));
 }
+
+bool UserManagementCommunication::userNameAvailable(QString name)
+{
+    return StorageManager::instance()->getUser(name) == NULL;
+}
+
+void UserManagementCommunication::createAdmin(AdminPtr admin)
+{
+    StorageManager::instance()->createAdmin(admin);
+}
