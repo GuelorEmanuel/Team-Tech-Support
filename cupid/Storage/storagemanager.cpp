@@ -4,7 +4,7 @@
 #include "proxystudent.h"
 #include "proxyprofile.h"
 #include "Database/database.h"
-
+#include <QDebug>
 using namespace storage;
 
 StorageManager* StorageManager::_instance = NULL;
@@ -137,27 +137,31 @@ void StorageManager::editProject(storage::ProjectPtr project)
 
 StudentList StorageManager::listProjectStudents(ProjectPtr project) {
     if(findProject(project->getId())) {
-        //return Database::instance()->getStudentsInProject(project);
+        return Database::instance()->getStudentsInProject(project);
     }
 }
 
 ProjectList StorageManager::listProjectsNotOfStudent(storage::StudentPtr student)
 {
+    qDebug() << student->getId();
     if(findStudent(student->getId())) {
-        //return Database::instance()->getUnjoinedProjectList(student);
+        qDebug() << "Hey";
+        return Database::instance()->getUnjoinedProjectList(student);
     }
 }
 
-storage::ProjectList StorageManager::listStudentProjects(storage::StudentPtr student)
+ProjectList StorageManager::listStudentProjects(storage::StudentPtr student)
 {
     if(findStudent(student->getId())) {
-       // return Database::instance()->getJoinedProjectList(student);
+       //return Database::instance()->getJoinedProjectList(student);
     }
 }
 
 StudentList StorageManager::getStudentsInProject(int id) {
     ProjectPtr proj = getProject(id);
-    return Database::instance()->getStudentsInProject(proj);
+    StudentList vec = Database::instance()->getStudentsInProject(proj);
+    std::make_shared<StudentList> (vec);
+    return vec;
 }
 
 void StorageManager::joinProject(storage::ProjectPtr project, storage::StudentPtr student)

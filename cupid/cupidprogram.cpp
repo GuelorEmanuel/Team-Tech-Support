@@ -17,10 +17,10 @@ int main(int argc, char *argv[])
 
     //StorageManager::instance()->joinProject(project, student);
 
-    //StudentList list = StorageManager::instance()->listProjectStudents(project);
-    //qDebug() << QString("%1").arg((StorageManager::instance()->listProjectStudents(project)->at(0))->getId());
+    StudentList list = StorageManager::instance()->listProjectStudents(project);
+    qDebug() << QString("%1").arg((list->at(0))->getId());
 
-    //ProjectList list1(StorageManager::instance()->listStudentProjects(student));
+    //ProjectList list1 = StorageManager::instance()->listStudentProjects(student);
     //qDebug() << QString("%1").arg((list1->at(0))->getId());
 
     //ProjectList list2(StorageManager::instance()->listProjectsNotOfStudent(student));

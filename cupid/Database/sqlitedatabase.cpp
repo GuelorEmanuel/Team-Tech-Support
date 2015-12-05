@@ -151,6 +151,7 @@ ProjectList SqliteDatabase::getJoinedProjectList(StudentPtr stu)
         _projectRepo->getProject(proj);
         list->push_back(proj);
     }
+    std::make_shared<ProjectList> (list);
     return list;
 }
 
@@ -172,6 +173,7 @@ ProjectList SqliteDatabase::getUnjoinedProjectList(StudentPtr stu)
         _projectRepo->getProject(proj);
         list->push_back(proj);
     }
+    std::make_shared<ProjectList> (list);
     return list;
 }
 
@@ -188,5 +190,7 @@ StudentList SqliteDatabase::getStudentsInProject(ProjectPtr project)
         _userRepo->getStudent(stud);
         list->push_back(stud);
     }
+    std::make_shared<StudentList> (list);
     return list;
 }
+
