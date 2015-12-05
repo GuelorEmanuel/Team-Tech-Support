@@ -1,5 +1,8 @@
 #include "Storage/storage.h"
 #include "sqlitedatabase.h"
+#include "Storage/proxyproject.h"
+#include "Storage/proxystudent.h"
+#include "Storage/proxyprofile.h"
 using namespace storage;
 
 SqliteDatabase::SqliteDatabase()
@@ -160,7 +163,7 @@ int SqliteDatabase::getUnjoinedProjectList(StudentPtr stu, ProjectList list)
         projs.erase(std::remove(projs.begin(), projs.end(), ids[i]), projs.end());
     }
     for(int j = 0; j < projs.size(); j++) {
-        ProjectPtr proj;
+        ProjectPtr proj(std::make_shared<ProxyProject>());
         proj->setId(projs[j]);
         _projectRepo->getProject(proj);
         list->push_back(proj);
@@ -175,7 +178,7 @@ int SqliteDatabase::getStudentsInProject(ProjectPtr project, StudentList list)
     stat = _joinedProjectRepo->getStudentsInProject(project, ids);
 
     for(int j = 0; j < ids.size(); j++) {
-        StudentPtr stud;
+        StudentPtr stud(std::make_shared<ProxyStudent>());
         stud->setId(ids[j]);
         _userRepo->getStudent(stud);
         list->push_back(stud);
