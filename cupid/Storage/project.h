@@ -23,6 +23,9 @@ public:
     virtual storage::StudentList getStudents() = 0;
     virtual void setStudents(storage::StudentList students) = 0;
     virtual void registerStudent(storage::StudentPtr student) = 0;
+
+protected:
+    Project();
 };
 
 #endif // PROJECT_H

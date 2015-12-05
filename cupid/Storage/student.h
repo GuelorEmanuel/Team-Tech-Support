@@ -12,7 +12,6 @@ class Project;
 class Student : public User
 {
 public:
-    Student();
     Student(int id);
     virtual ~Student();
     virtual QString getStudentId() = 0;
@@ -23,6 +22,8 @@ public:
     virtual void joinProject(storage::ProjectPtr project) = 0;
     virtual bool operator<(const Student& rhs) const = 0;
     virtual bool operator==(const Student& rhs) const = 0;
+protected:
+     Student();
 };
 
 #endif // STUDENT_H
