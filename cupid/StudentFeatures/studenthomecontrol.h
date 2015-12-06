@@ -3,7 +3,6 @@
 
 #include "Storage/storage.h"
 #include "studenthomewindow.h"
-#include "studentfeaturescommunication.h"
 
 class StudentHomeControl
 {
@@ -13,12 +12,12 @@ public:
     void editProfile();
     void openUnJoinedProject(int projectId);
     QString getName();
-    void getUnjoinedProjectList();
-    void getJoinedProjectList();
 
 private:
     StudentHomeWindow _view;
     storage::StudentPtr _student;
+    void getUnjoinedProjectList();
+    void getJoinedProjectList();
 };
 
 

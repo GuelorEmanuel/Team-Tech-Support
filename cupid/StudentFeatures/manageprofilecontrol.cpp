@@ -1,10 +1,6 @@
 #include "manageprofilecontrol.h"
 #include "questions.h"
 #include "Storage/profile.h"
-<<<<<<< HEAD
-#include <QDebug>
-=======
->>>>>>> 1a76d4edf08078518c104ae80c86034f9765d53d
 using namespace storage;
 
 // Version for create profile
@@ -18,21 +14,14 @@ ManageProfileControl::ManageProfileControl()
 ManageProfileControl::ManageProfileControl(ProfilePtr profile)
     : _view(*this), _action(action), count(0)
 {
-<<<<<<< HEAD
-=======
   /*_profile->setId(profileID);
->>>>>>> 1a76d4edf08078518c104ae80c86034f9765d53d
 
   if(action == 1)
   {
-      std::make_shared<ProfilePtr>(_profile);
       loadProfileSettings(profileID);
   }
   if(action == 0)
   {
-      ProfilePtr prof(std::make_shared<ProxyProfile>());
-      _profile  = prof;
-      std::make_shared<ProfilePtr>(_profile);
       _profile->setStuId(profileID);
   }
 
@@ -145,20 +134,16 @@ void ManageProfileControl::updateProfile()
 
 void ManageProfileControl::editProfile()
 {
-    /*for(int i = 0; i < 28; i++) {
+    for(int i = 0; i < 28; i++) {
         _profile->editQualification(i, _answers[i], _minAnswers[i], _maxAnswers[i]);
     }
-    _profile->editProfile();*/
-    //StorageManager::instance()->editProfile(_profile);
-    StudentFeaturesCommunication::editProfile(_profile);
+    _profile->editProfile();
     _view.close();
 }
 
 void ManageProfileControl::createProfile()
 {
     //_profile->createProfile();
-    //StorageManager::instance()->createProfile(_profile);
-    StudentFeaturesCommunication::createProfile(_profile);
     _view.close();
 }
 
@@ -168,8 +153,8 @@ void ManageProfileControl::createProfile()
 void ManageProfileControl::loadProfileSettings(int id) {
     Questions questions;
     questions.getQuestions();
-    //_profile->loadQualification();
-    _profile = StudentFeaturesCommunication::getProfile(id);//StorageManager::instance()->getProfile(id);
+    _profile->loadQualification();
+
     /*QSqlQuery qry(Database::getInstance().db());
     qry.prepare("SELECT * FROM profile WHERE id = :id");
     qry.bindValue(":id", id);

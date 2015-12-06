@@ -3,7 +3,6 @@
 #include "Storage/storagemanager.h"
 #include "manageprofilecontrol.h"
 #include "joinprojectcontrol.h"
-#include <QDebug>
 using namespace storage;
 
 
@@ -43,7 +42,7 @@ QString StudentHomeControl::getName()
  */
 void StudentHomeControl::getUnjoinedProjectList() {
     ProjectList projects;
-    projects = StudentFeaturesCommunication::listUnjoinedProjects(_student);
+    projects = StorageManager::instance()->listProjectsNotOfStudent(_student);
     for(int i = 0; i < projects->size(); i++) {
         _view.addUnjoinedProject((projects->at(i)->getId()), (projects->at(i))->getName());
     }
@@ -73,11 +72,8 @@ void StudentHomeControl::getUnjoinedProjectList() {
  * Purpose: open unjoined project to student
  */
 void StudentHomeControl::openUnJoinedProject(int projectId) {
-    ProjectPtr project;
-    std::make_shared<ProjectPtr>(project);
-    project = StudentFeaturesCommunication::getProject(projectId);
-    qDebug() << QString("Project name %1").arg(project->getName());
-    JoinProjectControl studentProjectControl(project, _student, &_view);
+    ProjectPtr project = StorageManager::instance()->getProject(projectId);
+    JoinProjectControl studentProjectControl(project, _student);
     _view.show();
 }
 
@@ -88,7 +84,7 @@ void StudentHomeControl::openUnJoinedProject(int projectId) {
  */
 void StudentHomeControl::getJoinedProjectList() {
     ProjectList projects;
-    projects = StudentFeaturesCommunication::listJoinedProjects(_student);
+    projects = StorageManager::instance()->listStudentProjects(_student);
     for(int i = 0; i < projects->size(); i++) {
         _view.addJoinedProject((projects->at(i)->getId()), (projects->at(i))->getName());
     }

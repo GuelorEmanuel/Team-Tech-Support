@@ -106,33 +106,26 @@ void StorageManager::createAdmin(storage::AdminPtr admin)
     }
 }
 
-int StorageManager::createProfile(storage::ProfilePtr profile)
+void StorageManager::createProfile(storage::ProfilePtr profile)
 {
-    int stat = 0;
     if(!findStudent(profile->getStuId())) {
-            stat = Database::instance()->createProfile(profile);
+            Database::instance()->createProfile(profile);
             _profiles.insert({{profile->getId(), profile}});
-            return stat;
     }
-    return stat = 1;
 }
 
-int StorageManager::createProject(storage::ProjectPtr project) {
-    int stat = 0;
+void StorageManager::createProject(storage::ProjectPtr project) {
     if(!findProject(project->getName())) {
-           stat =  Database::instance()->createProject(project);
+            Database::instance()->createProject(project);
             _projects.insert({{project->getId(), project}});
-            return stat;
     }
-    return stat;
-}ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss
+}
 
-int StorageManager::editProfile(storage::ProfilePtr profile)
+void StorageManager::editProfile(storage::ProfilePtr profile)
 {
     if(findProfile(profile->getId())) {
-        return Database::instance()->editProfile(profile);
+        Database::instance()->editProfile(profile);
     }
-    return 1;
 }
 
 void StorageManager::editProject(storage::ProjectPtr project)
