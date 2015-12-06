@@ -2,13 +2,12 @@
 #include "storagemanager.h"
 using namespace storage;
 
-ProxyProfile::ProxyProfile() : _id(-1),_stuId(-1)
-{
+ProxyProfile::ProxyProfile() : _id(-1),_stuId(-1) {
 }
 
-ProxyProfile::ProxyProfile(int id) : _id(id)
-{
+ProxyProfile::ProxyProfile(int id) : _id(id) {
 }
+
 ProxyProfile::~ProxyProfile(){
 
 }
@@ -89,20 +88,20 @@ void ProxyProfile::editQualification(int num, int ans, int amin, int amax){
 void ProxyProfile::editProfile(){
 
 }
-StudentList ProxyProfile::getStudents() {
+StudentPtr ProxyProfile::getStudent() {
     if (_profile.get() == NULL) {
         initRealProfile();
     }
 
-    return _profile->getStudents();
+    return _profile->getStudent();
 }
 
-void ProxyProfile::setStudents(StudentList students) {
+void ProxyProfile::setStudent(StudentPtr student) {
     if (_profile.get() == NULL) {
         initRealProfile();
     }
 
-    _profile->setStudents(students);
+    _profile->setStudent(student);
 }
 
 void ProxyProfile::registerStudent(StudentPtr student) {
@@ -110,8 +109,5 @@ void ProxyProfile::registerStudent(StudentPtr student) {
     //_students.push_back(student);
 }
 void ProxyProfile::initRealProfile(){
-    /*_profile.reset(new RealProfile(_id, _name, _description,
-                               _minTeamSize, _maxTeamSize,
-                               StorageManager::instance()
-                               ->getStudentsInProject(_id)));*/
+    _profile.reset(new RealProfile(_id));
 }

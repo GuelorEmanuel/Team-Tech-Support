@@ -7,12 +7,9 @@ RealProfile::RealProfile(int id){
 
 }*/
 
-RealProfile::RealProfile(int id):_id(id){
-
-}
-
-RealProfile::RealProfile():_id(-1),_stuId(-1){
-
+RealProfile::RealProfile(int id):
+  _id(id)
+{
 }
 
 RealProfile::~RealProfile(){
@@ -87,12 +84,12 @@ void RealProfile::setStuId(int value){
     _stuId = value;
 
 }
-StudentList RealProfile::getStudents() {
-    return _students;
+StudentPtr RealProfile::getStudent() {
+    return _student;
 }
 
-void RealProfile::setStudents(StudentList students) {
-    _students = students;
+void RealProfile::setStudent(StudentPtr student) {
+    _student.swap(student);
 }
 
 void RealProfile::registerStudent(StudentPtr student) {

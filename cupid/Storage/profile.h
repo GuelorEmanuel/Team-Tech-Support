@@ -20,8 +20,8 @@ public:
     virtual int getMaxAnswer(int index)=0;
     virtual void loadQualification()=0;
     virtual void editQualification(int num, int ans, int amin, int amax)=0;
-    virtual storage::StudentList getStudents() = 0;
-    virtual void setStudents(storage::StudentList students) = 0;
+     virtual storage::StudentPtr  getStudent() = 0;
+    virtual void setStudent(storage::StudentPtr student) = 0;
     virtual void registerStudent(storage::StudentPtr student) = 0;
 
     virtual void editProfile()=0;
