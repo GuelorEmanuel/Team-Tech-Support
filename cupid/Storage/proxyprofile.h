@@ -3,6 +3,7 @@
 
 #include "profile.h"
 #include "realprofile.h"
+#include "proxystudent.h"
 #include <memory>
 
 class ProxyProfile : public Profile
@@ -32,6 +33,7 @@ private:
     int _id;
     int _stuId;
     std::vector<Qualification> _qualifications;
+    std::unique_ptr<ProxyStudent> _student;
 };
 
 #endif // PROXYPROFILE_H

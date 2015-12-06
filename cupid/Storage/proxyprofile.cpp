@@ -30,14 +30,14 @@ void ProxyProfile::setStuId(int value){
     if (_profile.get() == NULL){ //check if stu is null
         _stuId = value;
     }else{
-       // _profile->setId(value);//set the stuID here
+        _student->setStudentId(QString::number(value));
     }
 }
 int ProxyProfile::getStuId(){
     if (_profile.get() == NULL){ //check if Student is nULL
         return _stuId;
     }else{
-
+        //_student->getStudentID();
     }
 
 }
@@ -73,14 +73,22 @@ void ProxyProfile::loadQualification(){
 
 }
 void ProxyProfile::editQualification(int num, int ans, int amin, int amax){
-    if (num < 0 || num > 28) return;
-    _qualifications[num].setAnswer(ans);
-     _qualifications[num].setMinAnswer(amin);
+    if (num < 0 || num > 28 && _profile != NULL){
+      _profile->getQualifications()[num].setAnswer(ans);
+      _profile->getQualifications()[num].setMinAnswer(amin);
+       _profile->getQualifications()[num].setMaxAnswer(amax);
+    }
+    else{
+        return;
+    }
 
 }
 void ProxyProfile::editProfile(){
 
 }
 void ProxyProfile::initRealProfile(){
-
+    /*_profile.reset(new RealProfile(_id, _name, _description,
+                               _minTeamSize, _maxTeamSize,
+                               StorageManager::instance()
+                               ->getStudentsInProject(_id)));*/
 }
