@@ -2,7 +2,9 @@
 #define ADMINHOMEWINDOW_H
 
 #include <QDialog>
+#include <QString>
 #include <memory>
+#include "Storage/storage.h"
 class AdminHomeControl;
 
 namespace Ui {
@@ -15,7 +17,7 @@ class AdminHomeWindow : public QDialog
 
 public:
     explicit AdminHomeWindow(AdminHomeControl &control, QWidget *parent = 0);
-    void addProject(int id, QString name);
+    void updateProjectsList(storage::ProjectList projects);
     void setName(QString name);
     ~AdminHomeWindow();
 

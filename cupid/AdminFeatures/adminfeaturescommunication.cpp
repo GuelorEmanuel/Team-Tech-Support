@@ -22,3 +22,8 @@ void AdminFeaturesCommunication::showAdminHome(storage::AdminPtr admin)
 {
     AdminHomeControl ahc(admin);
 }
+
+ProjectList AdminFeaturesCommunication::getProjectList()
+{
+    return StorageManager::instance()->listProjects();
+}
