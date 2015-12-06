@@ -12,12 +12,11 @@ public:
     void editProfile();
     void openUnJoinedProject(int projectId);
     QString getName();
-
+    void getUnjoinedProjectList();
+    void getJoinedProjectList();
 private:
     StudentHomeWindow _view;
     storage::StudentPtr _student;
-    void getUnjoinedProjectList();
-    void getJoinedProjectList();
 };
 
 

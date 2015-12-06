@@ -1,18 +1,20 @@
 #include "studenthomecontrol.h"
 #include "Storage/student.h"
-#include "Storage/storagemanager.h"
 #include "manageprofilecontrol.h"
 #include "joinprojectcontrol.h"
 #include "studentfeaturescommunication.h"
+#include <QDebug>
 using namespace storage;
 
 
 StudentHomeControl::StudentHomeControl(StudentPtr student) :
     _student(student), _view(*this)
 {
+    qDebug() << "Hey";
     getUnjoinedProjectList();
     getJoinedProjectList();
 
+    qDebug() << "Hey";
     _view.setName(student->getDisplayName());
 
     _view.setModal(true);

@@ -6,6 +6,7 @@
 #include "UserManagement/createstudentaccountcontrol.h"
 #include "Storage/storage.h"
 #include "Storage/user.h"
+#include <QDebug>
 using namespace storage;
 
 LoginControl::LoginControl()
@@ -20,7 +21,9 @@ LoginControl::~LoginControl()
 
 void LoginControl::signIn(QString userName)
 {
-    UserPtr user = UserManagementCommunication::getUser(userName);
+    UserPtr user;
+    std::make_shared<UserPtr>(user);
+    user = UserManagementCommunication::getUser(userName);
     if (user == NULL)
     {
         _view->displayUserNotFoundError();

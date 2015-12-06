@@ -2,7 +2,7 @@
 using namespace storage;
 
 JoinProjectControl::JoinProjectControl(ProjectPtr project,
-                                       StudentPtr student, StudentHomeWindow& view)
+                                       StudentPtr student, StudentHomeWindow* view)
     : _view(*this), _project(project), _student(student), _stuView(view)
 {    
     _view.setModal(true);
@@ -51,7 +51,7 @@ int JoinProjectControl::joinProject()
 {
     int stat = StudentFeaturesCommunication::joinProject(_project, _student);
     if(!stat) {
-        _stuView.updateJoinedProjects(_project->getName());
+        _stuView->updateJoinedProjects(_project->getName());
         _view.close();
     } else {
         return stat;

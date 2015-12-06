@@ -10,7 +10,7 @@ class JoinProjectControl
 {
 public:
     JoinProjectControl(storage::ProjectPtr project,
-                       storage::StudentPtr student, StudentHomeWindow& view);
+                       storage::StudentPtr student, StudentHomeWindow* view);
     void leaveProject();
     int joinProject();
 
@@ -19,7 +19,7 @@ private:
      storage::ProjectPtr _project;
      storage::StudentPtr _student;
      void loadProjectSettings(int id);
-     StudentHomeWindow &_stuView;
+     StudentHomeWindow *_stuView;
 };
 
 

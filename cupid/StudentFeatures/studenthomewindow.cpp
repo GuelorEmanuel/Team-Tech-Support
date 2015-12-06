@@ -20,7 +20,7 @@ void StudentHomeWindow::setName(QString name)
 
 void StudentHomeWindow::updateJoinedProjects(QString name)
 {
-    ui->unjoinedProjecstInput->removeItem(ui->unjoinedProjectsInput->findText(name));
+    ui->unjoinedProjectsInput->removeItem(ui->unjoinedProjectsInput->findText(name));
     ui->joinedProjectsList->clear();
     _control.getJoinedProjectList();
 

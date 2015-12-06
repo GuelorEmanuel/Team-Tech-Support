@@ -2,6 +2,7 @@
 #include "AdminFeatures/adminfeaturescommunication.h"
 #include "StudentFeatures/studentfeaturescommunication.h"
 #include "Storage/storagemanager.h"
+#include <QDebug>
 using namespace storage;
 
 UserManagementCommunication::UserManagementCommunication()
@@ -26,6 +27,11 @@ void UserManagementCommunication::showAdminHome(UserPtr user)
 
 void UserManagementCommunication::showStudentHome(UserPtr user)
 {
+    qDebug() << "Hey";
+    StudentPtr student;
+    std::make_shared<StudentPtr>(student);
+    student = StorageManager::instance()->getStudent(user->getId());
+    qDebug() << QString("Student %1").arg(student->getId());
     StudentFeaturesCommunication::showStudentHome(
                 StorageManager::instance()->getStudent(user->getId()));
 }
