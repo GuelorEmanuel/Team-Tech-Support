@@ -130,6 +130,7 @@ int SqliteDatabase::getFullProject(ProjectList projects)
 {
    return _projectRepo->listFullProjects(projects);
 }
+
 /*Students in a project part*/
 int SqliteDatabase::addStudentToProject(int student_id, int project_id)
 {
@@ -142,7 +143,7 @@ ProjectList SqliteDatabase::getJoinedProjectList(StudentPtr stu)
 {
     int stat = 0;
     std::vector<int> ids;
-    ProjectList list(new std::vector<ProjectPtr >);
+    ProjectList list(std::make_shared<std::vector<ProjectPtr> >());
     stat = _joinedProjectRepo->getJoinedProjects(stu, ids);
 
     for(int i = 0; i < ids.size(); i++) {
@@ -160,7 +161,7 @@ ProjectList SqliteDatabase::getUnjoinedProjectList(StudentPtr stu)
     int stat = 0;
     std::vector<int> ids;
     std::vector<int> projs;
-    ProjectList list(new std::vector<ProjectPtr >);
+    ProjectList list(std::make_shared<std::vector<ProjectPtr> >());
     stat = _joinedProjectRepo->getJoinedProjects(stu, ids);
     stat = _projectRepo->listProjectsIDs(projs);
 
@@ -173,7 +174,7 @@ ProjectList SqliteDatabase::getUnjoinedProjectList(StudentPtr stu)
         _projectRepo->getProject(proj);
         list->push_back(proj);
     }
-    std::make_shared<ProjectList> (list);
+
     return list;
 }
 
@@ -182,7 +183,7 @@ StudentList SqliteDatabase::getStudentsInProject(ProjectPtr project)
     int stat = 0;
     std::vector<int> ids;
     stat = _joinedProjectRepo->getStudentsInProject(project, ids);
-    StudentList list(new std::vector<StudentPtr >);
+    StudentList list(std::make_shared<std::vector<StudentPtr> >());
 
     for(int j = 0; j < ids.size(); j++) {
         StudentPtr stud(std::make_shared<ProxyStudent>());
@@ -190,7 +191,7 @@ StudentList SqliteDatabase::getStudentsInProject(ProjectPtr project)
         _userRepo->getStudent(stud);
         list->push_back(stud);
     }
-    std::make_shared<StudentList> (list);
+
     return list;
 }
 

@@ -1,39 +1,61 @@
-#include "proxystudent.h"
-#include "realstudent.h"
+#include "Storage/proxystudent.h"
+#include "Storage/realstudent.h"
+#include "Storage/storage.h"
 using namespace storage;
 
-ProxyStudent::ProxyStudent() : ProxyStudent(-1) {
-}
-ProxyStudent::ProxyStudent(int id) {
-    _id = id;
+ProxyStudent::ProxyStudent() : Student() {
 }
 
-ProxyStudent::ProxyStudent(QString stuID, int pId) {
-    _studentId = stuID;
-    _profileId = pId;
+ProxyStudent::ProxyStudent(int id) : Student(id)
+{
 }
 
-ProxyStudent::~ProxyStudent() {
-
+ProxyStudent::ProxyStudent(int id, QString studentId)
+    : Student(id), _studentId(studentId)
+{
 }
+
+ProxyStudent::ProxyStudent(int id, QString studentId, int profileId)
+    : Student(id), _studentId(studentId), _profileId(profileId)
+{
+}
+
+ProxyStudent::~ProxyStudent() {}
 
 QString ProxyStudent::getStudentId() {
-    return _realStudent->getStudentId();
+    if (!_realStudent) {
+        return _studentId;
+    } else {
+        return _realStudent->getStudentId();
+    }
 }
 
 void ProxyStudent::setStudentId(QString value) {
-    _realStudent->setStudentId(value);
+    if (!_realStudent) {
+        _studentId = value;
+    } else {
+        _realStudent->setStudentId(value);
+    }
 }
 
 ProfilePtr ProxyStudent::getProfile() {
+    if (!_realStudent) {
+        initRealStudent();
+    }
     return _realStudent->getProfile();
 }
 
 void ProxyStudent::setProfile(ProfilePtr value) {
+    if (!_realStudent) {
+        initRealStudent();
+    }
     _realStudent->setProfile(value);
 }
 
 ProjectList ProxyStudent::getProjects() {
+    if (!_realStudent) {
+        initRealStudent();
+    }
     return _realStudent->getProjects();
 }
 
@@ -50,6 +72,10 @@ bool ProxyStudent::operator==(const Student& rhs) const
 {
     return getId() == rhs.getId();
 }
-void ProxyStudent::initRealStudent(){
-    _realStudent.reset(new RealStudent(_studentId, _profileId));
+
+void ProxyStudent::initRealStudent()
+{
+    // TODO: call database
+    ProfilePtr profile(StorageManager::instance()->getProfile(_profileId));
+    _realStudent.reset(new RealStudent(_id, _studentId, profile));
 }

@@ -1,12 +1,13 @@
 #ifndef REALSTUDENT_H
 #define REALSTUDENT_H
 
-#include "student.h"
+#include "Storage/student.h"
+#include "Storage/storage.h"
 
 class RealStudent: public Student
 {
 public:
-    explicit RealStudent(QString stuID, int pId);
+    explicit RealStudent(int id, QString studentId, storage::ProfilePtr);
     virtual ~RealStudent();
     virtual QString getStudentId();
     virtual void setStudentId(QString value);

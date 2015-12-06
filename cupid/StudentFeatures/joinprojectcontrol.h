@@ -2,24 +2,24 @@
 #define STUDENTPROJECTCONTROL_H
 
 #include "Storage/storage.h"
-#include "joinprojectwindow.h"
-#include "studenthomewindow.h"
-#include "studentfeaturescommunication.h"
+class JoinProjectWindow;
+class StudentHomeControl;
 
 class JoinProjectControl
 {
 public:
     JoinProjectControl(storage::ProjectPtr project,
-                       storage::StudentPtr student, StudentHomeWindow& view);
+                       storage::StudentPtr student, StudentHomeControl& homeControl);
+    ~JoinProjectControl();
     void leaveProject();
     int joinProject();
 
 private:          
-    JoinProjectWindow _view;
-     storage::ProjectPtr _project;
-     storage::StudentPtr _student;
-     void loadProjectSettings(int id);
-     StudentHomeWindow &_stuView;
+    std::unique_ptr<JoinProjectWindow> _view;
+    storage::ProjectPtr _project;
+    storage::StudentPtr _student;
+    StudentHomeControl &_homeControl;
+    void loadProjectSettings(int id);
 };
 
 
