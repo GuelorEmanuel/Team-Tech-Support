@@ -2,8 +2,9 @@
 #include "storage.h"
 using namespace storage;
 
-RealStudent::RealStudent() {
-
+RealStudent::RealStudent(QString stuID, int pId) {
+  _studentId = stuID;
+  _profileId = pId;
 }
 
 RealStudent::~RealStudent(){

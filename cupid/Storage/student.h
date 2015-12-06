@@ -12,7 +12,6 @@ class Project;
 class Student : public User
 {
 public:
-    Student(int id);
     virtual ~Student();
     virtual QString getStudentId() = 0;
     virtual void setStudentId(QString value) = 0;
@@ -24,6 +23,7 @@ public:
     virtual bool operator==(const Student& rhs) const = 0;
 protected:
      Student();
+     Student(int id);
 };
 
 #endif // STUDENT_H

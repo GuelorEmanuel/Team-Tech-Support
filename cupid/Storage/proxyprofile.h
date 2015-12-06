@@ -9,8 +9,8 @@
 class ProxyProfile : public Profile
 {
 public:
-    ProxyProfile();
-    ProxyProfile(int id);
+    explicit ProxyProfile();
+    explicit ProxyProfile(int id);
     ~ProxyProfile();
     virtual int getId();
     virtual void setId(int value);
@@ -26,8 +26,8 @@ public:
     virtual void editQualification(int num, int ans, int amin, int amax);
     //virtual void createProfile();
     virtual void editProfile();
-    virtual storage::StudentList getStudents();
-    virtual void setStudents(storage::StudentList students);
+    virtual storage::StudentPtr  getStudent();
+    virtual void setStudent(storage::StudentPtr student);
     virtual void registerStudent(storage::StudentPtr student);
 protected:
     void initRealProfile();
