@@ -3,6 +3,7 @@
 #include "profile.h"
 #include "storage.h"
 #include <memory>
+#include "proxystudent.h"
 
 class RealProfile:public Profile
 {
@@ -30,6 +31,7 @@ private:
     int _stuId;
     std::vector<Qualification> _qualifications;
     storage::ProfileList _profiles;
+     std::unique_ptr<ProxyStudent> _student;
 
 };
 
