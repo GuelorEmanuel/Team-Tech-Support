@@ -7,6 +7,7 @@ class StudentFeaturesCommunication
 {
 public:    
     static void showStudentHome(storage::StudentPtr student);
+    static storage::ProfilePtr showCreateProfileWindow();
 private:
     StudentFeaturesCommunication();
     void operator=(

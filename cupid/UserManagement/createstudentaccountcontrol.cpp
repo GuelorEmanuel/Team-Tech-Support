@@ -1,46 +1,54 @@
-#include "createstudentaccountcontrol.h"
-#include "StudentFeatures/manageprofilecontrol.h"
+#include "UserManagement/createstudentaccountwindow.h"
+#include "UserManagement/createstudentaccountcontrol.h"
+#include "UserManagement/usermanagementcommunication.h"
+#include "Storage/storage.h"
+#include "Storage/proxystudent.h"
+using namespace storage;
 
-CreateStudentAccountControl::CreateStudentAccountControl() : _view(*this)
+CreateStudentAccountControl::CreateStudentAccountControl()
+    : _view(new CreateStudentAccountWindow(*this))
 {
-    _view.setModal(true);
-    _view.exec();
+    _view->setModal(true);
+    _view->exec();
 }
 
-void CreateStudentAccountControl::cancel() {
-    _view.close();
+void CreateStudentAccountControl::cancel()
+{
+    _view->close();
 }
 
-/*Function: void CreateStudentAccountControl::createAccount
- * Purpose: using giving information, create new Student account(user)
- * Input  : QString fname, QString lname, QString id
- */
-void CreateStudentAccountControl::createAccount(QString fname, QString lname, QString id)
+void CreateStudentAccountControl::createAccount(
+        QString displayName, QString userName, QString studentId)
 {
-    /*
-    int newID = -1;
-    QSqlQuery qry(Database::getInstance().db());
-
-    qry.prepare("SELECT max(id) FROM user");
-
-    if(!qry.exec()) {
-        qDebug() << qry.lastError();
+    if (!UserManagementCommunication::userNameAvailable(userName))
+    {
+        _view->displayUserNameUnavailableError();
         return;
-    } else {
-        qry.next();
-        newID = qry.value(0).toInt()+1;
     }
 
-    _student.reset(new Student);
-    _student->setId(newID);
-    _student->setStudentId(id);
-    _student->setDisplayName(QString("%1 %2").arg(fname).arg(lname));
-    _student->setUserName(QString("%1%2").arg(fname).arg(lname).toLower());
-    _student->createStudentUser();
+    if (!UserManagementCommunication::studentIdAvailable(studentId))
+    {
+        _view->displayStudentIdUnavailableError();
+        return;
+    }
 
-    EditStudentProfileControl createProfile(newID, 0);
-    */
-    _view.close();
+    ProfilePtr profile(UserManagementCommunication::showCreateProfileWindow());
+
+    if (!profile)
+    {
+        _view->displayProfileCreationError();
+        return;
+    }
+
+    StudentPtr student(std::make_shared<ProxyStudent>());
+    student->setDisplayName(displayName);
+    student->setStudentId(studentId);
+    student->setUserName(userName);
+    student->setProfile(profile);
+
+    UserManagementCommunication::createStudentAndProfile(student);
+
+    _view->close();
 }
 
 CreateStudentAccountControl::~CreateStudentAccountControl() {}

@@ -14,6 +14,9 @@ public:
     static void showStudentHome(storage::UserPtr user);
     static bool userNameAvailable(QString name);
     static void createAdmin(storage::AdminPtr admin);
+    static bool studentIdAvailable(QString id);
+    static storage::ProfilePtr showCreateProfileWindow();
+    static void createStudentAndProfile(storage::StudentPtr student);
 private:
     UserManagementCommunication();
     void operator=(

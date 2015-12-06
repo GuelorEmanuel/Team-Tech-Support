@@ -18,13 +18,13 @@ StudentPtr UserManagementCommunication::getStudent(int id)
     return StorageManager::instance()->getStudent(id);
 }
 
-void UserManagementCommunication::showAdminHome(storage::UserPtr user)
+void UserManagementCommunication::showAdminHome(UserPtr user)
 {
     AdminFeaturesCommunication::showAdminHome(
                 StorageManager::instance()->getAdmin(user->getId()));
 }
 
-void UserManagementCommunication::showStudentHome(storage::UserPtr user)
+void UserManagementCommunication::showStudentHome(UserPtr user)
 {
     StudentFeaturesCommunication::showStudentHome(
                 StorageManager::instance()->getStudent(user->getId()));
@@ -35,7 +35,24 @@ bool UserManagementCommunication::userNameAvailable(QString name)
     return StorageManager::instance()->getUser(name) == NULL;
 }
 
+bool UserManagementCommunication::studentIdAvailable(QString id)
+{
+    // TODO: Implement this
+    return true;
+}
+
 void UserManagementCommunication::createAdmin(AdminPtr admin)
 {
     StorageManager::instance()->createAdmin(admin);
+}
+
+ProfilePtr UserManagementCommunication::showCreateProfileWindow()
+{
+    return StudentFeaturesCommunication::showCreateProfileWindow();
+}
+
+void UserManagementCommunication::createStudentAndProfile(StudentPtr student)
+{
+    StorageManager::instance()->createStudent(student);
+    StorageManager::instance()->createProfile(student->getProfile());
 }

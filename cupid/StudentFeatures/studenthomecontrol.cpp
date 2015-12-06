@@ -26,9 +26,8 @@ void StudentHomeControl::logout() {
  * Purpose: open control class for profile edition
  */
 void StudentHomeControl::editProfile() {
-    ManageProfileControl manageProfileControl(_student->getId(), 1);
+    ManageProfileControl manageProfileControl(_student->getProfile());
     _view.show();
-
 }
 
 QString StudentHomeControl::getName()
