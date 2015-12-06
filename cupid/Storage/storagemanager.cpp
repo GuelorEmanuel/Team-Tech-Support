@@ -90,49 +90,63 @@ bool StorageManager::findProject(QString name)
 }
 
 
-void StorageManager::createStudent(storage::StudentPtr student)
+int StorageManager::createStudent(storage::StudentPtr student)
 {
+    int stat = 0;
     if(!findStudent(student->getUserName())) {
-            Database::instance()->createStudent(student);
+            stat = Database::instance()->createStudent(student);
             _students.insert({{student->getId(), student}});
+            return stat;
     }
+    return stat = 1;
 }
 
-void StorageManager::createAdmin(storage::AdminPtr admin)
+int StorageManager::createAdmin(storage::AdminPtr admin)
 {
+    int stat = 0;
     if(!findAdmin(admin->getUserName())) {
-            Database::instance()->createAdmin(admin);
+            stat = Database::instance()->createAdmin(admin);
             _admins.insert({{admin->getId(), admin}});
+            return stat;
     }
+    return stat = 1;
 }
 
-void StorageManager::createProfile(storage::ProfilePtr profile)
+int StorageManager::createProfile(storage::ProfilePtr profile)
 {
+    int stat = 0;
     if(!findStudent(profile->getStuId())) {
-            Database::instance()->createProfile(profile);
+            stat = Database::instance()->createProfile(profile);
             _profiles.insert({{profile->getId(), profile}});
+            return stat;
     }
+    return stat = 1;
 }
 
-void StorageManager::createProject(storage::ProjectPtr project) {
+int StorageManager::createProject(storage::ProjectPtr project) {
+    int stat = 0;
     if(!findProject(project->getName())) {
-            Database::instance()->createProject(project);
+            stat = Database::instance()->createProject(project);
             _projects.insert({{project->getId(), project}});
+            return stat;
     }
+    return stat = 1;
 }
 
-void StorageManager::editProfile(storage::ProfilePtr profile)
+int StorageManager::editProfile(storage::ProfilePtr profile)
 {
     if(findProfile(profile->getId())) {
-        Database::instance()->editProfile(profile);
+        return Database::instance()->editProfile(profile);
     }
+    return 1;
 }
 
-void StorageManager::editProject(storage::ProjectPtr project)
+int StorageManager::editProject(storage::ProjectPtr project)
 {
     if(findProject(project->getId())) {
-        Database::instance()->editProject(project);
+        return Database::instance()->editProject(project);
     }
+    return 1;
 }
 
 ProjectList StorageManager::listProjects() {

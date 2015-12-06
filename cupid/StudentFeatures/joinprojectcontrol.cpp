@@ -2,8 +2,8 @@
 using namespace storage;
 
 JoinProjectControl::JoinProjectControl(ProjectPtr project,
-                                       StudentPtr student)
-    : _view(*this), _project(project), _student(student)
+                                       StudentPtr student, StudentHomeWindow& view)
+    : _view(*this), _project(project), _student(student), _stuView(view)
 {    
     _view.setModal(true);
     _view.exec();
@@ -13,7 +13,7 @@ JoinProjectControl::JoinProjectControl(ProjectPtr project,
  * Purpose: load selected project's settings and pass them to view
  */
 void JoinProjectControl::loadProjectSettings(int id) {
-    _project = StorageManager::instance()->getProject(id);
+    _project = StudentFeaturesCommunication::getProject(id);
     _view.refreshProjectSettings(_project);
     /*
     qDebug() << "Getting project settings:projectID: "<<id;
@@ -49,8 +49,9 @@ void JoinProjectControl::leaveProject()
 
 int JoinProjectControl::joinProject()
 {
-    int stat = StorageManager::instance()->joinProject(_project, _student);
+    int stat = StudentFeaturesCommunication::joinProject(_project, _student);
     if(!stat) {
+        _stuView.updateJoinedProjects(_project->getName());
         _view.close();
     } else {
         return stat;

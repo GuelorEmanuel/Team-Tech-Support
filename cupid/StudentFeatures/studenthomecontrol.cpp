@@ -3,6 +3,7 @@
 #include "Storage/storagemanager.h"
 #include "manageprofilecontrol.h"
 #include "joinprojectcontrol.h"
+#include "studentfeaturescommunication.h"
 using namespace storage;
 
 
@@ -42,7 +43,7 @@ QString StudentHomeControl::getName()
  */
 void StudentHomeControl::getUnjoinedProjectList() {
     ProjectList projects;
-    projects = StorageManager::instance()->listProjectsNotOfStudent(_student);
+    projects = StudentFeaturesCommunication::listUnjoinedProjects(_student);
     for(int i = 0; i < projects->size(); i++) {
         _view.addUnjoinedProject((projects->at(i)->getId()), (projects->at(i))->getName());
     }
@@ -72,8 +73,10 @@ void StudentHomeControl::getUnjoinedProjectList() {
  * Purpose: open unjoined project to student
  */
 void StudentHomeControl::openUnJoinedProject(int projectId) {
-    ProjectPtr project = StorageManager::instance()->getProject(projectId);
-    JoinProjectControl studentProjectControl(project, _student);
+    ProjectPtr project;
+    std::make_shared<ProjectPtr>(project);
+    project = StudentFeaturesCommunication::getProject(projectId);
+    JoinProjectControl studentProjectControl(project, _student, &_view);
     _view.show();
 }
 
@@ -84,7 +87,7 @@ void StudentHomeControl::openUnJoinedProject(int projectId) {
  */
 void StudentHomeControl::getJoinedProjectList() {
     ProjectList projects;
-    projects = StorageManager::instance()->listStudentProjects(_student);
+    projects = StudentFeaturesCommunication::listJoinedProjects(_student);
     for(int i = 0; i < projects->size(); i++) {
         _view.addJoinedProject((projects->at(i)->getId()), (projects->at(i))->getName());
     }

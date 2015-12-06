@@ -18,8 +18,11 @@ void StudentHomeWindow::setName(QString name)
     ui->studentNameLbl->setText(name);
 }
 
-void StudentHomeWindow::updateJoinedProjects()
+void StudentHomeWindow::updateJoinedProjects(QString name)
 {
+    ui->unjoinedProjecstInput->removeItem(ui->unjoinedProjectsInput->findText(name));
+    ui->joinedProjectsList->clear();
+    _control.getJoinedProjectList();
 
 }
 
