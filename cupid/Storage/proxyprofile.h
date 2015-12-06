@@ -26,6 +26,9 @@ public:
     virtual void editQualification(int num, int ans, int amin, int amax);
     //virtual void createProfile();
     virtual void editProfile();
+    virtual storage::StudentList getStudents();
+    virtual void setStudents(storage::StudentList students);
+    virtual void registerStudent(storage::StudentPtr student);
 protected:
     void initRealProfile();
 private:
@@ -33,7 +36,7 @@ private:
     int _id;
     int _stuId;
     std::vector<Qualification> _qualifications;
-    std::unique_ptr<ProxyStudent> _student;
+   // std::unique_ptr<ProxyStudent> _student; //remove this
 };
 
 #endif // PROXYPROFILE_H

@@ -23,15 +23,19 @@ public:
     virtual int getMaxAnswer(int index);
     virtual void loadQualification();
     virtual void editQualification(int num, int ans, int amin, int amax);
-    virtual void createProfile();
+    //virtual void createProfile();
     virtual void editProfile();
+    virtual storage::StudentList getStudents();
+    virtual void setStudents(storage::StudentList students);
+    virtual void registerStudent(storage::StudentPtr student);
+
 
 private:
     int _id;
     int _stuId;
-    std::vector<Qualification> _qualifications;
-    storage::ProfileList _profiles;
-     std::unique_ptr<ProxyStudent> _student;
+    //storage::ProfileList _profiles;
+    storage::StudentList _students;
+      std::vector<Qualification> _qualifications;
 
 };
 
