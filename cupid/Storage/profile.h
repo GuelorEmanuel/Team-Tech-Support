@@ -58,6 +58,7 @@ public:
 protected:
     Profile();
 
+
 };
 
 #endif // PROFILE_H
