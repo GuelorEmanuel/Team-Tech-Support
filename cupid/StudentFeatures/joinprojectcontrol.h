@@ -3,13 +3,14 @@
 
 #include "Storage/storage.h"
 #include "joinprojectwindow.h"
-#include "Storage/storagemanager.h"
+#include "studentfeaturescommunication.h"
+#include "studenthomewindow.h"
 
 class JoinProjectControl
 {
 public:
     JoinProjectControl(storage::ProjectPtr project,
-                       storage::StudentPtr student);
+                       storage::StudentPtr student, StudentHomeWindow *view);
     void leaveProject();
     int joinProject();
 
@@ -18,6 +19,6 @@ private:
      storage::ProjectPtr _project;
      storage::StudentPtr _student;
      void loadProjectSettings(int id);
+     StudentHomeWindow *viewStu;
 };
-
 #endif // STUDENTPROJECTCONTROL_H

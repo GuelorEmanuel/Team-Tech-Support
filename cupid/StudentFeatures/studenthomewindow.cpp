@@ -20,7 +20,14 @@ void StudentHomeWindow::setName(QString name)
 
 void StudentHomeWindow::updateJoinedProjects()
 {
+    int size = ui->unjoinedProjectsInput->count();
 
+    for(int i = 0; i < size; i++) {
+        ui->unjoinedProjectsInput->removeItem(i);
+    }
+    ui->joinedProjectsList->clear();
+    _control.getJoinedProjectList();
+    _control.getUnjoinedProjectList();
 }
 
 void StudentHomeWindow::on_editProfileBtn_clicked()
@@ -42,8 +49,8 @@ void StudentHomeWindow::on_openProjectBtn_clicked() {
     }
 
     // Pass the project ID to edit project
-    _control.openUnJoinedProject(ui->unjoinedProjectsInput->itemData(
-                             ui->unjoinedProjectsInput->currentIndex()).toInt());
+    int id = ui->unjoinedProjectsInput->itemData(ui->unjoinedProjectsInput->currentIndex()).toInt();
+    _control.openUnJoinedProject(id);
 }
 
 void StudentHomeWindow::addUnjoinedProject(int id, QString name) {

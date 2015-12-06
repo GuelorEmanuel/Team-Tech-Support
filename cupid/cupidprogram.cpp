@@ -13,10 +13,9 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     //LoginControl c;
     //return a.exec();
-    ProjectPtr project(StorageManager::instance()->getProject(1));
     StudentPtr student(StorageManager::instance()->getStudent(10));
 
-
+    StudentHomeControl cont(student);
     /*StorageManager::instance()->joinProject(project, student);
 
 
