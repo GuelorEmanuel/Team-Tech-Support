@@ -51,21 +51,22 @@ SOURCES += \
     StudentFeatures/studenthomewindow.cpp \
     StudentFeatures/joinprojectcontrol.cpp \
     StudentFeatures/joinprojectwindow.cpp \
-    questions.cpp
-#    UserManagement/createadminaccountcontrol.cpp \
-#    UserManagement/createstudentaccountcontrol.cpp \
-#    UserManagement/loginwindow.cpp \
-#    UserManagement/logincontrol.cpp \
-#    UserManagement/accounttypeoption.cpp \
-#    UserManagement/createadminaccountwindow.cpp \
-#    UserManagement/createstudentaccountwindow.cpp \    
-#    AlgorithmFeatures/algorithm.cpp \
-#    AlgorithmFeatures/computeteamscontrol.cpp \
-#    AlgorithmFeatures/team.cpp \
-#    AlgorithmFeatures/algorithmfeaturescommunication.cpp \
-#    AlgorithmFeatures/computeteamswindow.cpp \
-#    UserManagement/userfeaturescommunication.cpp \
-#    AlgorithmFeatures/algorithmresults.cpp \
+    questions.cpp \
+    UserManagement/createadminaccountcontrol.cpp \
+    UserManagement/createstudentaccountcontrol.cpp \
+    UserManagement/loginwindow.cpp \
+    UserManagement/logincontrol.cpp \
+    UserManagement/accounttypeoption.cpp \
+    UserManagement/createadminaccountwindow.cpp \
+    UserManagement/createstudentaccountwindow.cpp \
+    UserManagement/userfeaturescommunication.cpp \
+    AlgorithmFeatures/algorithm.cpp \
+    AlgorithmFeatures/computeteamscontrol.cpp \
+    AlgorithmFeatures/team.cpp \
+    AlgorithmFeatures/algorithmfeaturescommunication.cpp \
+    AlgorithmFeatures/computeteamswindow.cpp \
+    AlgorithmFeatures/algorithmresults.cpp \
+    AlgorithmFeatures/question.cpp
 
 HEADERS  += \
     Database/database.h \
@@ -100,34 +101,35 @@ HEADERS  += \
     StudentFeatures/joinprojectcontrol.h \
     StudentFeatures/joinprojectwindow.h \
     StudentFeatures/studentfeaturescommunication.h \
-    questions.h
-#    UserManagement/adminsignupview.h \
-#    UserManagement/createadminaccountcontrol.h \
-#    UserManagement/createstudentaccountcontrol.h \
-#    UserManagement/accounttypeoption.h \
-#    UserManagement/loginwindow.h \
-#    UserManagement/logincontrol.h \
-#    UserManagement/createstudentaccountwindow.h \
-#    UserManagement/createadminaccountwindow.h \
-#    UserManagement/usermanagementcommunication.h \
-#    AlgorithmFeatures/algorithm.h \
-#    AlgorithmFeatures/computeteamscontrol.h \
-#    AlgorithmFeatures/team.h \
-#    AlgorithmFeatures/algorithmfeaturescommunication.h \
-#    AlgorithmFeatures/computeteamswindow.h \
-#    AlgorithmFeatures/algorithmresults.h \
+    questions.h \
+    UserManagement/adminsignupview.h \
+    UserManagement/createadminaccountcontrol.h \
+    UserManagement/createstudentaccountcontrol.h \
+    UserManagement/accounttypeoption.h \
+    UserManagement/loginwindow.h \
+    UserManagement/logincontrol.h \
+    UserManagement/createstudentaccountwindow.h \
+    UserManagement/createadminaccountwindow.h \
+    UserManagement/usermanagementcommunication.h \
+    AlgorithmFeatures/algorithm.h \
+    AlgorithmFeatures/computeteamscontrol.h \
+    AlgorithmFeatures/team.h \
+    AlgorithmFeatures/algorithmfeaturescommunication.h \
+    AlgorithmFeatures/computeteamswindow.h \
+    AlgorithmFeatures/algorithmresults.h \
+    AlgorithmFeatures/question.h
 
 FORMS    += \
     AdminFeatures/adminhomewindow.ui \
     AdminFeatures/manageprojectwindow.ui \
     StudentFeatures/manageprofilewindow.ui \
     StudentFeatures/studenthomewindow.ui \
-    StudentFeatures/joinprojectwindow.ui
-#    UserManagement/accounttypeoption.ui \
-#    UserManagement/loginwindow.ui \
-#    UserManagement/createadminaccountwindow.ui \
-#    UserManagement/createstudentaccountwindow.ui \
-#    AlgorithmFeatures/computeteamswindow.ui
+    StudentFeatures/joinprojectwindow.ui \
+    UserManagement/accounttypeoption.ui \
+    UserManagement/loginwindow.ui \
+    UserManagement/createadminaccountwindow.ui \
+    UserManagement/createstudentaccountwindow.ui \
+    AlgorithmFeatures/computeteamswindow.ui
 
 RESOURCES += \
     Resources.qrc

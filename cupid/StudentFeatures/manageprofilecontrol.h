@@ -3,11 +3,15 @@
 
 #include "Storage/storage.h"
 #include "manageprofilewindow.h"
+#include "Storage/storagemanager.h"
 
 class ManageProfileControl
 {
 public:
-    ManageProfileControl(int profileID, int action);
+    ManageProfileControl();
+    ManageProfileControl(storage::ProfilePtr profile);
+    bool profileComplete() const;
+    storage::ProfilePtr getCompletedProfile() const;
     QList<QString> loadSection();
     void addAsnwers(int ans, int min, int max);
     int getAnswer(int index);

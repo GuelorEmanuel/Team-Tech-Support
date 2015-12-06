@@ -1,4 +1,5 @@
-#include "accounttypeoption.h"
+#include "UserManagement/accounttypeoption.h"
+#include "UserManagement/logincontrol.h"
 #include "ui_accounttypeoption.h"
 
 AccountTypeOption::AccountTypeOption(LoginControl &control,
@@ -6,9 +7,9 @@ AccountTypeOption::AccountTypeOption(LoginControl &control,
 
     QDialog(parent),
     _control(control),
-    ui(new Ui::AccountTypeOption)
+    _ui(new Ui::AccountTypeOption)
 {
-    ui->setupUi(this);
+    _ui->setupUi(this);
 }
 
 AccountTypeOption::~AccountTypeOption()
@@ -17,15 +18,17 @@ AccountTypeOption::~AccountTypeOption()
 
 void AccountTypeOption::on_adminBtn_clicked()
 {
-    //_control.createAdminAccount();
+    close();
+    _control.createAdminAccount();
 }
 
 void AccountTypeOption::on_studentBtn_clicked()
 {
-    //_control.createStudentAccount();
+    close();
+    _control.createStudentAccount();
 }
 
 void AccountTypeOption::on_cancelBtn_clicked()
 {
-    //_control.cancel();
+    close();
 }

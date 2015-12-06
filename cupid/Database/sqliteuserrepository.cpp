@@ -20,6 +20,16 @@ int SqliteUserRepository::createStudent(StudentPtr student)
     QSqlQuery qry(_db);
     QString qstudent = "INSERT INTO user VALUES(:id, :u, :dn, :sid)";
 
+    QString qid = "SELECT MAX(id) FROM user";
+
+    if(!qry.exec(qid)) {
+        qDebug() << qry.lastError();
+        return stat = 1;
+    } else {
+        qry.next();
+        student->setId(qry.value(0).toInt()+1);
+    }
+
     qry.prepare(qstudent);
     qry.bindValue(":id", student->getId());
     qry.bindValue(":u", student->getUserName());
@@ -73,20 +83,31 @@ int SqliteUserRepository::getStudent(StudentPtr student)
     int stat = 0;
     QSqlQuery qry(_db);
 
-    QString qstudent = "SELECT * FROM user WHERE id = :id";
-
-    qry.prepare(qstudent);
-    qry.bindValue(":id", student->getId());
+    if(student->getId() == -1) {
+        QString qstudent = "SELECT * FROM user WHERE username = :u";
+        qry.prepare(qstudent);
+        qry.bindValue(":u", student->getUserName());
+    } else {
+        QString qstudent = "SELECT * FROM user WHERE id = :id";
+        qry.prepare(qstudent);
+        qry.bindValue(":id", student->getId());
+    }
 
     if(!qry.exec()) {
         qDebug() << qry.lastError();
         return stat = 1;
     } else {
-        qry.next();
-        student->setUserName(qry.value(1).toString());
-        student->setDisplayName(qry.value(2).toString());
-        student->setStudentId(qry.value(3).toString());
-        qDebug() << QString("Student retrieved. Student's name is %1").arg(student->getStudentId());
+        if(qry.next()) {
+            if(!qry.value(3).isNull()) {
+                student->setUserName(qry.value(1).toString());
+                student->setDisplayName(qry.value(2).toString());
+                student->setStudentId(qry.value(3).toString());
+                qDebug() << QString("Student retrieved. Student's name is %1").arg(student->getStudentId());
+            } else {
+                stat = 1;
+            }
+        } else
+            stat = 1;
     }
 
     return stat;
@@ -97,19 +118,30 @@ int SqliteUserRepository::getAdmin(AdminPtr admin)
     int stat = 0;
     QSqlQuery qry(_db);
 
-    QString qadmin = "SELECT * FROM user WHERE id = :id";
-
-    qry.prepare(qadmin);
-    qry.bindValue(":id", admin->getId());
+    if(admin->getId() == -1) {
+        QString qadmin = "SELECT * FROM user WHERE username = :u";
+        qry.prepare(qadmin);
+        qry.bindValue(":u", admin->getUserName());
+    } else {
+        QString qadmin = "SELECT * FROM user WHERE id = :id";
+        qry.prepare(qadmin);
+        qry.bindValue(":id", admin->getId());
+    }
 
     if(!qry.exec()) {
         qDebug() << qry.lastError();
         return stat = 1;
     } else {
-        qry.next();
-        admin->setUserName(qry.value(1).toString());
-        admin->setDisplayName(qry.value(2).toString());
-        qDebug() << QString("Admin retrieved. Admint's name is %1").arg(admin->getDisplayName());
+        if(qry.next()) {
+            if(qry.value(3).isNull()){
+                admin->setUserName(qry.value(1).toString());
+                admin->setDisplayName(qry.value(2).toString());
+                qDebug() << QString("Admin retrieved. Admint's name is %1").arg(admin->getDisplayName());
+            } else
+                stat = 1;
+        } else {
+            stat = 1;
+        }
     }
 
     return stat;
@@ -133,6 +165,7 @@ storage::UserPtr SqliteUserRepository::getUser(UserPtr user)
                 return StudentPtr(std::make_shared<ProxyStudent>(qry.value(0).toInt()));
             }
         }
+        return NULL;
     }
 
     return 0;

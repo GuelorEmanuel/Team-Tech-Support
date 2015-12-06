@@ -43,3 +43,8 @@ void CreateAdminAccountWindow::on_submitBtn_clicked() {
 void CreateAdminAccountWindow::on_cancelBtn_clicked() {
     _control.cancel();
 }
+
+void CreateAdminAccountWindow::displayUserNameUnavailableError()
+{
+    ui->statusLbl->setText("<font color='red'>Error: username unavailable</font>");
+}

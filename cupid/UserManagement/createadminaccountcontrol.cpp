@@ -1,4 +1,8 @@
-#include "createadminaccountcontrol.h"
+#include "UserManagement/createadminaccountcontrol.h"
+#include "UserManagement/usermanagementcommunication.h"
+#include "Storage/storage.h"
+#include "Storage/admin.h"
+using namespace storage;
 
 CreateAdminAccountControl::CreateAdminAccountControl() : _view(*this)
 {
@@ -17,10 +21,17 @@ void CreateAdminAccountControl::cancel() {
  * input   : QString displayName, QString userName
  */
 void CreateAdminAccountControl::createAdminAccount(
-        QString displayName, QString userName) {
-    _admin.reset(new Admin);
-    _admin->setDisplayName(displayName);
-    _admin->setUserName(userName);
-    _admin->create();
+        QString displayName, QString userName)
+{
+    if (!UserManagementCommunication::userNameAvailable(userName))
+    {
+        _view.displayUserNameUnavailableError();
+        return;
+    }
+
+    AdminPtr admin(std::make_shared<Admin>());
+    admin->setDisplayName(displayName);
+    admin->setUserName(userName);
+    UserManagementCommunication::createAdmin(admin);
     _view.close();
 }

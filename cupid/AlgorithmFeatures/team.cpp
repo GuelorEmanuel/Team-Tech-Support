@@ -1,4 +1,7 @@
 #include "team.h"
+#include "Storage/storage.h"
+#include "Storage/student.h"
+using namespace storage;
 
 static const int _needStatsData[] = {
     Profile::Q_TIME_FLEXIBILITY,
@@ -18,7 +21,7 @@ static const int _needStatsData[] = {
     Profile::Q_EFFICIENCY,
     Profile::Q_WORKLOAD
 };
-const int _needStats = _needStatsData;
+const int* Team::_needStats = _needStatsData;
 
 Team::Team() : _cacheValid(false), _overallSkillAverage(-1)
 {
@@ -44,16 +47,16 @@ QString Team::getId() const
 }
 
 // TODO: could optimize to not use 3 function calls
-void Team::addStudent(Student& student)
+void Team::addStudent(StudentPtr student)
 {
-    _students.push_back(student);
-    std::sort(_students.begin(), _students.end());
-    std::unique(_students.begin(), _student.end());
+    _students->push_back(student);
+    std::sort(_students->begin(), _students->end());
+    std::unique(_students->begin(), _students->end());
 }
 
 int Team::getSize() const
 {
-    return _students.size();
+    return _students->size();
 }
 
 double Team::getOverallSkillAverage() const
@@ -98,39 +101,39 @@ void Team::recalculateStats() const
     _id.clear();
     _overallSkillAverage = 0;
 
-    for (_students::iterator it = _students.begin();
-         it != _students.end(); ++it)
+    for (auto it = _students->begin();
+         it != _students->end(); ++it)
     {
-        Profile sp = *it.getProfile();
+        ProfilePtr sp = (*it)->getProfile();
 
         // Recalculate the overall skill average
         _overallSkillAverage +=
-                sp.getAnswer(Profile::Q_SKILL_PROGRAMMING) * 2
-                + sp.getAnswer(Profile::Q_SKILL_DOCUMENTATION)
-                + sp.getAnswer(Profile::Q_SKILL_ORGANIZATION)
-                + sp.getAnswer(Profile::Q_SKILL_PRESENTATION)
-                + sp.getAnswer(Profile::Q_SKILL_RESEARCH);
+                sp->getAnswer(Profile::Q_SKILL_PROGRAMMING) * 2
+                + sp->getAnswer(Profile::Q_SKILL_DOCUMENTATION)
+                + sp->getAnswer(Profile::Q_SKILL_ORGANIZATION)
+                + sp->getAnswer(Profile::Q_SKILL_PRESENTATION)
+                + sp->getAnswer(Profile::Q_SKILL_RESEARCH);
 
         // Recalculate the team averages and maximums
         for (int i = 0; i < 16; ++i)
         {
-            _averages[_needStats[i]] += sp.getAnswer(_needStats[i]);
-            if (sp.getAnswer(_needStats[i]) > _maxes[_needStats[i]])
+            _averages[_needStats[i]] += sp->getAnswer(_needStats[i]);
+            if (sp->getAnswer(_needStats[i]) > _maxes[_needStats[i]])
             {
-                _maxes[_needStats[i]] = sp.getAnswer(_needStats[i]);
+                _maxes[_needStats[i]] = sp->getAnswer(_needStats[i]);
             }
         }
 
         // Build up the new team ID
         // TODO: Can make more efficient with low-level byte manipulation
-        _id.append(QString::number(it->getId()));
+        _id.append(QString::number((*it)->getId()));
     }
 
     // Finish calculating the averages
-    _overallSkillAverage = _overallSkillAverage / (_students.size() * 7);
+    _overallSkillAverage = _overallSkillAverage / (_students->size() * 7);
     for (int i = 0; i < 16; ++i)
     {
-        _averages[_needStats[i]] /= _students.size();
+        _averages[_needStats[i]] /= _students->size();
     }   
 
     // Set cache flag to valid

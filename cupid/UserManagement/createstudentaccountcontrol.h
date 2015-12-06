@@ -1,9 +1,9 @@
 #ifndef CREATESTUDENTACCOUNTCONTROL_H
 #define CREATESTUDENTACCOUNTCONTROL_H
 
-#include "createstudentaccountwindow.h"
 #include <memory>
-#include "Storage/student.h"
+#include <QString>
+class CreateStudentAccountWindow;
 
 class CreateStudentAccountControl
 {
@@ -11,10 +11,9 @@ public:
     CreateStudentAccountControl();
     ~CreateStudentAccountControl();
     void cancel();
-    void createAccount(QString fname, QString lname, QString id);
+    void createAccount(QString displayName, QString userName, QString studentId);
 private:
-    CreateStudentAccountWindow _view;
-    std::auto_ptr<Student> _student;
+    std::unique_ptr<CreateStudentAccountWindow> _view;
 };
 
 #endif // CREATESTUDENTACCOUNTCONTROL_H

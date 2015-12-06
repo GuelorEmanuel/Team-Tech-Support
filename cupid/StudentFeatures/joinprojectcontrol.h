@@ -3,6 +3,7 @@
 
 #include "Storage/storage.h"
 #include "joinprojectwindow.h"
+#include "Storage/storagemanager.h"
 
 class JoinProjectControl
 {

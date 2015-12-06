@@ -16,7 +16,7 @@ public:
 private:
     storage::AdminPtr _admin;
     AdminHomeWindow _view;    
-    void getProjectList();
+    void updateProjectsList();
 };
 
 #endif // ADMINMAINCONTROL_H
