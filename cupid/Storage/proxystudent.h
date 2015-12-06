@@ -9,8 +9,9 @@ class RealStudent;
 class ProxyStudent: public Student {
 
   public:
-    ProxyStudent();
-    ProxyStudent(int id);
+    explicit ProxyStudent();
+    explicit ProxyStudent(int id);
+    explicit ProxyStudent(QString stuID, int pId);
     virtual ~ProxyStudent();
     virtual QString getStudentId();
     virtual void setStudentId(QString value);

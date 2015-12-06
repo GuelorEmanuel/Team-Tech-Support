@@ -1,12 +1,13 @@
 #include "proxyprofile.h"
+#include "storagemanager.h"
+using namespace storage;
 
-ProxyProfile::ProxyProfile() : ProxyProfile(-1)
-{
+ProxyProfile::ProxyProfile() : _id(-1),_stuId(-1) {
 }
 
-ProxyProfile::ProxyProfile(int id) : _id(id)
-{
+ProxyProfile::ProxyProfile(int id) : _id(id) {
 }
+
 ProxyProfile::~ProxyProfile(){
 
 }
@@ -27,29 +28,30 @@ void ProxyProfile::setId(int value){
 
 }
 void ProxyProfile::setStuId(int value){
-    if (_profile.get() == NULL){ //check if stu is null
+    if (_profile.get() == NULL){ //check ifrof is null
         _stuId = value;
     }else{
-        _student->setStudentId(QString::number(value));
+       _profile->setStuId(value);
     }
 }
 int ProxyProfile::getStuId(){
-    if (_profile.get() == NULL){ //check if Student is nULL
+    if (_profile.get() == NULL){ //check if profile does not exist
         return _stuId;
     }else{
-        //_student->getStudentID();
+        return _profile->getStuId();
     }
 
 }
 std::vector<Qualification> ProxyProfile::getQualifications(){
+    if ( _profile.get() == NULL){
+        return _qualifications;
+    }else{
+        _profile->getQualifications();
+    }
 
 }
 void ProxyProfile::addQualification(int ans, int minAns, int maxAns){
-  Qualification qual;
-  qual.setAnswer(ans);
-  qual.setMinAnswer(minAns);
-  qual.setMaxAnswer(maxAns);
-  _qualifications.push_back(qual);
+  _profile->addQualification(ans, minAns, maxAns);
 }
 void ProxyProfile::addQualification(Qualification &qualification){
   _qualifications.push_back(qualification);
@@ -86,9 +88,26 @@ void ProxyProfile::editQualification(int num, int ans, int amin, int amax){
 void ProxyProfile::editProfile(){
 
 }
+StudentPtr ProxyProfile::getStudent() {
+    if (_profile.get() == NULL) {
+        initRealProfile();
+    }
+
+    return _profile->getStudent();
+}
+
+void ProxyProfile::setStudent(StudentPtr student) {
+    if (_profile.get() == NULL) {
+        initRealProfile();
+    }
+
+    _profile->setStudent(student);
+}
+
+void ProxyProfile::registerStudent(StudentPtr student) {
+    //student.joinProject(*this);
+    //_students.push_back(student);
+}
 void ProxyProfile::initRealProfile(){
-    /*_profile.reset(new RealProfile(_id, _name, _description,
-                               _minTeamSize, _maxTeamSize,
-                               StorageManager::instance()
-                               ->getStudentsInProject(_id)));*/
+    _profile.reset(new RealProfile(_id));
 }

@@ -3,12 +3,12 @@
 #include "profile.h"
 #include "storage.h"
 #include <memory>
+#include "proxystudent.h"
 
 class RealProfile:public Profile
 {
 public:
-    RealProfile();
-    RealProfile(int id);
+    explicit RealProfile(int id);
     ~RealProfile();
     virtual int getId();
     virtual void setId(int value);
@@ -22,14 +22,19 @@ public:
     virtual int getMaxAnswer(int index);
     virtual void loadQualification();
     virtual void editQualification(int num, int ans, int amin, int amax);
-    virtual void createProfile();
+    //virtual void createProfile();
     virtual void editProfile();
+    virtual storage::StudentPtr  getStudent();
+    virtual void setStudent(storage::StudentPtr student);
+    virtual void registerStudent(storage::StudentPtr student);
+
 
 private:
     int _id;
     int _stuId;
+    //storage::ProfileList _profiles;
+    storage::StudentPtr _student;
     std::vector<Qualification> _qualifications;
-    storage::ProfileList _profiles;
 
 };
 

@@ -4,9 +4,13 @@ using namespace storage;
 
 ProxyStudent::ProxyStudent() : ProxyStudent(-1) {
 }
-
 ProxyStudent::ProxyStudent(int id) {
     _id = id;
+}
+
+ProxyStudent::ProxyStudent(QString stuID, int pId) {
+    _studentId = stuID;
+    _profileId = pId;
 }
 
 ProxyStudent::~ProxyStudent() {
@@ -14,11 +18,11 @@ ProxyStudent::~ProxyStudent() {
 }
 
 QString ProxyStudent::getStudentId() {
-    return _studentId;
+    return _realStudent->getStudentId();
 }
 
 void ProxyStudent::setStudentId(QString value) {
-    _studentId = value;
+    _realStudent->setStudentId(value);
 }
 
 ProfilePtr ProxyStudent::getProfile() {
@@ -45,4 +49,7 @@ bool ProxyStudent::operator<(const Student& rhs) const
 bool ProxyStudent::operator==(const Student& rhs) const
 {
     return getId() == rhs.getId();
+}
+void ProxyStudent::initRealStudent(){
+    _realStudent.reset(new RealStudent(_studentId, _profileId));
 }

@@ -6,7 +6,7 @@
 class RealStudent: public Student
 {
 public:
-    RealStudent();
+    explicit RealStudent(QString stuID, int pId);
     virtual ~RealStudent();
     virtual QString getStudentId();
     virtual void setStudentId(QString value);
@@ -19,6 +19,7 @@ public:
 
 private:
     QString _studentId;
+    int _profileId;
     storage::ProfilePtr _profile;
     storage::ProjectList _projects;
 };
