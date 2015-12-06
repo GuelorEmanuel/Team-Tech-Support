@@ -1,4 +1,6 @@
 #include "proxyprofile.h"
+#include "storagemanager.h"
+using namespace storage;
 
 ProxyProfile::ProxyProfile() : _id(-1),_stuId(-1)
 {
@@ -86,6 +88,26 @@ void ProxyProfile::editQualification(int num, int ans, int amin, int amax){
 }
 void ProxyProfile::editProfile(){
 
+}
+StudentList ProxyProfile::getStudents() {
+    if (_profile.get() == NULL) {
+        initRealProfile();
+    }
+
+    return _profile->getStudents();
+}
+
+void ProxyProfile::setStudents(StudentList students) {
+    if (_profile.get() == NULL) {
+        initRealProfile();
+    }
+
+    _profile->setStudents(students);
+}
+
+void ProxyProfile::registerStudent(StudentPtr student) {
+    //student.joinProject(*this);
+    //_students.push_back(student);
 }
 void ProxyProfile::initRealProfile(){
     /*_profile.reset(new RealProfile(_id, _name, _description,

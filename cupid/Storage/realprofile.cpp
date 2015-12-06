@@ -1,4 +1,5 @@
 #include "realprofile.h"
+using namespace storage;
 
 /*RealProfile::RealProfile(){
 }
@@ -25,7 +26,7 @@ void RealProfile::setId(int value){
   _id = value;
 }
 int RealProfile::getStuId(){
-   _stuId = _student->getStudentId().toInt();
+   //_stuId = _student->getStudentId().toInt();
    return _stuId;
 }
 std::vector<Qualification> RealProfile::getQualifications(){
@@ -82,10 +83,21 @@ void RealProfile::editProfile(){
 }
 
 void RealProfile::setStuId(int value){
-    _student->setStudentId( QString::number(value));
+    //_student->setStudentId( QString::number(value));
+    _stuId = value;
 
 }
-void RealProfile::createProfile(){
-
+StudentList RealProfile::getStudents() {
+    return _students;
 }
+
+void RealProfile::setStudents(StudentList students) {
+    _students = students;
+}
+
+void RealProfile::registerStudent(StudentPtr student) {
+    //student.joinProject(*this);
+    //_students.push_back(student);
+}
+
 
