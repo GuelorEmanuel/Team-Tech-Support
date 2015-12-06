@@ -1,16 +1,27 @@
 #include "manageprofilecontrol.h"
 #include "questions.h"
 #include "Storage/profile.h"
+<<<<<<< HEAD
 #include <QDebug>
+=======
+>>>>>>> 1a76d4edf08078518c104ae80c86034f9765d53d
 using namespace storage;
 
-/*Class: Control class for Edit Student Profile AND Create Student Profile.
- * Edits profile when the status of action variable is 1.
- * Creates profile when the status is 0.
- */
-ManageProfileControl::ManageProfileControl(int profileID, int action)
+// Version for create profile
+ManageProfileControl::ManageProfileControl()
     : _view(*this), _action(action), count(0)
 {
+
+}
+
+// Version for edit profile
+ManageProfileControl::ManageProfileControl(ProfilePtr profile)
+    : _view(*this), _action(action), count(0)
+{
+<<<<<<< HEAD
+=======
+  /*_profile->setId(profileID);
+>>>>>>> 1a76d4edf08078518c104ae80c86034f9765d53d
 
   if(action == 1)
   {
@@ -34,7 +45,17 @@ ManageProfileControl::ManageProfileControl(int profileID, int action)
   }
   _view.setAction(_action);
   _view.setModal(true);
-  _view.exec();
+  _view.exec();*/
+}
+
+bool ManageProfileControl::profileComplete() const
+{
+    return false;
+}
+
+ProfilePtr ManageProfileControl::getCompletedProfile() const
+{
+    return NULL;
 }
 
 /*Function: QList<QString> EditStuProfileControl::loadSection

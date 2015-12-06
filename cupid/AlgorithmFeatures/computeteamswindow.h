@@ -1,9 +1,10 @@
 #ifndef COMPUTETEAMSWINDOW_H
 #define COMPUTETEAMSWINDOW_H
 
-#include "computeteamscontrol.h"
 #include <memory>
 #include <QDialog>
+#include <QString>
+class ComputeTeamsControl;
 
 namespace Ui {
     class ComputeTeamsWindow;
@@ -16,11 +17,13 @@ class ComputeTeamsWindow : public QDialog
 public:
     explicit ComputeTeamsWindow(ComputeTeamsControl& control,
                                 QWidget *parent = 0);
+    void setProjectTitle(QString str);
     ~ComputeTeamsWindow();
 
 private slots:
-    void on_cancelButton_clicked();
-    void on_submitButton_clicked();
+    void on_backButton_clicked();
+    void on_summaryButton_clicked();
+    void on_detailsButton_clicked();
 
 private:
     ComputeTeamsControl& _control;

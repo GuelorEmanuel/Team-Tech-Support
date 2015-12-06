@@ -142,6 +142,25 @@ void StorageManager::editProject(storage::ProjectPtr project)
     }
 }
 
+ProjectList StorageManager::listProjects() {
+    // Retrieve all the projects
+    // TODO: Make more efficient by only asking for ones
+    //       we don't have in cache yet
+    ProjectList projects(std::make_shared<std::vector<ProjectPtr> >());
+    Database::instance()->getFullProject(projects);
+
+    // Add the ones we don't have yet to the cache
+    for (auto it = projects->begin(); it != projects->end(); ++it)
+    {
+        if (_projects.find((*it)->getId()) == _projects.end())
+        {
+            _projects.insert({(*it)->getId(), *it});
+        }
+    }
+
+    return projects;
+}
+
 StudentList StorageManager::listProjectStudents(ProjectPtr project) {
     if(findProject(project->getId())) {
         return Database::instance()->getStudentsInProject(project);

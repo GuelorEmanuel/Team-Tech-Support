@@ -37,7 +37,10 @@ void RealProfile::loadQualification(){
 
 }
 void RealProfile::editQualification(int num, int ans, int amin, int amax){
-
+    if (num < 0 || num > 28) return;
+     _qualifications[num].setAnswer(ans);
+     _qualifications[num].setMinAnswer(amin);
+     _qualifications[num].setMaxAnswer(amax);
 }
 
 void RealProfile::editProfile(){

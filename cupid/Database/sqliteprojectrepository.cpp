@@ -1,8 +1,9 @@
-#include "sqliteprojectrepository.h"
+#include "Database/sqliteprojectrepository.h"
 #include "Storage/storage.h"
+#include "Storage/proxyproject.h"
+#include "Storage/project.h"
 #include <QString>
 #include <QtSql>
-#include "Storage/project.h"
 using namespace storage;
 
 SqliteProjectRepository::SqliteProjectRepository(QSqlDatabase& db)
@@ -134,7 +135,7 @@ int SqliteProjectRepository::listFullProjects(ProjectList projects)
 {
     QSqlQuery qry(_db);
 
-    QString qprojects = "SELECT * FROM project";
+    QString qprojects = "SELECT id, name, description, min_team_size, max_team_size FROM project";
     qry.prepare(qprojects);
 
     if(!qry.exec()) {
@@ -142,16 +143,18 @@ int SqliteProjectRepository::listFullProjects(ProjectList projects)
         return 1;
     } else {
         while(qry.next()) {
-            ProjectPtr project ;
-            project->setId(qry.value(0).toInt());
-            project->setName(qry.value(1).toString());
-            project->setMinTeamSize(qry.value(2).toInt());
-            project->setMaxTeamSize(qry.value(3).toInt());
-            project->setDescription(qry.value(4).toString());
+            ProjectPtr project(
+                        std::make_shared<ProxyProject>(
+                            qry.value(0).toInt(),
+                            qry.value(1).toString(),
+                            qry.value(2).toString(),
+                            qry.value(3).toInt(),
+                            qry.value(4).toInt()));
             projects->push_back(project);
             qDebug() << QString("Project %1 is added").arg(project->getName());
         }
     }
+
     return 0;
 }
 

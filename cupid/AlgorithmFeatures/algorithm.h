@@ -17,7 +17,7 @@ namespace algorithm
 class Algorithm
 {
 public:
-    Algorithm(storage::ProjectPtr project, storage::StudentList students);
+    Algorithm(storage::ProjectPtr project);
 
 private:
     storage::ProjectPtr _project;

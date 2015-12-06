@@ -1,9 +1,13 @@
-#include "studentfeaturescommunication.h"
+#include "StudentFeatures/studentfeaturescommunication.h"
+#include "StudentFeatures/studenthomecontrol.h"
+#include "StudentFeatures/manageprofilecontrol.h"
+using namespace storage;
 
 StudentFeaturesCommunication::StudentFeaturesCommunication()
 {
 }
 
+<<<<<<< HEAD
 int StudentFeaturesCommunication::joinProject(storage::ProjectPtr project, storage::StudentPtr student)
 {
    return StorageManager::instance()->joinProject(project, student);
@@ -37,4 +41,23 @@ storage::ProjectList StudentFeaturesCommunication::listJoinedProjects(storage::S
 storage::ProjectList StudentFeaturesCommunication::listUnjoinedProjects(storage::StudentPtr student)
 {
     return StorageManager::instance()->listProjectsNotOfStudent(student);
+=======
+void StudentFeaturesCommunication::showStudentHome(
+        storage::StudentPtr student)
+{
+    StudentHomeControl shc(student);
+}
+
+ProfilePtr StudentFeaturesCommunication::showCreateProfileWindow()
+{
+    ManageProfileControl mpc;
+    if (mpc.profileComplete())
+    {
+        return mpc.getCompletedProfile();
+    }
+    else
+    {
+        return NULL;
+    }
+>>>>>>> 1a76d4edf08078518c104ae80c86034f9765d53d
 }

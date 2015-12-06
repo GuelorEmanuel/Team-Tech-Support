@@ -5,12 +5,12 @@
 #include "Storage/proxystudent.h"
 #include "Storage/proxyprofile.h"
 #include <QDebug>
-#include "StudentFeatures/studenthomecontrol.h"
 using namespace storage;
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+<<<<<<< HEAD
     //LoginControl c;
     //return a.exec();
     StudentPtr student(StorageManager::instance()->getStudent(10));
@@ -29,4 +29,8 @@ int main(int argc, char *argv[])
     qDebug() << QString("%1").arg((list2->at(0))->getId());*/
     return 0;
 
+=======
+    LoginControl c;
+    return a.exec();
+>>>>>>> 1a76d4edf08078518c104ae80c86034f9765d53d
 }
