@@ -12,6 +12,11 @@ ManageProjectWindow::ManageProjectWindow(ManageProjectControl &control,
     _control(control)
 {
     ui->setupUi(this);
+    if(_control.getStatus()) {
+        ui->createBtn->setText("Create");
+    } else {
+        ui->createBtn->setText("Edit");
+    }
 }
 
 ManageProjectWindow::~ManageProjectWindow() {

@@ -1,12 +1,9 @@
-<<<<<<< HEAD
 #include "proxystudent.h"
 #include "realstudent.h"
 #include <QDebug>
-=======
 #include "Storage/proxystudent.h"
 #include "Storage/realstudent.h"
 #include "Storage/storage.h"
->>>>>>> 4b7ee32a75b812131dd82fbdf97005291ec471a2
 using namespace storage;
 
 ProxyStudent::ProxyStudent() : Student() {

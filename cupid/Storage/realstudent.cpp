@@ -1,12 +1,9 @@
-<<<<<<< HEAD
 #include "realstudent.h"
 #include "storage.h"
 #include <QDebug>
-=======
 #include "Storage/realstudent.h"
 #include "Storage/storage.h"
 #include "Storage/storagemanager.h"
->>>>>>> 4b7ee32a75b812131dd82fbdf97005291ec471a2
 using namespace storage;
 
 RealStudent::RealStudent(int id, QString studentId, ProfilePtr profile)

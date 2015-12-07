@@ -1,37 +1,26 @@
-#include "studenthomecontrol.h"
+
 #include "Storage/student.h"
-<<<<<<< HEAD
-#include "manageprofilecontrol.h"
-#include "joinprojectcontrol.h"
-#include "studentfeaturescommunication.h"
 #include <QDebug>
-=======
 #include "Storage/storagemanager.h"
 #include "StudentFeatures/manageprofilecontrol.h"
 #include "StudentFeatures/joinprojectcontrol.h"
 #include "StudentFeatures/studentfeaturescommunication.h"
 #include "StudentFeatures/studenthomewindow.h"
->>>>>>> 4b7ee32a75b812131dd82fbdf97005291ec471a2
 using namespace storage;
 
 StudentHomeControl::StudentHomeControl(StudentPtr student) :
     _student(student), _view(new StudentHomeWindow(*this))
 {
-    qDebug() << "Hey";
     getUnjoinedProjectList();
     getJoinedProjectList();
 
-<<<<<<< HEAD
-    qDebug() << "Hey";
-    _view.setName(student->getDisplayName());
-
-    _view.setModal(true);
-    _view.exec();
-=======
     _view->setName(student->getDisplayName());
     _view->setModal(true);
     _view->exec();
->>>>>>> 4b7ee32a75b812131dd82fbdf97005291ec471a2
+}
+StudentHomeControl::~StudentHomeControl()
+{
+
 }
 
 void StudentHomeControl::logout() {
@@ -86,3 +75,4 @@ void StudentHomeControl::updateJoinedProjects(storage::ProjectPtr project)
 {
     _view->updateJoinedProjects(project);
 }
+
