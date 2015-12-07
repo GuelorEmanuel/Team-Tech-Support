@@ -71,6 +71,7 @@ ManageProfileWindow::ManageProfileWindow(ManageProfileControl &control,
 
     for(int i = 0; i < 4; i++) {
         addValues(i, _answerCount);
+        qDebug() << QString("Action status %1").arg(_action);
         if(_action == 1) setValues(i, _answerCount);
         ++_answerCount;
     }
@@ -155,9 +156,9 @@ void ManageProfileWindow::addValues(int index, int count)
 //Set current values for Profile
 void ManageProfileWindow::setValues(int index, int count)
 {
+    qDebug() << "Hey there";
     if(count < 1 || count > 30) return;
     int sum = _sectionOne+index;
-    qDebug() << _control.getAnswer(count-1);
     if(sum == 0 || sum == 3 || sum == 4 || sum == 5) {
         _answers[index]->setCurrentIndex(_control.getAnswer(count-1));
         _minAnswers[index]->setCurrentIndex(_control.getMinAnswer(count-1));
