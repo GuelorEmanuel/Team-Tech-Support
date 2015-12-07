@@ -39,26 +39,26 @@ void RealProfile::addQualification(Qualification &qual){
 }
 
 int RealProfile::getAnswer(int index){
-    if (index < 1 || index > 29) {
+    if (index < 0 || index > 29) {
         return -1;
     } else {
-      return _qualifications[index-1].getAnswer();
+      return _qualifications[index].getAnswer();
     }
 }
 
 int RealProfile::getMinAnswer(int index){
-    if (index < 1 || index > 29) {
+    if (index < 0 || index > 28) {
         return -1;
     } else {
-      return _qualifications[index-1].getMinAnswer();
+      return _qualifications[index].getMinAnswer();
     }
 }
 
 int RealProfile::getMaxAnswer(int index){
-    if (index < 1 || index > 29) {
+    if (index < 0 || index > 28) {
         return -1;
     } else {
-      return _qualifications[index-1].getMaxAnswer();
+      return _qualifications[index].getMaxAnswer();
     }
 
 }

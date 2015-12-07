@@ -5,6 +5,7 @@
 #include "ui_manageprofilewindow.h"
 #include <QDialog>
 #include <QComboBox>
+#include "AlgorithmFeatures/questionlist.h"
 
 class ManageProfileControl;
 namespace Ui {

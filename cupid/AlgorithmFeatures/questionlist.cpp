@@ -35,6 +35,11 @@ QuestionList::QuestionList()
     _questions[27] = new Question(1, 5, "Workload");
 }
 
+Question* QuestionList::getQuestion(int index)
+{
+    return _questions[index];
+}
+
 QuestionList* QuestionList::instance() {
     if (_instance == NULL) {
         _instance = new QuestionList();

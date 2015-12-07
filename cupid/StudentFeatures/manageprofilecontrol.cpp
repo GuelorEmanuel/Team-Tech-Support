@@ -74,7 +74,7 @@ int* ManageProfileControl::getEditedMaxAnswers() {
 
 int ManageProfileControl::getAnswer(int index)
 {
-    if(index < 1 || index > 28) return -1;
+    if(index < 0 || index > 27) return -1;
 
     return _profile->getAnswer(index);
 }
@@ -95,7 +95,7 @@ int ManageProfileControl::getMaxAnswer(int index)
 
 void ManageProfileControl::editQualification(int index, int a, int amin, int amax)
 {
-    if(index < 1 || index > 28) return;
+    if(index < 0 || index > 27) return;
 
     _profile->editQualification(index, a, amin, amax);
 }
@@ -121,6 +121,7 @@ void ManageProfileControl::editProfile()
     for(int i = 0; i < 28; i++) {
         _profile->editQualification(i, _answers[i], _minAnswers[i], _maxAnswers[i]);
     }
+    StudentFeaturesCommunication::editProfile(_profile);
     _view.close();
 }
 

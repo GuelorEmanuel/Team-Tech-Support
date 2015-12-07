@@ -35,10 +35,10 @@ ManageProfileWindow::ManageProfileWindow(ManageProfileControl &control,
     ui->questionThreeLbl->setWordWrap(true);
     ui->questionFourLbl->setWordWrap(true);
 
-    ui->questionOneLbl->setText(_control.loadSection().at(_sectionOne));
-    ui->questionTwoLbl->setText(_control.loadSection().at(_sectionTwo));
-    ui->questionThreeLbl->setText(_control.loadSection().at(_sectionThree));
-    ui->questionFourLbl->setText(_control.loadSection().at(_sectionFour));
+    ui->questionOneLbl->setText(QuestionList::instance()->getQuestion(_sectionOne)->prompt);
+    ui->questionTwoLbl->setText(QuestionList::instance()->getQuestion(_sectionOne)->prompt);
+    ui->questionThreeLbl->setText(QuestionList::instance()->getQuestion(_sectionOne)->prompt);
+    ui->questionFourLbl->setText(QuestionList::instance()->getQuestion(_sectionOne)->prompt);
 
     _answerCount = 5;
 
@@ -60,7 +60,7 @@ ManageProfileWindow::ManageProfileWindow(ManageProfileControl &control,
     _maxAnswers[3] = ui->questionFourMaxCB;
 
 
-    ui->questionOneLbl->setText(_control.loadSection().at(_sectionOne));
+    ui->questionOneLbl->setText(QuestionList::instance()->getQuestion(_sectionOne)->prompt);
     ui->questionTwoLbl->setText(_control.loadSection().at(_sectionTwo));
     ui->questionThreeLbl->setText(_control.loadSection().at(_sectionThree));
     ui->questionFourLbl->setText(_control.loadSection().at(_sectionFour));
@@ -80,7 +80,7 @@ void ManageProfileWindow::on_nextBtn_clicked()
       _sectionTwo+=4;
       _sectionThree+=4;
       _sectionFour+=4;
-      ui->questionOneLbl->setText(_control.loadSection().at(_sectionOne));
+      ui->questionOneLbl->setText(QuestionList::instance()->getQuestion(_sectionOne)->prompt);
       ui->questionTwoLbl->setText(_control.loadSection().at(_sectionTwo));
       ui->questionThreeLbl->setText(_control.loadSection().at(_sectionThree));
       ui->questionFourLbl->setText(_control.loadSection().at(_sectionFour));

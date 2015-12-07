@@ -39,7 +39,7 @@ public:
         Q_EFFICIENCY,
         Q_WORKLOAD
     };
-
+    Question* getQuestion(int index);
 private:
     QuestionList();
     ~QuestionList();
