@@ -1,6 +1,7 @@
 #include "manageprofilewindow.h"
 #include "ui_manageprofilewindow.h"
 #include "manageprofilecontrol.h"
+#include <QDebug>
 
 /*
 ManageProfileWindow::_grades[8] = {"C", "C+", "B-", "B",
@@ -35,12 +36,12 @@ ManageProfileWindow::ManageProfileWindow(ManageProfileControl &control,
     ui->questionThreeLbl->setWordWrap(true);
     ui->questionFourLbl->setWordWrap(true);
 
-    ui->questionOneLbl->setText(QuestionList::instance()->getQuestion(_sectionOne)->prompt);
-    ui->questionTwoLbl->setText(QuestionList::instance()->getQuestion(_sectionOne)->prompt);
-    ui->questionThreeLbl->setText(QuestionList::instance()->getQuestion(_sectionOne)->prompt);
-    ui->questionFourLbl->setText(QuestionList::instance()->getQuestion(_sectionOne)->prompt);
+    //ui->questionOneLbl->setText(QuestionList::instance()->getQuestion(_sectionOne)->prompt);
+    //ui->questionTwoLbl->setText(QuestionList::instance()->getQuestion(_sectionOne)->prompt);
+    //ui->questionThreeLbl->setText(QuestionList::instance()->getQuestion(_sectionOne)->prompt);
+    //ui->questionFourLbl->setText(QuestionList::instance()->getQuestion(_sectionOne)->prompt);
 
-    _answerCount = 5;
+    _answerCount = 1;
 
 
     //Set Arrays of QComboBoxes for answers
@@ -61,10 +62,16 @@ ManageProfileWindow::ManageProfileWindow(ManageProfileControl &control,
 
 
     ui->questionOneLbl->setText(QuestionList::instance()->getQuestion(_sectionOne)->prompt);
-    ui->questionTwoLbl->setText(_control.loadSection().at(_sectionTwo));
-    ui->questionThreeLbl->setText(_control.loadSection().at(_sectionThree));
-    ui->questionFourLbl->setText(_control.loadSection().at(_sectionFour));
+    ui->questionTwoLbl->setText(QuestionList::instance()->getQuestion(_sectionTwo)->prompt);//_control.loadSection().at(_sectionTwo));
+    ui->questionThreeLbl->setText(QuestionList::instance()->getQuestion(_sectionThree)->prompt);//_control.loadSection().at(_sectionThree));
+    ui->questionFourLbl->setText(QuestionList::instance()->getQuestion(_sectionFour)->prompt);//_control.loadSection().at(_sectionFour));
 
+
+    for(int i = 0; i < 4; i++) {
+        addValues(i, _answerCount);
+        if(_action == 1) setValues(i, _answerCount);
+        ++_answerCount;
+    }
 }
 
 void ManageProfileWindow::on_nextBtn_clicked()
@@ -81,15 +88,22 @@ void ManageProfileWindow::on_nextBtn_clicked()
       _sectionThree+=4;
       _sectionFour+=4;
       ui->questionOneLbl->setText(QuestionList::instance()->getQuestion(_sectionOne)->prompt);
-      ui->questionTwoLbl->setText(_control.loadSection().at(_sectionTwo));
-      ui->questionThreeLbl->setText(_control.loadSection().at(_sectionThree));
-      ui->questionFourLbl->setText(_control.loadSection().at(_sectionFour));
+      ui->questionTwoLbl->setText(QuestionList::instance()->getQuestion(_sectionTwo)->prompt);//_control.loadSection().at(_sectionTwo));
+      ui->questionThreeLbl->setText(QuestionList::instance()->getQuestion(_sectionThree)->prompt);//_control.loadSection().at(_sectionThree));
+      ui->questionFourLbl->setText(QuestionList::instance()->getQuestion(_sectionFour)->prompt);//_control.loadSection().at(_sectionFour));
 
 
         for(int i = 0; i < 4; i++) {
-            a = _answers[i]->currentIndex() + 1;
-            amin = _answers[i]->currentIndex() + 1;
-            amax = _answers[i]->currentIndex() + 1;
+            int sum = _sectionOne+i;
+            if(sum == 0 || sum == 3 || sum == 4 || sum == 5) {
+                a = _answers[i]->currentIndex();
+                amin = _answers[i]->currentIndex();
+                amax = _answers[i]->currentIndex();
+            } else {
+                a = _answers[i]->currentIndex() + 1;
+                amin = _answers[i]->currentIndex() + 1;
+                amax = _answers[i]->currentIndex() + 1;
+            }
 
             _control.addAsnwers(a, amin, amax);
 
@@ -117,113 +131,20 @@ void ManageProfileWindow::on_nextBtn_clicked()
 //add Values
 void ManageProfileWindow::addValues(int index, int count)
 {
-
     if(count < 1 || count > 29) return;
 
-    if(count == 1 || count == 5 || count == 6) {
+    if(count == 1 || count == 4 || count == 5 || count == 6) {
 
-        for(int i = 0; i < 7; i++) {
-            _answers[index]->addItem(QString("%1(%2)").arg(i+1).arg(_grades[i]));
-            _minAnswers[index]->addItem(QString("%1(%2)").arg(i+1).arg(_grades[i]));
-            _maxAnswers[index]->addItem(QString("%1(%2)").arg(i+1).arg(_grades[i]));
-        }
-    } else if(count == 4) {
-        for(int i = 1; i < 13; i++) {
+        for(int i = 0; i < 13; i++) {
             _answers[index]->addItem(QString("%1").arg(i));
             _minAnswers[index]->addItem(QString("%1").arg(i));
             _maxAnswers[index]->addItem(QString("%1").arg(i));
         }
-    } else if(count == 2) {
-        for(int i = 1; i < 6; i++) {
-            _answers[index]->addItem(QString("%1(%2)").arg(i).arg(_early[i-1]));
-            _minAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_early[i-1]));
-            _maxAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_early[i-1]));
-        }
-    } else if(count == 7) {
-        for(int i = 1; i < 6; i++) {
-            if(i == 1) {
-                _answers[index]->addItem(QString("%1(%2)").arg(i).arg(_early[0]));
-                _minAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_early[0]));
-                _maxAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_early[0]));
-            } else if(i == 5) {
-                _answers[index]->addItem(QString("%1(%2)").arg(i).arg(_early[1]));
-                _minAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_early[1]));
-                _maxAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_early[1]));
-            } else {
-                _answers[index]->addItem(QString("%1").arg(i));
-                _minAnswers[index]->addItem(QString("%1").arg(i));
-                _maxAnswers[index]->addItem(QString("%1").arg(i));
-            }
-        }
-    } else if(count == 3) {
-        for(int i = 1; i < 6; i++) {
-            if(i == 1) {
-                _answers[index]->addItem(QString("%1(%2)").arg(i).arg(_done[0]));
-                _minAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_done[0]));
-                _maxAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_done[0]));
-            } else if(i == 5) {
-                _answers[index]->addItem(QString("%1(%2)").arg(i).arg(_done[1]));
-                _minAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_done[1]));
-                _maxAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_done[1]));
-            } else {
-                _answers[index]->addItem(QString("%1").arg(i));
-                _minAnswers[index]->addItem(QString("%1").arg(i));
-                _maxAnswers[index]->addItem(QString("%1").arg(i));
-            }
-        }
-    } else if(count == 28) {
-        for(int i = 1; i < 6; i++) {
-            if(i == 1) {
-                _answers[index]->addItem(QString("%1(%2)").arg(i).arg(_workload[0]));
-                _minAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_workload[0]));
-                _maxAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_workload[0]));
-            } else if(i == 5) {
-                _answers[index]->addItem(QString("%1(%2)").arg(i).arg(_workload[1]));
-                _minAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_workload[1]));
-                _maxAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_workload[1]));
-            } else {
-                _answers[index]->addItem(QString("%1").arg(i));
-                _minAnswers[index]->addItem(QString("%1").arg(i));
-                _maxAnswers[index]->addItem(QString("%1").arg(i));
-            }
-        }
-    } else if(count == 10) {
-        for(int i = 1; i < 6; i++) {
-            if(i == 1) {
-                _answers[index]->addItem(QString("%1(%2)").arg(i).arg(_flex[0]));
-                _minAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_flex[0]));
-                _maxAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_flex[0]));
-            } else if(i == 5) {
-                _answers[index]->addItem(QString("%1(%2)").arg(i).arg(_flex[1]));
-                _minAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_flex[1]));
-                _maxAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_flex[1]));
-            } else {
-                _answers[index]->addItem(QString("%1").arg(i));
-                _minAnswers[index]->addItem(QString("%1").arg(i));
-                _maxAnswers[index]->addItem(QString("%1").arg(i));
-            }
-        }
-    } else if(count > 20 && count < 27) {
-        for(int i = 1; i < 6; i++) {
-            if(i == 1) {
-                _answers[index]->addItem(QString("%1(%2)").arg(i).arg(_agree[0]));
-                _minAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_agree[0]));
-                _maxAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_agree[0]));
-            } else if(i == 5) {
-                _answers[index]->addItem(QString("%1(%2)").arg(i).arg(_agree[1]));
-                _minAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_agree[1]));
-                _maxAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_agree[1]));
-            } else {
-                _answers[index]->addItem(QString("%1").arg(i));
-                _minAnswers[index]->addItem(QString("%1").arg(i));
-                _maxAnswers[index]->addItem(QString("%1").arg(i));
-            }
-        }
     } else {
-        for(int i = 1; i < 6; i++) {
-            _answers[index]->addItem(QString("%1(%2)").arg(i).arg(_status[i-1]));
-            _minAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_status[i-1]));
-            _maxAnswers[index]->addItem(QString("%1(%2)").arg(i).arg(_status[i-1]));
+        for(int i = 1; i < 5; i++) {
+            _answers[index]->addItem(QString("%1").arg(i));
+            _minAnswers[index]->addItem(QString("%1").arg(i));
+            _maxAnswers[index]->addItem(QString("%1").arg(i));
         }
     }
 
@@ -233,10 +154,16 @@ void ManageProfileWindow::addValues(int index, int count)
 void ManageProfileWindow::setValues(int index, int count)
 {
     if(count < 1 || count > 29) return;
-
-    _answers[index]->setCurrentIndex(_control.getAnswer(count)-1);
-    _minAnswers[index]->setCurrentIndex(_control.getMinAnswer(count)-1);
-    _maxAnswers[index]->setCurrentIndex(_control.getMaxAnswer(count)-1);
+    int sum = _sectionOne+index;
+    if(sum == 0 || sum == 3 || sum == 4 || sum == 5) {
+        _answers[index]->setCurrentIndex(_control.getAnswer(count));
+        _minAnswers[index]->setCurrentIndex(_control.getMinAnswer(count));
+        _maxAnswers[index]->setCurrentIndex(_control.getMaxAnswer(count));
+    } else {
+        _answers[index]->setCurrentIndex(_control.getAnswer(count)-1);
+        _minAnswers[index]->setCurrentIndex(_control.getMinAnswer(count)-1);
+        _maxAnswers[index]->setCurrentIndex(_control.getMaxAnswer(count)-1);
+    }
 
 }
 
@@ -248,10 +175,10 @@ void ManageProfileWindow::on_prevBtn_clicked()
         _sectionTwo-=4;
         _sectionThree-=4;
         _sectionFour-=4;
-        ui->questionOneLbl->setText(_control.loadSection().at(_sectionOne));
-        ui->questionTwoLbl->setText(_control.loadSection().at(_sectionTwo));
-        ui->questionThreeLbl->setText(_control.loadSection().at(_sectionThree));
-        ui->questionFourLbl->setText(_control.loadSection().at(_sectionFour));
+        ui->questionOneLbl->setText(QuestionList::instance()->getQuestion(_sectionOne)->prompt);//_control.loadSection().at(_sectionOne));
+        ui->questionTwoLbl->setText(QuestionList::instance()->getQuestion(_sectionTwo)->prompt);//_control.loadSection().at(_sectionTwo));
+        ui->questionThreeLbl->setText(QuestionList::instance()->getQuestion(_sectionThree)->prompt);//_control.loadSection().at(_sectionThree));
+        ui->questionFourLbl->setText(QuestionList::instance()->getQuestion(_sectionFour)->prompt);//_control.loadSection().at(_sectionFour));
 
         _answerCount -= 8;
         for(int i = 0; i < 4; i++) {

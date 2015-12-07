@@ -81,14 +81,14 @@ int ManageProfileControl::getAnswer(int index)
 
 int ManageProfileControl::getMinAnswer(int index)
 {
-    if(index < 1 || index > 28) return -1;
+    if(index < 0 || index > 27) return -1;
 
     return _profile->getMinAnswer(index);
 }
 
 int ManageProfileControl::getMaxAnswer(int index)
 {
-    if(index < 1 || index > 28) return -1;
+    if(index < 0 || index > 27) return -1;
 
     return _profile->getMaxAnswer(index);
 }
