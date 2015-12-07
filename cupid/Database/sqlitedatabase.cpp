@@ -7,6 +7,7 @@
 #include "Storage/proxyproject.h"
 #include "Storage/proxystudent.h"
 #include "Storage/proxyprofile.h"
+#include <QDebug>
 using namespace storage;
 
 SqliteDatabase::SqliteDatabase()
@@ -51,7 +52,9 @@ int SqliteDatabase::createAdmin(AdminPtr admin)
 int SqliteDatabase::getStudent(StudentPtr student)
 {
     int stat = 0;
+    qDebug() << "Hey in db";
     stat = _userRepo->getStudent(student);
+    qDebug() << "Hey in db";
     return stat;
 }
 
@@ -71,6 +74,7 @@ UserPtr SqliteDatabase::getUser(UserPtr user)
 int SqliteDatabase::createProfile(ProfilePtr profile)
 {
     int stat = 0;
+
     stat = _profileRepo->createProfile(profile);
     return stat;
 }

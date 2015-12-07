@@ -1,3 +1,6 @@
+#include "proxystudent.h"
+#include "realstudent.h"
+#include <QDebug>
 #include "Storage/proxystudent.h"
 #include "Storage/realstudent.h"
 #include "Storage/storage.h"

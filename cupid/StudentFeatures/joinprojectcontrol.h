@@ -2,8 +2,9 @@
 #define STUDENTPROJECTCONTROL_H
 
 #include "Storage/storage.h"
+#include "StudentFeatures/studenthomecontrol.h"
 class JoinProjectWindow;
-class StudentHomeControl;
+//class StudentHomeControl;
 
 class JoinProjectControl
 {

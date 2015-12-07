@@ -1,10 +1,10 @@
-#include "studenthomecontrol.h"
 #include "Storage/student.h"
 #include "Storage/storagemanager.h"
 #include "StudentFeatures/manageprofilecontrol.h"
 #include "StudentFeatures/joinprojectcontrol.h"
 #include "StudentFeatures/studentfeaturescommunication.h"
 #include "StudentFeatures/studenthomewindow.h"
+#include <QDebug>
 using namespace storage;
 
 StudentHomeControl::StudentHomeControl(StudentPtr student) :
@@ -72,3 +72,4 @@ void StudentHomeControl::updateJoinedProjects(storage::ProjectPtr project)
 {
     _view->updateJoinedProjects(project);
 }
+

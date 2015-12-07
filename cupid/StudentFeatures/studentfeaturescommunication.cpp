@@ -1,6 +1,7 @@
 #include "StudentFeatures/studentfeaturescommunication.h"
-#include "StudentFeatures/studenthomecontrol.h"
+#include <StudentFeatures/studenthomecontrol.h>
 #include "StudentFeatures/manageprofilecontrol.h"
+#include <QDebug>
 using namespace storage;
 
 StudentFeaturesCommunication::StudentFeaturesCommunication()

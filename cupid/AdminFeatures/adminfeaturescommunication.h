@@ -10,6 +10,7 @@ public:
     static void createProject(storage::ProjectPtr project);
     static void showAdminHome(storage::AdminPtr admin);
     static storage::ProjectList getProjectList();
+    static void editProject(storage::ProjectPtr project);
     static void showComputeTeamsWindow(storage::ProjectPtr project);
 private:
     AdminFeaturesCommunication();

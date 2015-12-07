@@ -26,6 +26,7 @@ void AdminHomeControl::createProject() {
 void AdminHomeControl::editProject(int id) {
     ManageProjectControl manageProjectControl(
                 AdminFeaturesCommunication::getProject(id));
+    updateProjectsList();
     _view.show();
 }
 

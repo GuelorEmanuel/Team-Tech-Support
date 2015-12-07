@@ -1,3 +1,6 @@
+#include "realstudent.h"
+#include "storage.h"
+#include <QDebug>
 #include "Storage/realstudent.h"
 #include "Storage/storage.h"
 #include "Storage/storagemanager.h"

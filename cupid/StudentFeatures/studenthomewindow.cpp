@@ -24,9 +24,9 @@ void StudentHomeWindow::setName(QString name)
 
 void StudentHomeWindow::updateJoinedProjects(ProjectPtr joinedProject)
 {
-    _ui->unjoinedProjectsInput->removeItem(
-                _ui->unjoinedProjectsInput->findText(joinedProject->getName()));
-    _ui->joinedProjectsList->addItem(joinedProject->getName());
+    _ui->unjoinedProjectsInput->removeItem(_ui->unjoinedProjectsInput->findText(joinedProject->getName()));
+    _ui->joinedProjectsList->clear();
+    _control.getJoinedProjectList();
 }
 
 void StudentHomeWindow::on_editProfileBtn_clicked()
@@ -62,7 +62,7 @@ void StudentHomeWindow::setJoinedProjects(ProjectList projects)
 
 void StudentHomeWindow::setUnjoinedProjects(ProjectList projects)
 {
-    _ui->unjoinedProjectsInput->clear();
+    //_ui->unjoinedProjectsInput->clear();
     for (auto it = projects->begin(); it != projects->end(); ++it)
     {
         _ui->unjoinedProjectsInput->addItem((*it)->getName(), (*it)->getId());

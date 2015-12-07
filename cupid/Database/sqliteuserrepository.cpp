@@ -83,6 +83,7 @@ int SqliteUserRepository::getStudent(StudentPtr student)
     int stat = 0;
     QSqlQuery qry(_db);
 
+    qDebug() << "Hey in db";
     if(student->getId() == -1) {
         QString qstudent = "SELECT * FROM user WHERE username = :u";
         qry.prepare(qstudent);
@@ -101,8 +102,8 @@ int SqliteUserRepository::getStudent(StudentPtr student)
             if(!qry.value(3).isNull()) {
                 student->setUserName(qry.value(1).toString());
                 student->setDisplayName(qry.value(2).toString());
-                student->setStudentId(qry.value(3).toString());
-                qDebug() << QString("Student retrieved. Student's name is %1").arg(student->getStudentId());
+                //student->setStudentId(qry.value(3).toString());
+                qDebug() << QString("Student retrieved. Student's name is %1").arg(student->getId());
             } else {
                 stat = 1;
             }

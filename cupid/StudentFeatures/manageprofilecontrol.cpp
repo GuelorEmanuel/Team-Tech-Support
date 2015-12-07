@@ -1,6 +1,8 @@
 #include "manageprofilecontrol.h"
 #include "questions.h"
 #include "Storage/profile.h"
+#include "studentfeaturescommunication.h"
+#include <QDebug>
 using namespace storage;
 
 // Version for create profile
@@ -12,29 +14,9 @@ ManageProfileControl::ManageProfileControl()
 
 // Version for edit profile
 ManageProfileControl::ManageProfileControl(ProfilePtr profile)
-    : _view(*this), _action(action), count(0)
+    : _view(*this), _action(action), count(0), _profile(profile)
 {
-  /*_profile->setId(profileID);
 
-  if(action == 1)
-  {
-      loadProfileSettings(profileID);
-  }
-  if(action == 0)
-  {
-      _profile->setStuId(profileID);
-  }
-
-  for(int i = 0; i < 4; i++) {
-      _view.addValues(i, count);
-      if(action == 1) {
-          _view.setValues(i, count);
-      }
-      ++count;
-  }
-  _view.setAction(_action);
-  _view.setModal(true);
-  _view.exec();*/
 }
 
 bool ManageProfileControl::profileComplete() const
@@ -44,7 +26,7 @@ bool ManageProfileControl::profileComplete() const
 
 ProfilePtr ManageProfileControl::getCompletedProfile() const
 {
-    return NULL;
+    return _profile;
 }
 
 /*Function: QList<QString> EditStuProfileControl::loadSection
@@ -149,27 +131,10 @@ void ManageProfileControl::createProfile()
  * Purpose: load all questions and qualifications for profile object
  */
 void ManageProfileControl::loadProfileSettings(int id) {
-    // Questions questions;
-    // questions.getQuestions();
+    Questions questions;
+    questions.getQuestions();
+    _profile = StudentFeaturesCommunication::getProfile(id);
 
-    /*QSqlQuery qry(Database::getInstance().db());
-    qry.prepare("SELECT * FROM profile WHERE id = :id");
-    qry.bindValue(":id", id);
-
-    if (!qry.exec()) {
-        qDebug() << qry.lastError();
-        return; // TODO: displaying error message to user
-    } else {
-        if (!qry.first()) {
-            qDebug() << "Project id not found";
-            return; // TODO: displaying error message to user
-        }
-
-        while (qry.next()) {
-            qDebug() << "Found project " << qry.value(1).toString();
-            //_view.addProject(qry.value(0).toInt(), qry.value(1).toString());
-        }
-    }*/
 }
 
 void ManageProfileControl::exitProfile()
