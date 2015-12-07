@@ -2,6 +2,7 @@
 #include "questions.h"
 #include "Storage/profile.h"
 #include "studentfeaturescommunication.h"
+#include "Storage/proxyprofile.h"
 #include <QDebug>
 using namespace storage;
 
@@ -9,6 +10,9 @@ using namespace storage;
 ManageProfileControl::ManageProfileControl()
     : _view(*this), _action(0), count(0)
 {
+     ProfilePtr profile(std::make_shared<ProxyProfile>());
+    _profile = profile;
+    _isComplete = false;
     _view.setModal(true);
     _view.exec();
 }
@@ -17,13 +21,14 @@ ManageProfileControl::ManageProfileControl()
 ManageProfileControl::ManageProfileControl(ProfilePtr profile)
     : _view(*this), _action(1), count(0), _profile(profile)
 {
+    _isComplete = true;
     _view.setModal(true);
     _view.exec();
 }
 
 bool ManageProfileControl::profileComplete() const
 {
-    return false;
+    return _isComplete;
 }
 
 ProfilePtr ManageProfileControl::getCompletedProfile() const
@@ -127,6 +132,7 @@ void ManageProfileControl::editProfile()
 
 void ManageProfileControl::createProfile()
 {
+    _isComplete = true;
     _view.close();
 }
 
@@ -146,4 +152,7 @@ void ManageProfileControl::exitProfile()
 }
 
 
-
+int ManageProfileControl::getAction()
+{
+    return _action;
+}

@@ -2,6 +2,7 @@
 #include "Storage/realprofile.h"
 #include "Storage/storagemanager.h"
 #include "Storage/storage.h"
+#include <QDebug>
 using namespace storage;
 
 ProxyProfile::ProxyProfile() : _id(-1),_userId(-1)

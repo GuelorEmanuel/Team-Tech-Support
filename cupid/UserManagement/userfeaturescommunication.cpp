@@ -27,11 +27,9 @@ void UserManagementCommunication::showAdminHome(UserPtr user)
 
 void UserManagementCommunication::showStudentHome(UserPtr user)
 {
-    qDebug() << "Hey";
     StudentPtr student;
     std::make_shared<StudentPtr>(student);
     student = StorageManager::instance()->getStudent(user->getId());
-    qDebug() << QString("Student %1").arg(student->getId());
     StudentFeaturesCommunication::showStudentHome(
                 StorageManager::instance()->getStudent(user->getId()));
 }
@@ -60,5 +58,6 @@ ProfilePtr UserManagementCommunication::showCreateProfileWindow()
 void UserManagementCommunication::createStudentAndProfile(StudentPtr student)
 {
     StorageManager::instance()->createStudent(student);
+    student->getProfile()->setUserId(student->getId());
     StorageManager::instance()->createProfile(student->getProfile());
 }
