@@ -1,5 +1,6 @@
 #include "AlgorithmFeatures/algorithm.h"
 #include "AlgorithmFeatures/question.h"
+#include "AlgorithmFeatures/questionlist.h"
 #include "Storage/qualification.h"
 #include "Storage/project.h"
 #include "Storage/storage.h"
@@ -8,38 +9,62 @@
 using namespace storage;
 using namespace algorithm;
 
+constexpr int Algorithm::similarityQuestions[12];
+constexpr int Algorithm::similarityWeights[12];
+
 Algorithm::Algorithm(ProjectPtr project)
     : _project(project)
 {
-    qDebug() << "Algorithm::Algorithm";
+    std::vector<std::pair<StudentPtr, int> > easeOfMatching;
     _students = _project->getStudents();
     for (auto it = _students->begin(); it != _students->end(); ++it)
     {
-        StudentPtr a = *it;
-        //qDebug() << "Comparing students to " << student->getDisplayName();
-        qDebug() << a->getDisplayName() << "(" << a->getId() << "," << a->getProfile()->getId() << ")";
+        StudentPtr s(*it);
+        easeOfMatching.push_back(std::pair<StudentPtr, int>(s, CalculateScore(s)));
+        qDebug() << "Ease of matching for "
+                    << s->getDisplayName() << " = "
+                    << CalculateScore(s);
+    }
+}
 
-        /*for (auto it2 = _students->begin(); it2 != _students->end(); ++it2)
-        {
-            if (it2 == it) {
-                continue;
-            }
+/*
+ * Calculates how compatible a student is with others, in general.
+ * A high value means they're easy to match. A low value means
+ * they're difficult to match.
+ *
+ * input:  StudentPtr a   The student you want to assess
+ * return: double         A number representing how easy they are to match
+ */
+double Algorithm::CalculateScore(StudentPtr a)
+{
+    double ret = 0;
+    ProfilePtr pa(a->getProfile());
+    for (auto it = _students->begin(); it != _students->end(); ++it)
+    {
+        if ((*it)->getId() == a->getId()) {
+            continue;
+        }
 
-            CalculateScore(*it, *it2);
-        }*/
+        ret += CalculateScore(a, *it);
     }
 }
 
 double Algorithm::CalculateScore(StudentPtr a, StudentPtr b)
 {
-    qDebug() << "Algorithm::CalculateScore("
-             << a->getDisplayName() << "(" << a->getId() << "," << a->getProfile()->getId() << ") vs "
-             << b->getDisplayName() << "(" << b->getId() << "," << b->getProfile()->getId() << ") = ";
-
     ProfilePtr pa(a->getProfile());
-    ProfilePtr pb(b->getProfile());    
+    ProfilePtr pb(b->getProfile());
+    double ret = 0;
+    for (int i = 0; i < 12; ++i)
+    {
+        ret += Algorithm::similarityWeights[i]
+                * basicSimilarityRule(Algorithm::similarityQuestions[i],
+                                      pa, pb);
+    }
 
-    basicSimilarityRule(Profile::Q_DESIRED_GRADE, pa, pb);
+    //_similarityScores.insert({std::pair<int,int>(a->getId(), b->getId()), ret});
+    //qDebug() << "Algorithm::CalculateScore("
+    //         << a->getDisplayName() << "(" << a->getId() << "," << pa->getId() << ") vs "
+    //         << b->getDisplayName() << "(" << b->getId() << "," << pb->getId() << ") = " << ret;
 }
 
 double Algorithm::CalculateScore(TeamPtr team)
@@ -61,8 +86,8 @@ double Algorithm::basicSimilarityRule(int questionNumber,
                                       ProfilePtr a,
                                       ProfilePtr b)
 {
-    Question q1(0, 12, "Desired grade");
-    basicSimilarityRule(q1,
+    const Question& q = *(QuestionList::instance()->getQuestion(questionNumber));
+    basicSimilarityRule(q,
                         a->getQualification(questionNumber),
                         b->getQualification(questionNumber));
 }

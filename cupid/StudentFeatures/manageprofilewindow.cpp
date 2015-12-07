@@ -1,6 +1,8 @@
-#include "manageprofilewindow.h"
+#include "StudentFeatures/manageprofilewindow.h"
+#include "StudentFeatures/manageprofilecontrol.h"
+#include "AlgorithmFeatures/questionlist.h"
+#include "AlgorithmFeatures/question.h"
 #include "ui_manageprofilewindow.h"
-#include "manageprofilecontrol.h"
 #include <QDebug>
 
 /*
