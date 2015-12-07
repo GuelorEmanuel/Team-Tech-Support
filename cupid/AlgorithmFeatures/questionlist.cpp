@@ -35,7 +35,7 @@ QuestionList::QuestionList()
     _questions[27] = new Question(1, 5, "Workload");
 }
 
-Question* QuestionList::getQuestion(int index)
+const Question* QuestionList::getQuestion(int index) const
 {
     return _questions[index];
 }

@@ -63,6 +63,7 @@ int JoinProjectControl::joinProject()
     if(!stat) {
         _homeControl.updateJoinedProjects(_project);
         _view->close();
+        return stat;
     } else {
         return stat;
     }

@@ -47,7 +47,6 @@ void CreateStudentAccountControl::createAccount(
     student->setUserName(userName);
     student->setProfile(profile);
 
-    //qDebug()
     UserManagementCommunication::createStudentAndProfile(student);
 
     _view->close();

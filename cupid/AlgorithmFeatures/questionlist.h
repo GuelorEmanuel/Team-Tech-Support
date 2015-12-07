@@ -39,14 +39,14 @@ public:
         Q_EFFICIENCY,
         Q_WORKLOAD
     };
-    Question* getQuestion(int index);
+    const Question* getQuestion(int index) const;
 private:
     QuestionList();
     ~QuestionList();
     QuestionList(QuestionList const&); // no implementation
     void operator=(QuestionList const&); // no implementation
     static QuestionList* _instance;
-    Question* _questions[28];
+    const Question* _questions[28];
 };
 
 #endif // QUESTIONLIST_H
