@@ -7,7 +7,7 @@ using namespace storage;
 
 // Version for create profile
 ManageProfileControl::ManageProfileControl()
-    : _view(*this), _action(action), count(0)
+    : _view(*this), _action(0), count(0)
 {
     _view.setModal(true);
     _view.exec();
@@ -15,7 +15,7 @@ ManageProfileControl::ManageProfileControl()
 
 // Version for edit profile
 ManageProfileControl::ManageProfileControl(ProfilePtr profile)
-    : _view(*this), _action(action), count(0), _profile(profile)
+    : _view(*this), _action(1), count(0), _profile(profile)
 {
     _view.setModal(true);
     _view.exec();
@@ -74,7 +74,7 @@ int* ManageProfileControl::getEditedMaxAnswers() {
 
 int ManageProfileControl::getAnswer(int index)
 {
-    if(index < 0 || index > 27) return -1;
+    if(index < 0 || index > 28) return -1;
 
     return _profile->getAnswer(index);
 }

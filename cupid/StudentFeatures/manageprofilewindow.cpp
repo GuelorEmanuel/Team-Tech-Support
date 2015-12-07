@@ -141,7 +141,7 @@ void ManageProfileWindow::addValues(int index, int count)
             _maxAnswers[index]->addItem(QString("%1").arg(i));
         }
     } else {
-        for(int i = 1; i < 5; i++) {
+        for(int i = 1; i < 6; i++) {
             _answers[index]->addItem(QString("%1").arg(i));
             _minAnswers[index]->addItem(QString("%1").arg(i));
             _maxAnswers[index]->addItem(QString("%1").arg(i));
@@ -153,16 +153,17 @@ void ManageProfileWindow::addValues(int index, int count)
 //Set current values for Profile
 void ManageProfileWindow::setValues(int index, int count)
 {
-    if(count < 1 || count > 29) return;
+    if(count < 1 || count > 30) return;
     int sum = _sectionOne+index;
+    qDebug() << _control.getAnswer(count-1);
     if(sum == 0 || sum == 3 || sum == 4 || sum == 5) {
-        _answers[index]->setCurrentIndex(_control.getAnswer(count));
-        _minAnswers[index]->setCurrentIndex(_control.getMinAnswer(count));
-        _maxAnswers[index]->setCurrentIndex(_control.getMaxAnswer(count));
+        _answers[index]->setCurrentIndex(_control.getAnswer(count-1));
+        _minAnswers[index]->setCurrentIndex(_control.getMinAnswer(count-1));
+        _maxAnswers[index]->setCurrentIndex(_control.getMaxAnswer(count-1));
     } else {
-        _answers[index]->setCurrentIndex(_control.getAnswer(count)-1);
-        _minAnswers[index]->setCurrentIndex(_control.getMinAnswer(count)-1);
-        _maxAnswers[index]->setCurrentIndex(_control.getMaxAnswer(count)-1);
+        _answers[index]->setCurrentIndex(_control.getAnswer(count-1)-1);
+        _minAnswers[index]->setCurrentIndex(_control.getMinAnswer(count-1)-1);
+        _maxAnswers[index]->setCurrentIndex(_control.getMaxAnswer(count-1)-1);
     }
 
 }

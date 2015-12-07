@@ -3,6 +3,7 @@
 #include "UserManagement/usermanagementcommunication.h"
 #include "Storage/storage.h"
 #include "Storage/proxystudent.h"
+#include <QDebug>
 using namespace storage;
 
 CreateStudentAccountControl::CreateStudentAccountControl()
@@ -46,6 +47,7 @@ void CreateStudentAccountControl::createAccount(
     student->setUserName(userName);
     student->setProfile(profile);
 
+    //qDebug()
     UserManagementCommunication::createStudentAndProfile(student);
 
     _view->close();
