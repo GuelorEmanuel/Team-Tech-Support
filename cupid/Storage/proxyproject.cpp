@@ -33,7 +33,7 @@ ProxyProject::~ProxyProject() {
 }
 
 int ProxyProject::getId() const {
-    if (_project.get() == NULL) {
+    if (!_project) {
         return _id;
     } else {
         return _project->getId();
@@ -49,7 +49,7 @@ void ProxyProject::setId(int value) {
 }
 
 int ProxyProject::getMinTeamSize() const {
-    if (_project.get() == NULL) {
+    if (!_project) {
         return _minTeamSize;
     } else {
         return _project->getMinTeamSize();
@@ -57,7 +57,7 @@ int ProxyProject::getMinTeamSize() const {
 }
 
 void ProxyProject::setMinTeamSize(int value) {
-    if (_project.get() == NULL) {
+    if (!_project) {
         _minTeamSize = value;
     } else {
         _project->setMinTeamSize(value);
@@ -65,7 +65,7 @@ void ProxyProject::setMinTeamSize(int value) {
 }
 
 int ProxyProject::getMaxTeamSize() const {
-    if (_project.get() == NULL) {
+    if (!_project) {
         return _maxTeamSize;
     } else {
         return _project->getMaxTeamSize();

@@ -1,20 +1,37 @@
-#include "joinprojectcontrol.h"
+#include "Storage/storage.h"
+#include "StudentFeatures/joinprojectcontrol.h"
+#include "StudentFeatures/joinprojectwindow.h"
+#include "StudentFeatures/studenthomecontrol.h"
+#include "StudentFeatures/studentfeaturescommunication.h"
 using namespace storage;
 
 JoinProjectControl::JoinProjectControl(ProjectPtr project,
+<<<<<<< HEAD
                                        StudentPtr student, StudentHomeWindow* view)
     : _view(*this), _project(project), _student(student), _stuView(view)
 {    
     _view.refreshProjectSettings(_project);
     _view.setModal(true);
     _view.exec();
+=======
+                                       StudentPtr student,
+                                       StudentHomeControl& homeControl)
+    : _view(new JoinProjectWindow(*this)), _project(project),
+      _student(student), _homeControl(homeControl)
+{    
+    _view->setModal(true);
+    _view->exec();
+>>>>>>> 4b7ee32a75b812131dd82fbdf97005291ec471a2
 }
+
+JoinProjectControl::~JoinProjectControl() {}
 
 /*Function: void JoinProjectControl::loadProjectSettings
  * Purpose: load selected project's settings and pass them to view
  */
 void JoinProjectControl::loadProjectSettings(int id) {
     _project = StudentFeaturesCommunication::getProject(id);
+<<<<<<< HEAD
     //_view.refreshProjectSettings(_project);
     /*
     qDebug() << "Getting project settings:projectID: "<<id;
@@ -41,29 +58,28 @@ void JoinProjectControl::loadProjectSettings(int id) {
         _view.refreshProjectSettings(*_project);
     }
     */
+=======
+    _view->refreshProjectSettings(_project);
+>>>>>>> 4b7ee32a75b812131dd82fbdf97005291ec471a2
 }
 
 void JoinProjectControl::leaveProject()
 {
-    _view.close();
+    _view->close();
 }
 
 int JoinProjectControl::joinProject()
 {
     int stat = StudentFeaturesCommunication::joinProject(_project, _student);
     if(!stat) {
+<<<<<<< HEAD
         _stuView->updateJoinedProjects(_project->getName());
         _view.close();
+=======
+        _homeControl.updateJoinedProjects(_project);
+        _view->close();
+>>>>>>> 4b7ee32a75b812131dd82fbdf97005291ec471a2
     } else {
         return stat;
     }
-    /*int stat = _project->registerStudent(_student);
-    if(stat != 0){
-
-        _view.close();
-    }else {
-        return stat;
-    }*/
-
-
 }

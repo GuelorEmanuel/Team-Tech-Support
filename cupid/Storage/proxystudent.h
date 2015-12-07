@@ -11,7 +11,8 @@ class ProxyStudent: public Student {
   public:
     explicit ProxyStudent();
     explicit ProxyStudent(int id);
-    explicit ProxyStudent(QString stuID, int pId);
+    explicit ProxyStudent(int id, QString studentId);
+    explicit ProxyStudent(int id, QString studentId, int profileId);
     virtual ~ProxyStudent();
     virtual QString getStudentId();
     virtual void setStudentId(QString value);
@@ -21,7 +22,6 @@ class ProxyStudent: public Student {
     virtual void joinProject(storage::ProjectPtr project);
     virtual bool operator<(const Student& rhs) const;
     virtual bool operator==(const Student& rhs) const;
-
 
   protected:
     void initRealStudent();

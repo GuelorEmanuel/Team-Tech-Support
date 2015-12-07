@@ -1,16 +1,20 @@
+<<<<<<< HEAD
 #include "realstudent.h"
 #include "storage.h"
 #include <QDebug>
+=======
+#include "Storage/realstudent.h"
+#include "Storage/storage.h"
+#include "Storage/storagemanager.h"
+>>>>>>> 4b7ee32a75b812131dd82fbdf97005291ec471a2
 using namespace storage;
 
-RealStudent::RealStudent(QString stuID, int pId) {
-  _studentId = stuID;
-  _profileId = pId;
+RealStudent::RealStudent(int id, QString studentId, ProfilePtr profile)
+    : Student(id), _studentId(studentId), _profile(profile)
+{
 }
 
-RealStudent::~RealStudent(){
-
-}
+RealStudent::~RealStudent() {}
 
 QString RealStudent::getStudentId() {
     return _studentId;
@@ -21,14 +25,22 @@ void RealStudent::setStudentId(QString value) {
 }
 
 ProfilePtr RealStudent::getProfile() {
-    return _profile; // Calls copy constructor on the profile
+    return _profile;
 }
 
 void RealStudent::setProfile(ProfilePtr value) {
-    _profile.swap(value);
+    _profile = value;
 }
 
 ProjectList RealStudent::getProjects() {
+    if (!_projects)
+    {
+        // Using "this" doesn't work well with shared pointers,
+        // so we use a workaround.
+        _projects = StorageManager::instance()->
+                listStudentProjects(StorageManager::instance()
+                                    ->getStudent(getId()));
+    }
     return _projects;
 }
 

@@ -20,10 +20,10 @@ public:
     explicit StudentHomeWindow(StudentHomeControl &control,
                                QWidget *parent = 0);
     ~StudentHomeWindow();
-    void addUnjoinedProject(int id, QString name);
-    void addJoinedProject(int id, QString name);
     void setName(QString name);
-    void updateJoinedProjects(QString name);
+    void updateJoinedProjects(storage::ProjectPtr joinedProject);
+    void setUnjoinedProjects(storage::ProjectList projects);
+    void setJoinedProjects(storage::ProjectList projects);
 
 private slots:
     void on_editProfileBtn_clicked();
@@ -31,7 +31,7 @@ private slots:
     void on_openProjectBtn_clicked();
 
 private:
-    std::unique_ptr<Ui::StudentHomeWindow> ui;
+    std::unique_ptr<Ui::StudentHomeWindow> _ui;
     StudentHomeControl& _control;
 };
 

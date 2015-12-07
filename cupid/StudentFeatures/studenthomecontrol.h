@@ -2,20 +2,23 @@
 #define STUDENTMAINCONTROL_H
 
 #include "Storage/storage.h"
-#include "studenthomewindow.h"
+#include <QString>
+class StudentHomeWindow;
 
 class StudentHomeControl
 {
 public:
     StudentHomeControl(storage::StudentPtr student);
+    ~StudentHomeControl();
     void logout();
     void editProfile();
     void openUnJoinedProject(int projectId);
+    void updateJoinedProjects(storage::ProjectPtr project);
     QString getName();
     void getUnjoinedProjectList();
     void getJoinedProjectList();
 private:
-    StudentHomeWindow _view;
+    std::unique_ptr<StudentHomeWindow> _view;
     storage::StudentPtr _student;
 };
 

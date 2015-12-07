@@ -184,8 +184,10 @@ ProjectList StorageManager::listProjectsNotOfStudent(storage::StudentPtr student
 
 ProjectList StorageManager::listStudentProjects(storage::StudentPtr student)
 {
+    qDebug() << "Getting joined projects for " << student->getId();
     if(findStudent(student->getId())) {
-       return Database::instance()->getJoinedProjectList(student);
+        qDebug() << "id found";
+        return Database::instance()->getJoinedProjectList(student);
     }
 }
 
