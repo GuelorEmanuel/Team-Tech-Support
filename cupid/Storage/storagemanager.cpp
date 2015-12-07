@@ -247,13 +247,16 @@ StudentPtr StorageManager::getStudent(int id)
 
 ProfilePtr StorageManager::getProfile(int id)
 {
+    qDebug() << "StorageManager::getProfile(" << id << ")";
     auto profile = _profiles.find(id);
     if (profile != _profiles.end()) {
+        qDebug() << "Found and returning " << profile->second->getId();
         return profile->second;
     } else {
         ProfilePtr newProfile(std::make_shared<ProxyProfile>(id));
         Database::instance()->getProfile(newProfile);
         _profiles.insert({id, newProfile});
+        qDebug() << "Retrieved and returning " << newProfile->getId();
         return newProfile;
     }
 }

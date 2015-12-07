@@ -190,8 +190,7 @@ StudentList SqliteDatabase::getStudentsInProject(ProjectPtr project)
     StudentList list(std::make_shared<std::vector<StudentPtr> >());
 
     for(int j = 0; j < ids.size(); j++) {
-        StudentPtr stud(std::make_shared<ProxyStudent>());
-        stud->setId(ids[j]);
+        StudentPtr stud(std::make_shared<ProxyStudent>(ids[j]));
         _userRepo->getStudent(stud);
         list->push_back(stud);
     }

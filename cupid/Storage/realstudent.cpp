@@ -9,6 +9,7 @@ using namespace storage;
 RealStudent::RealStudent(int id, QString studentId, ProfilePtr profile)
     : Student(id), _studentId(studentId), _profile(profile)
 {
+    qDebug() << "RealStudent(userId=" << id << ", profileId=" << profile->getId() << ")";
 }
 
 RealStudent::~RealStudent() {}
@@ -26,6 +27,7 @@ ProfilePtr RealStudent::getProfile() {
 }
 
 void RealStudent::setProfile(ProfilePtr value) {
+    qDebug() << "RealStudent::setProfile(userId=" << _id << ", profileId=" << value->getId() << ")";
     _profile = value;
 }
 
