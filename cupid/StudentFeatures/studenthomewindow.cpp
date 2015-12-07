@@ -62,11 +62,9 @@ void StudentHomeWindow::setJoinedProjects(ProjectList projects)
 
 void StudentHomeWindow::setUnjoinedProjects(ProjectList projects)
 {
-    qDebug() << "StudentHomeWindow::setUnjoinedProjects";
     _ui->unjoinedProjectsInput->clear();
     for (auto it = projects->begin(); it != projects->end(); ++it)
     {
-        qDebug() << "Adding project";
         _ui->unjoinedProjectsInput->addItem((*it)->getName(), (*it)->getId());
     }
 }

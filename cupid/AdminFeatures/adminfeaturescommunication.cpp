@@ -1,5 +1,6 @@
 #include "AdminFeatures/adminfeaturescommunication.h"
 #include "AdminFeatures/adminhomecontrol.h"
+#include "AlgorithmFeatures/algorithmfeaturescommunication.h"
 #include "Storage/storagemanager.h"
 #include "Storage/storage.h"
 using namespace storage;
@@ -26,4 +27,10 @@ void AdminFeaturesCommunication::showAdminHome(storage::AdminPtr admin)
 ProjectList AdminFeaturesCommunication::getProjectList()
 {
     return StorageManager::instance()->listProjects();
+}
+
+void AdminFeaturesCommunication::showComputeTeamsWindow(
+        storage::ProjectPtr project)
+{
+    AlgorithmFeaturesCommunication::showComputeTeamsWindow(project);
 }

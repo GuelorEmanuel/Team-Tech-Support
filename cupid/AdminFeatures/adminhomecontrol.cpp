@@ -30,7 +30,8 @@ void AdminHomeControl::editProject(int id) {
 }
 
 void AdminHomeControl::computeTeams(int projectId) {
-
+    ProjectPtr project(AdminFeaturesCommunication::getProject(projectId));
+    AdminFeaturesCommunication::showComputeTeamsWindow(project);
 }
 
 void AdminHomeControl::signOut() {

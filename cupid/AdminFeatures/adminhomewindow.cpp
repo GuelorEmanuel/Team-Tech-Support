@@ -42,7 +42,6 @@ void AdminHomeWindow::on_signoutBtn_clicked()
 void AdminHomeWindow::on_editProjectBtn_clicked() {
     // Do nothing if they haven't selected a project
     if (ui->selectProjectInput->currentIndex() == 0){
-        ui->statusLbl->setWordWrap(true);
         ui->statusLbl->setText("<font color='red'>Please select a project first!</font>");
 
         return;
@@ -57,7 +56,11 @@ void AdminHomeWindow::on_editProjectBtn_clicked() {
 void AdminHomeWindow::on_runAlgoBtn_clicked()
 {
     // Do nothing if they haven't selected a project
-    if (ui->selectProjectInput->currentIndex() == 0) return;
+    if (ui->selectProjectInput->currentIndex() == 0) {
+        ui->statusLbl->setText("<font color='red'>Please select a project first!</font>");
+
+        return;
+    }
 
     // Pass the project ID to compute best teams
     _control.computeTeams(ui->selectProjectInput->itemData(

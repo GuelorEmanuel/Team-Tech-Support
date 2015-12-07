@@ -75,7 +75,6 @@ bool ProxyStudent::operator==(const Student& rhs) const
 
 void ProxyStudent::initRealStudent()
 {
-    // TODO: call database
     ProfilePtr profile(StorageManager::instance()->getProfile(_profileId));
     _realStudent.reset(new RealStudent(_id, _studentId, profile));
 }
