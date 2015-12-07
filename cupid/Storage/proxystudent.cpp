@@ -6,21 +6,22 @@
 #include "Storage/storage.h"
 using namespace storage;
 
-ProxyStudent::ProxyStudent() : Student() {
+ProxyStudent::ProxyStudent() : Student(), _profileId(-1) {
 }
 
-ProxyStudent::ProxyStudent(int id) : Student(id)
+ProxyStudent::ProxyStudent(int id) : Student(id), _profileId(id)
 {
 }
 
 ProxyStudent::ProxyStudent(int id, QString studentId)
-    : Student(id), _studentId(studentId)
+    : Student(id), _studentId(studentId), _profileId(id)
 {
 }
 
 ProxyStudent::ProxyStudent(int id, QString studentId, int profileId)
     : Student(id), _studentId(studentId), _profileId(profileId)
 {
+    qDebug() << "ProxyStudent::ProxyStudent(userId=" << id << ", profileId=" << profileId << ")";
 }
 
 ProxyStudent::~ProxyStudent() {}
@@ -49,6 +50,7 @@ ProfilePtr ProxyStudent::getProfile() {
 }
 
 void ProxyStudent::setProfile(ProfilePtr value) {
+    qDebug() << "ProxyStudent::setProfile(userId=" << _id << ", profileId=" << value->getId() << ")";
     if (!_realStudent) {
         initRealStudent();
     }

@@ -15,28 +15,30 @@ Algorithm::Algorithm(ProjectPtr project)
     _students = _project->getStudents();
     for (auto it = _students->begin(); it != _students->end(); ++it)
     {
-        StudentPtr student = *it;
-        qDebug() << student->getDisplayName();
+        StudentPtr a = *it;
+        //qDebug() << "Comparing students to " << student->getDisplayName();
+        qDebug() << a->getDisplayName() << "(" << a->getId() << "," << a->getProfile()->getId() << ")";
 
-        for (auto it2 = _students->begin(); it2 != _students->end(); ++it2)
+        /*for (auto it2 = _students->begin(); it2 != _students->end(); ++it2)
         {
             if (it2 == it) {
                 continue;
             }
 
             CalculateScore(*it, *it2);
-        }
+        }*/
     }
 }
 
 double Algorithm::CalculateScore(StudentPtr a, StudentPtr b)
 {
     qDebug() << "Algorithm::CalculateScore("
-             << a->getDisplayName() << ", "
-             << b->getDisplayName() << ") = ";
+             << a->getDisplayName() << "(" << a->getId() << "," << a->getProfile()->getId() << ") vs "
+             << b->getDisplayName() << "(" << b->getId() << "," << b->getProfile()->getId() << ") = ";
 
     ProfilePtr pa(a->getProfile());
-    ProfilePtr pb(b->getProfile());
+    ProfilePtr pb(b->getProfile());    
+
     basicSimilarityRule(Profile::Q_DESIRED_GRADE, pa, pb);
 }
 
