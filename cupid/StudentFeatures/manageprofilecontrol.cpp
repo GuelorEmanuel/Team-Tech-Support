@@ -9,14 +9,16 @@ using namespace storage;
 ManageProfileControl::ManageProfileControl()
     : _view(*this), _action(action), count(0)
 {
-
+    _view.setModal(true);
+    _view.exec();
 }
 
 // Version for edit profile
 ManageProfileControl::ManageProfileControl(ProfilePtr profile)
     : _view(*this), _action(action), count(0), _profile(profile)
 {
-
+    _view.setModal(true);
+    _view.exec();
 }
 
 bool ManageProfileControl::profileComplete() const

@@ -5,6 +5,7 @@
 #include "Storage/proxystudent.h"
 #include "Storage/proxyprofile.h"
 #include <QDebug>
+#include "Storage/profile.h"
 using namespace storage;
 
 int main(int argc, char *argv[])
