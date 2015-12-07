@@ -115,7 +115,8 @@ int StorageManager::createAdmin(storage::AdminPtr admin)
 int StorageManager::createProfile(storage::ProfilePtr profile)
 {
     int stat = 0;
-    if(!findStudent(profile->getUserId())) {
+    qDebug() << profile->getUserId();
+    if(findStudent(profile->getUserId())) {
             stat = Database::instance()->createProfile(profile);
             _profiles.insert({{profile->getId(), profile}});
             return stat;

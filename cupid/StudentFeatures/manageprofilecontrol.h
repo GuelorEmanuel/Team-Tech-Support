@@ -27,6 +27,7 @@ public:
     void createProfile();
     void updateProfile();
     void exitProfile();
+    int getAction();
 private:
     storage::ProfilePtr _profile;
     ManageProfileWindow _view;
@@ -38,6 +39,7 @@ private:
     int _maxAnswers[28];
     int count;
     int action;
+    bool _isComplete;
 };
 
 #endif // MANAGEPROFILECONTROL_H

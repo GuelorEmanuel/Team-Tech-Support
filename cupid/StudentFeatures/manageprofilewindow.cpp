@@ -30,8 +30,10 @@ QString _breaks[2] = {"Not at All", "Strongly prefer to work"};
 ManageProfileWindow::ManageProfileWindow(ManageProfileControl &control,
                                          QWidget *parent)
     : QDialog(parent), _control(control), ui(new Ui::ManageProfileWindow),
-   _sectionOne(0),_sectionTwo(1),_sectionThree(2),_sectionFour(3), _action(1)
+   _sectionOne(0),_sectionTwo(1),_sectionThree(2),_sectionFour(3)
 {
+
+    _action = _control.getAction();
     ui->setupUi(this);
     ui->questionOneLbl->setWordWrap(true);
     ui->questionTwoLbl->setWordWrap(true);
