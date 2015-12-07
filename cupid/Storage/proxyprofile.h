@@ -14,29 +14,24 @@ public:
     ~ProxyProfile();
     virtual int getId();
     virtual void setId(int value);
-    virtual void setStuId(int value);
-    virtual int getStuId();
+    virtual void setUserId(int value);
+    virtual int getUserId();
     virtual std::vector<Qualification> getQualifications();
     virtual void addQualification(int, int, int);
     virtual void addQualification(Qualification&);
+    virtual const Qualification& getQualification(int index);
     virtual int getAnswer(int index);
     virtual int getMinAnswer(int index);
     virtual int getMaxAnswer(int index);
-    virtual void loadQualification();
     virtual void editQualification(int num, int ans, int amin, int amax);
-    //virtual void createProfile();
-    virtual void editProfile();
-    virtual storage::StudentPtr  getStudent();
+    virtual storage::StudentPtr getStudent();
     virtual void setStudent(storage::StudentPtr student);
-    virtual void registerStudent(storage::StudentPtr student);
 protected:
     void initRealProfile();
 private:
     std::unique_ptr<RealProfile> _profile;
     int _id;
-    int _stuId;
-    std::vector<Qualification> _qualifications;
-   // std::unique_ptr<ProxyStudent> _student; //remove this
+    int _userId;
 };
 
 #endif // PROXYPROFILE_H

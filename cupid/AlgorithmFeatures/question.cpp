@@ -1,6 +1,6 @@
 #include "question.h"
 
-Question::Question(int max, int min, QString prompt)
-    : max(max), min(min), prompt(prompt)
+Question::Question(int min, int max, QString prompt)
+    : min(min), max(max), prompt(prompt)
 {
 }

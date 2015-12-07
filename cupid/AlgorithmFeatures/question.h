@@ -6,9 +6,9 @@
 struct Question
 {
 public:
-    Question(int max, int min, QString prompt);
-    int max;
+    Question(int min, int max, QString prompt);
     int min;
+    int max;
     QString prompt;
 };
 

@@ -10,22 +10,19 @@ class Profile
 public:
     virtual int getId()=0;
     virtual void setId(int value)=0;
-    virtual void setStuId(int value)=0;
-    virtual int getStuId() = 0;
+    virtual void setUserId(int value)=0;
+    virtual int getUserId() = 0;
     virtual std::vector<Qualification> getQualifications()=0;
     virtual void addQualification(int ans, int minAns, int maxAns)=0;
     virtual void addQualification(Qualification &qualification)=0;
+    virtual const Qualification& getQualification(int index) = 0;
     virtual int getAnswer(int index)=0;
     virtual int getMinAnswer(int index)=0;
     virtual int getMaxAnswer(int index)=0;
-    virtual void loadQualification()=0;
     virtual void editQualification(int num, int ans, int amin, int amax)=0;
-     virtual storage::StudentPtr  getStudent() = 0;
+    virtual storage::StudentPtr getStudent() = 0;
     virtual void setStudent(storage::StudentPtr student) = 0;
-    virtual void registerStudent(storage::StudentPtr student) = 0;
-
-    virtual void editProfile()=0;
-    virtual ~Profile()=0;
+    virtual ~Profile();
 
     enum
     {

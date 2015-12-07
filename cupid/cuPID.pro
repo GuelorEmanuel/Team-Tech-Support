@@ -66,7 +66,8 @@ SOURCES += \
     AlgorithmFeatures/algorithmfeaturescommunication.cpp \
     AlgorithmFeatures/computeteamswindow.cpp \
     AlgorithmFeatures/algorithmresults.cpp \
-    AlgorithmFeatures/question.cpp
+    AlgorithmFeatures/question.cpp \
+    AlgorithmFeatures/questionlist.cpp
 
 HEADERS  += \
     Database/database.h \
@@ -117,7 +118,8 @@ HEADERS  += \
     AlgorithmFeatures/algorithmfeaturescommunication.h \
     AlgorithmFeatures/computeteamswindow.h \
     AlgorithmFeatures/algorithmresults.h \
-    AlgorithmFeatures/question.h
+    AlgorithmFeatures/question.h \
+    AlgorithmFeatures/questionlist.h
 
 FORMS    += \
     AdminFeatures/adminhomewindow.ui \

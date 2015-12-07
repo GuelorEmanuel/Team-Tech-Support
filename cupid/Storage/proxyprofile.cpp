@@ -1,95 +1,112 @@
-#include "proxyprofile.h"
-#include "storagemanager.h"
+#include "Storage/proxyprofile.h"
+#include "Storage/realprofile.h"
+#include "Storage/storagemanager.h"
+#include "Storage/storage.h"
 using namespace storage;
 
-ProxyProfile::ProxyProfile() : _id(-1),_stuId(-1) {
+ProxyProfile::ProxyProfile() : _id(-1),_userId(-1)
+{
 }
 
-ProxyProfile::ProxyProfile(int id) : _id(id) {
+ProxyProfile::ProxyProfile(int id) : _id(id)
+{
 }
 
-ProxyProfile::~ProxyProfile(){
-
+ProxyProfile::~ProxyProfile()
+{
 }
 
-int ProxyProfile::getId(){
-    if (_profile.get() == NULL){
+int ProxyProfile::getId() {
+    if (!_profile) {
         return _id;
-    }else{
+    } else {
         return _profile->getId();
     }
 }
+
 void ProxyProfile::setId(int value){
-    if (_profile.get() == NULL){
+    if (!_profile) {
         _id = value;
-    }else{
+    } else {
         _profile->setId(value);
     }
 
 }
-void ProxyProfile::setStuId(int value){
-    if (_profile.get() == NULL){ //check ifrof is null
-        _stuId = value;
-    }else{
-       _profile->setStuId(value);
+
+void ProxyProfile::setUserId(int value){
+    if (!_profile) {
+        _userId = value;
+    } else {
+       _profile->setUserId(value);
     }
 }
-int ProxyProfile::getStuId(){
-    if (_profile.get() == NULL){ //check if profile does not exist
-        return _stuId;
-    }else{
-        return _profile->getStuId();
+
+int ProxyProfile::getUserId(){
+    if (!_profile) {
+        return _userId;
+    } else {
+        return _profile->getUserId();
     }
 
 }
 std::vector<Qualification> ProxyProfile::getQualifications(){
-    if ( _profile.get() == NULL){
-        return _qualifications;
-    }else{
-        _profile->getQualifications();
+    if (!_profile){
+        initRealProfile();
     }
-
+    return _profile->getQualifications();
 }
+
 void ProxyProfile::addQualification(int ans, int minAns, int maxAns){
-  _profile->addQualification(ans, minAns, maxAns);
+    if (!_profile) {
+        initRealProfile();
+    }
+    _profile->addQualification(ans, minAns, maxAns);
 }
-void ProxyProfile::addQualification(Qualification &qualification){
-  _qualifications.push_back(qualification);
-}
-int ProxyProfile::getAnswer(int index){
-    if (index < 1 || index > 29) return -1;
-    return _qualifications[index-1].getAnswer();
 
+const Qualification& ProxyProfile::getQualification(int index) {
+    if (!_profile) {
+        initRealProfile();
+    }
+    return _profile->getQualification(index);
 }
+
+void ProxyProfile::addQualification(Qualification &qualification){
+    if (!_profile) {
+        initRealProfile();
+    }
+    _profile->addQualification(qualification);
+}
+
+int ProxyProfile::getAnswer(int index){
+    if (!_profile) {
+        initRealProfile();
+    }
+    return _profile->getAnswer(index);
+}
+
 int ProxyProfile::getMinAnswer(int index){
-    if (index < 1 || index > 29) return -1;
-    return _qualifications[index-1].getMinAnswer();
+    if (!_profile) {
+        initRealProfile();
+    }
+    return _profile->getMinAnswer(index);
 }
 
 int ProxyProfile::getMaxAnswer(int index){
-    if (index < 1 || index > 29) return -1;
-    return _qualifications[index-1].getMaxAnswer();
-
+    if (!_profile) {
+        initRealProfile();
+    }
+    return _profile->getMaxAnswer(index);
 }
-void ProxyProfile::loadQualification(){
 
-}
 void ProxyProfile::editQualification(int num, int ans, int amin, int amax){
-    if (num < 0 || num > 28 && _profile != NULL){
-      _profile->getQualifications()[num].setAnswer(ans);
-      _profile->getQualifications()[num].setMinAnswer(amin);
-       _profile->getQualifications()[num].setMaxAnswer(amax);
+    if (!_profile) {
+        initRealProfile();
     }
-    else{
-        return;
-    }
-
+    _profile->editQualification(num, ans, amin, amax);
 }
-void ProxyProfile::editProfile(){
 
-}
 StudentPtr ProxyProfile::getStudent() {
-    if (_profile.get() == NULL) {
+    if (!_profile) {
         initRealProfile();
     }
 
@@ -97,17 +114,13 @@ StudentPtr ProxyProfile::getStudent() {
 }
 
 void ProxyProfile::setStudent(StudentPtr student) {
-    if (_profile.get() == NULL) {
+    if (!_profile) {
         initRealProfile();
     }
 
     _profile->setStudent(student);
 }
 
-void ProxyProfile::registerStudent(StudentPtr student) {
-    //student.joinProject(*this);
-    //_students.push_back(student);
-}
 void ProxyProfile::initRealProfile(){
-    _profile.reset(new RealProfile(_id));
+    _profile.reset(new RealProfile(_id, _userId));
 }

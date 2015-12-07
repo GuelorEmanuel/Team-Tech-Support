@@ -18,6 +18,8 @@ StudentHomeControl::StudentHomeControl(StudentPtr student) :
     _view->exec();
 }
 
+StudentHomeControl::~StudentHomeControl() {}
+
 void StudentHomeControl::logout() {
     _view->close();
 }

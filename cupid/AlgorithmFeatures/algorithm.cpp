@@ -1,18 +1,43 @@
 #include "AlgorithmFeatures/algorithm.h"
 #include "AlgorithmFeatures/question.h"
 #include "Storage/qualification.h"
+#include "Storage/project.h"
+#include "Storage/storage.h"
+#include "Storage/student.h"
+#include <QDebug>
 using namespace storage;
 using namespace algorithm;
 
 Algorithm::Algorithm(ProjectPtr project)
     : _project(project)
 {
+    qDebug() << "Algorithm::Algorithm";
+    _students = _project->getStudents();
+    for (auto it = _students->begin(); it != _students->end(); ++it)
+    {
+        StudentPtr student = *it;
+        qDebug() << student->getDisplayName();
 
+        for (auto it2 = _students->begin(); it2 != _students->end(); ++it2)
+        {
+            if (it2 == it) {
+                continue;
+            }
+
+            CalculateScore(*it, *it2);
+        }
+    }
 }
 
 double Algorithm::CalculateScore(StudentPtr a, StudentPtr b)
 {
+    qDebug() << "Algorithm::CalculateScore("
+             << a->getDisplayName() << ", "
+             << b->getDisplayName() << ") = ";
 
+    ProfilePtr pa(a->getProfile());
+    ProfilePtr pb(b->getProfile());
+    basicSimilarityRule(Profile::Q_DESIRED_GRADE, pa, pb);
 }
 
 double Algorithm::CalculateScore(TeamPtr team)
@@ -30,14 +55,25 @@ double Algorithm::CalculateScore(TeamList teams)
 
 }
 
+double Algorithm::basicSimilarityRule(int questionNumber,
+                                      ProfilePtr a,
+                                      ProfilePtr b)
+{
+    Question q1(0, 12, "Desired grade");
+    basicSimilarityRule(q1,
+                        a->getQualification(questionNumber),
+                        b->getQualification(questionNumber));
+}
+
 // Gives you the score for how well b is a match for a.
 // Not necessarily the same as the score for how well
 // a matches b.
 double Algorithm::basicSimilarityRule(const Question& q,
                                       const Qualification& a,
                                       const Qualification& b)
-{
+{    
     double range = q.max - q.min + 1;
+
     double aInflexibility = range - (a.getMaxAnswer() - a.getMinAnswer());
     int distance = a.getAnswer() < b.getAnswer()
             ? b.getAnswer() - a.getAnswer() : a.getAnswer() - b.getAnswer();

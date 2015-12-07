@@ -137,13 +137,11 @@ void ManageProfileControl::editProfile()
     for(int i = 0; i < 28; i++) {
         _profile->editQualification(i, _answers[i], _minAnswers[i], _maxAnswers[i]);
     }
-    _profile->editProfile();
     _view.close();
 }
 
 void ManageProfileControl::createProfile()
 {
-    //_profile->createProfile();
     _view.close();
 }
 
@@ -151,9 +149,8 @@ void ManageProfileControl::createProfile()
  * Purpose: load all questions and qualifications for profile object
  */
 void ManageProfileControl::loadProfileSettings(int id) {
-    Questions questions;
-    questions.getQuestions();
-    _profile->loadQualification();
+    // Questions questions;
+    // questions.getQuestions();
 
     /*QSqlQuery qry(Database::getInstance().db());
     qry.prepare("SELECT * FROM profile WHERE id = :id");

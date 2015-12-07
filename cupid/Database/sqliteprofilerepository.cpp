@@ -39,7 +39,7 @@ int SqliteProfileRepository::createProfile(ProfilePtr profile)
 
    qry.prepare(qprofile);
    //qry.bindValue(":id", profile->getId());
-   qry.bindValue(":uid", profile->getStuId());
+   qry.bindValue(":uid", profile->getUserId());
 
    for(int i = 1; i < 29; i++) {
        qry.bindValue(QString(":q%1").arg(i), quals[i-1].getAnswer());
@@ -96,7 +96,7 @@ int SqliteProfileRepository::getProfile(ProfilePtr profile)
         qDebug() << qry.lastError();
     } else {
         while(qry.next()){
-            profile->setStuId(qry.value(1).toInt());
+            profile->setUserId(qry.value(1).toInt());
             for(int i = 0; i < 28; i++) {
                 profile->addQualification(qry.value(++track).toInt(), qry.value(++track).toInt(), qry.value(++track).toInt());
 

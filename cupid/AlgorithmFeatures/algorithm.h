@@ -29,6 +29,9 @@ private:
     double CalculateScore(storage::StudentPtr student,
                           algorithm::TeamPtr team);
     double CalculateScore(algorithm::TeamList teams);
+    static double basicSimilarityRule(int questionNumber,
+                                      storage::ProfilePtr a,
+                                      storage::ProfilePtr b);
     static double basicSimilarityRule(const Question& q,
                                       const Qualification& a,
                                       const Qualification& b);
