@@ -5,6 +5,7 @@ JoinProjectControl::JoinProjectControl(ProjectPtr project,
                                        StudentPtr student, StudentHomeWindow* view)
     : _view(*this), _project(project), _student(student), _stuView(view)
 {    
+    _view.refreshProjectSettings(_project);
     _view.setModal(true);
     _view.exec();
 }
@@ -14,7 +15,7 @@ JoinProjectControl::JoinProjectControl(ProjectPtr project,
  */
 void JoinProjectControl::loadProjectSettings(int id) {
     _project = StudentFeaturesCommunication::getProject(id);
-    _view.refreshProjectSettings(_project);
+    //_view.refreshProjectSettings(_project);
     /*
     qDebug() << "Getting project settings:projectID: "<<id;
     QSqlQuery qry(Database::getInstance().db());

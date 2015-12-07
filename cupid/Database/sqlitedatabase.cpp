@@ -74,6 +74,7 @@ UserPtr SqliteDatabase::getUser(UserPtr user)
 int SqliteDatabase::createProfile(ProfilePtr profile)
 {
     int stat = 0;
+
     stat = _profileRepo->createProfile(profile);
     return stat;
 }

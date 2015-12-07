@@ -88,7 +88,6 @@ int SqliteProfileRepository::getProfile(ProfilePtr profile)
     QSqlQuery qry(_db);
     int track = 1;
     QString qprof = "SELECT * FROM profile WHERE id = :id";
-
     qry.prepare(qprof);
     qry.bindValue(":id", profile->getId());
 

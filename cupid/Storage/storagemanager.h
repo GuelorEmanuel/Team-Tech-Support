@@ -30,6 +30,7 @@ public:
     bool findProject(QString name);
     bool findStudent(QString name);
     bool findAdmin(QString name);
+    storage::ProjectPtr getProject(QString name);
     storage::ProjectList listProjects();
     storage::ProjectList listStudentProjects(storage::StudentPtr student);
     storage::StudentList getStudentsInProject(int id);

@@ -1,7 +1,9 @@
 #include "manageprojectwindow.h"
 #include "ui_manageprojectwindow.h"
 #include "manageprojectcontrol.h"
-
+#include "Storage/project.h"
+#include <QDebug>
+using namespace storage;
 
 ManageProjectWindow::ManageProjectWindow(ManageProjectControl &control,
                                      QWidget *parent) :
@@ -28,8 +30,24 @@ void ManageProjectWindow::on_cancelButton_clicked() {
  *          class
  */
 void ManageProjectWindow::on_createBtn_clicked() {
-    _control.createProject(ui->projectNameLE->text(),
+    if(_control.getStatus()) {
+        _control.createProject(ui->projectNameLE->text(),
                            ui->projectDescriptionLE->toPlainText(),
                            ui->minTeamSizeLE->text(),
                            ui->maxTeamSizeLE->text());
+    } else {
+        _control.editProject(ui->projectNameLE->text(),
+                           ui->projectDescriptionLE->toPlainText(),
+                           ui->minTeamSizeLE->text(),
+                           ui->maxTeamSizeLE->text());
+    }
+}
+
+void ManageProjectWindow::displayProject(ProjectPtr project)
+{
+    ui->projectNameLE->setText(project->getName());
+    ui->projectDescriptionLE->clear();
+    ui->projectDescriptionLE->appendPlainText(project->getDescription());
+    ui->minTeamSizeLE->setText(QString("%1").arg(project->getMinTeamSize()));
+    ui->maxTeamSizeLE->setText(QString("%1").arg(project->getMaxTeamSize()));
 }

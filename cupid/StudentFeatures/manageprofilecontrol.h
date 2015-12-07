@@ -4,6 +4,7 @@
 #include "Storage/storage.h"
 #include "manageprofilewindow.h"
 #include "Storage/storagemanager.h"
+#include "studentfeaturescommunication.h"
 
 class ManageProfileControl
 {

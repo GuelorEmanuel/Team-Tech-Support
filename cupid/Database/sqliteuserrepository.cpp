@@ -94,17 +94,14 @@ int SqliteUserRepository::getStudent(StudentPtr student)
         qry.bindValue(":id", student->getId());
     }
 
-    qDebug() << "Hey in db";
     if(!qry.exec()) {
         qDebug() << qry.lastError();
         return stat = 1;
     } else {
-        qDebug() << "Hey in db1";
         if(qry.next()) {
             if(!qry.value(3).isNull()) {
                 student->setUserName(qry.value(1).toString());
                 student->setDisplayName(qry.value(2).toString());
-                qDebug() << QString("Value stu id %1").arg(qry.value(3).toString());
                 //student->setStudentId(qry.value(3).toString());
                 qDebug() << QString("Student retrieved. Student's name is %1").arg(student->getId());
             } else {

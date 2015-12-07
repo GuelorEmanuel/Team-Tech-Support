@@ -2,6 +2,7 @@
 #include "AdminFeatures/adminhomecontrol.h"
 #include "Storage/storagemanager.h"
 #include "Storage/storage.h"
+#include <QDebug>
 using namespace storage;
 
 AdminFeaturesCommunication::AdminFeaturesCommunication()
@@ -26,4 +27,10 @@ void AdminFeaturesCommunication::showAdminHome(storage::AdminPtr admin)
 ProjectList AdminFeaturesCommunication::getProjectList()
 {
     return StorageManager::instance()->listProjects();
+}
+
+void AdminFeaturesCommunication::editProject(ProjectPtr project)
+{
+    qDebug() << QString("project id %1").arg(project->getId());
+    StorageManager::instance()->editProject(project);
 }

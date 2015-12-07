@@ -1,5 +1,6 @@
 #include "realstudent.h"
 #include "storage.h"
+#include <QDebug>
 using namespace storage;
 
 RealStudent::RealStudent(QString stuID, int pId) {

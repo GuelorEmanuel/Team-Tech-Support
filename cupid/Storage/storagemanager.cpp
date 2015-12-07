@@ -143,6 +143,7 @@ int StorageManager::editProfile(storage::ProfilePtr profile)
 
 int StorageManager::editProject(storage::ProjectPtr project)
 {
+    qDebug() << QString("Project id %1").arg(project->getName());
     if(findProject(project->getId())) {
         return Database::instance()->editProject(project);
     }
@@ -213,6 +214,20 @@ ProjectPtr StorageManager::getProject(int id)
         _projects.insert({id, newProject});
         return newProject;
     }
+}
+
+ProjectPtr StorageManager::getProject(QString name)
+{
+    ProjectPtr newProject(std::make_shared<ProxyProject>());
+    newProject->setName(name);
+    Database::instance()->getProject(newProject);
+    auto project = _projects.find(newProject->getId());
+    if (project != _projects.end()) {
+        return project->second;
+    } else {
+        _projects.insert({newProject->getId(), newProject});
+    }
+    return newProject;
 }
 
 StudentPtr StorageManager::getStudent(int id)

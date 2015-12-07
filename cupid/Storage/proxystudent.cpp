@@ -1,5 +1,6 @@
 #include "proxystudent.h"
 #include "realstudent.h"
+#include <QDebug>
 using namespace storage;
 
 ProxyStudent::ProxyStudent() : ProxyStudent(-1) {
