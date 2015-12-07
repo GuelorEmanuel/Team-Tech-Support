@@ -22,6 +22,7 @@ public:
     void addValues(int index, int count);
     void setValues(int index, int count);
     void setAction(int action);
+    void setStatus();
 
 private slots:
     void on_nextBtn_clicked();
