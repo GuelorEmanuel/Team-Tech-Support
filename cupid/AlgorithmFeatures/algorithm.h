@@ -28,16 +28,15 @@ private:
     std::vector<algorithm::TeamPtr> _teams;
     std::vector<storage::StudentPtr> _remainingStudents;
     void sortRemainingStudents();
-    double calculateEaseOfMatching(algorithm::TeamPtr team,
-                                   storage::StudentList remainingStudents);
+    void sortTeams();
+    void removeStudentFromConsideration(storage::StudentPtr s);
+    storage::StudentPtr findBestStudentMatch(algorithm::TeamPtr team);
+    double calculateEaseOfMatching(algorithm::TeamPtr team);
     double calculateEaseOfMatching(storage::StudentPtr a);
-    double CalculateScore(Team& team);
-    double CalculateScore(storage::StudentPtr a,
+    double calculateScore(Team& team);
+    double calculateScore(storage::StudentPtr a,
                           storage::StudentPtr b);
-    double CalculateScore(algorithm::TeamPtr team);
-    double CalculateScore(storage::StudentPtr student,
-                          algorithm::TeamPtr team);
-    double CalculateScore(algorithm::TeamList teams);
+    double calculateScore(algorithm::TeamList teams);
     static double basicSimilarityRule(int questionNumber,
                                       storage::ProfilePtr a,
                                       storage::ProfilePtr b);
@@ -58,6 +57,8 @@ private:
                                        Team& team);
     static double customWorkloadRule(storage::StudentPtr student,
                                      Team& team);
+    static double skillsetRule(storage::StudentPtr student,
+                               Team& team);
 
     /*
      * Whereas the QuestionList just tells you the questions,
@@ -96,6 +97,18 @@ private:
 
     static constexpr int complementWeights[8] = {
         5, 5, 3, 3, 3, 3, 3, 3
+    };
+
+    static constexpr int skillsetQuestions[5] = {
+        QuestionList::Q_SKILL_PROGRAMMING,
+        QuestionList::Q_SKILL_DOCUMENTATION,
+        QuestionList::Q_SKILL_PRESENTATION,
+        QuestionList::Q_SKILL_ORGANIZATION,
+        QuestionList::Q_SKILL_RESEARCH
+    };
+
+    static constexpr int skillsetWeights[5] = {
+        3, 1, 1, 1, 1
     };
 
     static const int customTimeQuestion = QuestionList::Q_TIME_FLEXIBILITY;

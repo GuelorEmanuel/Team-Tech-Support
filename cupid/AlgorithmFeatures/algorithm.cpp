@@ -13,9 +13,12 @@ using namespace algorithm;
 
 constexpr int Algorithm::similarityQuestions[12];
 constexpr int Algorithm::similarityWeights[12];
+constexpr int Algorithm::complementQuestions[8];
+constexpr int Algorithm::complementWeights[8];
 constexpr int Algorithm::customTimeRules[5][5];
 constexpr int Algorithm::customEfficiencyRules[5][5];
 constexpr int Algorithm::customWorkloadRules[5][5];
+constexpr int Algorithm::skillsetQuestions[5];
 
 Algorithm::Algorithm(ProjectPtr project)
     : _project(project)
@@ -51,13 +54,36 @@ Algorithm::Algorithm(ProjectPtr project)
     }
 
 
-
-    sortRemainingStudents();
+    while (_remainingStudents.size() > 0)
+    {
+        sortTeams();
+        for (auto it = _teams.begin(); it != _teams.end(); ++it)
+        {
+            if (_remainingStudents.size() == 0) break;
+            TeamPtr team(*it);
+            StudentPtr bestMatch(findBestStudentMatch(team));
+            team->addStudent(bestMatch);
+            removeStudentFromConsideration(bestMatch);
+        }
+    }
 }
 
 std::vector<algorithm::TeamPtr>& Algorithm::getTeams()
 {
     return _teams;
+}
+
+void Algorithm::removeStudentFromConsideration(storage::StudentPtr s)
+{
+    for (auto it = _remainingStudents.begin();
+         it != _remainingStudents.end(); ++it)
+    {
+        if ((*it)->getId() == s->getId())
+        {
+            _remainingStudents.erase(it);
+            break;
+        }
+    }
 }
 
 /**
@@ -95,25 +121,76 @@ void Algorithm::sortRemainingStudents()
     }
 }
 
+void Algorithm::sortTeams()
+{
+    // Figure out how easy to match they all are
+    std::vector<std::pair<TeamPtr, double> > easeOfMatching;
+    for (auto it = _teams.begin(); it != _teams.end(); ++it)
+    {
+        TeamPtr t(*it);
+        easeOfMatching.push_back(
+                    std::pair<TeamPtr, double>(t, calculateEaseOfMatching(t)));
+    }
+
+    // Sort them by ease of matching
+    std::sort(easeOfMatching.begin(),
+              easeOfMatching.end(),
+              [](const std::pair<TeamPtr, double>& lhs,
+                 const std::pair<TeamPtr, double>& rhs)
+    {
+        return lhs.second < rhs.second;
+    });
+
+    // Update the data member
+    _teams.clear();
+    for (auto it = easeOfMatching.begin();
+         it != easeOfMatching.end(); ++it)
+    {
+        _teams.push_back(it->first);
+    }
+}
+
+StudentPtr Algorithm::findBestStudentMatch(algorithm::TeamPtr team)
+{
+    StudentPtr bestStudent;
+    double bestScore = -9999;
+    for (auto it = _remainingStudents.begin();
+         it != _remainingStudents.end(); ++it)
+    {
+        Team t(*team);
+        t.addStudent(*it);
+        double score = calculateScore(t);
+        if (!bestStudent || score > bestScore)
+        {
+            bestStudent = *it;
+            bestScore = score;
+        }
+    }
+
+    return bestStudent;
+}
+
 /**
  * Calculates how compatible a team is with remaining students, in general.
  * A high value means they're easy to match. A low value means
  * they're difficult to match.
  *
  * @param team  The team you want to consider adding someone to
- * @param remainingStudents  All the students who still have no team
  * @return A number representing how easy it is to find a good match
  */
-double Algorithm::calculateEaseOfMatching(TeamPtr team,
-                                          StudentList remainingStudents)
+double Algorithm::calculateEaseOfMatching(TeamPtr a)
 {
     double ret = 0;
-    double currentScore = team->getScore();
-    for (auto it = remainingStudents->begin();
-         it != remainingStudents->end(); ++it)
+    double currentScore = calculateScore(*a);
+
+    for (auto it = _remainingStudents.begin();
+         it != _remainingStudents.end(); ++it)
     {
-        ret += (CalculateScore(*it, team) - currentScore);
+        Team potentialTeam(*a);
+        potentialTeam.addStudent(*it);
+        ret += calculateScore(potentialTeam) - currentScore;
     }
+    return ret;
 }
 
 /**
@@ -138,7 +215,7 @@ double Algorithm::calculateEaseOfMatching(StudentPtr a)
             }
 
             // Score from comparing student to other student
-            ret += CalculateScore(a, *it);
+            ret += calculateScore(a, *it);
         }
         return ret;
     }
@@ -149,37 +226,185 @@ double Algorithm::calculateEaseOfMatching(StudentPtr a)
         // Score from adding student to the team
         Team potentialTeam(**it);
         potentialTeam.addStudent(a);
-        ret += potentialTeam.getScore();
+        ret += calculateScore(potentialTeam);
     }
     return ret;
 }
 
-double Algorithm::CalculateScore(StudentPtr a, StudentPtr b)
+double Algorithm::calculateScore(StudentPtr a, StudentPtr b)
 {
     ProfilePtr pa(a->getProfile());
     ProfilePtr pb(b->getProfile());
+
     double ret = 0;
     for (int i = 0; i < 12; ++i)
     {
         ret += Algorithm::similarityWeights[i]
                 * basicSimilarityRule(Algorithm::similarityQuestions[i],
-                                      pa, pb);
+                                      pa, pb);        
     }
+
+    Team tb(b);
+    ret += Algorithm::complementWeights[0] *
+            basicComplementRule(*QuestionList::instance()->getQuestion(
+                                    Algorithm::complementQuestions[0]),
+                                *QuestionList::instance()->getQuestion(
+                                    Algorithm::complementQuestions[1]),
+                                a, tb);
+    ret += Algorithm::complementWeights[1] *
+            basicComplementRule(*QuestionList::instance()->getQuestion(
+                                    Algorithm::complementQuestions[1]),
+                                *QuestionList::instance()->getQuestion(
+                                    Algorithm::complementQuestions[0]),
+                                a, tb);
+    ret += Algorithm::complementWeights[2] *
+            basicComplementRule(*QuestionList::instance()->getQuestion(
+                                    Algorithm::complementQuestions[2]),
+                                *QuestionList::instance()->getQuestion(
+                                    Algorithm::complementQuestions[3]),
+                                a, tb);
+    ret += Algorithm::complementWeights[3] *
+            basicComplementRule(*QuestionList::instance()->getQuestion(
+                                    Algorithm::complementQuestions[3]),
+                                *QuestionList::instance()->getQuestion(
+                                    Algorithm::complementQuestions[2]),
+                                a, tb);
+    ret += Algorithm::complementWeights[4] *
+            basicComplementRule(*QuestionList::instance()->getQuestion(
+                                    Algorithm::complementQuestions[4]),
+                                *QuestionList::instance()->getQuestion(
+                                    Algorithm::complementQuestions[5]),
+                                a, tb);
+    ret += Algorithm::complementWeights[5] *
+            basicComplementRule(*QuestionList::instance()->getQuestion(
+                                    Algorithm::complementQuestions[5]),
+                                *QuestionList::instance()->getQuestion(
+                                    Algorithm::complementQuestions[4]),
+                                a, tb);
+    ret += Algorithm::complementWeights[6] *
+            basicComplementRule(*QuestionList::instance()->getQuestion(
+                                    Algorithm::complementQuestions[6]),
+                                *QuestionList::instance()->getQuestion(
+                                    Algorithm::complementQuestions[7]),
+                                a, tb);
+    ret += Algorithm::complementWeights[7] *
+            basicComplementRule(*QuestionList::instance()->getQuestion(
+                                    Algorithm::complementQuestions[7]),
+                                *QuestionList::instance()->getQuestion(
+                                    Algorithm::complementQuestions[6]),
+                                a, tb);
+
+    ret += Algorithm::customEfficiencyRule(a, tb);
+    ret += Algorithm::customWorkloadRule(a, tb);
+    ret += Algorithm::customTimeRule(a, tb);
+    ret += Algorithm::skillsetRule(a, tb);
+
+    return ret;
 }
 
-double Algorithm::CalculateScore(Team& team)
+double Algorithm::calculateScore(Team& team)
 {
+    double ret = 0;
     const std::vector<StudentPtr>& students = team.getStudents();
+
+    qDebug() << "Algorithm::calculateScore(Team& team)";
+    qDebug() << "Students size: " << students.size();
+
+    for (unsigned int i = 0; i < students.size(); ++i)
+    {
+        qDebug() << "students[i]->getId()" << students[i]->getId();
+    }
+
+    /*
+     * Run all 12 similarity questions for each pair of students
+     */
+    for (unsigned int i = 0; i < students.size(); ++i)
+    {
+        ProfilePtr pa = students[i]->getProfile();
+        for (unsigned int j = 1; j < students.size(); ++j)
+        {
+            if (i == j) continue;
+            ProfilePtr pb = students[j]->getProfile();
+
+            for (int i = 0; i < 12; ++i)
+            {
+                ret += Algorithm::similarityWeights[i]
+                        * basicSimilarityRule(Algorithm::similarityQuestions[i],
+                                              pa, pb);
+            }
+        }
+    }
+
+    /*
+     * Run all 8 role questions for each student
+     */
+    for (unsigned int i = 0; i < students.size(); ++i)
+    {
+        ret += Algorithm::complementWeights[0] *
+                basicComplementRule(*QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[0]),
+                                    *QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[1]),
+                                    students[i], team);
+        ret += Algorithm::complementWeights[1] *
+                basicComplementRule(*QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[1]),
+                                    *QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[0]),
+                                    students[i], team);
+        ret += Algorithm::complementWeights[2] *
+                basicComplementRule(*QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[2]),
+                                    *QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[3]),
+                                    students[i], team);
+        ret += Algorithm::complementWeights[3] *
+                basicComplementRule(*QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[3]),
+                                    *QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[2]),
+                                    students[i], team);
+        ret += Algorithm::complementWeights[4] *
+                basicComplementRule(*QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[4]),
+                                    *QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[5]),
+                                    students[i], team);
+        ret += Algorithm::complementWeights[5] *
+                basicComplementRule(*QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[5]),
+                                    *QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[4]),
+                                    students[i], team);
+        ret += Algorithm::complementWeights[6] *
+                basicComplementRule(*QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[6]),
+                                    *QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[7]),
+                                    students[i], team);
+        ret += Algorithm::complementWeights[7] *
+                basicComplementRule(*QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[7]),
+                                    *QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[6]),
+                                    students[i], team);
+    }
+
+    /*
+     * Run the skillset and 3 custom rules for each student
+     */
+    for (unsigned int i = 0; i < students.size(); ++i)
+    {
+        ret += Algorithm::customEfficiencyRule(students[i], team);
+        ret += Algorithm::customWorkloadRule(students[i], team);
+        ret += Algorithm::customTimeRule(students[i], team);
+        ret += Algorithm::skillsetRule(students[i], team);
+    }
+
+    return ret;
 }
 
-double Algorithm::CalculateScore(StudentPtr student, TeamPtr team)
-{
-    Team potentialTeam(*team);
-    potentialTeam.addStudent(student);
-    return potentialTeam.getScore();
-}
-
-double Algorithm::CalculateScore(TeamList teams)
+double Algorithm::calculateScore(TeamList teams)
 {
     return 0;
 }
@@ -304,6 +529,32 @@ double Algorithm::basicComplementRule(const Question& qleft,
     // minus some adjustment based on whether the team falls
     // within the person’s preferred range.
     return dissimilaritySum - maxRightFactor * averageRightFactor;
+}
+
+double Algorithm::skillsetRule(StudentPtr student, Team& team)
+{
+    ProfilePtr profile(student->getProfile());
+    const std::vector<StudentPtr>& teamMembers = team.getStudents();
+
+    // Similarity Adjustment is highest when the student's skill
+    // average is the same as the team's skill average.
+    double studentAverage = 0;
+    for (int i = 0; i < 5; i++)
+    {
+        studentAverage += profile->getAnswer(Algorithm::skillsetQuestions[i]);
+    }
+    // Programming skill is twice as important
+    studentAverage += profile->getAnswer(QuestionList::Q_SKILL_PROGRAMMING);
+    double similarityAdjustment = 2 * team.getSize() -
+            std::abs(team.getOverallSkillAverage() - studentAverage);
+
+    /* D4 adjustment:
+     * We ignore this part of the skillset rule to keep it simple.
+     */
+    double complementAdjustment = 0;
+    double preferenceAdjustment = 0;
+
+    return similarityAdjustment;
 }
 
 double Algorithm::customTimeRule(StudentPtr student, Team& team)
