@@ -39,7 +39,7 @@ void RealProfile::addQualification(Qualification &qual){
 }
 
 int RealProfile::getAnswer(int index){
-    if (index < 0 || index > 29) {
+    if (index < 0 || index > 28) {
         return -1;
     } else {
       return _qualifications[index].getAnswer();

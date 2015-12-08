@@ -12,11 +12,13 @@ class Team
 {
 public:
     Team();
+    Team(storage::StudentPtr student);
     void addStudent(storage::StudentPtr student);
     double getScore() const;
     double getOverallSkillAverage() const;
     double getAverage(int questionId) const;
     double getMax(int questionId) const;
+    const std::vector<storage::StudentPtr>& getStudents() const;
     QString getId() const;
     int getSize() const;
 private:
@@ -27,7 +29,7 @@ private:
     mutable double _overallSkillAverage;
     mutable double _averages[28];
     mutable double _maxes[28];
-    storage::StudentList _students;
+    std::vector<storage::StudentPtr> _students;
     void recalculateStats() const;
 };
 

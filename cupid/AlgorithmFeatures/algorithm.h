@@ -24,9 +24,12 @@ public:
 private:
     storage::ProjectPtr _project;
     storage::StudentList _students;
-    algorithm::TeamList _teams;
+    std::vector<algorithm::TeamPtr> _teams;
     //std::unordered_map<std::pair<int, int>, double> _similarityScores;
-    double CalculateScore(storage::StudentPtr a);
+    double calculateEaseOfMatching(algorithm::TeamPtr team,
+                                   storage::StudentList remainingStudents);
+    double calculateEaseOfMatching(storage::StudentPtr a);
+    double CalculateScore(Team& team);
     double CalculateScore(storage::StudentPtr a,
                           storage::StudentPtr b);
     double CalculateScore(algorithm::TeamPtr team);
@@ -39,10 +42,11 @@ private:
     static double basicSimilarityRule(const Question& q,
                                       const Qualification& a,
                                       const Qualification& b);
-    static double basicComplementRule(const Question& q,
-                                      const Qualification& aLeftAnswer,
-                                      const Qualification& aRightAnswer,
-                                      algorithm::TeamPtr team);
+
+    static double basicComplementRule(const Question& qleft,
+                                      const Question& qright,
+                                      storage::StudentPtr student,
+                                      Team& team);
 
     static constexpr int similarityQuestions[12] = {
         QuestionList::Q_DESIRED_GRADE,
