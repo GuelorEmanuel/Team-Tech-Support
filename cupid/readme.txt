@@ -3,16 +3,14 @@ Project: cuPID
 Overview:
 
 The Carleton University Project Partner Identifier(cuPID) is designed to 
-help professors to match students 
-
-
+help professors to match students for group projects.
 
 How to use:
 
 Installation:
 
 1. Download program .tar file, untar.
-2. Open QT-> Open File or Project... and set path to the folder with project.
+2. Open QT Creator and open the cuPID.pro project.
 3. Build project.
 4. Copy mydb.sqlite into the build directory.
 5. Run binary in the build directory.
@@ -20,49 +18,54 @@ Installation:
 Usage:
 1. At the start of the program user sees the login window. There is two choices:
     1.1 Login using existing profile. Right now the program contains several admin
-    accounts and over 30 students.
+    accounts and over 30 students. Here you can see some login examples, 
+    that can be used to log into the system.
 
     1.2 List of Users
     
-	Admins:
+    Admins:
 		
-        jeanlucpicard 
+        jeanlucpicard
         samthegreat
-        sarek   
-        jameskirk    
+        sarek
+        jameskirk
         guinan
         tommulcair
         admin
 
 	Student:
 	
-		worf 
-		deannatroi    
-		eginaldbarclay    
-		rolaren   
-		willriker    
-		roxannetroi    
-		spock   
-		benjaminsisko  
-		kathrynjaneway  
-		summerglau    
-		tashayar  
-		julianbashir    
-		milesobrien 
-		keikoobrien    
-		thedoctor   
-		thetwelfthdoctor 
-		tuvok  
-		jakesisko 
-		sevenofnine
-		hugh
-		palpatine
-		taylorswift
-		uhura
-
-
-
-
+        darthbieber
+        wesleycrusher
+        geordilaforge
+        data
+        beverleycrusher
+        worf
+        deannatroi
+        reginaldbarclay
+        rolaren
+        willriker
+        roxannetroi
+        spock
+        benjaminsisko
+        kathrynjaneway
+        summerglau
+        tashayar
+        julianbashir
+        milesobrien
+        keikoobrien
+        thedoctor
+        thetwelfthdoctor
+        tuvok
+        jakesisko
+        sevenofnine
+        hugh
+        palpatine
+        taylorswift
+        uhura
+        borgqueen
+        captaincrunch
+        landocalrissian
 
 1.2 Create New Account
 
