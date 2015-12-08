@@ -13,7 +13,6 @@ public:
     ManageProfileControl(storage::ProfilePtr profile);
     bool profileComplete() const;
     storage::ProfilePtr getCompletedProfile() const;
-    QList<QString> loadSection();
     void addAsnwers(int ans, int min, int max);
     int getAnswer(int index);
     int getMinAnswer(int index);

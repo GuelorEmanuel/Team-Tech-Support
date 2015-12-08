@@ -1,5 +1,4 @@
 #include "manageprofilecontrol.h"
-#include "questions.h"
 #include "Storage/profile.h"
 #include "studentfeaturescommunication.h"
 #include "Storage/proxyprofile.h"
@@ -36,15 +35,6 @@ bool ManageProfileControl::profileComplete() const
 ProfilePtr ManageProfileControl::getCompletedProfile() const
 {
     return _profile;
-}
-
-/*Function: QList<QString> EditStuProfileControl::loadSection
- * Purpose: Loads questions
- */
-QList<QString> ManageProfileControl::loadSection(){
-    Questions questions;
-    return questions.getQuestions();
-
 }
 
 /*Function: void EditStuProfileControl::addAsnwers
@@ -142,8 +132,6 @@ void ManageProfileControl::createProfile()
  * Purpose: load all questions and qualifications for profile object
  */
 void ManageProfileControl::loadProfileSettings(int id) {
-    Questions questions;
-    questions.getQuestions();
     _profile = StudentFeaturesCommunication::getProfile(id);
 
 }

@@ -51,7 +51,6 @@ SOURCES += \
     StudentFeatures/studenthomewindow.cpp \
     StudentFeatures/joinprojectcontrol.cpp \
     StudentFeatures/joinprojectwindow.cpp \
-    questions.cpp \
     UserManagement/createadminaccountcontrol.cpp \
     UserManagement/createstudentaccountcontrol.cpp \
     UserManagement/loginwindow.cpp \
@@ -102,7 +101,6 @@ HEADERS  += \
     StudentFeatures/joinprojectcontrol.h \
     StudentFeatures/joinprojectwindow.h \
     StudentFeatures/studentfeaturescommunication.h \
-    questions.h \
     UserManagement/adminsignupview.h \
     UserManagement/createadminaccountcontrol.h \
     UserManagement/createstudentaccountcontrol.h \
