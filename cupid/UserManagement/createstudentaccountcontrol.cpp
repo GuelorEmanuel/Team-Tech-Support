@@ -42,7 +42,6 @@ void CreateStudentAccountControl::createAccount(
         _view->displayProfileCreationError();
         return;
     }
-
     StudentPtr student(std::make_shared<ProxyStudent>());
     student->setDisplayName(displayName);
     student->setStudentId(studentId);

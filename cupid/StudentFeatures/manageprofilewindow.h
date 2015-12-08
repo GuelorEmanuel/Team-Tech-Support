@@ -32,6 +32,7 @@ private slots:
 private:
     ManageProfileControl &_control;
     std::unique_ptr<Ui::ManageProfileWindow> ui;
+    void invalidAnswerError();
 
     int _action;
     int _pageCount;
