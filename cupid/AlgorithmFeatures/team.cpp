@@ -51,12 +51,9 @@ QString Team::getId() const
     return _id;
 }
 
-// TODO: could optimize to not use 3 function calls
 void Team::addStudent(StudentPtr student)
 {
     _students.push_back(student);
-    std::sort(_students.begin(), _students.end());
-    std::unique(_students.begin(), _students.end());
 }
 
 int Team::getSize() const

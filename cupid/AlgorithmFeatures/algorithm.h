@@ -21,6 +21,7 @@ class Algorithm
 public:
     Algorithm(storage::ProjectPtr project);
     std::vector<algorithm::TeamPtr>& getTeams();
+    static QString getMatchDetails(Team& team);
 
 private:
     storage::ProjectPtr _project;
@@ -29,11 +30,11 @@ private:
     std::vector<storage::StudentPtr> _remainingStudents;
     void sortRemainingStudents();
     void sortTeams();
-    void removeStudentFromConsideration(storage::StudentPtr s);
+    void removeStudentFromConsideration(storage::StudentPtr s);    
     storage::StudentPtr findBestStudentMatch(algorithm::TeamPtr team);
     double calculateEaseOfMatching(algorithm::TeamPtr team);
     double calculateEaseOfMatching(storage::StudentPtr a);
-    double calculateScore(Team& team);
+    double static calculateScore(Team& team);
     double calculateScore(storage::StudentPtr a,
                           storage::StudentPtr b);
     double calculateScore(algorithm::TeamList teams);

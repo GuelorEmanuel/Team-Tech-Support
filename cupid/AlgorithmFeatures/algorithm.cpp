@@ -8,6 +8,9 @@
 #include "AlgorithmFeatures/team.h"
 #include <QDebug>
 #include  <algorithm>
+#include <sstream>
+#include <string>
+#include <QString>
 using namespace storage;
 using namespace algorithm;
 
@@ -56,10 +59,12 @@ Algorithm::Algorithm(ProjectPtr project)
 
     while (_remainingStudents.size() > 0)
     {
+        qDebug() << "Sorting";
         sortTeams();
         for (auto it = _teams.begin(); it != _teams.end(); ++it)
         {
             if (_remainingStudents.size() == 0) break;
+            qDebug() << "Remaining: " << _remainingStudents.size();
             TeamPtr team(*it);
             StudentPtr bestMatch(findBestStudentMatch(team));
             team->addStudent(bestMatch);
@@ -186,6 +191,7 @@ double Algorithm::calculateEaseOfMatching(TeamPtr a)
     for (auto it = _remainingStudents.begin();
          it != _remainingStudents.end(); ++it)
     {
+        qDebug() << (*it)->getId();
         Team potentialTeam(*a);
         potentialTeam.addStudent(*it);
         ret += calculateScore(potentialTeam) - currentScore;
@@ -307,14 +313,6 @@ double Algorithm::calculateScore(Team& team)
     double ret = 0;
     const std::vector<StudentPtr>& students = team.getStudents();
 
-    qDebug() << "Algorithm::calculateScore(Team& team)";
-    qDebug() << "Students size: " << students.size();
-
-    for (unsigned int i = 0; i < students.size(); ++i)
-    {
-        qDebug() << "students[i]->getId()" << students[i]->getId();
-    }
-
     /*
      * Run all 12 similarity questions for each pair of students
      */
@@ -402,6 +400,153 @@ double Algorithm::calculateScore(Team& team)
     }
 
     return ret;
+}
+
+QString Algorithm::getMatchDetails(Team& team)
+{
+    double ret = 0;
+    double studentScore = 0;
+    const std::vector<StudentPtr>& students = team.getStudents();
+    std::ostringstream ss;
+
+    ss << "Team stats:\n";
+    ss << "  Team total score = " << Algorithm::calculateScore(team) << "\n";
+
+    for (unsigned int i = 0; i < students.size(); ++i)
+    {
+        studentScore = 0;
+        ProfilePtr pa = students[i]->getProfile();
+
+        ss << students[i]->getDisplayName().toStdString() << " (" <<
+              students[i]->getStudentId().toStdString() << ")\n";
+
+        /*
+         * Run all 12 similarity questions for each pair of students
+         */
+
+        ss << "  Similarity rules:\n";
+
+        for (unsigned int j = 1; j < students.size(); ++j)
+        {
+            if (i == j) continue;
+            ProfilePtr pb = students[j]->getProfile();
+            ss << "    With " << students[j]->getDisplayName().toStdString()
+               << " (" << students[j]->getStudentId().toStdString() << ")\n";
+
+            for (int i = 0; i < 12; ++i)
+            {
+                ret = basicSimilarityRule(
+                            Algorithm::similarityQuestions[i], pa, pb)
+                        * Algorithm::similarityWeights[i];
+                ss << "      Rule " << (i+1) << "("
+                   << QuestionList::instance()->getQuestion(
+                          Algorithm::similarityQuestions[i])->prompt.toStdString()
+                   << ") = " << ret << "\n";
+            }
+        }
+
+        /*
+        * Run all 8 role questions for each student
+        */
+
+        ss << "  Role questions\n";
+
+        ss << "    Leader/follower rule = ";
+        ret = Algorithm::complementWeights[0] *
+                basicComplementRule(*QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[0]),
+                                    *QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[1]),
+                                    students[i], team);
+        ss << ret << " + ";
+        studentScore += ret;
+        ret = Algorithm::complementWeights[1] *
+                basicComplementRule(*QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[1]),
+                                    *QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[0]),
+                                    students[i], team);
+        ss << ret << "\n";
+        studentScore += ret;
+
+        ss << "    Detail / big picture rule = ";
+        ret = Algorithm::complementWeights[2] *
+                basicComplementRule(*QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[2]),
+                                    *QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[3]),
+                                    students[i], team);
+        studentScore += ret;
+        ss << ret << " + ";
+        ret = Algorithm::complementWeights[3] *
+                basicComplementRule(*QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[3]),
+                                    *QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[2]),
+                                    students[i], team);
+        studentScore += ret;
+        ss << ret << "\n";
+
+        ss << "    Challenge / repetitive rule = ";
+        ret = Algorithm::complementWeights[4] *
+                basicComplementRule(*QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[4]),
+                                    *QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[5]),
+                                    students[i], team);
+        studentScore += ret;
+        ss << ret << " + ";
+        ret += Algorithm::complementWeights[5] *
+                basicComplementRule(*QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[5]),
+                                    *QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[4]),
+                                    students[i], team);
+        studentScore += ret;
+        ss << ret << "\n";
+
+        ss << "    Idea generation / idea evaluation rule = ";
+        ret = Algorithm::complementWeights[6] *
+                basicComplementRule(*QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[6]),
+                                    *QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[7]),
+                                    students[i], team);
+        studentScore += ret;
+        ss << ret << " + ";
+        ret = Algorithm::complementWeights[7] *
+                basicComplementRule(*QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[7]),
+                                    *QuestionList::instance()->getQuestion(
+                                        Algorithm::complementQuestions[6]),
+                                    students[i], team);
+        studentScore += ret;
+        ss << ret << "\n";
+
+        /*
+        * Run the skillset and 3 custom rules for each student
+        */
+
+        ret = Algorithm::skillsetRule(students[i], team);
+        studentScore += ret;
+        ss << "  Skillset rule = " << ret << "\n";
+
+        ret = Algorithm::customEfficiencyRule(students[i], team);
+        studentScore += ret;
+        ss << "  Custom efficiency rule = " << ret << "\n";
+
+        ret = Algorithm::customWorkloadRule(students[i], team);
+        studentScore += ret;
+        ss << "  Custom workload rule = " << ret << "\n";
+
+        ret = Algorithm::customTimeRule(students[i], team);
+        ss << "  Custom time rule = " << ret << "\n";
+        studentScore += ret;
+
+        ss << "  Student score = " << studentScore << "\n";
+    }
+
+    return QString::fromStdString(ss.str());
 }
 
 double Algorithm::calculateScore(TeamList teams)
