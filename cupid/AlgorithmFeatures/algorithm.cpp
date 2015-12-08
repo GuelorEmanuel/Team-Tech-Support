@@ -13,6 +13,9 @@ using namespace algorithm;
 
 constexpr int Algorithm::similarityQuestions[12];
 constexpr int Algorithm::similarityWeights[12];
+constexpr int Algorithm::customTimeRules[5][5];
+constexpr int Algorithm::customEfficiencyRules[5][5];
+constexpr int Algorithm::customWorkloadRules[5][5];
 
 Algorithm::Algorithm(ProjectPtr project)
     : _project(project)
@@ -162,11 +165,6 @@ double Algorithm::CalculateScore(StudentPtr a, StudentPtr b)
                 * basicSimilarityRule(Algorithm::similarityQuestions[i],
                                       pa, pb);
     }
-
-    //_similarityScores.insert({std::pair<int,int>(a->getId(), b->getId()), ret});
-    //qDebug() << "Algorithm::CalculateScore("
-    //         << a->getDisplayName() << "(" << a->getId() << "," << pa->getId() << ") vs "
-    //         << b->getDisplayName() << "(" << b->getId() << "," << pb->getId() << ") = " << ret;
 }
 
 double Algorithm::CalculateScore(Team& team)
@@ -219,16 +217,29 @@ double Algorithm::basicSimilarityRule(const Question& q,
     }
 }
 
+/*
+ * Simple utility method, calls basic complement rule, which is meant
+ * for comparing a student to a team, on a student and a student,
+ * by wrapping the other student in its own team.
+ */
+double Algorithm::basicComplementRule(const Question& qleft,
+                                      const Question& qright,
+                                      StudentPtr student,
+                                      StudentPtr otherStudent)
+{
+    Team t(otherStudent);
+    return basicComplementRule(qleft, qright, student, t);
+}
+
 /**
  * @brief Algorithm::basicComplementRule
+ * Note that when calling this, you should also call it again with
+ * qleft and qright reversed. This only does half the comparisons needed.
  * @param qleft The 1st question in the complement pair
  * @param qright The 2nd question in the complement pair
  * @param student The student you're comparing to the team
  * @param team The team the student is in
  * @return A number representing how well the student fits for this rule
- *
- * Note that when calling this, you should also call it again with
- * qleft and qright reversed. This only does half the comparisons needed.
  */
 double Algorithm::basicComplementRule(const Question& qleft,
                                       const Question& qright,
@@ -293,4 +304,38 @@ double Algorithm::basicComplementRule(const Question& qleft,
     // minus some adjustment based on whether the team falls
     // within the person’s preferred range.
     return dissimilaritySum - maxRightFactor * averageRightFactor;
+}
+
+double Algorithm::customTimeRule(StudentPtr student, Team& team)
+{
+    ProfilePtr profile(student->getProfile());
+    const int answer = profile->getAnswer(Algorithm::customTimeQuestion);
+    const int min = profile->getMinAnswer(Algorithm::customTimeQuestion);
+    const int max = profile->getMaxAnswer(Algorithm::customTimeQuestion);
+    const int teamAnswer = team.getAverage(Algorithm::customTimeQuestion);
+    return Algorithm::customTimeRules[answer-1][teamAnswer-1]
+            + ((teamAnswer >= min && teamAnswer <= max) ? 1 : -1);
+}
+
+double Algorithm::customEfficiencyRule(StudentPtr student, Team& team)
+{
+    ProfilePtr profile(student->getProfile());
+    const int answer = profile->getAnswer(Algorithm::customEfficiencyQuestion);
+    const int min = profile->getMinAnswer(Algorithm::customEfficiencyQuestion);
+    const int max = profile->getMaxAnswer(Algorithm::customEfficiencyQuestion);
+    const int teamAnswer
+            = team.getAverage(Algorithm::customEfficiencyQuestion);
+    return Algorithm::customEfficiencyRules[answer-1][teamAnswer-1]
+            + ((teamAnswer >= min && teamAnswer <= max) ? 1 : -1);
+}
+
+double Algorithm::customWorkloadRule(StudentPtr student, Team& team)
+{
+    ProfilePtr profile(student->getProfile());
+    const int answer = profile->getAnswer(Algorithm::customWorkloadQuestion);
+    const int min = profile->getMinAnswer(Algorithm::customWorkloadQuestion);
+    const int max = profile->getMaxAnswer(Algorithm::customWorkloadQuestion);
+    const int teamAnswer = team.getAverage(Algorithm::customWorkloadQuestion);
+    return Algorithm::customEfficiencyRules[answer-1][teamAnswer-1]
+            + ((teamAnswer >= min && teamAnswer <= max) ? 1 : -1);
 }
