@@ -43,6 +43,7 @@ public:
     storage::ProfilePtr getProfile(int id);
     storage::AdminPtr getAdmin(int id);
     storage::UserPtr getUser(QString username);
+    storage::ProfilePtr getProfileByStudent(int stuId);
     // Singleton features
     static StorageManager* instance();
 protected:

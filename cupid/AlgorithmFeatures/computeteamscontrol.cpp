@@ -21,8 +21,18 @@ void ComputeTeamsControl::back()
 
 void ComputeTeamsControl::showDetails()
 {
+    _view->clearWindow();
+    /*std::vector<algorithm::TeamPtr>& teams = _algorithm->getTeams();
+    for(int i = 0; i < teams.size(); i++) {
+        _view->addDetailedTeam(teams[i], i+1);
+    }*/
 }
 
 void ComputeTeamsControl::showSummary()
 {
+   /* _view->clearWindow();
+    std::vector<algorithm::TeamPtr>& teams = _algorithm->getTeams();
+    for(int i = 0; i < teams.size(); i++) {
+        _view->addSummaryTeam(teams[i], i+1);
+    }*/
 }

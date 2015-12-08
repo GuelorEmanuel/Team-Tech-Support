@@ -1,6 +1,10 @@
 #ifndef COMPUTETEAMSWINDOW_H
 #define COMPUTETEAMSWINDOW_H
 
+#include "team.h"
+#include "Storage/student.h"
+#include "Storage/storage.h"
+#include "algorithm"
 #include <memory>
 #include <QDialog>
 #include <QString>
@@ -19,6 +23,9 @@ public:
                                 QWidget *parent = 0);
     void setProjectTitle(QString str);
     ~ComputeTeamsWindow();
+    void clearWindow();
+    void addSummaryTeam(algorithm::TeamPtr team, int num);
+    void addDetailedTeam(algorithm::TeamPtr team, int num);
 
 private slots:
     void on_backButton_clicked();

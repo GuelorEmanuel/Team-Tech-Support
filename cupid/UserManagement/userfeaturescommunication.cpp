@@ -30,8 +30,8 @@ void UserManagementCommunication::showStudentHome(UserPtr user)
     StudentPtr student;
     std::make_shared<StudentPtr>(student);
     student = StorageManager::instance()->getStudent(user->getId());
-    StudentFeaturesCommunication::showStudentHome(
-                StorageManager::instance()->getStudent(user->getId()));
+    student->setProfile(StorageManager::instance()->getProfileByStudent(student->getId()));
+    StudentFeaturesCommunication::showStudentHome(student);
 }
 
 bool UserManagementCommunication::userNameAvailable(QString name)

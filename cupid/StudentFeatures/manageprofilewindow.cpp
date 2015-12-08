@@ -192,8 +192,11 @@ void ManageProfileWindow::setValues(int index, int count)
         _maxAnswers[index]->setCurrentIndex(_control.getMaxAnswer(count));
     } else {
         _answers[index]->setCurrentIndex(_control.getAnswer(count)-1);
+        qDebug() << _control.getAnswer(count);//-1;
         _minAnswers[index]->setCurrentIndex(_control.getMinAnswer(count)-1);
+         qDebug() << _control.getMinAnswer(count);//-1;
         _maxAnswers[index]->setCurrentIndex(_control.getMaxAnswer(count)-1);
+         qDebug() << _control.getMaxAnswer(count);//-1;
     }
 
 }

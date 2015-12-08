@@ -26,7 +26,6 @@ ManageProfileControl::ManageProfileControl(ProfilePtr profile)
     _view.setStatus();
     _view.setModal(true);
     _view.exec();
-    //_view.setStatus();
 }
 
 bool ManageProfileControl::profileComplete() const
