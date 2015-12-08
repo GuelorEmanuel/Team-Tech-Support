@@ -60,4 +60,5 @@ void UserManagementCommunication::createStudentAndProfile(StudentPtr student)
     StorageManager::instance()->createStudent(student);
     student->getProfile()->setUserId(student->getId());
     StorageManager::instance()->createProfile(student->getProfile());
+
 }

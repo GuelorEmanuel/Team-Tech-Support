@@ -54,7 +54,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QComboBox" name="questionTwoMinCB"/>
+     <widget class="QComboBox" name="questionTwoMaxCB"/>
     </item>
     <item>
      <widget class="Line" name="line_7">
@@ -64,7 +64,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QComboBox" name="questionTWoMaxCB"/>
+     <widget class="QComboBox" name="questionTwoMinCB"/>
     </item>
    </layout>
   </widget>
@@ -290,7 +290,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QComboBox" name="questionOneMinCB"/>
+     <widget class="QComboBox" name="questionOneMaxCB"/>
     </item>
     <item>
      <widget class="Line" name="line_8">
@@ -300,7 +300,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QComboBox" name="questionOneMaxCB"/>
+     <widget class="QComboBox" name="questionOneMinCB"/>
     </item>
    </layout>
   </widget>
@@ -362,6 +362,19 @@
     </item>
    </layout>
   </widget>
+  <widget class="QLabel" name="errorLbl">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>540</y>
+     <width>201</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
   <zorder>layoutWidget</zorder>
   <zorder>layoutWidget</zorder>
   <zorder>layoutWidget_2</zorder>
@@ -369,6 +382,7 @@
   <zorder>layoutWidget</zorder>
   <zorder>layoutWidget</zorder>
   <zorder>layoutWidget</zorder>
+  <zorder>errorLbl</zorder>
  </widget>
  <resources/>
  <connections/>

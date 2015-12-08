@@ -13,6 +13,7 @@ ManageProfileControl::ManageProfileControl()
      ProfilePtr profile(std::make_shared<ProxyProfile>());
     _profile = profile;
     _isComplete = false;
+    _view.setStatus();
     _view.setModal(true);
     _view.exec();
 }

@@ -1,4 +1,5 @@
 #include "realprofile.h"
+#include <QDebug>
 using namespace storage;
 
 RealProfile::RealProfile(int id): _id(id) {}
