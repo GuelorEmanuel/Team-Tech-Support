@@ -20,12 +20,14 @@ class Algorithm
 {
 public:
     Algorithm(storage::ProjectPtr project);
+    std::vector<algorithm::TeamPtr>& getTeams();
 
 private:
     storage::ProjectPtr _project;
     storage::StudentList _students;
     std::vector<algorithm::TeamPtr> _teams;
-    //std::unordered_map<std::pair<int, int>, double> _similarityScores;
+    std::vector<storage::StudentPtr> _remainingStudents;
+    void sortRemainingStudents();
     double calculateEaseOfMatching(algorithm::TeamPtr team,
                                    storage::StudentList remainingStudents);
     double calculateEaseOfMatching(storage::StudentPtr a);

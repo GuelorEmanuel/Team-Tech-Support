@@ -17,31 +17,9 @@ constexpr int Algorithm::similarityWeights[12];
 Algorithm::Algorithm(ProjectPtr project)
     : _project(project)
 {
-    std::vector<std::pair<StudentPtr, int> > easeOfMatching;
     _students = _project->getStudents();
-    for (auto it = _students->begin(); it != _students->end(); ++it)
-    {
-        StudentPtr s(*it);
-        easeOfMatching.push_back(
-                    std::pair<StudentPtr, int>(s,calculateEaseOfMatching(s)));
-    }
-
-    // Sort according to who is hardest to match
-    std::sort(easeOfMatching.begin(),
-              easeOfMatching.end(),
-              [](const std::pair<StudentPtr, int>& lhs,
-                 const std::pair<StudentPtr, int>& rhs)
-    {
-        return lhs.second < rhs.second;
-    });
-
-
-    for (auto it = easeOfMatching.begin(); it != easeOfMatching.end(); ++it)
-    {
-        qDebug() << "Ease of matching for "
-                    << it->first->getDisplayName() << " = "
-                    << it->second;
-    }
+    _remainingStudents = *(_project->getStudents());
+    sortRemainingStudents();
 
     // Figure out how many teams there will be
     int initialSize = _students->size() / _project->getMinTeamSize();
@@ -56,27 +34,63 @@ Algorithm::Algorithm(ProjectPtr project)
     // Create one person teams starting with the people who are
     // hardest to match
     {
-        auto it = easeOfMatching.begin();
+        auto it = _remainingStudents.begin();
         for (int i = 0; i < initialSize; ++i)
         {
             TeamPtr team(std::make_shared<Team>());
-            team->addStudent(it->first);
+            team->addStudent(*it);
             _teams.push_back(team);
             ++it;
         }
+
+        // Remove the students we have matched so far
+        _remainingStudents.erase(_remainingStudents.begin(), it-1);
     }
 
-    // Find the team that will be hardest to match
 
-    /*for (auto it = easeOfMatching.begin(); it != easeOfMatching.end(); ++it)
-    {
-        Team t;
-        t.addStudent(*it);
-        it->first->
-    }
-    _teams->push_back()*/
+
+    sortRemainingStudents();
 }
 
+std::vector<algorithm::TeamPtr>& Algorithm::getTeams()
+{
+    return _teams;
+}
+
+/**
+ * @brief Algorithm::sortRemainingStudents
+ * After calling this, _remainingStudents will be sorted in order
+ * from the hardest to match student to the easiest.
+ */
+void Algorithm::sortRemainingStudents()
+{
+    // Figure out how easy to match they all are
+    std::vector<std::pair<StudentPtr, int> > easeOfMatching;
+    for (auto it = _remainingStudents.begin();
+         it != _remainingStudents.end(); ++it)
+    {
+        StudentPtr s(*it);
+        easeOfMatching.push_back(
+                    std::pair<StudentPtr, int>(s, calculateEaseOfMatching(s)));
+    }
+
+    // Sort them by ease of matching
+    std::sort(easeOfMatching.begin(),
+              easeOfMatching.end(),
+              [](const std::pair<StudentPtr, int>& lhs,
+                 const std::pair<StudentPtr, int>& rhs)
+    {
+        return lhs.second < rhs.second;
+    });
+
+    // Update the data member
+    _remainingStudents.clear();
+    for (auto it = easeOfMatching.begin();
+         it != easeOfMatching.end(); ++it)
+    {
+        _remainingStudents.push_back(it->first);
+    }
+}
 
 /**
  * Calculates how compatible a team is with remaining students, in general.
@@ -110,15 +124,31 @@ double Algorithm::calculateEaseOfMatching(TeamPtr team,
 double Algorithm::calculateEaseOfMatching(StudentPtr a)
 {
     double ret = 0;
-    ProfilePtr pa(a->getProfile());
-    for (auto it = _students->begin(); it != _students->end(); ++it)
-    {
-        if ((*it)->getId() == a->getId()) {
-            continue;
-        }
 
-        ret += CalculateScore(a, *it);
+    // If there are no teams yet, compare to all other students
+    if (_teams.size() == 0)
+    {
+        for (auto it = _students->begin(); it != _students->end(); ++it)
+        {
+            if ((*it)->getId() == a->getId()) {
+                continue;
+            }
+
+            // Score from comparing student to other student
+            ret += CalculateScore(a, *it);
+        }
+        return ret;
     }
+
+    // If there are teams, compare student to the teams
+    for (auto it = _teams.begin(); it != _teams.end(); ++it)
+    {
+        // Score from adding student to the team
+        Team potentialTeam(**it);
+        potentialTeam.addStudent(a);
+        ret += potentialTeam.getScore();
+    }
+    return ret;
 }
 
 double Algorithm::CalculateScore(StudentPtr a, StudentPtr b)
@@ -153,7 +183,7 @@ double Algorithm::CalculateScore(StudentPtr student, TeamPtr team)
 
 double Algorithm::CalculateScore(TeamList teams)
 {
-
+    return 0;
 }
 
 double Algorithm::basicSimilarityRule(int questionNumber,
@@ -189,8 +219,17 @@ double Algorithm::basicSimilarityRule(const Question& q,
     }
 }
 
-// Have to repeat with left and right swapped, since this
-// is definitely not a symmetric function.
+/**
+ * @brief Algorithm::basicComplementRule
+ * @param qleft The 1st question in the complement pair
+ * @param qright The 2nd question in the complement pair
+ * @param student The student you're comparing to the team
+ * @param team The team the student is in
+ * @return A number representing how well the student fits for this rule
+ *
+ * Note that when calling this, you should also call it again with
+ * qleft and qright reversed. This only does half the comparisons needed.
+ */
 double Algorithm::basicComplementRule(const Question& qleft,
                                       const Question& qright,
                                       StudentPtr student,
@@ -200,6 +239,7 @@ double Algorithm::basicComplementRule(const Question& qleft,
     const std::vector<StudentPtr>& teamMembers = team.getStudents();
 
     // Calculate team average and max answers for right
+    const double averageLeft = team.getAverage(qleft.index);
     const double averageRight = team.getAverage(qright.index);
     const double maxRight = team.getMax(qright.index);
 
@@ -207,44 +247,50 @@ double Algorithm::basicComplementRule(const Question& qleft,
     int dissimilaritySum = 0;
     for (int i = 0; i < team.getSize(); i++)
     {
+        /* Bugfix in D4: Don't compare a student to himself */
+        if (teamMembers[i]->getId() != student->getId()) continue;
+
+        /* This looks weird, but it makes sense. If one has a 5 for
+         * idea generation, and the other has a 5 for idea evaluation,
+         * then we add 5 to the score. But if one of them has a 4 instead,
+         * then we only add 4, and so on. It's the min of the two values. */
         dissimilaritySum += std::min(profile->getAnswer(qleft.index),
                                      teamMembers[i]->
                                      getProfile()->getAnswer(qright.index));
     }
 
-    // Range the the # of values the question will accept
-    const int range = qleft.max - qleft.min + 1;
+    /* Update in D4: We also compare the student's answer to the
+     * team average for the same question. If student has a 5 and team
+     * average is 1, we add 4 to the score. If student has 3 and team
+     * average is 3, we add 0 to the score. The more different they are,
+     * the stronger the complement, so the better the match. */
+    dissimilaritySum += team.getSize()
+            * std::abs(averageLeft - profile->getAnswer(qleft.index));
 
-    // Inflexibility is the # of values they won’t accept
-    const int inflexibility = range - (profile->getMaxAnswer(qright.index)
-                                       - profile->getMinAnswer(qleft.index) // ????? left or right?
-                                       + 1);
-
-    // How inflexible the student is relative to this question
-    const double inflexibilityFactor = 1 + inflexibility/range;
-
-
-    double averageRightFactor = 0;
-    double maxRightFactor = 0;
+    /* Update in D4: Removed inflexibility factor.
+     * The current algorithm takes people's flexibility into account
+     * already by prioritizing the matching of those who are hardest
+     * to find good matches for. */
 
     // Is the team average inside or outside the preferred range
-    /*if (averageRight < aRightAnswer.min) {
-        averageRightFactor = aRightAnswer.min - averageRight;
-    } else if (averageRight > aRightAnswer.max) {
-        averageRightFactor = averageRight - aRightAnswer.max;
+    double averageRightFactor = 0;
+    if (averageRight < profile->getMinAnswer(qright.index)) {
+        averageRightFactor =
+                profile->getMinAnswer(qright.index) - averageRight;
+    } else if (averageRight > profile->getMaxAnswer(qright.index)) {
+        averageRightFactor = averageRight - profile->getMaxAnswer(qright.index);
     }
-    if (maxRight < aRightAnswer.min) {
-        maxRightFactor = aRightAnswer.min - maxRight;
-    } else if (maxRight > aRightAnswer.max) {
-        maxRightFactor = maxRight - aRightAnswer.max;
-    }*/
 
-    // Preference penalty depends on how inflexible the person is
-    double preferencePenalty = inflexibilityFactor * maxRightFactor * averageRightFactor;
+    // Is the team max inside or outside the preferred range
+    double maxRightFactor = 0;
+    if (maxRight < profile->getMinAnswer(qright.index)) {
+        maxRightFactor = profile->getMinAnswer(qright.index) - maxRight;
+    } else if (maxRight > profile->getMaxAnswer(qright.index)) {
+        maxRightFactor = maxRight - profile->getMaxAnswer(qright.index);
+    }
 
     // Rule output depends on how dissimilar they are
     // minus some adjustment based on whether the team falls
     // within the person’s preferred range.
-    //return dissimilaritySum - preferencePenalty;*/
-    return 0;
+    return dissimilaritySum - maxRightFactor * averageRightFactor;
 }
