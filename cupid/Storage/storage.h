@@ -20,6 +20,7 @@ namespace storage
     typedef std::shared_ptr<std::vector<StudentPtr > > StudentList;
     typedef std::shared_ptr<std::vector<ProfilePtr > > ProfileList;
     typedef std::shared_ptr<std::vector<ProjectPtr > > ProjectList;
+    typedef std::shared_ptr<const std::vector<StudentPtr > > StudentListConst;
     typedef std::unordered_map<int, std::shared_ptr<Student> > StudentMap;
     typedef std::unordered_map<int, std::shared_ptr<Profile> > ProfileMap;
     typedef std::unordered_map<int, std::shared_ptr<Project> > ProjectMap;

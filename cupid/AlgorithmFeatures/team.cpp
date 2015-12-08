@@ -28,6 +28,11 @@ Team::Team() : _cacheValid(false), _overallSkillAverage(-1)
 
 }
 
+Team::Team(storage::StudentPtr student) : Team()
+{
+    _students.push_back(student);
+}
+
 double Team::getScore() const
 {
     if (!_cacheValid) {
@@ -49,14 +54,19 @@ QString Team::getId() const
 // TODO: could optimize to not use 3 function calls
 void Team::addStudent(StudentPtr student)
 {
-    _students->push_back(student);
-    std::sort(_students->begin(), _students->end());
-    std::unique(_students->begin(), _students->end());
+    _students.push_back(student);
+    std::sort(_students.begin(), _students.end());
+    std::unique(_students.begin(), _students.end());
 }
 
 int Team::getSize() const
 {
-    return _students->size();
+    return _students.size();
+}
+
+const std::vector<StudentPtr>& Team::getStudents() const
+{
+    return _students;
 }
 
 double Team::getOverallSkillAverage() const
@@ -101,8 +111,8 @@ void Team::recalculateStats() const
     _id.clear();
     _overallSkillAverage = 0;
 
-    for (auto it = _students->begin();
-         it != _students->end(); ++it)
+    for (auto it = _students.begin();
+         it != _students.end(); ++it)
     {
         ProfilePtr sp = (*it)->getProfile();
 
@@ -130,11 +140,14 @@ void Team::recalculateStats() const
     }
 
     // Finish calculating the averages
-    _overallSkillAverage = _overallSkillAverage / (_students->size() * 7);
+    _overallSkillAverage = _overallSkillAverage / (_students.size() * 7);
     for (int i = 0; i < 16; ++i)
     {
-        _averages[_needStats[i]] /= _students->size();
-    }   
+        _averages[_needStats[i]] /= _students.size();
+    }
+
+    // Calculate the score
+
 
     // Set cache flag to valid
     _cacheValid = true;
