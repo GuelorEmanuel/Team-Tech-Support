@@ -33,7 +33,6 @@ ManageProfileWindow::ManageProfileWindow(ManageProfileControl &control,
    _sectionOne(0),_sectionTwo(1),_sectionThree(2),_sectionFour(3)
 {
 
-    _action = _control.getAction();
     ui->setupUi(this);
     ui->questionOneLbl->setWordWrap(true);
     ui->questionTwoLbl->setWordWrap(true);
@@ -46,7 +45,7 @@ ManageProfileWindow::ManageProfileWindow(ManageProfileControl &control,
     //ui->questionFourLbl->setText(QuestionList::instance()->getQuestion(_sectionOne)->prompt);
 
     _answerCount = 1;
-
+    _action = 0;
 
     //Set Arrays of QComboBoxes for answers
     _answers[0] = ui->questionOneCB;
@@ -70,12 +69,6 @@ ManageProfileWindow::ManageProfileWindow(ManageProfileControl &control,
     ui->questionThreeLbl->setText(QuestionList::instance()->getQuestion(_sectionThree)->prompt);//_control.loadSection().at(_sectionThree));
     ui->questionFourLbl->setText(QuestionList::instance()->getQuestion(_sectionFour)->prompt);//_control.loadSection().at(_sectionFour));
 
-
-    for(int i = 0; i < 4; i++) {
-        addValues(i, _answerCount);
-        if(_action == 1) setValues(i, _answerCount);
-        ++_answerCount;
-    }
 }
 
 void ManageProfileWindow::on_nextBtn_clicked()
@@ -157,9 +150,9 @@ void ManageProfileWindow::addValues(int index, int count)
 //Set current values for Profile
 void ManageProfileWindow::setValues(int index, int count)
 {
+    qDebug() << "Hey there";
     if(count < 1 || count > 30) return;
     int sum = _sectionOne+index;
-    qDebug() << _control.getAnswer(count-1);
     if(sum == 0 || sum == 3 || sum == 4 || sum == 5) {
         _answers[index]->setCurrentIndex(_control.getAnswer(count-1));
         _minAnswers[index]->setCurrentIndex(_control.getMinAnswer(count-1));
@@ -209,4 +202,15 @@ void ManageProfileWindow::on_exitBtn_clicked()
 void ManageProfileWindow::setAction(int action)
 {
     _action = action;
+}
+
+void ManageProfileWindow::setStatus()
+{
+    _action = _control.getAction();
+    for(int i = 0; i < 4; i++) {
+        addValues(i, _answerCount);
+        qDebug() << QString("Action status %1").arg(_action);
+        if(_action == 1) setValues(i, _answerCount);
+        ++_answerCount;
+    }
 }

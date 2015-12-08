@@ -22,8 +22,10 @@ ManageProfileControl::ManageProfileControl(ProfilePtr profile)
     : _view(*this), _action(1), count(0), _profile(profile)
 {
     _isComplete = true;
+    _view.setStatus();
     _view.setModal(true);
     _view.exec();
+    //_view.setStatus();
 }
 
 bool ManageProfileControl::profileComplete() const
