@@ -53,7 +53,8 @@ Algorithm::Algorithm(ProjectPtr project)
         }
 
         // Remove the students we have matched so far
-        _remainingStudents.erase(_remainingStudents.begin(), it-1);
+        //_remainingStudents.erase(_remainingStudents.begin(), it-1);
+        _remainingStudents.erase(_remainingStudents.begin(), it);
     }
 
 
