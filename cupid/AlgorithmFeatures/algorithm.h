@@ -44,11 +44,25 @@ private:
     static double basicSimilarityRule(const Question& q,
                                       const Qualification& a,
                                       const Qualification& b);
-
+    static double basicComplementRule(const Question& qleft,
+                                      const Question& qright,
+                                      storage::StudentPtr student,
+                                      storage::StudentPtr otherStudent);
     static double basicComplementRule(const Question& qleft,
                                       const Question& qright,
                                       storage::StudentPtr student,
                                       Team& team);
+    static double customTimeRule(storage::StudentPtr student,
+                                 Team& team);
+    static double customEfficiencyRule(storage::StudentPtr student,
+                                       Team& team);
+    static double customWorkloadRule(storage::StudentPtr student,
+                                     Team& team);
+
+    /*
+     * Whereas the QuestionList just tells you the questions,
+     * this part organizes them by rules and gives the weights.
+     */
 
     static constexpr int similarityQuestions[12] = {
         QuestionList::Q_DESIRED_GRADE,
@@ -69,6 +83,50 @@ private:
         5, 5, 5, 4, 4, 4, 4, 3, 3, 3, 3, 3
     };
 
+    static constexpr int complementQuestions[8] = {
+        QuestionList::Q_ROLE_LEADER,
+        QuestionList::Q_ROLE_FOLLOWER,
+        QuestionList::Q_ROLE_DETAIL,
+        QuestionList::Q_ROLE_BIG_PICTURE,
+        QuestionList::Q_ROLE_CHALLENGE,
+        QuestionList::Q_ROLE_REPETITIVE,
+        QuestionList::Q_ROLE_IDEA_GENERATION,
+        QuestionList::Q_ROLE_IDEA_EVALUATION
+    };
+
+    static constexpr int complementWeights[8] = {
+        5, 5, 3, 3, 3, 3, 3, 3
+    };
+
+    static const int customTimeQuestion = QuestionList::Q_TIME_FLEXIBILITY;
+    static const int customTimeWeight = 3;
+    static constexpr int customTimeRules[5][5] = {
+        {-1,-1,2,3,4}, // most inflexible student
+        {-1,-1,0,1,2},
+        {2,0,0,0,0},   // {most inflexible team, ..., most flexible team}
+        {3,1,0,0,0},
+        {4,2,0,0,0}    // most flexible student
+    };
+
+    static const int customEfficiencyQuestion = QuestionList::Q_EFFICIENCY;
+    static const int customEfficiencyWeight = 1;
+    static constexpr int customEfficiencyRules[5][5] = {
+        {0,0,0,2,3},   // most efficient student
+        {0,0,0,1,2},
+        {0,0,0,1,1},   // {most efficient team, ..., most inefficient team}
+        {2,1,1,-1,-1},
+        {3,2,1,-1,-2}  // most inefficient student
+    };
+
+    static const int customWorkloadQuestion = QuestionList::Q_WORKLOAD;
+    static const int customWorkloadWeight = 3;
+    static constexpr int customWorkloadRules[5][5] = {
+        {0,0,0,-1,-1},   // least busy student
+        {0,0,0,1,0},
+        {0,0,0,1,2},     // {least busy team, ..., most busy team}
+        {-1,1,1,-1,-1},
+        {-1,0,2,-1,-2}   // most busy student
+    };
 };
 
 #endif // ALGORITHM_H
