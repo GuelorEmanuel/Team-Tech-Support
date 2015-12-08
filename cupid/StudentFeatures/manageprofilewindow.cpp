@@ -110,6 +110,15 @@ void ManageProfileWindow::on_nextBtn_clicked()
             setValues(i, _answerCount);
             ++_answerCount;
         }
+        _sectionOne+=4;
+        _sectionTwo+=4;
+        _sectionThree+=4;
+        _sectionFour+=4;
+        ui->questionOneLbl->setText(QuestionList::instance()->getQuestion(_sectionOne)->prompt);
+        ui->questionTwoLbl->setText(QuestionList::instance()->getQuestion(_sectionTwo)->prompt);//_control.loadSection().at(_sectionTwo));
+        ui->questionThreeLbl->setText(QuestionList::instance()->getQuestion(_sectionThree)->prompt);//_control.loadSection().at(_sectionThree));
+        ui->questionFourLbl->setText(QuestionList::instance()->getQuestion(_sectionFour)->prompt);//_control.loadSection().at(_sectionFour));
+        ++_pageCount;
     } else {
         for(int i = 0; i < 4; i++) {
             int sum = _sectionOne+i;
@@ -133,20 +142,15 @@ void ManageProfileWindow::on_nextBtn_clicked()
 
             _control.addAsnwers(a, amin, amax);
         }
+       // qDebug() <<
         _control.updateProfile();
     }
 
-    _sectionOne+=4;
-    _sectionTwo+=4;
-    _sectionThree+=4;
-    _sectionFour+=4;
+    //ui->questionOneLbl->setText(QuestionList::instance()->getQuestion(_sectionOne)->prompt);
+    //ui->questionTwoLbl->setText(QuestionList::instance()->getQuestion(_sectionTwo)->prompt);//_control.loadSection().at(_sectionTwo));
+    //ui->questionThreeLbl->setText(QuestionList::instance()->getQuestion(_sectionThree)->prompt);//_control.loadSection().at(_sectionThree));
+    //ui->questionFourLbl->setText(QuestionList::instance()->getQuestion(_sectionFour)->prompt);//_control.loadSection().at(_sectionFour));
 
-    ui->questionOneLbl->setText(QuestionList::instance()->getQuestion(_sectionOne)->prompt);
-    ui->questionTwoLbl->setText(QuestionList::instance()->getQuestion(_sectionTwo)->prompt);//_control.loadSection().at(_sectionTwo));
-    ui->questionThreeLbl->setText(QuestionList::instance()->getQuestion(_sectionThree)->prompt);//_control.loadSection().at(_sectionThree));
-    ui->questionFourLbl->setText(QuestionList::instance()->getQuestion(_sectionFour)->prompt);//_control.loadSection().at(_sectionFour));
-
-    ++_pageCount;
 }
 
 //add Values
