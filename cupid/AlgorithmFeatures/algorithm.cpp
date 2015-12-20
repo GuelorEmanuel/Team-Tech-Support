@@ -11,6 +11,7 @@
 #include <sstream>
 #include <string>
 #include <QString>
+#include <cmath>
 using namespace storage;
 using namespace algorithm;
 
@@ -27,11 +28,12 @@ Algorithm::Algorithm(ProjectPtr project)
     : _project(project)
 {
     _students = _project->getStudents();
+    if (_students->size() == 0) return;
     _remainingStudents = *(_project->getStudents());
     sortRemainingStudents();
 
     // Figure out how many teams there will be
-    int initialSize = _students->size() / _project->getMinTeamSize();
+    int initialSize = std::max(1, (int)_students->size() / (int)_project->getMinTeamSize());
     qDebug() << "There are " << _students->size()
              << " students in the project.";
     qDebug() << "There will be "
@@ -57,15 +59,13 @@ Algorithm::Algorithm(ProjectPtr project)
         _remainingStudents.erase(_remainingStudents.begin(), it);
     }
 
-
     while (_remainingStudents.size() > 0)
     {
-        qDebug() << "Sorting";
+        qDebug() << "Sorting remaining students " << _remainingStudents.size();
         sortTeams();
         for (auto it = _teams.begin(); it != _teams.end(); ++it)
         {
             if (_remainingStudents.size() == 0) break;
-            qDebug() << "Remaining: " << _remainingStudents.size();
             TeamPtr team(*it);
             StudentPtr bestMatch(findBestStudentMatch(team));
             team->addStudent(bestMatch);
@@ -192,7 +192,6 @@ double Algorithm::calculateEaseOfMatching(TeamPtr a)
     for (auto it = _remainingStudents.begin();
          it != _remainingStudents.end(); ++it)
     {
-        qDebug() << (*it)->getId();
         Team potentialTeam(*a);
         potentialTeam.addStudent(*it);
         ret += calculateScore(potentialTeam) - currentScore;
