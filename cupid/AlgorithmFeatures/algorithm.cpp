@@ -5,6 +5,7 @@
 #include "Storage/project.h"
 #include "Storage/storage.h"
 #include "Storage/student.h"
+#include <Storage/realprofile.h>
 #include "AlgorithmFeatures/team.h"
 #include <QDebug>
 #include  <algorithm>
@@ -24,11 +25,46 @@ constexpr int Algorithm::customEfficiencyRules[5][5];
 constexpr int Algorithm::customWorkloadRules[5][5];
 constexpr int Algorithm::skillsetQuestions[5];
 
+static void printQualification(const Qualification& q) {
+    qDebug() << "{" << q.getAnswer() << "," << q.getMinAnswer() << "," << q.getMaxAnswer() << "}";
+}
+
+static void printProfile(ProfilePtr profile) {
+
+    std::vector<Qualification> qs = profile->getQualifications();
+    qDebug() << "Found " << qs.size() << " qualifications";
+    std::stringstream ss;
+    ss << "Profile #" << profile->getId() << ": {";
+    for (int j = 0; j < qs.size(); j++) {
+        Qualification q = qs[j];
+        ss << "{" << q.getAnswer() << "," << q.getMinAnswer() << "," << q.getMaxAnswer() << "}, ";
+    }
+    ss << "}";
+    qDebug() << QString::fromStdString(ss.str());
+}
+
+static void printStudent(StudentPtr student) {
+    printProfile(student->getProfile());
+}
+
 Algorithm::Algorithm(ProjectPtr project)
     : _project(project)
 {
     _students = _project->getStudents();
     if (_students->size() == 0) return;
+    qDebug() << "Printing profiles: ";
+    for (int i = 0; i < _students->size(); ++i)
+    {
+        qDebug() << "Profile " << i;
+        printStudent(_students->at(i));
+    }
+
+    for (int i = 0; i < 12; ++i)
+    {
+        qDebug() << "similarityWeight[" << i << "] = " << Algorithm::similarityWeights[i];
+    }
+
+
     _remainingStudents = *(_project->getStudents());
     sortRemainingStudents();
 
@@ -240,7 +276,7 @@ double Algorithm::calculateEaseOfMatching(StudentPtr a)
 double Algorithm::calculateScore(StudentPtr a, StudentPtr b)
 {
     ProfilePtr pa(a->getProfile());
-    ProfilePtr pb(b->getProfile());
+    ProfilePtr pb(b->getProfile());    
 
     double ret = 0;
     for (int i = 0; i < 12; ++i)
@@ -570,7 +606,9 @@ double Algorithm::basicSimilarityRule(int questionNumber,
 double Algorithm::basicSimilarityRule(const Question& q,
                                       const Qualification& a,
                                       const Qualification& b)
-{    
+{
+    printQualification(a);
+    printQualification(b);
     double range = q.max - q.min + 1;
 
     double aInflexibility = range - (a.getMaxAnswer() - a.getMinAnswer());
