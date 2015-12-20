@@ -52,17 +52,17 @@ Algorithm::Algorithm(ProjectPtr project)
 {
     _students = _project->getStudents();
     if (_students->size() == 0) return;
-    qDebug() << "Printing profiles: ";
-    for (int i = 0; i < _students->size(); ++i)
-    {
-        qDebug() << "Profile " << i;
-        printStudent(_students->at(i));
-    }
+    //qDebug() << "Printing profiles: ";
+    //for (int i = 0; i < _students->size(); ++i)
+    //{
+        //qDebug() << "Profile " << i;
+        //printStudent(_students->at(i));
+    //}
 
-    for (int i = 0; i < 12; ++i)
+    /*for (int i = 0; i < 12; ++i)
     {
         qDebug() << "similarityWeight[" << i << "] = " << Algorithm::similarityWeights[i];
-    }
+    }*/
 
 
     _remainingStudents = *(_project->getStudents());
@@ -97,7 +97,7 @@ Algorithm::Algorithm(ProjectPtr project)
 
     while (_remainingStudents.size() > 0)
     {
-        qDebug() << "Sorting remaining students " << _remainingStudents.size();
+        //qDebug() << "Sorting remaining students " << _remainingStudents.size();
         sortTeams();
         for (auto it = _teams.begin(); it != _teams.end(); ++it)
         {
@@ -607,8 +607,8 @@ double Algorithm::basicSimilarityRule(const Question& q,
                                       const Qualification& a,
                                       const Qualification& b)
 {
-    printQualification(a);
-    printQualification(b);
+    //printQualification(a);
+    //printQualification(b);
     double range = q.max - q.min + 1;
 
     double aInflexibility = range - (a.getMaxAnswer() - a.getMinAnswer());
