@@ -2,21 +2,21 @@
 #define ADMINMAINCONTROL_H
 
 #include "adminhomewindow.h"
-class Admin;
+#include "Storage/storage.h"
 
 class AdminHomeControl
 {
 public:
-    AdminHomeControl(Admin& admin);
+    AdminHomeControl(storage::AdminPtr admin);
     void createProject();
     void editProject(int projectId);
     void computeTeams(int projectId);
     void signOut();
     QString getName();
 private:
-    AdminHomeWindow _view;
-    Admin& _admin;
-    void getProjectList();
+    storage::AdminPtr _admin;
+    AdminHomeWindow _view;    
+    void updateProjectsList();
 };
 
 #endif // ADMINMAINCONTROL_H

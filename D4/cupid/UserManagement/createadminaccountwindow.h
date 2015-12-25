@@ -17,14 +17,15 @@ public:
     explicit CreateAdminAccountWindow(CreateAdminAccountControl &control,
                                     QWidget *parent = 0);
     ~CreateAdminAccountWindow();
+    void displayUserNameUnavailableError();
 
 private slots:
     void on_submitBtn_clicked();
     void on_cancelBtn_clicked();
 
 private:
-    std::auto_ptr<Ui::CreateAdminAccountWindow> ui;
     CreateAdminAccountControl &_control;
+    std::unique_ptr<Ui::CreateAdminAccountWindow> ui;
 };
 
 #endif // CREATEADMINACCOUNTWINDOW_H

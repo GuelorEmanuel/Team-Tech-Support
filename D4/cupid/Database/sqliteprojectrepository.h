@@ -1,21 +1,23 @@
 #ifndef SQLITEPROJECTREPOSITORY_H
 #define SQLITEPROJECTREPOSITORY_H
 
-#include "Storage/project.h"
-#include "database.h"
+#include "Storage/storage.h"
+#include <QString>
+class QSqlDatabase;
 
 class SqliteProjectRepository
 {
 public:
-    SqliteProjectRepository();
-    int createProject(Project& project);
-    int editProject(Project& project);//int id
-    int listProjects(std::vector<Project> projects);
-    int listProjectsIDs(std::vector<int> projects);
-    int listProjectsNames(std::vector<QString> projects);
-    int listFullProjects(std::vector<Project> projects);
-    int getProject(Project& project);
-
+    SqliteProjectRepository(QSqlDatabase& db);
+    int createProject(storage::ProjectPtr project);
+    int editProject(storage::ProjectPtr project);//int id
+    int listProjects(storage::ProjectList projects);
+    int listProjectsIDs(std::vector<int> &projects);
+    int listProjectsNames(std::vector<QString> &projects);
+    int listFullProjects(storage::ProjectList projects);
+    int getProject(storage::ProjectPtr project);
+private:
+    QSqlDatabase& _db;
 };
 
 #endif // SQLITEPROJECTREPOSITORY_H

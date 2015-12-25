@@ -1,39 +1,50 @@
 #ifndef PROXYPROJECT_H
 #define PROXYPROJECT_H
 
-#include "realproject.h"
+#include "storage.h"
+#include "project.h"
+#include <QString>
+#include <memory>
 #include <vector>
+class RealProject;
+class Student;
 
-class ProxyProject {
-
+class ProxyProject : public Project
+{
 public:
-
-    ProxyProject();
-    virtual ~ProxyProject()
-    virtual int getId();
+    explicit ProxyProject();
+    explicit ProxyProject(int id);
+    explicit ProxyProject(QString name, QString description,
+                 int minTeamSize, int maxTeamSize);
+    explicit ProxyProject(int id, QString name, QString description,
+                 int minTeamSize, int maxTeamSize);
+    explicit ProxyProject(int id, QString name, QString description,
+                 int minTeamSize, int maxTeamSize,
+                 storage::StudentList students);
+    virtual ~ProxyProject();
+    virtual int getId() const;
     virtual void setId(int value);
-    virtual int getMinTeamSize();
+    virtual int getMinTeamSize() const;
     virtual void setMinTeamSize(int value);
-    virtual int getMaxTeamSize();
+    virtual int getMaxTeamSize() const;
     virtual void setMaxTeamSize(int value);
-    virtual QString getName();
+    virtual QString getName() const;
     virtual void setName(QString value);
-    virtual QString getDescription();
-    virtual int setDescription(QString value);
-    virtual int registerStudent(Student& student);
-    virtual std::vector<Student> getStudents();
-    virtual static int lookupId(QString name);
-    virtual int create();
-    virtual int edit();
+    virtual QString getDescription() const;
+    virtual void setDescription(QString value);
+    virtual storage::StudentList getStudents();
+    virtual void setStudents(storage::StudentList students);
+    virtual void registerStudent(storage::StudentPtr student);
 
 protected:
-  std::auto_ptr<RealProject> getProject();
-
+     void initRealProject();
 private:
-  //QPointer<RealStudent> realStudent; will use later
-  std::auto_ptr<RealProject> _realProject;
-  //RealStudent *;
-
+    std::unique_ptr<RealProject> _project;
+    int _id;
+    QString _name;
+    QString _description;
+    int _minTeamSize;
+    int _maxTeamSize;
 };
 
 #endif // PROXYPROJECT_H

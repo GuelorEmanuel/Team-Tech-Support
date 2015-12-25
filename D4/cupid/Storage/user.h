@@ -5,15 +5,17 @@
 class User
 {
 public:
-    virtual ~User() = 0;
-    virtual QString getUserName() = 0;
-    virtual void setUserName(QString value) = 0;
-    virtual QString getDisplayName() = 0;
-    virtual void setDisplayName(QString value) = 0;
-    virtual int getId() = 0;
-    virtual void setId(int value) = 0;
-protected:
     User();
+    User(int id);
+    ~User();
+    virtual QString getUserName() const;
+    void setUserName(QString value);
+    QString getDisplayName() const;
+    void setDisplayName(QString value);
+    int getId() const;
+    void setId(int value);
+    virtual bool isAdmin();
+protected:    
     int _id;
     QString _userName;
     QString _displayName;

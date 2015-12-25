@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <memory>
+#include "Storage/project.h"
 
 class ManageProjectControl;
 
@@ -18,13 +19,13 @@ public:
     explicit ManageProjectWindow(ManageProjectControl &control, QWidget *parent = 0);
     ~ManageProjectWindow();
     void displayError(QString msg);
-
+    void displayProject(storage::ProjectPtr project);
 private slots:
     void on_createBtn_clicked();
     void on_cancelButton_clicked();
 
 private:
-    std::auto_ptr<Ui::ManageProjectWindow> ui;
+    std::unique_ptr<Ui::ManageProjectWindow> ui;
     ManageProjectControl &_control;
 };
 

@@ -37,23 +37,23 @@
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="QLineEdit" name="firstNameLE">
+     <widget class="QLineEdit" name="displayNameLineEdit">
       <property name="placeholderText">
-       <string>Your First Name</string>
+       <string>Your full name</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lastnameLE">
+     <widget class="QLineEdit" name="userNameLineEdit">
       <property name="placeholderText">
-       <string>Your Last Name</string>
+       <string>Username</string>
       </property>
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="idLE">
+     <widget class="QLineEdit" name="studentIdLineEdit">
       <property name="placeholderText">
-       <string>Your ID</string>
+       <string>Student ID</string>
       </property>
      </widget>
     </item>

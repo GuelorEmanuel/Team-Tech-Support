@@ -1,37 +1,18 @@
 #include "realstudent.h"
+#include "storage.h"
+#include <QDebug>
+#include "Storage/realstudent.h"
+#include "Storage/storage.h"
+#include "Storage/storagemanager.h"
+using namespace storage;
 
-RealStudent::RealStudent() {
-
-}
-RealStudent::~RealStudent(){
-
-}
-
-
-QString RealStudent::getUserName() {
-    return _userName;
-}
-
-void RealStudent::setUserName(QString value) {
-    _userName = value;
+RealStudent::RealStudent(int id, QString studentId, ProfilePtr profile)
+    : Student(id), _studentId(studentId), _profile(profile)
+{
+    qDebug() << "RealStudent(userId=" << id << ", profileId=" << profile->getId() << ")";
 }
 
-QString RealStudent::getDisplayName() {
-    return _displayName;
-}
-
-void RealStudent::setDisplayName(QString value) {
-    _displayName = value;
-}
-
-int RealStudent::getId() {
-    return _id;
-}
-
-void RealStudent::setId(int value) {
-    _id = value;
-}
-
+RealStudent::~RealStudent() {}
 
 QString RealStudent::getStudentId() {
     return _studentId;
@@ -41,26 +22,37 @@ void RealStudent::setStudentId(QString value) {
     _studentId = value;
 }
 
-Profile &RealStudent::getProfile() {
-    return *_profile; // Calls copy constructor on the profile
+ProfilePtr RealStudent::getProfile() {
+    return _profile;
 }
 
-void RealStudent::setProfile(Profile* value) {
-    _profile.reset(value);
+void RealStudent::setProfile(ProfilePtr value) {
+    qDebug() << "RealStudent::setProfile(userId=" << _id << ", profileId=" << value->getId() << ")";
+    _profile = value;
 }
 
-/*Function: void Student::createStudentUser
- * Purpose: add new student user to db
- */
-int RealStudent::createStudentUser() {
-
+ProjectList RealStudent::getProjects() {
+    if (!_projects)
+    {
+        // Using "this" doesn't work well with shared pointers,
+        // so we use a workaround.
+        _projects = StorageManager::instance()->
+                listStudentProjects(StorageManager::instance()
+                                    ->getStudent(getId()));
+    }
+    return _projects;
 }
 
-
-std::vector<Project*> RealStudent::getProjects() {
-
-}
-
-int RealStudent::joinProject(Project& project) {
+void RealStudent::joinProject(ProjectPtr project) {
     // Connect to database and add the student to the project
+}
+
+bool RealStudent::operator<(const Student& rhs) const
+{
+    return getId() < rhs.getId();
+}
+
+bool RealStudent::operator==(const Student& rhs) const
+{
+    return getId() == rhs.getId();
 }

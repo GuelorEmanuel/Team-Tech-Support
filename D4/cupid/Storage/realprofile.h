@@ -1,29 +1,35 @@
 #ifndef REALPROFILE_H
 #define REALPROFILE_H
 
-#include "qualification.h"
-#include <vector>
+#include "profile.h"
+#include "storage.h"
 
-class RealProfile
+class RealProfile:public Profile
 {
 public:
-    RealProfile();
-    virtual ~RealProfile();
+    explicit RealProfile(int id);
+    explicit RealProfile(int id, int userId);
+    ~RealProfile();
     virtual int getId();
     virtual void setId(int value);
-    virtual void setStuId(int value);
-    virtual int getStuId();
+    virtual void setUserId(int value);
+    virtual int getUserId();
     virtual std::vector<Qualification> getQualifications();
-    virtual int addQualification(int, int, int);
-    virtual int addQualification(Qualification&);
+    virtual const Qualification& getQualification(int index);
+    virtual void addQualification(int, int, int);
+    virtual void addQualification(Qualification&);
     virtual int getAnswer(int index);
     virtual int getMinAnswer(int index);
     virtual int getMaxAnswer(int index);
-    virtual int loadQualification();
-    virtual int editQualification(int num, int ans, int amin, int amax);
-    virtual int editQualification(int num, Qualification&);
-    virtual int createProfile();
-    virtual int editProfile();
+    virtual void editQualification(int num, int ans, int amin, int amax);
+    virtual storage::StudentPtr getStudent();
+    virtual void setStudent(storage::StudentPtr student);
+
+private:
+    int _id;
+    int _userId;
+    storage::StudentPtr _student;
+    std::vector<Qualification> _qualifications;
 };
 
 #endif // REALPROFILE_H

@@ -1,29 +1,38 @@
-#include "adminhomecontrol.h"
-#include "manageprojectcontrol.h"
+#include "AdminFeatures/adminhomecontrol.h"
+#include "AdminFeatures/adminfeaturescommunication.h"
+#include "AdminFeatures/manageprojectcontrol.h"
+#include "Storage/project.h"
 #include "Storage/admin.h"
+#include "Storage/storage.h"
+#include <QDebug>
+using namespace storage;
 
-AdminHomeControl::AdminHomeControl(Admin &admin) :
+AdminHomeControl::AdminHomeControl(AdminPtr admin) :
     _admin(admin), _view(*this)
 {
-    getProjectList();
-    _view.setName(admin.getDisplayName());
+    updateProjectsList();
+    _view.setName(admin->getDisplayName());
     _view.setModal(true);
     _view.exec();
 }
 
+
 void AdminHomeControl::createProject() {
     ManageProjectControl manageProjectControl;
-    getProjectList();
+    updateProjectsList();
     _view.show();
 }
 
-void AdminHomeControl::editProject(int projectId) {
-    ManageProjectControl manageProjectControl;
+void AdminHomeControl::editProject(int id) {
+    ManageProjectControl manageProjectControl(
+                AdminFeaturesCommunication::getProject(id));
+    updateProjectsList();
     _view.show();
 }
 
 void AdminHomeControl::computeTeams(int projectId) {
-
+    ProjectPtr project(AdminFeaturesCommunication::getProject(projectId));
+    AdminFeaturesCommunication::showComputeTeamsWindow(project);
 }
 
 void AdminHomeControl::signOut() {
@@ -33,22 +42,12 @@ void AdminHomeControl::signOut() {
 /* Function: voidAdminMainControl::getProjectList()
  * Purpose : get list of projects and display it to user(admin)
  */
-void AdminHomeControl::getProjectList() {
-/*    QSqlQuery qry(Database::getInstance().db());
-    qry.prepare("SELECT * FROM project");
-    // Project fields are id, name, min_team_size, max_team_size, description
-    if (!qry.exec()) {
-        qDebug() << qry.lastError();
-    } else {
-        while (qry.next()) {
-            qDebug() << "Found project " << qry.value(1).toString();
-            _view.addProject(qry.value(0).toInt(), qry.value(1).toString());
-        }
-    }*/
+void AdminHomeControl::updateProjectsList()
+{
+    _view.updateProjectsList(AdminFeaturesCommunication::getProjectList());
 }
 
 QString AdminHomeControl::getName()
 {
-    return "test";
-            //_admin.getDisplayName();
+    return _admin->getDisplayName();
 }

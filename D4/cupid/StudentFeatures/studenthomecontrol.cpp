@@ -1,38 +1,49 @@
-#include "studenthomecontrol.h"
 #include "Storage/student.h"
-#include "manageprofilecontrol.h"
-#include "joinprojectcontrol.h"
+#include "Storage/storagemanager.h"
+#include "StudentFeatures/manageprofilecontrol.h"
+#include "StudentFeatures/joinprojectcontrol.h"
+#include "StudentFeatures/studentfeaturescommunication.h"
+#include "StudentFeatures/studenthomewindow.h"
+#include <QDebug>
+using namespace storage;
 
-
-StudentHomeControl::StudentHomeControl(Student &student) :
-    _student(student), _view(*this)
+StudentHomeControl::StudentHomeControl(StudentPtr student) :
+    _student(student), _view(new StudentHomeWindow(*this))
 {
     getUnjoinedProjectList();
     getJoinedProjectList();
 
-    _view.setName(student.getDisplayName());
-
-    _view.setModal(true);
-    _view.exec();
-
+    _view->setName(student->getDisplayName());
+    _view->setModal(true);
+    _view->exec();
 }
 
+StudentHomeControl::~StudentHomeControl() {}
+
 void StudentHomeControl::logout() {
-    _view.close();
+    _view->close();
 }
 
 /*Function: void StudentMainControl::editProfile()
  * Purpose: open control class for profile edition
  */
 void StudentHomeControl::editProfile() {
-    ManageProfileControl manageProfileControl(_student.getId(), 1);
-    _view.show();
-
+    ManageProfileControl manageProfileControl(_student->getProfile());
+    _view->show();
 }
 
 QString StudentHomeControl::getName()
 {
-    return _student.getDisplayName();
+    return _student->getDisplayName();
+}
+
+/*Function: void StudentMainControl::openUnJoinedProject
+ * Purpose: open unjoined project to student
+ */
+void StudentHomeControl::openUnJoinedProject(int projectId) {
+    ProjectPtr project = StudentFeaturesCommunication::getProject(projectId);
+    JoinProjectControl joinProjectControl(project, _student, *this);
+    _view->show();
 }
 
 /*Function: void StudentMainControl::getUnjoinedProjectList()
@@ -41,34 +52,9 @@ QString StudentHomeControl::getName()
  *          to view class
  */
 void StudentHomeControl::getUnjoinedProjectList() {
-    /*
-    QSqlQuery qry(Database::getInstance().db());
-    qry.prepare("SELECT id, name FROM project "
-                "WHERE id NOT IN "
-                "(SELECT id FROM project, project_student_registered "
-                " AS psr WHERE "
-                "psr.project_id = project.id AND psr.user_id = :user_id)");
-
-    qry.bindValue(":user_id", _student.getId());
-
-    if (!qry.exec()) {
-        qDebug() << qry.lastError();
-    } else {
-        while (qry.next()) {
-            qDebug() << "Found unjoined project " << qry.value(1).toString();
-            _view.addUnjoinedProject(qry.value(0).toInt(),
-                                     qry.value(1).toString());
-        }
-    }
-    */
-}
-
-/*Function: void StudentMainControl::openUnJoinedProject
- * Purpose: open unjoined project to student
- */
-void StudentHomeControl::openUnJoinedProject(int projectId) {
-    JoinProjectControl studentProjectControl(projectId, _student);
-    _view.show();
+    ProjectList projects(
+                StudentFeaturesCommunication::listUnjoinedProjects(_student));
+    _view->setUnjoinedProjects(projects);
 }
 
 /*Function: void StudentMainControl::getJoinedProjectList()
@@ -77,22 +63,13 @@ void StudentHomeControl::openUnJoinedProject(int projectId) {
  *          to view class
  */
 void StudentHomeControl::getJoinedProjectList() {
-    /*
-    QSqlQuery qry(Database::getInstance().db());    
-    qry.prepare("SELECT id, name FROM project, project_student_registered "
-                " AS psr WHERE "
-                "psr.project_id = project.id AND psr.user_id = :user_id");
-    qry.bindValue(":user_id", _student.getId());
+    ProjectList projects(
+                StudentFeaturesCommunication::listJoinedProjects(_student));
+    _view->setJoinedProjects(projects);
+}
 
-    if (!qry.exec()) {
-        qDebug() << qry.lastError();
-    } else {
-        while (qry.next()) {
-            qDebug() << "Found joined project " << qry.value(1).toString();
-            _view.addJoinedProject(qry.value(0).toInt(),
-                                   qry.value(1).toString());
-        }
-    }
-    */
+void StudentHomeControl::updateJoinedProjects(storage::ProjectPtr project)
+{
+    _view->updateJoinedProjects(project);
 }
 

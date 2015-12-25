@@ -1,10 +1,8 @@
 #ifndef JOINPROJECTWINDOW_H
 #define JOINPROJECTWINDOW_H
 
+#include "Storage/storage.h"
 #include <QDialog>
-#include <memory>
-#include "Storage/project.h"
-
 class JoinProjectControl;
 
 namespace Ui {
@@ -18,16 +16,14 @@ class JoinProjectWindow : public QDialog
 public:
     explicit JoinProjectWindow(JoinProjectControl &control, QWidget *parent = 0);
     ~JoinProjectWindow();
-
-    void refreshProjectSettings(const Project& project);
+    void refreshProjectSettings(storage::ProjectPtr project);
 
 private slots:
     void on_leaveProjectBtn_clicked();
-
     void on_joinProjectBtn_clicked();
 
 private:
-    std::auto_ptr<Ui::JoinProjectWindow> ui;
+    std::unique_ptr<Ui::JoinProjectWindow> ui;
     JoinProjectControl &_control;
 };
 

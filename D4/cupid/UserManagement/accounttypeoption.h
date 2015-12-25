@@ -1,10 +1,11 @@
 #ifndef ACCOUNTTYPEOPTION_H
 #define ACCOUNTTYPEOPTION_H
 
+#include "ui_accounttypeoption.h"
 #include <memory>
 #include <QDialog>
-
 class LoginControl;
+
 namespace Ui {
     class AccountTypeOption;
 }
@@ -24,8 +25,8 @@ private slots:
     void on_cancelBtn_clicked();
 
 private:
-    std::auto_ptr<Ui::AccountTypeOption> ui;
     LoginControl &_control;
+    std::unique_ptr<Ui::AccountTypeOption> _ui;
 };
 
 #endif // ACCOUNTTYPEOPTION_H

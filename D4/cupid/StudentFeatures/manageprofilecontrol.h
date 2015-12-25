@@ -1,16 +1,18 @@
 #ifndef MANAGEPROFILECONTROL_H
 #define MANAGEPROFILECONTROL_H
 
-#include <memory>
-#include "Storage/student.h"
+#include "Storage/storage.h"
 #include "manageprofilewindow.h"
-#include "Storage/profile.h"
+#include "Storage/storagemanager.h"
+#include "studentfeaturescommunication.h"
 
 class ManageProfileControl
 {
 public:
-    ManageProfileControl(int profileID, int action);
-    QList<QString> loadSection();
+    ManageProfileControl();
+    ManageProfileControl(storage::ProfilePtr profile);
+    bool profileComplete() const;
+    storage::ProfilePtr getCompletedProfile() const;
     void addAsnwers(int ans, int min, int max);
     int getAnswer(int index);
     int getMinAnswer(int index);
@@ -24,9 +26,10 @@ public:
     void createProfile();
     void updateProfile();
     void exitProfile();
+    int getAction();
 private:
-    std::auto_ptr<Profile> _profile;
-    ManageProfileWindow  _view;
+    storage::ProfilePtr _profile;
+    ManageProfileWindow _view;
     int _studentID;
     int _action;
     void loadProfileSettings(int id);
@@ -35,6 +38,7 @@ private:
     int _maxAnswers[28];
     int count;
     int action;
+    bool _isComplete;
 };
 
 #endif // MANAGEPROFILECONTROL_H

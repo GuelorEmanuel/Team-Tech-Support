@@ -2,7 +2,7 @@
 #define CREATEADMINACCOUNTCONTROL_H
 
 #include "createadminaccountwindow.h"
-#include "Storage/admin.h"
+#include "Storage/storage.h"
 
 class CreateAdminAccountControl
 {
@@ -13,7 +13,7 @@ public:
     void createAdminAccount(QString displayName, QString userName);
 private:
     CreateAdminAccountWindow _view;
-    std::auto_ptr<Admin> _admin;
+    storage::AdminPtr _admin;
 };
 
 #endif // CREATEADMINACCOUNTCONTROL_H

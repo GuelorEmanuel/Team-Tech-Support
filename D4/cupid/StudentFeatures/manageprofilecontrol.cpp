@@ -1,38 +1,40 @@
 #include "manageprofilecontrol.h"
-#include "questions.h"
+#include "Storage/profile.h"
+#include "studentfeaturescommunication.h"
+#include "Storage/proxyprofile.h"
+#include <QDebug>
+using namespace storage;
 
-/*Class: Control class for Edit Student Profile AND Create Student Profile.
- * Edits profile when the status of action variable is 1.
- * Creates profile when the status is 0.
- */
-ManageProfileControl::ManageProfileControl(int profileID, int action) :
-  _view(*this),/* _profile(new Profile),*/  _action(action), count(0)
+// Version for create profile
+ManageProfileControl::ManageProfileControl()
+    : _view(*this), _action(0), count(0)
 {
-  _profile->setId(profileID);
-
-
-  if(action == 1)
-      loadProfileSettings(profileID);
-  if(action == 0)
-      _profile->setStuId(profileID);
-
-  for(int i = 0; i < 4; i++) {
-      _view.addValues(i, count);
-      if(action == 1) _view.setValues(i, count);
-      ++count;
-  }
-  _view.setAction(_action);
-  _view.setModal(true);
-  _view.exec();
+     ProfilePtr profile(std::make_shared<ProxyProfile>());
+    _profile = profile;
+    _isComplete = false;
+    _view.setStatus();
+    _view.setModal(true);
+    _view.exec();
 }
 
-/*Function: QList<QString> EditStuProfileControl::loadSection
- * Purpose: Loads questions
- */
-QList<QString> ManageProfileControl::loadSection(){
-    Questions questions;
-    return questions.getQuestions();
+// Version for edit profile
+ManageProfileControl::ManageProfileControl(ProfilePtr profile)
+    : _view(*this), _action(1), count(0), _profile(profile)
+{
+    _isComplete = true;
+    _view.setStatus();
+    _view.setModal(true);
+    _view.exec();
+}
 
+bool ManageProfileControl::profileComplete() const
+{
+    return _isComplete;
+}
+
+ProfilePtr ManageProfileControl::getCompletedProfile() const
+{
+    return _profile;
 }
 
 /*Function: void EditStuProfileControl::addAsnwers
@@ -69,28 +71,28 @@ int* ManageProfileControl::getEditedMaxAnswers() {
 
 int ManageProfileControl::getAnswer(int index)
 {
-    if(index < 1 || index > 28) return -1;
+    if(index < 0 || index > 28) return -1;
 
     return _profile->getAnswer(index);
 }
 
 int ManageProfileControl::getMinAnswer(int index)
 {
-    if(index < 1 || index > 28) return -1;
+    if(index < 0 || index > 27) return -1;
 
     return _profile->getMinAnswer(index);
 }
 
 int ManageProfileControl::getMaxAnswer(int index)
 {
-    if(index < 1 || index > 28) return -1;
+    if(index < 0 || index > 27) return -1;
 
     return _profile->getMaxAnswer(index);
 }
 
 void ManageProfileControl::editQualification(int index, int a, int amin, int amax)
 {
-    if(index < 1 || index > 28) return;
+    if(index < 0 || index > 27) return;
 
     _profile->editQualification(index, a, amin, amax);
 }
@@ -116,13 +118,13 @@ void ManageProfileControl::editProfile()
     for(int i = 0; i < 28; i++) {
         _profile->editQualification(i, _answers[i], _minAnswers[i], _maxAnswers[i]);
     }
-    _profile->editProfile();
+    StudentFeaturesCommunication::editProfile(_profile);
     _view.close();
 }
 
 void ManageProfileControl::createProfile()
 {
-    _profile->createProfile();
+    _isComplete = true;
     _view.close();
 }
 
@@ -130,28 +132,8 @@ void ManageProfileControl::createProfile()
  * Purpose: load all questions and qualifications for profile object
  */
 void ManageProfileControl::loadProfileSettings(int id) {
-    Questions questions;
-    questions.getQuestions();
-    _profile->loadQualification();
+    _profile = StudentFeaturesCommunication::getProfile(id);
 
-    /*QSqlQuery qry(Database::getInstance().db());
-    qry.prepare("SELECT * FROM profile WHERE id = :id");
-    qry.bindValue(":id", id);
-
-    if (!qry.exec()) {
-        qDebug() << qry.lastError();
-        return; // TODO: displaying error message to user
-    } else {
-        if (!qry.first()) {
-            qDebug() << "Project id not found";
-            return; // TODO: displaying error message to user
-        }
-
-        while (qry.next()) {
-            qDebug() << "Found project " << qry.value(1).toString();
-            //_view.addProject(qry.value(0).toInt(), qry.value(1).toString());
-        }
-    }*/
 }
 
 void ManageProfileControl::exitProfile()
@@ -160,4 +142,7 @@ void ManageProfileControl::exitProfile()
 }
 
 
-
+int ManageProfileControl::getAction()
+{
+    return _action;
+}

@@ -1,37 +1,35 @@
 #ifndef PROXYSTUDENT_H
 #define PROXYSTUDENT_H
 
+#include "storage.h"
 #include "student.h"
-#include "realstudent.h"
 #include <memory>
+class RealStudent;
 
 class ProxyStudent: public Student {
 
   public:
-    ProxyStudent();
+    explicit ProxyStudent();
+    explicit ProxyStudent(int id);
+    explicit ProxyStudent(int id, QString studentId);
+    explicit ProxyStudent(int id, QString studentId, int profileId);
     virtual ~ProxyStudent();
     virtual QString getStudentId();
     virtual void setStudentId(QString value);
-    virtual Profile& getProfile();
-    virtual void setProfile(Profile* value);
-    virtual std::vector<Project*> getProjects();
-    virtual int joinProject(Project& project);
-    virtual int createStudentUser();
-
-    virtual QString getUserName();
-    virtual void setUserName(QString value);
-    virtual QString getDisplayName();
-    virtual void setDisplayName(QString value);
-
+    virtual storage::ProfilePtr getProfile();
+    virtual void setProfile(storage::ProfilePtr value);
+    virtual storage::ProjectList getProjects();
+    virtual void joinProject(storage::ProjectPtr project);
+    virtual bool operator<(const Student& rhs) const;
+    virtual bool operator==(const Student& rhs) const;
 
   protected:
-    std::auto_ptr<RealStudent> getStudent();
+    void initRealStudent();
 
   private:
-    //QPointer<RealStudent> realStudent; will use later
-    std::auto_ptr<RealStudent> _realStudent;
-    //RealStudent *;
-
+    QString _studentId;
+    int _profileId;
+    std::unique_ptr<RealStudent> _realStudent;
 };
 
 #endif // PROXYSTUDENT_H

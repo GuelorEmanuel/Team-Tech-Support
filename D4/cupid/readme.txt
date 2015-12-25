@@ -3,29 +3,69 @@ Project: cuPID
 Overview:
 
 The Carleton University Project Partner Identifier(cuPID) is designed to 
-help professors to match students 
-
-
+help professors to match students for group projects.
 
 How to use:
 
 Installation:
 
 1. Download program .tar file, untar.
-2. Open QT-> Open File or Project... and set path to the folder with project.
+2. Open QT Creator and open the cuPID.pro project.
 3. Build project.
 4. Copy mydb.sqlite into the build directory.
 5. Run binary in the build directory.
 
 Usage:
 1. At the start of the program user sees the login window. There is two choices:
-    1.1 Login using existing profile. Right now the program contains 4 admin
-	accounts and 95 students. Here you can see some login examples, 
-	that can be used to log into the system.
-	1.1.1 Admin: bountytheef
-	1.1.2 Student: darthvader, lukevader, hansolo
-    1.2 Create New Account 
+    1.1 Login using existing profile. Right now the program contains several admin
+    accounts and over 30 students. Here you can see some login examples, 
+    that can be used to log into the system.
 
+    1.2 List of Users
+    
+    Admins:
+		
+        jeanlucpicard
+        samthegreat
+        sarek
+        jameskirk
+        guinan
+        tommulcair
+        admin
+
+	Student:
+	
+        darthbieber
+        wesleycrusher
+        geordilaforge
+        data
+        beverleycrusher
+        worf
+        deannatroi
+        reginaldbarclay
+        rolaren
+        willriker
+        roxannetroi
+        spock
+        benjaminsisko
+        kathrynjaneway
+        summerglau
+        tashayar
+        julianbashir
+        milesobrien
+        keikoobrien
+        thedoctor
+        thetwelfthdoctor
+        tuvok
+        jakesisko
+        sevenofnine
+        hugh
+        palpatine
+        taylorswift
+        uhura
+        borgqueen
+        captaincrunch
+        landocalrissian
 
 1.2 Create New Account
 
@@ -105,7 +145,10 @@ he/she have selected. If user doesn't want to modify the project, he/she can
 press Cancel button. If user want to modify project information, he/she presses
 Update button.
 
-2.1.3 Sign Out
+2.1.3 Run algorithm
+Once Administrator has selected a project on the combo box at his profile, admin can elect to run The algorithm . If admin select to run the algorithm a dialog box will show of the results. Admin can elect to show a summary of the matched group or a detailed breakdown of the matched group.
+
+2.1.4 Sign Out
 
 If user wants to sign out from the account, he/she can press Sign Out
 button at the top right corner of their profile.
@@ -142,7 +185,8 @@ description.
 
 In a field on the left user can see the list of projects he/she joined before.
 
-2.2.4 Sigh out
+2.2.4 Sign out
 
 If user wants to sign out, he/she can press Sign Out button on the top right 
-corner.    
+corner.   
+
